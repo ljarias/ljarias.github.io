@@ -10,13 +10,14 @@ title: Inicio
       <p class="hero-copy">Cada día seleccionamos y explicamos las noticias de inteligencia artificial que ayudan a comprender qué está cambiando, qué preocupa a los expertos y qué vale la pena discutir en el aula.</p>
       <div class="hero-actions">
         <a class="button" href="#ultimas">Ver últimas ediciones</a>
+        <a class="button secondary" href="#infografias">Ver infografías</a>
         <a class="button secondary" href="{{ '/acerca/' | relative_url }}">Cómo funciona</a>
       </div>
     </div>
     <aside class="hero-card">
       <span class="status-dot"></span>
       <strong>Actualización diaria</strong>
-      <p>Noticias recientes, fuentes enlazadas, riesgos, oportunidades y preguntas para estudiantes.</p>
+      <p>Noticias recientes, fuentes enlazadas, riesgos, oportunidades, preguntas para estudiantes y una infografía visual con el resumen del día.</p>
       <div class="mini-grid">
         <span>Seguridad</span><span>Educación</span><span>Empleo</span><span>Regulación</span><span>Agentes</span><span>Sociedad</span>
       </div>
@@ -45,9 +46,48 @@ title: Inicio
     <article class="post-card">
       <div class="post-date">Próximamente</div>
       <h3>La primera edición se publicará desde GitHub Actions</h3>
-      <p>Configura el secreto OPENAI_API_KEY y ejecuta manualmente el workflow para generar el primer resumen.</p>
+      <p>El flujo automático genera cada día un nuevo resumen de noticias de inteligencia artificial.</p>
     </article>
   {% endfor %}
+  </div>
+</section>
+
+<section class="infographics-section" id="infografias">
+  <div class="container section">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Resumen visual</div>
+        <h2>Infografías del día</h2>
+      </div>
+      <p>Cada edición diaria se convierte también en una pieza visual pensada para lectura rápida, clase y difusión en redes o mensajería.</p>
+    </div>
+
+    {% if site.data.infografias and site.data.infografias.size > 0 %}
+      {% assign infografias = site.data.infografias | reverse %}
+      <div class="infographics-grid">
+      {% for item in infografias limit:6 %}
+        <article class="infographic-card">
+          <a class="infographic-image" href="{{ item.image | relative_url }}" target="_blank" rel="noopener">
+            <img src="{{ item.image | relative_url }}" alt="{{ item.alt | escape }}" loading="lazy">
+          </a>
+          <div class="infographic-copy">
+            <div class="post-date">{{ item.date | date: "%d/%m/%Y" }}</div>
+            <h3>{{ item.title }}</h3>
+            <p>Resumen visual de las noticias y preocupaciones clave de la jornada.</p>
+            <div class="infographic-actions">
+              <a class="read-more" href="{{ item.image | relative_url }}" target="_blank" rel="noopener">Abrir infografía ↗</a>
+              <a class="read-more muted-link" href="{{ item.post_url | relative_url }}">Leer noticias →</a>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty-infographic">
+        <strong>La primera infografía se generará automáticamente.</strong>
+        <p>Cuando exista una edición diaria, el flujo creará su resumen visual y lo mostrará aquí.</p>
+      </div>
+    {% endif %}
   </div>
 </section>
 
