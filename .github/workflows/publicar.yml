@@ -48,14 +48,21 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Generar resumen diario
+        id: generar
+        continue-on-error: true
         if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5.6-luna
         run: python scripts/generar_resumen.py
 
+      - name: Avisar si falló el agente
+        if: steps.generar.outcome == 'failure'
+        run: |
+          echo "::warning::El agente no pudo generar la edición de hoy. El sitio se publicará con el contenido existente. Revisa el log del paso 'Generar resumen diario'."
+
       - name: Guardar nueva edición en GitHub
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true' && steps.generar.outcome == 'success'
         run: |
           if [[ -n "$(git status --porcelain _posts data)" ]]; then
             git config user.name "ia-al-dia-bot"
