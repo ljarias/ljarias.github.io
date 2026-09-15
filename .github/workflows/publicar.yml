@@ -7,6 +7,12 @@ on:
     - cron: "15 7 * * *"
       timezone: "America/Bogota"
   workflow_dispatch:
+    inputs:
+      regenerar_infografia:
+        description: "Regenerar la infografía de hoy aunque ya exista"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -25,26 +31,39 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Verificar configuración del agente
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
+          TODAY=$(TZ=America/Bogota date +'%Y-%m-%d')
+          EVENT="${{ github.event_name }}"
+          NEED_AI=false
+
+          if [[ "$EVENT" == "schedule" || "$EVENT" == "workflow_dispatch" ]]; then
+            NEED_AI=true
+          elif [[ "$EVENT" == "push" && -f "_posts/${TODAY}-ia-al-dia.md" && ! -f "assets/infografias/${TODAY}.png" ]]; then
+            # Permite crear la infografía inicial de una edición ya publicada
+            # cuando el código del generador acaba de incorporarse.
+            NEED_AI=true
+          fi
+
+          echo "AI_NEEDED=$NEED_AI" >> "$GITHUB_ENV"
+
           if [[ -z "$OPENAI_API_KEY" ]]; then
-            echo "::warning::Falta el secreto OPENAI_API_KEY. Se publicará el sitio sin generar una nueva edición automática."
+            echo "::warning::Falta el secreto OPENAI_API_KEY. Se publicará el sitio sin generar contenido automático."
             echo "AI_ENABLED=false" >> "$GITHUB_ENV"
           else
             echo "AI_ENABLED=true" >> "$GITHUB_ENV"
           fi
 
       - name: Configurar Python
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
+        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true'
         uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: "pip"
 
       - name: Instalar dependencias del agente
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
+        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true'
         run: pip install -r requirements.txt
 
       - name: Generar resumen diario
@@ -56,22 +75,37 @@ jobs:
           OPENAI_MODEL: gpt-5.6-luna
         run: python scripts/generar_resumen.py
 
-      - name: Avisar si falló el agente
+      - name: Avisar si falló el resumen
         if: steps.generar.outcome == 'failure'
         run: |
-          echo "::warning::El agente no pudo generar la edición de hoy. El sitio se publicará con el contenido existente. Revisa el log del paso 'Generar resumen diario'."
+          echo "::warning::El agente no pudo generar la edición de hoy. El sitio se publicará con el contenido existente."
 
-      - name: Guardar nueva edición en GitHub
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true' && steps.generar.outcome == 'success'
+      - name: Generar infografía diaria
+        id: infografia
+        continue-on-error: true
+        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true' && (github.event_name == 'push' || steps.generar.outcome == 'success')
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          INFOGRAPHIC_MODEL: gpt-image-2.5-flare-2026-09-08
+          FORCE_INFOGRAFIA: ${{ inputs.regenerar_infografia }}
+        run: python scripts/generar_infografia.py
+
+      - name: Avisar si falló la infografía
+        if: steps.infografia.outcome == 'failure'
         run: |
-          if [[ -n "$(git status --porcelain _posts data)" ]]; then
+          echo "::warning::No se pudo crear la infografía de hoy. La edición textual seguirá publicándose normalmente."
+
+      - name: Guardar edición e infografía en GitHub
+        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true'
+        run: |
+          if [[ -n "$(git status --porcelain _posts data _data assets/infografias 2>/dev/null)" ]]; then
             git config user.name "ia-al-dia-bot"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add _posts data
-            git commit -m "Publicar resumen IA $(date +'%Y-%m-%d')"
+            git add _posts data _data assets/infografias 2>/dev/null || true
+            git commit -m "Publicar IA al Día $(TZ=America/Bogota date +'%Y-%m-%d')"
             git push
           else
-            echo "No hay cambios editoriales para guardar."
+            echo "No hay cambios editoriales ni visuales para guardar."
           fi
 
       - name: Configurar GitHub Pages
