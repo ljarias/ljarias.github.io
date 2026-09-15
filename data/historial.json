@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "date": "2026-09-15",
+    "post": "_posts/2026-09-15-ia-al-dia.md",
+    "titles": [
+      "Crece la presión para frenar el avance de modelos más potentes",
+      "Corea del Sur prepara nuevas reglas para agentes autónomos",
+      "China también se prepara para el riesgo de perder control sobre sistemas avanzados",
+      "Bill Gates advierte que los gobiernos van detrás de la velocidad del cambio",
+      "Empresas tecnológicas restringen el uso de modelos por temor a fugas de datos",
+      "Europa teme depender demasiado de tecnología de IA extranjera",
+      "Maria Ressa advierte sobre IA, atención y autonomía humana"
+    ],
+    "urls": [
+      "https://www.reuters.com/business/what-amodei-altman-musk-have-said-about-ai-risks-stoking-doom-fears-2026-09-14/",
+      "https://www.reuters.com/business/anthropic-ceo-urges-ai-companies-slow-model-development-2026-09-12/",
+      "https://www.reuters.com/legal/litigation/south-korea-develop-new-security-guidelines-autonomous-ai-agents-2026-09-15/",
+      "https://www.reuters.com/legal/litigation/how-china-is-preparing-risk-ai-escaping-human-control-2026-09-14/",
+      "https://www.reuters.com/world/asia-pacific/governments-worldwide-are-way-behind-ai-says-bill-gates-2026-09-15/",
+      "https://www.reuters.com/business/palantir-nvidia-curb-ai-model-use-over-data-fears-information-reports-2026-09-14/",
+      "https://www.reuters.com/business/finance/europe-facing-unprecedented-risk-being-cut-off-ai-lagarde-warns-2026-09-14/",
+      "https://www.reuters.com/legal/litigation/limit-ai-now-or-humanity-will-lose-its-agency-says-nobel-laureate-ressa-2026-09-15/"
+    ],
+    "model": "editorial-manual"
+  }
+]
