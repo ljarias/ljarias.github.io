@@ -1,0 +1,16 @@
+title: "IA al Día"
+description: "Observatorio educativo de Inteligencia Artificial: noticias, contexto, riesgos, oportunidades y preguntas para el aula."
+lang: es-CO
+timezone: America/Bogota
+url: ""
+baseurl: ""
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+future: false
+show_excerpts: true
+exclude:
+  - scripts
+  - prompts
+  - requirements.txt
+  - README.md
+  - data
