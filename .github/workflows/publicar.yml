@@ -1,0 +1,84 @@
+name: Publicar IA al Día
+
+on:
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "15 7 * * *"
+      timezone: "America/Bogota"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Instalar dependencias del agente
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: pip install -r requirements.txt
+
+      - name: Generar resumen diario
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5.6-luna
+        run: python scripts/generar_resumen.py
+
+      - name: Guardar nueva edición en GitHub
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          if [[ -n "$(git status --porcelain _posts data)" ]]; then
+            git config user.name "ia-al-dia-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add _posts data
+            git commit -m "Publicar resumen IA $(date +'%Y-%m-%d')"
+            git push
+          else
+            echo "No hay cambios editoriales para guardar."
+          fi
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Construir sitio Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Preparar artefacto de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
