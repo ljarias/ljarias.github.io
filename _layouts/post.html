@@ -8,6 +8,22 @@ layout: default
     <p class="post-meta">{{ page.date | date: "%d/%m/%Y" }} · {{ page.reading_time | default: "Lectura breve" }}</p>
     {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
   </header>
+
+  {% assign post_date = page.date | date: "%Y-%m-%d" %}
+  {% if site.data.infografias %}
+    {% for item in site.data.infografias %}
+      {% if item.date == post_date %}
+      <section class="post-infographic">
+        <div class="eyebrow">Infografía del día</div>
+        <a href="{{ item.image | relative_url }}" target="_blank" rel="noopener">
+          <img src="{{ item.image | relative_url }}" alt="{{ item.alt | escape }}">
+        </a>
+        <p><a class="read-more" href="{{ item.image | relative_url }}" target="_blank" rel="noopener">Abrir infografía a tamaño completo ↗</a></p>
+      </section>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
   <div class="post-content">
     {{ content }}
   </div>
