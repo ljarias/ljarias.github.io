@@ -30,46 +30,49 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v6
 
-      - name: Verificar configuración del agente
+      - name: Preparar ejecución diaria
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           TODAY=$(TZ=America/Bogota date +'%Y-%m-%d')
           EVENT="${{ github.event_name }}"
-          NEED_AI=false
+          SUMMARY_NEEDED=false
+          INFO_NEEDED=false
 
           if [[ "$EVENT" == "schedule" || "$EVENT" == "workflow_dispatch" ]]; then
-            NEED_AI=true
-          elif [[ "$EVENT" == "push" && -f "_posts/${TODAY}-ia-al-dia.md" && ! -f "assets/infografias/${TODAY}.png" ]]; then
-            # Permite crear la infografía inicial de una edición ya publicada
-            # cuando el código del generador acaba de incorporarse.
-            NEED_AI=true
+            SUMMARY_NEEDED=true
+            INFO_NEEDED=true
+          elif [[ "$EVENT" == "push" && -f "_posts/${TODAY}-ia-al-dia.md" && ! -f "assets/infografias/${TODAY}.svg" ]]; then
+            # Si ya existe la noticia del día pero falta su pieza visual,
+            # la genera sin necesidad de consumir una API de imágenes.
+            INFO_NEEDED=true
           fi
 
-          echo "AI_NEEDED=$NEED_AI" >> "$GITHUB_ENV"
+          echo "SUMMARY_NEEDED=$SUMMARY_NEEDED" >> "$GITHUB_ENV"
+          echo "INFO_NEEDED=$INFO_NEEDED" >> "$GITHUB_ENV"
 
           if [[ -z "$OPENAI_API_KEY" ]]; then
-            echo "::warning::Falta el secreto OPENAI_API_KEY. Se publicará el sitio sin generar contenido automático."
+            echo "::warning::Falta OPENAI_API_KEY. No se podrá generar un nuevo resumen, pero sí las infografías de ediciones existentes."
             echo "AI_ENABLED=false" >> "$GITHUB_ENV"
           else
             echo "AI_ENABLED=true" >> "$GITHUB_ENV"
           fi
 
       - name: Configurar Python
-        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true'
+        if: env.INFO_NEEDED == 'true' || (env.SUMMARY_NEEDED == 'true' && env.AI_ENABLED == 'true')
         uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: "pip"
 
-      - name: Instalar dependencias del agente
-        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true'
+      - name: Instalar dependencias del agente de noticias
+        if: env.SUMMARY_NEEDED == 'true' && env.AI_ENABLED == 'true'
         run: pip install -r requirements.txt
 
       - name: Generar resumen diario
         id: generar
         continue-on-error: true
-        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
+        if: env.SUMMARY_NEEDED == 'true' && env.AI_ENABLED == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5.6-luna
@@ -83,10 +86,8 @@ jobs:
       - name: Generar infografía diaria
         id: infografia
         continue-on-error: true
-        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true' && (github.event_name == 'push' || steps.generar.outcome == 'success')
+        if: env.INFO_NEEDED == 'true' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.generar.outcome == 'success')
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          INFOGRAPHIC_MODEL: gpt-image-2.5-flare-2026-09-08
           FORCE_INFOGRAFIA: ${{ inputs.regenerar_infografia }}
         run: python scripts/generar_infografia.py
 
@@ -96,7 +97,7 @@ jobs:
           echo "::warning::No se pudo crear la infografía de hoy. La edición textual seguirá publicándose normalmente."
 
       - name: Guardar edición e infografía en GitHub
-        if: env.AI_ENABLED == 'true' && env.AI_NEEDED == 'true'
+        if: env.INFO_NEEDED == 'true' || (env.SUMMARY_NEEDED == 'true' && env.AI_ENABLED == 'true')
         run: |
           if [[ -n "$(git status --porcelain _posts data _data assets/infografias 2>/dev/null)" ]]; then
             git config user.name "ia-al-dia-bot"
