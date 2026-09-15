@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Descargar repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Configurar Python
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
@@ -65,7 +65,7 @@ jobs:
           destination: ./_site
 
       - name: Preparar artefacto de Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./_site
 
