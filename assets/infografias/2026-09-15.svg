@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+<rect width="1080" height="1920" fill="#F8FBFF"/>
+<path d="M0 0 H1080 V270 C870 330 690 245 480 300 C285 350 145 310 0 260 Z" fill="#073C68"/>
+<path d="M760 0 H1080 V420 C972 383 900 320 842 235 C806 181 778 93 760 0 Z" fill="#0A74A9" opacity=".92"/>
+<path d="M875 0 H1010 L890 316 C854 289 824 253 801 210 Z" fill="#35C8E8" opacity=".95"/>
+<text x="48" y="105" font-family="Arial,Helvetica,sans-serif" font-size="82" font-weight="900" fill="#FFFFFF">IA <tspan fill="#23D5E8">AL DÍA</tspan></text>
+<text x="50" y="151" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">15 de septiembre de 2026</text>
+<rect x="42" y="178" width="710" height="62" rx="24" fill="#FFD52A"/>
+<text x="68" y="219" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="800" fill="#0C2F4E">Qué preocupa hoy a expertos y gobiernos</text>
+<text x="48" y="285" font-family="Arial,Helvetica,sans-serif" font-size="23" font-style="italic" fill="#163A59">La inteligencia artificial avanza rápido.</text>
+<text x="48" y="316" font-family="Arial,Helvetica,sans-serif" font-size="23" font-style="italic" fill="#163A59">Estas son las noticias clave de hoy.</text>
+<g transform="translate(830,62)"><ellipse cx="100" cy="92" rx="88" ry="70" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="8"/><rect x="45" y="58" width="112" height="62" rx="29" fill="#092D50"/><path d="M70 88 Q82 72 94 88" fill="none" stroke="#23D5E8" stroke-width="8" stroke-linecap="round"/><path d="M112 88 Q124 72 136 88" fill="none" stroke="#23D5E8" stroke-width="8" stroke-linecap="round"/><rect x="60" y="150" width="85" height="90" rx="35" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="8"/><circle cx="102" cy="187" r="16" fill="#23D5E8"/><line x1="102" y1="20" x2="102" y2="7" stroke="#A9D8F2" stroke-width="8"/><circle cx="102" cy="4" r="7" fill="#23D5E8"/></g>
+<rect x="833" y="272" width="207" height="62" rx="18" fill="#20D2D8"/><text x="856" y="298" font-family="Arial" font-size="17" font-weight="900" fill="#06395C">TECNOLOGÍA</text><text x="856" y="319" font-family="Arial" font-size="17" font-weight="900" fill="#06395C">PERSONAS · SOCIEDAD</text>
+<rect x="30" y="360" width="500" height="282" rx="30" fill="#FDE8EC"/>
+<circle cx="75" cy="405" r="28" fill="#E9365A"/><text x="75" y="414" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">1</text>
+<g transform="translate(48,446)" stroke="#7F1D2D" stroke-width="5" fill="none" stroke-linecap="round"><path d="M5 32 L48 8 L91 32 Z"/><rect x="14" y="34" width="68" height="48" rx="4"/><line x1="26" y1="40" x2="26" y2="74"/><line x1="48" y1="40" x2="48" y2="74"/><line x1="70" y1="40" x2="70" y2="74"/><line x1="7" y1="86" x2="89" y2="86"/></g>
+<text x="152" y="408" style="font-family:Arial,Helvetica,sans-serif;font-size:25px;font-weight:900;fill:#7F1D2D"><tspan x="152" dy="0">Crece la presión para</tspan><tspan x="152" dy="30">frenar el avance de</tspan><tspan x="152" dy="30">modelos más potentes</tspan></text>
+<text x="152" y="492" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#24364B"><tspan x="152" dy="0">Durante los últimos días, directivos de</tspan><tspan x="152" dy="22">laboratorios de IA como Anthropic y OpenAI han</tspan><tspan x="152" dy="22">advertido públicamente que el desarrollo de</tspan><tspan x="152" dy="22">modelos cada vez más potentes debería avanzar</tspan><tspan x="152" dy="22">con mayores controles, evaluaciones…</tspan></text>
+<rect x="152" y="599" width="220" height="30" rx="15" fill="#E9365A" opacity=".95"/>
+<text x="167" y="620" font-family="Arial" font-size="13" font-weight="800" fill="#FFFFFF">SEGURIDAD Y ALINEACIÓN</text>
+<rect x="550" y="360" width="500" height="282" rx="30" fill="#E5F2FF"/>
+<circle cx="595" cy="405" r="28" fill="#1376C5"/><text x="595" y="414" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">2</text>
+<g transform="translate(568,446)"><rect x="8" y="20" width="82" height="62" rx="24" fill="white" stroke="#103B66" stroke-width="5"/><rect x="22" y="34" width="54" height="30" rx="14" fill="#0F2947"/><circle cx="38" cy="49" r="5" fill="#23D5E8"/><circle cx="61" cy="49" r="5" fill="#23D5E8"/><line x1="49" y1="20" x2="49" y2="9" stroke="#103B66" stroke-width="5"/><circle cx="49" cy="6" r="5" fill="#103B66"/></g>
+<text x="672" y="408" style="font-family:Arial,Helvetica,sans-serif;font-size:25px;font-weight:900;fill:#103B66"><tspan x="672" dy="0">Corea del Sur prepara</tspan><tspan x="672" dy="30">nuevas reglas para agentes</tspan><tspan x="672" dy="30">autónomos</tspan></text>
+<text x="672" y="492" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#24364B"><tspan x="672" dy="0">La agencia estatal de seguridad de internet de</tspan><tspan x="672" dy="22">Corea del Sur anunció que está desarrollando</tspan><tspan x="672" dy="22">nuevas guías de seguridad para agentes de</tspan><tspan x="672" dy="22">inteligencia artificial capaces de actuar de</tspan><tspan x="672" dy="22">forma autónoma. Este tipo de sistemas no solo…</tspan></text>
+<rect x="672" y="599" width="328" height="30" rx="15" fill="#1376C5" opacity=".95"/>
+<text x="687" y="620" font-family="Arial" font-size="13" font-weight="800" fill="#FFFFFF">AGENTES AUTÓNOMOS Y CIBERSEGURIDAD</text>
+<rect x="30" y="660" width="500" height="282" rx="30" fill="#FFF3C9"/>
+<circle cx="75" cy="705" r="28" fill="#F2B705"/><text x="75" y="714" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">3</text>
+<g transform="translate(48,746)"><path d="M50 5 L94 83 H6 Z" fill="#FFD54A" stroke="#6B4F00" stroke-width="5"/><line x1="50" y1="29" x2="50" y2="58" stroke="#6B4F00" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="70" r="4" fill="#6B4F00"/></g>
+<text x="152" y="708" style="font-family:Arial,Helvetica,sans-serif;font-size:25px;font-weight:900;fill:#6B4F00"><tspan x="152" dy="0">China también se prepara</tspan><tspan x="152" dy="30">para el riesgo de perder</tspan><tspan x="152" dy="30">control sobre sistemas…</tspan></text>
+<text x="152" y="792" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#24364B"><tspan x="152" dy="0">China está estudiando mecanismos para</tspan><tspan x="152" dy="22">responder a escenarios en los que sistemas</tspan><tspan x="152" dy="22">avanzados de IA puedan comportarse de formas</tspan><tspan x="152" dy="22">no previstas por sus desarrolladores. El</tspan><tspan x="152" dy="22">debate incluye evaluación de modelos…</tspan></text>
+<rect x="152" y="899" width="229" height="30" rx="15" fill="#F2B705" opacity=".95"/>
+<text x="167" y="920" font-family="Arial" font-size="13" font-weight="800" fill="#FFFFFF">SEGURIDAD Y GEOPOLÍTICA</text>
+<rect x="550" y="660" width="500" height="282" rx="30" fill="#EDE8FF"/>
+<circle cx="595" cy="705" r="28" fill="#6748C8"/><text x="595" y="714" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">4</text>
+<g transform="translate(568,746)" fill="none" stroke="#36256C" stroke-width="5"><circle cx="50" cy="50" r="42"/><ellipse cx="50" cy="50" rx="18" ry="42"/><path d="M8 50 H92 M18 30 H82 M18 70 H82"/></g>
+<text x="672" y="708" style="font-family:Arial,Helvetica,sans-serif;font-size:25px;font-weight:900;fill:#36256C"><tspan x="672" dy="0">Bill Gates advierte que</tspan><tspan x="672" dy="30">los gobiernos van detrás</tspan><tspan x="672" dy="30">de la velocidad del cambio</tspan></text>
+<text x="672" y="792" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#24364B"><tspan x="672" dy="0">Bill Gates afirmó que los gobiernos de todo el</tspan><tspan x="672" dy="22">mundo no están suficientemente preparados para</tspan><tspan x="672" dy="22">los cambios sociales que puede producir la</tspan><tspan x="672" dy="22">inteligencia artificial. Señaló riesgos</tspan><tspan x="672" dy="22">relacionados con empleo, ciberseguridad y…</tspan></text>
+<rect x="672" y="899" width="274" height="30" rx="15" fill="#6748C8" opacity=".95"/>
+<text x="687" y="920" font-family="Arial" font-size="13" font-weight="800" fill="#FFFFFF">SOCIEDAD, EMPLEO Y POLÍTICA…</text>
+<rect x="30" y="960" width="500" height="282" rx="30" fill="#DCF7EA"/>
+<circle cx="75" cy="1005" r="28" fill="#078766"/><text x="75" y="1014" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">5</text>
+<g transform="translate(48,1046)"><rect x="8" y="55" width="18" height="35" rx="3" fill="#4F8DEB"/><rect x="36" y="36" width="18" height="54" rx="3" fill="#38BFA3"/><rect x="64" y="20" width="18" height="70" rx="3" fill="#F2B705"/><path d="M5 18 L32 34 L55 24 L88 44" fill="none" stroke="#064E3B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="152" y="1008" style="font-family:Arial,Helvetica,sans-serif;font-size:25px;font-weight:900;fill:#064E3B"><tspan x="152" dy="0">Empresas tecnológicas</tspan><tspan x="152" dy="30">restringen el uso de</tspan><tspan x="152" dy="30">modelos por temor a fugas…</tspan></text>
+<text x="152" y="1092" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#24364B"><tspan x="152" dy="0">Empresas como Palantir y Nvidia han limitado</tspan><tspan x="152" dy="22">el uso de determinados modelos avanzados de IA</tspan><tspan x="152" dy="22">para tareas sensibles por preocupación sobre</tspan><tspan x="152" dy="22">almacenamiento de información,</tspan><tspan x="152" dy="22">confidencialidad y protección de propiedad…</tspan></text>
+<rect x="152" y="1199" width="301" height="30" rx="15" fill="#078766" opacity=".95"/>
+<text x="167" y="1220" font-family="Arial" font-size="13" font-weight="800" fill="#FFFFFF">PRIVACIDAD Y SEGURIDAD DE DATOS</text>
+<rect x="550" y="960" width="500" height="282" rx="30" fill="#FFE5EC"/>
+<circle cx="595" cy="1005" r="28" fill="#EC2E62"/><text x="595" y="1014" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">6</text>
+<g transform="translate(568,1046)"><circle cx="34" cy="45" r="13" fill="#F2B705"/><circle cx="65" cy="42" r="15" fill="#38BFA3"/><circle cx="52" cy="68" r="16" fill="#4F8DEB"/><path d="M12 92 Q34 62 56 92" fill="#FF8DA7"/><path d="M42 94 Q66 58 90 94" fill="#7DD3FC"/><path d="M64 8 Q91 13 83 37 Q62 31 64 8" fill="#46C98C" stroke="#7A1735" stroke-width="3"/></g>
+<text x="672" y="1008" style="font-family:Arial,Helvetica,sans-serif;font-size:25px;font-weight:900;fill:#7A1735"><tspan x="672" dy="0">Europa teme depender</tspan><tspan x="672" dy="30">demasiado de tecnología de</tspan><tspan x="672" dy="30">IA extranjera</tspan></text>
+<text x="672" y="1092" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#24364B"><tspan x="672" dy="0">Christine Lagarde, presidenta del Banco</tspan><tspan x="672" dy="22">Central Europeo, advirtió que Europa enfrenta</tspan><tspan x="672" dy="22">un riesgo importante si depende excesivamente</tspan><tspan x="672" dy="22">de infraestructura, chips, centros de datos y</tspan><tspan x="672" dy="22">modelos desarrollados fuera de la región…</tspan></text>
+<rect x="672" y="1199" width="274" height="30" rx="15" fill="#EC2E62" opacity=".95"/>
+<text x="687" y="1220" font-family="Arial" font-size="13" font-weight="800" fill="#FFFFFF">INFRAESTRUCTURA Y SOBERANÍA…</text>
+<rect x="30" y="1270" width="660" height="390" rx="28" fill="#FFFFFF" stroke="#D6E4F0" stroke-width="2"/>
+<rect x="30" y="1270" width="660" height="72" rx="28" fill="#073C68"/><rect x="30" y="1314" width="660" height="28" fill="#073C68"/>
+<text x="62" y="1318" font-family="Arial" font-size="30" font-weight="900" fill="#FFFFFF">3 ideas clave para el aula</text>
+<rect x="48" y="1360" width="194" height="270" rx="22" fill="#E5F2FF"/>
+<circle cx="78" cy="1392" r="22" fill="#1376C5"/><text x="78" y="1400" text-anchor="middle" font-family="Arial" font-size="21" font-weight="900" fill="#FFFFFF">1</text>
+<text x="66" y="1470" style="font-family:Arial;font-size:22px;font-weight:900;fill:#102A43"><tspan x="66" dy="0">Capacidad ≠</tspan><tspan x="66" dy="27">control</tspan></text>
+<text x="66" y="1562" style="font-family:Arial;font-size:15px;font-weight:500;fill:#3E5368"><tspan x="66" dy="0">Que un sistema sea</tspan><tspan x="66" dy="20">potente no significa que</tspan><tspan x="66" dy="20">sea totalmente</tspan><tspan x="66" dy="20">predecible.</tspan></text>
+<rect x="264" y="1360" width="194" height="270" rx="22" fill="#FFF3C9"/>
+<circle cx="294" cy="1392" r="22" fill="#F2B705"/><text x="294" y="1400" text-anchor="middle" font-family="Arial" font-size="21" font-weight="900" fill="#FFFFFF">2</text>
+<text x="282" y="1470" style="font-family:Arial;font-size:22px;font-weight:900;fill:#102A43"><tspan x="282" dy="0">Innovar exige</tspan><tspan x="282" dy="27">reglas</tspan></text>
+<text x="282" y="1562" style="font-family:Arial;font-size:15px;font-weight:500;fill:#3E5368"><tspan x="282" dy="0">Más autonomía requiere</tspan><tspan x="282" dy="20">seguridad, supervisión y</tspan><tspan x="282" dy="20">responsabilidades</tspan><tspan x="282" dy="20">claras.</tspan></text>
+<rect x="480" y="1360" width="194" height="270" rx="22" fill="#EDE8FF"/>
+<circle cx="510" cy="1392" r="22" fill="#6748C8"/><text x="510" y="1400" text-anchor="middle" font-family="Arial" font-size="21" font-weight="900" fill="#FFFFFF">3</text>
+<text x="498" y="1470" style="font-family:Arial;font-size:22px;font-weight:900;fill:#102A43"><tspan x="498" dy="0">Advertencia ≠</tspan><tspan x="498" dy="27">hecho</tspan></text>
+<text x="498" y="1562" style="font-family:Arial;font-size:15px;font-weight:500;fill:#3E5368"><tspan x="498" dy="0">Distingue datos</tspan><tspan x="498" dy="20">confirmados, opiniones,</tspan><tspan x="498" dy="20">proyecciones y</tspan><tspan x="498" dy="20">escenarios hipotéticos.</tspan></text>
+<rect x="710" y="1270" width="340" height="390" rx="28" fill="#FFFFFF" stroke="#D6E4F0" stroke-width="2"/>
+<rect x="710" y="1270" width="340" height="72" rx="28" fill="#073C68"/><rect x="710" y="1314" width="340" height="28" fill="#073C68"/>
+<text x="738" y="1318" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">Semáforo del día</text>
+<circle cx="756" cy="1383" r="25" fill="#EF4444"/>
+<text x="795" y="1376" style="font-family:Arial;font-size:16px;font-weight:800;fill:#20364A"><tspan x="795" dy="0">Avance positivo: más</tspan><tspan x="795" dy="19">gobiernos y…</tspan></text>
+<text x="795" y="1421" font-family="Arial" font-size="13" fill="#667085">Mayor atención</text>
+<circle cx="756" cy="1474" r="25" fill="#F2B705"/>
+<text x="795" y="1467" style="font-family:Arial;font-size:16px;font-weight:800;fill:#20364A"><tspan x="795" dy="0">Tema para observar: la</tspan><tspan x="795" dy="19">discusión sobre cuánto…</tspan></text>
+<text x="795" y="1512" font-family="Arial" font-size="13" fill="#667085">En observación</text>
+<circle cx="756" cy="1565" r="25" fill="#10B981"/>
+<text x="795" y="1558" style="font-family:Arial;font-size:16px;font-weight:800;fill:#20364A"><tspan x="795" dy="0">Riesgo relevante: uso de</tspan><tspan x="795" dy="19">IA con información…</tspan></text>
+<text x="795" y="1603" font-family="Arial" font-size="13" fill="#667085">Oportunidad</text>
+<path d="M0 1700 C260 1630 430 1745 650 1710 C835 1680 948 1645 1080 1685 V1920 H0 Z" fill="#073C68"/>
+<text x="48" y="1785" font-family="cursive" font-size="37" font-style="italic" fill="#FFFFFF">Informarnos hoy,</text>
+<text x="48" y="1832" font-family="cursive" font-size="37" font-style="italic" fill="#FFFFFF">para decidir mejor mañana.</text>
+<line x1="52" y1="1861" x2="405" y2="1861" stroke="#23D5E8" stroke-width="8" stroke-linecap="round"/>
+<text x="1030" y="1810" text-anchor="end" font-family="Arial" font-size="15" fill="#D6E7F6">Fuentes: Reuters</text>
+<text x="1030" y="1840" text-anchor="end" font-family="Arial" font-size="15" fill="#D6E7F6">Resumen educativo · Observatorio IA al Día</text>
+<text x="1030" y="1870" text-anchor="end" font-family="Arial" font-size="14" fill="#9FDFF1">ljarias.github.io</text>
+</svg>
