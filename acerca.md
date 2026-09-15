@@ -8,6 +8,11 @@ permalink: /acerca/
   <h1>Un observatorio de IA pensado para aprender, no solo para enterarse.</h1>
   <p class="lead">IA al Día selecciona noticias recientes sobre inteligencia artificial y las convierte en explicaciones breves, contrastadas y útiles para estudiantes, docentes y personas interesadas en comprender el impacto social de esta tecnología.</p>
 
+  <div class="info-card" style="margin: 1.5rem 0 2rem 0;">
+    <h3>Liderazgo del proyecto</h3>
+    <p>Este proyecto es liderado por el <strong>Ingeniero Leonardo Arias-Alemán</strong>. Contacto: <a href="mailto:ljarias@gmail.com">ljarias@gmail.com</a>.</p>
+  </div>
+
   <div class="info-grid">
     <div class="info-card"><h3>Qué prioriza</h3><p>Seguridad y alineación, agentes autónomos, educación, empleo, regulación, geopolítica, deepfakes, ciberseguridad, energía, privacidad, derechos de autor y aplicaciones socialmente valiosas.</p></div>
     <div class="info-card"><h3>Qué evita</h3><p>Titulares sensacionalistas, rumores sin respaldo, predicciones presentadas como hechos y publicaciones repetidas sin información nueva.</p></div>
