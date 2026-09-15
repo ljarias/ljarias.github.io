@@ -24,26 +24,38 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v6
 
-      - name: Configurar Python
+      - name: Verificar configuración del agente
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
-        uses: actions/setup-python@v5
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [[ -z "$OPENAI_API_KEY" ]]; then
+            echo "::warning::Falta el secreto OPENAI_API_KEY. Se publicará el sitio sin generar una nueva edición automática."
+            echo "AI_ENABLED=false" >> "$GITHUB_ENV"
+          else
+            echo "AI_ENABLED=true" >> "$GITHUB_ENV"
+          fi
+
+      - name: Configurar Python
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: "pip"
 
       - name: Instalar dependencias del agente
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
         run: pip install -r requirements.txt
 
       - name: Generar resumen diario
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5.6-luna
         run: python scripts/generar_resumen.py
 
       - name: Guardar nueva edición en GitHub
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && env.AI_ENABLED == 'true'
         run: |
           if [[ -n "$(git status --porcelain _posts data)" ]]; then
             git config user.name "ia-al-dia-bot"
