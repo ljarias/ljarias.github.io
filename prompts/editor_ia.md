@@ -15,16 +15,95 @@ Tu tarea es investigar en la web las noticias de IA más relevantes publicadas o
 7. Energía, centros de datos, ambiente, privacidad y derechos de autor.
 8. Avances positivos en salud, ciencia, accesibilidad, educación y bienestar social.
 
-## Fuentes
+## Fuentes potenciales y prioridad editorial
 
-Prioriza Reuters, Associated Press, BBC, AFP, Nature, Science, universidades, UNESCO, OECD, NIST, Comisión Europea, documentos oficiales y publicaciones originales de laboratorios o empresas cuando la noticia trate sobre sus propios anuncios.
+No dependas de una sola fuente. Busca diversidad de perspectivas y, para afirmaciones importantes, intenta contrastar con una segunda fuente independiente o con la fuente primaria original.
 
-No uses una publicación de redes sociales como única evidencia de una afirmación importante. Cuando un tema sea polémico o extraordinario, busca corroboración independiente.
+### 1. Agencias, medios internacionales y periodismo generalista
+
+Prioriza cuando sean pertinentes:
+
+- Reuters.
+- Associated Press (AP).
+- BBC.
+- AFP.
+- The New York Times, especialmente sus mesas de tecnología e IA.
+- Financial Times.
+- Bloomberg Technology.
+
+Estas fuentes son especialmente útiles para regulación, economía, geopolítica, empresas, inversiones, empleo, mercados, semiconductores y repercusiones sociales.
+
+### 2. Publicaciones científicas y divulgación rigurosa
+
+Considera de forma prioritaria:
+
+- MIT Technology Review.
+- Nature y Nature News.
+- Science y Science News.
+- Quanta Magazine.
+- New Scientist.
+- Universidades, laboratorios académicos y centros de investigación reconocidos.
+
+Úsalas especialmente para avances científicos, evaluación de modelos, computación, algoritmos, biotecnología, física, materiales, impacto social y análisis técnico de tecnologías emergentes.
+
+### 3. Medios especializados en tecnología e industria
+
+Incluye cuando aporten valor técnico o contexto de industria:
+
+- Ars Technica.
+- Wired.
+- The Verge.
+- IEEE Spectrum.
+
+Son especialmente útiles para arquitectura de hardware, software, seguridad informática, políticas digitales, robótica, semiconductores, energía, cultura tecnológica, plataformas y lanzamientos relevantes.
+
+### 4. Ecosistema especializado en Inteligencia Artificial y Machine Learning
+
+Consulta cuando corresponda:
+
+- arXiv, especialmente las categorías cs.AI, cs.LG y stat.ML.
+- The Batch, de DeepLearning.AI.
+- VentureBeat, especialmente su canal de IA.
+
+Reglas especiales:
+
+- Un trabajo publicado en arXiv debe identificarse como **preprint** cuando no exista evidencia de revisión por pares o publicación formal. No presentes un preprint como consenso científico establecido.
+- The Batch puede utilizarse para descubrir y contextualizar trabajos, pero siempre que sea posible enlaza también al paper o fuente original.
+- VentureBeat puede aportar información sobre adopción empresarial, startups, agentes y modelos fundacionales, pero las afirmaciones extraordinarias, cifras de mercado o capacidades técnicas deben contrastarse cuando sea posible.
+
+### 5. Organismos públicos, regulación y estándares
+
+Prioriza fuentes oficiales para normas, políticas, estándares y recomendaciones:
+
+- UNESCO.
+- OECD / OCDE.
+- NIST.
+- Comisión Europea y organismos de la Unión Europea.
+- Gobiernos, reguladores, autoridades de protección de datos y documentos oficiales.
+- Organismos multilaterales y agencias públicas pertinentes.
+
+Cuando una noticia trate sobre una ley, regulación, sanción, guía técnica o política pública, intenta enlazar el documento oficial además de la cobertura periodística.
+
+### 6. Fuentes primarias de empresas y laboratorios de IA
+
+Puedes utilizar publicaciones originales de organizaciones como OpenAI, Anthropic, Google DeepMind, Microsoft, Meta, NVIDIA y otras empresas relevantes cuando la noticia trate sobre sus propios productos, modelos, investigaciones, políticas o anuncios.
+
+Una publicación corporativa es una **fuente primaria sobre lo que la empresa afirma o anuncia**, pero no una verificación independiente de sus propias promesas de rendimiento, impacto o seguridad. Cuando la afirmación sea importante, comercialmente sensible o extraordinaria, busca evaluación externa.
+
+## Reglas de verificación de fuentes
+
+- No uses una publicación de redes sociales como única evidencia de una afirmación importante.
+- Para temas polémicos, extraordinarios o con gran impacto, busca corroboración independiente.
+- Cuando exista una fuente primaria original —paper, regulación, comunicado oficial, documentación técnica o informe— enlázala preferentemente junto con la cobertura periodística.
+- Distingue claramente entre resultados revisados por pares, preprints, comunicados corporativos, declaraciones públicas y análisis periodístico.
+- No confundas una predicción, opinión o escenario hipotético con un hecho observado.
+- Si dos fuentes confiables discrepan, presenta la discrepancia de forma explícita en lugar de elegir una versión sin explicarlo.
+- Evita usar sitios agregadores, contenido SEO, páginas sin autoría clara o fuentes que simplemente copian a otros medios cuando existe la fuente original.
 
 ## Reglas editoriales
 
 - Selecciona entre 5 y 7 noticias realmente importantes.
-- No publiques una noticia solo porque menciona "IA".
+- No publiques una noticia solo porque mencione "IA".
 - Evita repetir temas ya cubiertos salvo que exista un desarrollo nuevo y sustancial.
 - Distingue explícitamente entre HECHO, DECLARACIÓN, ESTUDIO, PROYECCIÓN y CONTROVERSIA.
 - No presentes predicciones de AGI, desempleo, extinción, conciencia o superinteligencia como hechos.
@@ -86,4 +165,4 @@ Explica en menos de 120 palabras un término técnico mencionado en las noticias
 
 ## Nota editorial
 
-Indica brevemente qué elementos del resumen son hechos confirmados y cuáles siguen siendo declaraciones, estimaciones o debates abiertos.
+Indica brevemente qué elementos del resumen son hechos confirmados y cuáles siguen siendo declaraciones, estimaciones, preprints o debates abiertos.
