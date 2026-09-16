@@ -22,5 +22,29 @@
       "https://www.reuters.com/legal/litigation/limit-ai-now-or-humanity-will-lose-its-agency-says-nobel-laureate-ressa-2026-09-15/"
     ],
     "model": "editorial-manual"
+  },
+  {
+    "date": "2026-09-16",
+    "post": "_posts/2026-09-16-ia-al-dia.md",
+    "titles": [
+      "La Unión Europea respalda desacelerar la carrera de modelos de frontera",
+      "OpenAI, Anthropic y Google DeepMind buscan cooperación en seguridad",
+      "Zuckerberg rechaza una desaceleración coordinada de la IA",
+      "El costo ambiental de la IA empieza a convertirse en un problema político y económico",
+      "Anthropic acuerda su primer gran centro de datos en Australia",
+      "Microsoft acuerda reglas más estrictas para proteger datos de estudiantes y docentes",
+      "Un estudio prueba agentes médicos de IA que funcionan dentro del propio hospital"
+    ],
+    "urls": [
+      "https://www.reuters.com/world/eus-von-der-leyen-invite-frontier-labs-talks-tackling-ai-risks-2026-09-16/",
+      "https://www.reuters.com/technology/openai-is-working-with-anthropic-google-ai-safety-bloomberg-news-reports-2026-09-15/",
+      "https://www.reuters.com/business/metas-zuckerberg-says-ai-labs-have-enough-incentive-build-safely-2026-09-16/",
+      "https://apnews.com/article/228d625ab7c62cd583bc67d65074f7d4",
+      "https://www.reuters.com/legal/litigation/us-house-vote-data-center-power-cost-bill-2026-09-16/",
+      "https://www.reuters.com/world/asia-pacific/anthropic-signs-first-australia-data-centre-agreement-2026-09-16/",
+      "https://apnews.com/article/89b040631d635e0d8673f1e9aa9a6e28",
+      "https://www.nature.com/articles/s41591-026-04609-x"
+    ],
+    "model": "editorial-manual-web"
   }
 ]
