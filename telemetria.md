@@ -7,7 +7,7 @@ permalink: /telemetria/
 <section class="page container narrow">
   <div class="eyebrow">Transparencia operativa</div>
   <h1>Telemetría del agente</h1>
-  <p class="lead">Este panel registra el consumo reportado por la API durante la generación automática de <strong>IA al Día</strong>: tokens de entrada y salida, búsquedas web y costo estimado de cada edición.</p>
+  <p class="lead">Este panel registra el consumo reportado por la API durante la generación automática del <strong>consolidado semanal de IA al Día</strong>: tokens de entrada y salida, búsquedas web y costo estimado de cada edición.</p>
 
   {% assign registros = site.data.consumo_api %}
   {% assign ultimo = registros | last %}
@@ -17,6 +17,10 @@ permalink: /telemetria/
     <div class="info-card">
       <h3>Última ejecución</h3>
       <p><strong>{{ ultimo.date }}</strong><br>Estado: {% if ultimo.status == 'success' %}✅ Correcta{% else %}⚠️ {{ ultimo.status }}{% endif %}</p>
+    </div>
+    <div class="info-card">
+      <h3>Periodo</h3>
+      <p>{% if ultimo.period_start %}<strong>{{ ultimo.period_start }}</strong><br>a <strong>{{ ultimo.period_end }}</strong>{% else %}Sin periodo registrado{% endif %}</p>
     </div>
     <div class="info-card">
       <h3>Tokens</h3>
@@ -65,7 +69,7 @@ permalink: /telemetria/
   <h2>Cómo se calcula</h2>
   <p>La telemetría usa los contadores de <code>usage</code> devueltos por la Responses API. Se separan tokens de entrada normales, tokens en caché, escrituras de caché, tokens de salida y llamadas de búsqueda web. El costo mostrado es una <strong>estimación técnica</strong> calculada con las tarifas configuradas en el agente; la facturación oficial de OpenAI es la referencia definitiva.</p>
 
-  <p>Para GPT-5.6 Luna, el agente tiene configuradas las tarifas Standard vigentes al 17 de septiembre de 2026 y el costo de búsqueda web correspondiente. Si el modelo cambia y no existe una tarifa configurada, los tokens seguirán registrándose pero el costo aparecerá sin estimar.</p>
+  <p>El consolidado se ejecuta los <strong>domingos a las 8:00 a. m. hora de Colombia</strong>. Como ahora se investiga una semana completa en una sola ejecución, el costo de una edición semanal puede ser mayor que el de la antigua edición diaria, pero el número de ejecuciones mensuales será mucho menor.</p>
 
   <p><a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">Consultar tarifas oficiales de OpenAI API ↗</a></p>
 
