@@ -1,15 +1,15 @@
-name: Publicar IA al Día
+name: Publicar IA al Día — Consolidado semanal
 
 on:
   push:
     branches: ["main"]
   schedule:
-    - cron: "30 6 * * *"
+    - cron: "0 8 * * 0"
       timezone: "America/Bogota"
   workflow_dispatch:
     inputs:
       regenerar_infografia:
-        description: "Regenerar la infografía de hoy aunque ya exista"
+        description: "Regenerar la infografía semanal aunque ya exista"
         required: false
         type: boolean
         default: false
@@ -30,7 +30,7 @@ jobs:
       - name: Descargar repositorio
         uses: actions/checkout@v6
 
-      - name: Preparar ejecución diaria
+      - name: Preparar ejecución semanal
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
@@ -43,7 +43,7 @@ jobs:
             SUMMARY_NEEDED=true
             INFO_NEEDED=true
           elif [[ "$EVENT" == "push" && -f "_posts/${TODAY}-ia-al-dia.md" && ! -f "assets/infografias/${TODAY}.svg" ]]; then
-            # Si ya existe la noticia del día pero falta su pieza visual,
+            # Si ya existe el consolidado semanal pero falta su pieza visual,
             # la genera sin necesidad de consumir una API de imágenes.
             INFO_NEEDED=true
           fi
@@ -52,7 +52,7 @@ jobs:
           echo "INFO_NEEDED=$INFO_NEEDED" >> "$GITHUB_ENV"
 
           if [[ -z "$OPENAI_API_KEY" ]]; then
-            echo "::warning::Falta OPENAI_API_KEY. No se podrá generar un nuevo resumen, pero sí las infografías de ediciones existentes."
+            echo "::warning::Falta OPENAI_API_KEY. No se podrá generar un nuevo consolidado semanal, pero sí las infografías de ediciones existentes."
             echo "AI_ENABLED=false" >> "$GITHUB_ENV"
           else
             echo "AI_ENABLED=true" >> "$GITHUB_ENV"
@@ -69,7 +69,7 @@ jobs:
         if: env.SUMMARY_NEEDED == 'true' && env.AI_ENABLED == 'true'
         run: pip install -r requirements.txt
 
-      - name: Generar resumen diario
+      - name: Generar consolidado semanal
         id: generar
         continue-on-error: true
         if: env.SUMMARY_NEEDED == 'true' && env.AI_ENABLED == 'true'
@@ -78,12 +78,12 @@ jobs:
           OPENAI_MODEL: gpt-5.6-luna
         run: python scripts/generar_resumen.py
 
-      - name: Avisar si falló el resumen
+      - name: Avisar si falló el consolidado
         if: steps.generar.outcome == 'failure'
         run: |
-          echo "::warning::El agente no pudo generar la edición de hoy. El sitio se publicará con el contenido existente."
+          echo "::warning::El agente no pudo generar el consolidado semanal. El sitio se publicará con el contenido existente."
 
-      - name: Generar infografía diaria
+      - name: Generar infografía semanal
         id: infografia
         continue-on-error: true
         if: env.INFO_NEEDED == 'true' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.generar.outcome == 'success')
@@ -94,19 +94,20 @@ jobs:
       - name: Avisar si falló la infografía
         if: steps.infografia.outcome == 'failure'
         run: |
-          echo "::warning::No se pudo crear la infografía de hoy. La edición textual seguirá publicándose normalmente."
+          echo "::warning::No se pudo crear la infografía semanal. El consolidado textual seguirá publicándose normalmente."
 
-      - name: Guardar edición e infografía en GitHub
+      - name: Guardar consolidado, telemetría e infografía en GitHub
         if: env.INFO_NEEDED == 'true' || (env.SUMMARY_NEEDED == 'true' && env.AI_ENABLED == 'true')
         run: |
           if [[ -n "$(git status --porcelain _posts data _data assets/infografias 2>/dev/null)" ]]; then
             git config user.name "ia-al-dia-bot"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add _posts data _data assets/infografias 2>/dev/null || true
-            git commit -m "Publicar IA al Día $(TZ=America/Bogota date +'%Y-%m-%d')"
+            git commit -m "Publicar consolidado semanal IA $(TZ=America/Bogota date +'%Y-%m-%d')"
+            git pull --rebase origin main
             git push
           else
-            echo "No hay cambios editoriales ni visuales para guardar."
+            echo "No hay cambios editoriales, visuales o de telemetría para guardar."
           fi
 
       - name: Configurar GitHub Pages
