@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -19,8 +19,6 @@ MODEL = os.getenv("OPENAI_MODEL", "gpt-5.6-luna")
 
 # Tarifas vigentes consultadas en la documentación oficial de OpenAI
 # el 17 de septiembre de 2026. Valores en USD por 1M tokens.
-# Se usa tarifa Standard y se aplica long-context cuando la entrada
-# supera 272K tokens.
 PRICING = {
     "gpt-5.6-luna": {
         "short": {
@@ -98,6 +96,24 @@ def extract_titles(markdown: str) -> list[str]:
     return [re.sub(r"[*_`]", "", title).strip() for title in found]
 
 
+def human_date(value) -> str:
+    return f"{value.day} de {MONTHS[value.month - 1]} de {value.year}"
+
+
+def human_week_range(start, end) -> str:
+    if start.year == end.year and start.month == end.month:
+        return f"del {start.day} al {end.day} de {MONTHS[end.month - 1]} de {end.year}"
+    if start.year == end.year:
+        return (
+            f"del {start.day} de {MONTHS[start.month - 1]} "
+            f"al {end.day} de {MONTHS[end.month - 1]} de {end.year}"
+        )
+    return (
+        f"del {start.day} de {MONTHS[start.month - 1]} de {start.year} "
+        f"al {end.day} de {MONTHS[end.month - 1]} de {end.year}"
+    )
+
+
 def _attr(obj, name: str, default=0):
     if obj is None:
         return default
@@ -127,11 +143,7 @@ def calculate_cost(response, model: str) -> dict:
     cache_write_tokens = int(_attr(input_details, "cache_write_tokens", 0) or 0)
     reasoning_tokens = int(_attr(output_details, "reasoning_tokens", 0) or 0)
 
-    # Los tokens en caché y los cache writes son subconjuntos de input_tokens.
-    uncached_input_tokens = max(
-        input_tokens - cached_tokens - cache_write_tokens,
-        0,
-    )
+    uncached_input_tokens = max(input_tokens - cached_tokens - cache_write_tokens, 0)
     web_search_calls = count_web_search_calls(response)
 
     pricing = PRICING.get(model)
@@ -188,8 +200,6 @@ def calculate_cost(response, model: str) -> dict:
 
 def add_telemetry_record(record: dict) -> None:
     records = load_telemetry()
-
-    # Un solo registro final por fecha. Si se reintenta, sustituye el anterior.
     records = [item for item in records if item.get("date") != record.get("date")]
     records.append(record)
     records.sort(key=lambda item: item.get("timestamp", item.get("date", "")))
@@ -220,7 +230,7 @@ def add_telemetry_record(record: dict) -> None:
     save_telemetry(records)
 
 
-def telemetry_failure(now: datetime, exc: Exception) -> None:
+def telemetry_failure(now: datetime, week_start, week_end, exc: Exception) -> None:
     message = str(exc)
 
     if "credit_balance_exhausted" in message or "insufficient_quota" in message:
@@ -233,6 +243,9 @@ def telemetry_failure(now: datetime, exc: Exception) -> None:
     add_telemetry_record({
         "date": now.date().isoformat(),
         "timestamp": now.isoformat(),
+        "edition_type": "weekly",
+        "period_start": week_start.isoformat(),
+        "period_end": week_end.isoformat(),
         "model": MODEL,
         "status": "failed",
         "error_code": error_code,
@@ -261,14 +274,18 @@ def main() -> None:
 
     now = datetime.now(TZ)
     date_iso = now.date().isoformat()
-    human_date = f"{now.day} de {MONTHS[now.month - 1]} de {now.year}"
+    week_end = now.date()
+    week_start = week_end - timedelta(days=6)
+    week_label = human_week_range(week_start, week_end)
 
     editorial_prompt = PROMPT_PATH.read_text(encoding="utf-8")
     history = load_history()
-    recent_history = history[-30:]
+    recent_history = history[-12:]
 
     context = {
-        "fecha_actual": date_iso,
+        "fecha_ejecucion": date_iso,
+        "periodo_inicio": week_start.isoformat(),
+        "periodo_fin": week_end.isoformat(),
         "zona_horaria": "America/Bogota",
         "ediciones_recientes": recent_history,
     }
@@ -278,13 +295,17 @@ def main() -> None:
 
 ## Contexto de esta ejecución
 
-Hoy es {human_date}. Busca información reciente a nivel mundial y prioriza desarrollos de las últimas 24 a 36 horas.
+Hoy es {human_date(now.date())}. Esta es una edición semanal.
+
+El periodo editorial que debes consolidar va {week_label}. Investiga a nivel mundial los hechos más importantes y críticos ocurridos, publicados o sustancialmente actualizados durante ese periodo. Si una noticia fue publicada esta semana pero describe un hecho antiguo, aclara la fecha real del acontecimiento y decide si sigue siendo relevante.
+
+No intentes resumir cada día. Identifica patrones, conecta desarrollos relacionados y selecciona únicamente los asuntos que realmente merecen quedar en el consolidado semanal.
 
 Para reducir duplicados, esta es la memoria editorial de las últimas ediciones:
 
 {json.dumps(context, ensure_ascii=False, indent=2)}
 
-Si un tema ya aparece allí, inclúyelo solamente si hay un desarrollo nuevo y sustancial. Comprueba las fechas de publicación y, cuando sea posible, la fecha real del acontecimiento.
+Si un tema ya aparece allí, inclúyelo solamente si hubo un desarrollo nuevo y sustancial durante la semana actual.
 """.strip()
 
     client = OpenAI()
@@ -295,19 +316,22 @@ Si un tema ya aparece allí, inclúyelo solamente si hay un desarrollo nuevo y s
             reasoning={"effort": "low"},
             tools=[{"type": "web_search_preview", "search_context_size": "medium"}],
             input=input_text,
-            max_output_tokens=6500,
+            max_output_tokens=8500,
         )
     except Exception as exc:
-        telemetry_failure(now, exc)
+        telemetry_failure(now, week_start, week_end, exc)
         raise
 
     usage_record = calculate_cost(response, MODEL)
     body = clean_markdown(response.output_text or "")
 
-    if len(body) < 500:
+    if len(body) < 700:
         add_telemetry_record({
             "date": date_iso,
             "timestamp": now.isoformat(),
+            "edition_type": "weekly",
+            "period_start": week_start.isoformat(),
+            "period_end": week_end.isoformat(),
             "model": MODEL,
             "response_id": getattr(response, "id", None),
             "status": "failed_content",
@@ -321,6 +345,9 @@ Si un tema ya aparece allí, inclúyelo solamente si hay un desarrollo nuevo y s
     add_telemetry_record({
         "date": date_iso,
         "timestamp": now.isoformat(),
+        "edition_type": "weekly",
+        "period_start": week_start.isoformat(),
+        "period_end": week_end.isoformat(),
         "model": MODEL,
         "response_id": getattr(response, "id", None),
         "status": "success",
@@ -333,13 +360,13 @@ Si un tema ya aparece allí, inclúyelo solamente si hay un desarrollo nuevo y s
         ),
     })
 
-    title = f"IA al Día — {human_date}"
+    title = f"IA al Día — Consolidado semanal {week_label}"
     summary = (
-        "Selección diaria de noticias mundiales sobre inteligencia artificial, "
-        "con contexto, riesgos, oportunidades y preguntas para el aula."
+        "Consolidado semanal de las noticias mundiales más importantes y críticas sobre inteligencia artificial, "
+        "con contexto, nivel de criticidad, riesgos, oportunidades y preguntas para el aula."
     )
 
-    front_matter = f'''---\nlayout: post\ntitle: "{yaml_escape(title)}"\ndate: {now.strftime('%Y-%m-%d %H:%M:%S %z')}\nsummary: "{yaml_escape(summary)}"\nreading_time: "8–12 min"\ncategories: [ia, noticias, educacion]\n---\n\n'''
+    front_matter = f'''---\nlayout: post\ntitle: "{yaml_escape(title)}"\ndate: {now.strftime('%Y-%m-%d %H:%M:%S %z')}\nsummary: "{yaml_escape(summary)}"\nreading_time: "12–18 min"\ncategories: [ia, noticias, educacion, semanal]\n---\n\n'''
 
     POSTS_DIR.mkdir(parents=True, exist_ok=True)
     post_path = POSTS_DIR / f"{date_iso}-ia-al-dia.md"
@@ -347,9 +374,12 @@ Si un tema ya aparece allí, inclúyelo solamente si hay un desarrollo nuevo y s
 
     record = {
         "date": date_iso,
+        "edition_type": "weekly",
+        "period_start": week_start.isoformat(),
+        "period_end": week_end.isoformat(),
         "post": str(post_path.relative_to(ROOT)),
-        "titles": extract_titles(body)[:7],
-        "urls": extract_urls(body)[:40],
+        "titles": extract_titles(body)[:10],
+        "urls": extract_urls(body)[:60],
         "model": MODEL,
     }
 
@@ -363,7 +393,8 @@ Si un tema ya aparece allí, inclúyelo solamente si hay un desarrollo nuevo y s
         encoding="utf-8",
     )
 
-    print(f"Publicación generada: {post_path.relative_to(ROOT)}")
+    print(f"Consolidado semanal generado: {post_path.relative_to(ROOT)}")
+    print(f"Periodo: {week_start.isoformat()} a {week_end.isoformat()}")
     print(f"Noticias detectadas: {len(record['titles'])}")
     print(f"URLs registradas: {len(record['urls'])}")
     print("Telemetría de consumo:")
