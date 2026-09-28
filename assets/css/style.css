@@ -6,3 +6,69 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}a{color:inherit}.container{width:min(1120px,calc(100% - 40px));margin:0 auto}.narrow{width:min(820px,calc(100% - 40px))}.site-header{position:sticky;top:0;z-index:10;background:rgba(247,248,251,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(229,231,235,.85)}.nav-wrap{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;font-weight:800}.brand strong,.brand small{display:block}.brand small{color:var(--muted);font-size:.76rem;margin-top:-2px}.site-header nav{display:flex;gap:22px}.site-header nav a{text-decoration:none;color:#344054;font-weight:650;font-size:.93rem}.hero{padding:86px 0 64px;background:radial-gradient(circle at 85% 15%,rgba(6,182,212,.15),transparent 32%),radial-gradient(circle at 5% 5%,rgba(37,99,235,.13),transparent 30%)}.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:54px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;font-weight:800;color:var(--blue);margin-bottom:12px}.eyebrow.light{color:#7dd3fc}.hero h1{font-size:clamp(2.7rem,7vw,5.8rem);line-height:.98;letter-spacing:-.055em;max-width:850px;margin:0 0 26px}.hero-copy{max-width:750px;color:#475467;font-size:1.15rem}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{display:inline-block;padding:13px 18px;border-radius:14px;background:var(--navy);color:white;text-decoration:none;font-weight:750}.button.secondary{background:var(--paper);color:var(--ink);border:1px solid var(--line)}.hero-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}.hero-card p{color:var(--muted)}.status-dot{display:inline-block;width:10px;height:10px;background:var(--green);border-radius:999px;margin-right:8px;box-shadow:0 0 0 6px rgba(16,185,129,.11)}.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:20px}.mini-grid span{background:#f8fafc;border:1px solid var(--line);padding:9px 10px;border-radius:12px;font-size:.82rem;font-weight:700;color:#475467}.section{padding:76px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:30px}.section-heading h2,.principles h2{font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.04em;margin:0}.section-heading>p{max-width:460px;color:var(--muted)}.posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.post-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px;min-height:260px;display:flex;flex-direction:column}.post-card h3{font-size:1.32rem;line-height:1.25;margin:9px 0}.post-card h3 a{text-decoration:none}.post-card p{color:var(--muted);font-size:.94rem}.post-date{font-size:.76rem;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.08em}.read-more{margin-top:auto;text-decoration:none;color:var(--blue);font-weight:800}.principles{background:var(--navy);color:#fff}.principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}.principles-grid strong{color:#67e8f9}.principles-grid h3{font-size:1.3rem;margin:8px 0}.principles-grid p{color:#cbd5e1}.post{padding:76px 0}.post-header{padding-bottom:30px;border-bottom:1px solid var(--line);margin-bottom:36px}.post-header h1{font-size:clamp(2.4rem,6vw,4.7rem);line-height:1;letter-spacing:-.05em;margin:8px 0 16px}.post-meta{color:var(--muted);font-size:.9rem}.lead{font-size:1.15rem;color:#475467}.post-content h2{margin-top:48px;font-size:1.9rem;line-height:1.2;letter-spacing:-.025em}.post-content h3{margin-top:30px}.post-content blockquote{border-left:4px solid var(--cyan);margin:24px 0;padding:12px 20px;background:#ecfeff;border-radius:0 12px 12px 0}.post-content table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.92rem}.post-content th,.post-content td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}.post-content th{background:#f1f5f9}.post-content a{color:#1d4ed8}.post-back{margin-top:50px;padding-top:20px;border-top:1px solid var(--line)}.site-footer{background:#fff;border-top:1px solid var(--line);padding:38px 0}.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}.site-footer p,.footer-note{color:var(--muted);font-size:.9rem}.page{padding:76px 0}.page h1{font-size:clamp(2.5rem,5vw,4.5rem);letter-spacing:-.05em;line-height:1;margin:0 0 24px}.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:30px 0}.info-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}.info-card h3{margin-top:0}
 @media(max-width:860px){.hero-grid,.posts-grid,.principles-grid,.footer-grid,.info-grid{grid-template-columns:1fr}.hero{padding-top:58px}.hero h1{font-size:clamp(2.7rem,13vw,4.6rem)}.section-heading{display:block}.site-header nav{gap:12px;font-size:.9rem}.hero-card{margin-top:4px}.posts-grid{gap:14px}}
 @media(max-width:520px){.container,.narrow{width:min(100% - 24px,1120px)}.nav-wrap{min-height:68px}.brand small{display:none}.site-header nav a{font-size:.86rem}.hero{padding:44px 0}.section{padding:56px 0}.post{padding:54px 0}.post-content table{display:block;overflow-x:auto}}
+
+
+/* === IA al Día: lectura semanal, criticidad e imágenes === */
+.post-infographic{margin:0 0 42px;padding:22px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+.post-infographic img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid #dbe5ee;background:#f8fbff}
+.post-content h2{padding-top:8px}
+.post-content h2[id],.post-content h2{scroll-margin-top:100px}
+.post-content h3{font-size:1.12rem;line-height:1.35;color:#17324d}
+.post-content p{color:#293b50}
+
+.criticality-line{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin:12px 0 20px;padding:10px 13px;border-radius:13px;
+  border:1px solid transparent;font-size:.93rem;
+}
+.criticality-line strong{font-weight:800}
+.criticality-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:78px;padding:4px 12px;border-radius:999px;
+  font-weight:800;letter-spacing:.045em;font-size:.78rem;
+}
+.criticality-alto{background:#fff1f2;border-color:#fecdd3;color:#881337}
+.criticality-alto .criticality-badge{background:#dc2626;color:#fff}
+.criticality-medio{background:#fffbeb;border-color:#fde68a;color:#78350f}
+.criticality-medio .criticality-badge{background:#f59e0b;color:#2d2200}
+.criticality-bajo{background:#ecfdf5;border-color:#a7f3d0;color:#065f46}
+.criticality-bajo .criticality-badge{background:#16a34a;color:#fff}
+
+.class-discussion{
+  margin:24px 0 30px;padding:0 22px 20px;
+  background:linear-gradient(135deg,#eaf4ff,#f3fbff);
+  border:1px solid #bfdbfe;border-left:6px solid #0a4aa3;
+  border-radius:16px;box-shadow:0 8px 22px rgba(37,99,235,.07);
+}
+.class-discussion h3{
+  margin:0 -22px 16px;padding:12px 18px;
+  background:#0a4aa3;color:#fff;border-radius:10px 10px 10px 0;
+  font-size:1rem;letter-spacing:.01em;
+}
+.class-discussion p{margin:0;color:#17324d;font-size:1.02rem}
+
+.source-image-link{
+  display:flex;align-items:center;gap:8px;margin:14px 0 22px;padding:12px 15px;
+  background:#f8fafc;border:1px solid #dbe5ee;border-radius:12px;
+  color:#334155;font-size:.9rem;
+}
+.source-image-link::before{content:"📷";font-size:1.05rem}
+.source-image-link strong{font-weight:800}
+.source-image-link a{font-weight:750;text-decoration:none}
+.source-image-link a:hover{text-decoration:underline}
+
+.article-image{margin:20px 0 8px}
+.article-image img,.post-content figure img{
+  display:block;width:100%;max-height:520px;object-fit:cover;
+  border-radius:16px;border:1px solid #dbe5ee;box-shadow:0 10px 28px rgba(15,23,42,.08)
+}
+.post-content figure{margin:22px 0 30px}
+.post-content figcaption{
+  margin-top:8px;color:#667085;font-size:.82rem;line-height:1.45
+}
+
+@media(max-width:520px){
+  .criticality-line{align-items:flex-start}
+  .class-discussion{padding-left:16px;padding-right:16px}
+  .class-discussion h3{margin-left:-16px;margin-right:-16px}
+}
