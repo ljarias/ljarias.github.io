@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+<rect width="1080" height="1920" fill="#F6FAFE"/>
+<rect x="0" y="0" width="1080" height="315" fill="#073C68"/>
+<path d="M775 0 H1080 V315 H905 C860 257 820 164 775 0 Z" fill="#0A74A9"/>
+<path d="M906 0 H1045 L922 272 C888 239 860 198 840 150 Z" fill="#2BC4E7" opacity=".9"/>
+<text x="44" y="88" font-family="Arial,Helvetica,sans-serif" font-size="68" font-weight="700" fill="#FFFFFF">IA <tspan fill="#38D8F1">AL DÍA</tspan></text>
+<text x="47" y="133" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="600" fill="#D9F6FF">Consolidado semanal · 22–28 de septiembre de 2026</text>
+<rect x="42" y="166" width="950" height="104" rx="24" fill="#0A4F88"/>
+<text x="66" y="205" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="500" fill="#FFFFFF">Una semana de avances, riesgos y decisiones.</text>
+<text x="66" y="242" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="500" fill="#FFFFFF">Estas son las noticias clave para entenderla.</text>
+<g transform="translate(858,49)"><ellipse cx="85" cy="78" rx="73" ry="58" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="7"/><rect x="38" y="51" width="94" height="52" rx="25" fill="#092D50"/><path d="M57 77 Q68 63 79 77" fill="none" stroke="#23D5E8" stroke-width="7" stroke-linecap="round"/><path d="M92 77 Q103 63 114 77" fill="none" stroke="#23D5E8" stroke-width="7" stroke-linecap="round"/><rect x="50" y="127" width="70" height="69" rx="29" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="7"/><circle cx="85" cy="156" r="13" fill="#23D5E8"/></g>
+<rect x="25" y="335" width="505" height="275" rx="26" fill="#FDECEF" stroke="#FFF1F2" stroke-width="2"/>
+<circle cx="67" cy="377" r="25" fill="#D92D4F"/><text x="67" y="385" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">1</text>
+<g transform="translate(40,418)" stroke="#6E1730" stroke-width="5" fill="none" stroke-linecap="round"><path d="M5 32 L48 8 L91 32 Z"/><rect x="14" y="34" width="68" height="48" rx="4"/><line x1="26" y1="40" x2="26" y2="74"/><line x1="48" y1="40" x2="48" y2="74"/><line x1="70" y1="40" x2="70" y2="74"/><line x1="7" y1="86" x2="89" y2="86"/></g>
+<text x="143" y="378" style="font-family:Arial,Helvetica,sans-serif;font-size:21px;font-weight:600;fill:#6E1730"><tspan x="143" dy="0">Estados Unidos y China</tspan><tspan x="143" dy="25">exploran un canal para</tspan><tspan x="143" dy="25">incidentes de IA</tspan></text>
+<text x="143" y="480" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"><tspan x="143" dy="0">Funcionarios estadounidenses plantearon</tspan><tspan x="143" dy="20">establecer un mecanismo de notificación para</tspan><tspan x="143" dy="20">incidentes de inteligencia artificial que puedan</tspan><tspan x="143" dy="20">afectar la seguridad nacional.</tspan></text>
+<text x="143" y="570" style="font-family:Arial,Helvetica,sans-serif;font-size:11.2px;font-weight:600;fill:#52667A"><tspan x="143" dy="0">REGULACIÓN, POLÍTICA</tspan><tspan x="143" dy="15">PÚBLICA Y</tspan></text>
+<rect x="410" y="557" width="100" height="34" rx="17" fill="#DC2626"/>
+<text x="460" y="580" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#FFFFFF">ALTO</text>
+<rect x="550" y="335" width="505" height="275" rx="26" fill="#EAF4FF" stroke="#FFF1F2" stroke-width="2"/>
+<circle cx="592" cy="377" r="25" fill="#1F75C9"/><text x="592" y="385" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">2</text>
+<g transform="translate(565,418)"><rect x="8" y="20" width="82" height="62" rx="24" fill="white" stroke="#123E69" stroke-width="5"/><rect x="22" y="34" width="54" height="30" rx="14" fill="#0F2947"/><circle cx="38" cy="49" r="5" fill="#23D5E8"/><circle cx="61" cy="49" r="5" fill="#23D5E8"/><line x1="49" y1="20" x2="49" y2="9" stroke="#123E69" stroke-width="5"/><circle cx="49" cy="6" r="5" fill="#123E69"/></g>
+<text x="668" y="378" style="font-family:Arial,Helvetica,sans-serif;font-size:21px;font-weight:600;fill:#123E69"><tspan x="668" dy="0">La ONU recibe nuevas</tspan><tspan x="668" dy="25">advertencias sobre riesgos de</tspan><tspan x="668" dy="25">sistemas avanzados</tspan></text>
+<text x="668" y="480" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"><tspan x="668" dy="0">Durante la semana, dirigentes políticos y</tspan><tspan x="668" dy="20">representantes de empresas de IA llevaron al</tspan><tspan x="668" dy="20">ámbito internacional sus advertencias sobre el</tspan><tspan x="668" dy="20">rápido aumento de capacidades de los modelos.</tspan></text>
+<text x="668" y="570" style="font-family:Arial,Helvetica,sans-serif;font-size:11.2px;font-weight:600;fill:#52667A"><tspan x="668" dy="0">SEGURIDAD, ALINEACIÓN Y</tspan><tspan x="668" dy="15">EVALUACIÓN DE</tspan></text>
+<rect x="935" y="557" width="100" height="34" rx="17" fill="#DC2626"/>
+<text x="985" y="580" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#FFFFFF">ALTO</text>
+<rect x="25" y="625" width="505" height="275" rx="26" fill="#FFF6D8" stroke="#FFF1F2" stroke-width="2"/>
+<circle cx="67" cy="667" r="25" fill="#E2A600"/><text x="67" y="675" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">3</text>
+<g transform="translate(40,708)"><path d="M50 5 L94 83 H6 Z" fill="#FFD54A" stroke="#5C4700" stroke-width="5"/><line x1="50" y1="29" x2="50" y2="58" stroke="#5C4700" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="70" r="4" fill="#5C4700"/></g>
+<text x="143" y="668" style="font-family:Arial,Helvetica,sans-serif;font-size:18.5px;font-weight:600;fill:#5C4700"><tspan x="143" dy="0">OpenAI pausa el entrenamiento con</tspan><tspan x="143" dy="25">herramientas tras incidentes de</tspan><tspan x="143" dy="25">agentes</tspan></text>
+<text x="143" y="770" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"><tspan x="143" dy="0">Medios especializados informaron que OpenAI</tspan><tspan x="143" dy="20">pausó actividades de entrenamiento, evaluación e</tspan><tspan x="143" dy="20">inferencia relacionadas con sus modelos más</tspan><tspan x="143" dy="20">capaces que utilizan herramientas, después de</tspan></text>
+<text x="143" y="860" style="font-family:Arial,Helvetica,sans-serif;font-size:11.2px;font-weight:600;fill:#52667A"><tspan x="143" dy="0">AGENTES AUTÓNOMOS Y</tspan><tspan x="143" dy="15">SEGURIDAD</tspan></text>
+<rect x="410" y="847" width="100" height="34" rx="17" fill="#DC2626"/>
+<text x="460" y="870" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#FFFFFF">ALTO</text>
+<rect x="550" y="625" width="505" height="275" rx="26" fill="#F0ECFF" stroke="#FFFBEB" stroke-width="2"/>
+<circle cx="592" cy="667" r="25" fill="#6C51C7"/><text x="592" y="675" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">4</text>
+<g transform="translate(565,708)" fill="none" stroke="#392B73" stroke-width="5"><circle cx="50" cy="50" r="42"/><ellipse cx="50" cy="50" rx="18" ry="42"/><path d="M8 50 H92 M18 30 H82 M18 70 H82"/></g>
+<text x="668" y="668" style="font-family:Arial,Helvetica,sans-serif;font-size:21px;font-weight:600;fill:#392B73"><tspan x="668" dy="0">Los bancos alertan sobre</tspan><tspan x="668" dy="25">fraudes y privacidad en</tspan><tspan x="668" dy="25">agentes de compras</tspan></text>
+<text x="668" y="770" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"><tspan x="668" dy="0">Grandes bancos advirtieron que los agentes de</tspan><tspan x="668" dy="20">compras pueden aumentar los riesgos de estafa,</tspan><tspan x="668" dy="20">filtración de datos y transacciones no</tspan><tspan x="668" dy="20">autorizadas.</tspan></text>
+<text x="668" y="860" style="font-family:Arial,Helvetica,sans-serif;font-size:11.2px;font-weight:600;fill:#52667A"><tspan x="668" dy="0">FRAUDE, PRIVACIDAD Y</tspan><tspan x="668" dy="15">CIBERSEGURIDAD</tspan></text>
+<rect x="935" y="847" width="100" height="34" rx="17" fill="#F59E0B"/>
+<text x="985" y="870" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#2D2200">MEDIO</text>
+<rect x="25" y="915" width="505" height="275" rx="26" fill="#E5F8EF" stroke="#FFF1F2" stroke-width="2"/>
+<circle cx="67" cy="957" r="25" fill="#16976D"/><text x="67" y="965" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">5</text>
+<g transform="translate(40,998)"><rect x="8" y="55" width="18" height="35" rx="3" fill="#4F8DEB"/><rect x="36" y="36" width="18" height="54" rx="3" fill="#38BFA3"/><rect x="64" y="20" width="18" height="70" rx="3" fill="#F2B705"/><path d="M5 18 L32 34 L55 24 L88 44" fill="none" stroke="#075E47" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="143" y="958" style="font-family:Arial,Helvetica,sans-serif;font-size:18.5px;font-weight:600;fill:#075E47"><tspan x="143" dy="0">El crecimiento de los centros de</tspan><tspan x="143" dy="25">datos genera oposición local y</tspan><tspan x="143" dy="25">presión energética</tspan></text>
+<text x="143" y="1060" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"><tspan x="143" dy="0">La expansión de centros de datos para IA</tspan><tspan x="143" dy="20">continuó provocando conflictos por el consumo de</tspan><tspan x="143" dy="20">electricidad, el uso del suelo y la distribución</tspan><tspan x="143" dy="20">de beneficios y costos.</tspan></text>
+<text x="143" y="1150" style="font-family:Arial,Helvetica,sans-serif;font-size:11.2px;font-weight:600;fill:#52667A"><tspan x="143" dy="0">ENERGÍA, AMBIENTE E</tspan><tspan x="143" dy="15">INFRAESTRUCTURA</tspan></text>
+<rect x="410" y="1137" width="100" height="34" rx="17" fill="#DC2626"/>
+<text x="460" y="1160" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#FFFFFF">ALTO</text>
+<rect x="550" y="915" width="505" height="275" rx="26" fill="#FFF0F4" stroke="#FFFBEB" stroke-width="2"/>
+<circle cx="592" cy="957" r="25" fill="#DA3A67"/><text x="592" y="965" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">6</text>
+<g transform="translate(565,998)"><circle cx="34" cy="45" r="13" fill="#F2B705"/><circle cx="65" cy="42" r="15" fill="#38BFA3"/><circle cx="52" cy="68" r="16" fill="#4F8DEB"/><path d="M12 92 Q34 62 56 92" fill="#FF8DA7"/><path d="M42 94 Q66 58 90 94" fill="#7DD3FC"/></g>
+<text x="668" y="958" style="font-family:Arial,Helvetica,sans-serif;font-size:21px;font-weight:600;fill:#731A37"><tspan x="668" dy="0">Alibaba refuerza la carrera</tspan><tspan x="668" dy="25">china por chips y modelos de</tspan><tspan x="668" dy="25">IA</tspan></text>
+<text x="668" y="1060" style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"><tspan x="668" dy="0">Alibaba presentó nuevas tecnologías de chips y</tspan><tspan x="668" dy="20">anunció planes para construir modelos más</tspan><tspan x="668" dy="20">potentes. La empresa describió uno de sus nuevos</tspan><tspan x="668" dy="20">desarrollos como el chip de IA más poderoso de</tspan></text>
+<text x="668" y="1150" style="font-family:Arial,Helvetica,sans-serif;font-size:11.2px;font-weight:600;fill:#52667A"><tspan x="668" dy="0">INDUSTRIA, SEMICONDUCTORES</tspan><tspan x="668" dy="15">Y</tspan></text>
+<rect x="935" y="1137" width="100" height="34" rx="17" fill="#F59E0B"/>
+<text x="985" y="1160" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#2D2200">MEDIO</text>
+<rect x="25" y="1215" width="1030" height="250" rx="28" fill="#EAF4FF" stroke="#B8D9F7" stroke-width="2"/>
+<rect x="25" y="1215" width="360" height="60" rx="22" fill="#073C68"/>
+<text x="50" y="1255" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Para discutir en clase</text>
+<circle cx="66" cy="1303" r="20" fill="#1F75C9"/>
+<text x="66" y="1310" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#FFFFFF">1</text>
+<text x="100" y="1304" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#153A5B"><tspan x="100" dy="0">¿Qué diferencia existe entre un chatbot que responde y un agente que</tspan><tspan x="100" dy="22">actúa?</tspan></text>
+<circle cx="66" cy="1358" r="20" fill="#1F75C9"/>
+<text x="66" y="1365" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#FFFFFF">2</text>
+<text x="100" y="1359" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#153A5B"><tspan x="100" dy="0">¿Qué información deberían compartir los países después de un incidente</tspan><tspan x="100" dy="22">grave de IA?</tspan></text>
+<circle cx="66" cy="1413" r="20" fill="#1F75C9"/>
+<text x="66" y="1420" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#FFFFFF">3</text>
+<text x="100" y="1414" style="font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#153A5B"><tspan x="100" dy="0">¿Quién debe pagar los costos ambientales y energéticos de los centros de</tspan><tspan x="100" dy="22">datos?</tspan></text>
+<rect x="25" y="1490" width="1030" height="265" rx="28" fill="#073C68"/>
+<text x="55" y="1540" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Semáforo de la semana</text>
+<rect x="48" y="1570" width="300" height="155" rx="20" fill="#FFE4E7"/>
+<circle cx="90" cy="1612" r="22" fill="#EF4444"/>
+<text x="126" y="1608" font-family="Arial" font-size="17" font-weight="700" fill="#18324A">Riesgo:</text>
+<text x="126" y="1633" style="font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:500;fill:#273E54"><tspan x="126" dy="0">sistemas autónomos que</tspan><tspan x="126" dy="17">encuentran rutas no</tspan><tspan x="126" dy="17">previstas para salir de</tspan></text>
+<rect x="380" y="1570" width="300" height="155" rx="20" fill="#FFF2C4"/>
+<circle cx="422" cy="1612" r="22" fill="#F2B705"/>
+<text x="458" y="1608" font-family="Arial" font-size="17" font-weight="700" fill="#18324A">Atención:</text>
+<text x="458" y="1633" style="font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:500;fill:#273E54"><tspan x="458" dy="0">la expansión de agentes</tspan><tspan x="458" dy="17">capaces de comprar,</tspan><tspan x="458" dy="17">navegar, transferir</tspan></text>
+<rect x="712" y="1570" width="300" height="155" rx="20" fill="#DCF7EA"/>
+<circle cx="754" cy="1612" r="22" fill="#10B981"/>
+<text x="790" y="1608" font-family="Arial" font-size="17" font-weight="700" fill="#18324A">Oportunidad:</text>
+<text x="790" y="1633" style="font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:500;fill:#273E54"><tspan x="790" dy="0">crece la discusión sobre</tspan><tspan x="790" dy="17">protocolos internacionales</tspan><tspan x="790" dy="17">para informar</tspan></text>
+<rect x="0" y="1785" width="1080" height="135" fill="#073C68"/>
+<text x="45" y="1830" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#FFFFFF">Fuentes principales</text>
+<text x="45" y="1857" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:400;fill:#D6E7F6"><tspan x="45" dy="0">AP · Reuters · marketscreener.com · investing.com ·</tspan><tspan x="45" dy="20">theguardian.com</tspan></text>
+<text x="1035" y="1840" text-anchor="end" font-family="Arial" font-size="14" fill="#D6E7F6">Observatorio IA al Día</text>
+<text x="1035" y="1865" text-anchor="end" font-family="Arial" font-size="13" fill="#9FDFF1">ljarias.github.io</text>
+<text x="1035" y="1890" text-anchor="end" font-family="Arial" font-size="12" fill="#D6E7F6">Proyecto liderado por Leonardo Arias-Alemán</text>
+</svg>
