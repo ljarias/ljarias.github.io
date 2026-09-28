@@ -238,14 +238,14 @@ def build_svg(news: list[dict], semaphore: list[str], questions: list[str], sour
         summary_lines = wrap(item["summary"], 48, 4)
         level = item["criticality"]
         badge, level_bg, badge_text = CRITICITY[level]
-        topic = complete_excerpt(item["topic"], 35)
+        topic_lines = wrap(item["topic"], 27, 2)
         out += [
             f'<rect x="{x}" y="{y}" width="{card_w}" height="{card_h}" rx="26" fill="{bg}" stroke="{level_bg}" stroke-width="2"/>',
             f'<circle cx="{x+42}" cy="{y+42}" r="25" fill="{accent}"/><text x="{x+42}" y="{y+50}" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">{esc(item["number"])}</text>',
             icon_svg(idx, x+15, y+83, dark),
             tspans(title_lines, x+118, y+43, 25, f"font-family:Arial,Helvetica,sans-serif;font-size:{title_font}px;font-weight:600;fill:{dark}"),
             tspans(summary_lines, x+118, y+145, 20, "font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"),
-            f'<text x="{x+118}" y="{y+246}" font-family="Arial" font-size="12.5" font-weight="600" fill="#52667A">{esc(topic.upper())}</text>',
+            tspans([line.upper() for line in topic_lines], x+118, y+235, 15, "font-family:Arial,Helvetica,sans-serif;font-size:11.2px;font-weight:600;fill:#52667A"),
             f'<rect x="{x+385}" y="{y+222}" width="100" height="34" rx="17" fill="{badge}"/>',
             f'<text x="{x+435}" y="{y+245}" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="{badge_text}">{esc(level)}</text>',
         ]
@@ -266,7 +266,7 @@ def build_svg(news: list[dict], semaphore: list[str], questions: list[str], sour
 
     # Semáforo semanal.
     out += [
-        '<rect x="25" y="1490" width="1030" height="255" rx="28" fill="#073C68"/>',
+        '<rect x="25" y="1490" width="1030" height="265" rx="28" fill="#073C68"/>',
         '<text x="55" y="1540" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Semáforo de la semana</text>',
     ]
     sem_items = [
@@ -278,15 +278,15 @@ def build_svg(news: list[dict], semaphore: list[str], questions: list[str], sour
     light_bg = ["#FFE4E7", "#FFF2C4", "#DCF7EA"]
     for i, ((color, label, text_value), x) in enumerate(zip(sem_items, sx)):
         out += [
-            f'<rect x="{x}" y="1570" width="300" height="135" rx="20" fill="{light_bg[i]}"/>',
+            f'<rect x="{x}" y="1570" width="300" height="155" rx="20" fill="{light_bg[i]}"/>',
             f'<circle cx="{x+42}" cy="1612" r="22" fill="{color}"/>',
             f'<text x="{x+78}" y="1608" font-family="Arial" font-size="17" font-weight="700" fill="#18324A">{label}:</text>',
-            tspans(wrap(text_value, 27, 3), x+78, 1633, 19, "font-family:Arial,Helvetica,sans-serif;font-size:14.5px;font-weight:500;fill:#273E54"),
+            tspans(wrap(text_value, 27, 5), x+78, 1633, 17, "font-family:Arial,Helvetica,sans-serif;font-size:13.5px;font-weight:500;fill:#273E54"),
         ]
 
     source_text = " · ".join(sources)
     out += [
-        '<rect x="0" y="1780" width="1080" height="140" fill="#073C68"/>',
+        '<rect x="0" y="1785" width="1080" height="135" fill="#073C68"/>',
         '<text x="45" y="1830" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#FFFFFF">Fuentes principales</text>',
         tspans(wrap(source_text, 62, 2), 45, 1857, 20, "font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:400;fill:#D6E7F6"),
         '<text x="1035" y="1840" text-anchor="end" font-family="Arial" font-size="14" fill="#D6E7F6">Observatorio IA al Día</text>',
