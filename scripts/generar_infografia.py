@@ -50,7 +50,7 @@ def strip_md(text: str) -> str:
 
 
 def complete_excerpt(text: str, limit: int = 220) -> str:
-    """Resume visualmente sin terminar en una palabra cortada ni usar puntos suspensivos."""
+    """Resume visualmente sin cortar una palabra."""
     text = strip_md(text)
     if len(text) <= limit:
         return text
@@ -59,6 +59,22 @@ def complete_excerpt(text: str, limit: int = 220) -> str:
     if sentence_end >= int(limit * 0.55):
         return candidate[: sentence_end + 1].strip()
     return candidate.rsplit(" ", 1)[0].rstrip(" ,;:")
+
+
+def visual_summary(text: str, limit: int = 190) -> str:
+    """Produce una frase corta y cerrada para tarjetas, evitando finales visualmente truncados."""
+    text = strip_md(text)
+    if not text:
+        return ""
+    first = re.split(r"(?<=[.!?])\s+", text, maxsplit=1)[0].strip()
+    if len(first) <= limit:
+        return first
+    candidate = first[:limit]
+    for sep in [", ", "; ", " después de ", " mientras ", " aunque ", " y "]:
+        pos = candidate.rfind(sep)
+        if pos >= int(limit * 0.55):
+            return candidate[:pos].rstrip(" ,;:") + "."
+    return candidate.rsplit(" ", 1)[0].rstrip(" ,;:") + "."
 
 
 def wrap(text: str, max_chars: int, max_lines: int) -> list[str]:
@@ -101,9 +117,9 @@ def extract_news(markdown: str) -> list[dict]:
         items.append({
             "number": number,
             "title": strip_md(title),
-            "topic": complete_excerpt(tema.group(1), 38) if tema else "Inteligencia artificial",
+            "topic": strip_md(tema.group(1)) if tema else "Inteligencia artificial",
             "criticality": level,
-            "summary": complete_excerpt(occurred if occurred else block, 205),
+            "summary": visual_summary(occurred if occurred else block, 190),
         })
     return items[:6]
 
@@ -124,7 +140,7 @@ def extract_semaphore(markdown: str) -> list[str]:
         clean = re.sub(r"^[🟢🟡🔴]\s*", "", clean)
         clean = re.sub(r"^(Avance positivo|Tema para observar|Riesgo relevante):\s*", "", clean, flags=re.IGNORECASE)
         if clean:
-            lines.append(complete_excerpt(clean, 72))
+            lines.append(visual_summary(clean, 115))
     return (lines + ["Tema para observar", "Riesgo relevante"])[:3]
 
 
