@@ -3,7 +3,11 @@ layout: default
 ---
 <article class="post container narrow">
   <header class="post-header">
-    <div class="eyebrow">Resumen diario</div>
+    {% if page.categories contains "semanal" %}
+      <div class="eyebrow">Consolidado semanal</div>
+    {% else %}
+      <div class="eyebrow">Resumen diario</div>
+    {% endif %}
     <h1>{{ page.title }}</h1>
     <p class="post-meta">{{ page.date | date: "%d/%m/%Y" }} · {{ page.reading_time | default: "Lectura breve" }}</p>
     {% if page.summary %}<p class="lead">{{ page.summary }}</p>{% endif %}
@@ -14,7 +18,7 @@ layout: default
     {% for item in site.data.infografias %}
       {% if item.date == post_date %}
       <section class="post-infographic">
-        <div class="eyebrow">Infografía del día</div>
+        <div class="eyebrow">{% if item.edition_type == "weekly" %}Infografía semanal{% else %}Infografía del día{% endif %}</div>
         <a href="{{ item.image | relative_url }}" target="_blank" rel="noopener">
           <img src="{{ item.image | relative_url }}" alt="{{ item.alt | escape }}">
         </a>
@@ -24,8 +28,62 @@ layout: default
     {% endfor %}
   {% endif %}
 
-  <div class="post-content">
+  <div class="post-content" id="post-content">
     {{ content }}
   </div>
   <div class="post-back"><a href="{{ '/' | relative_url }}">← Volver al archivo</a></div>
 </article>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.getElementById("post-content");
+  if (!content) return;
+
+  // Convierte "Nivel de criticidad" en una insignia visual por nivel.
+  content.querySelectorAll("p").forEach((p) => {
+    const txt = p.textContent.trim();
+    if (!txt.toLowerCase().startsWith("nivel de criticidad:")) return;
+    const match = txt.match(/nivel de criticidad:\s*(alto|medio|bajo)/i);
+    if (!match) return;
+    const level = match[1].toLowerCase();
+    p.classList.add("criticality-line", "criticality-" + level);
+    p.innerHTML = '<strong>Nivel de criticidad:</strong><span class="criticality-badge">' + match[1].toUpperCase() + '</span>';
+  });
+
+  // Mantiene el bloque "Para discutir en clase" con el diseño gráfico de las ediciones anteriores.
+  Array.from(content.querySelectorAll("h3")).forEach((heading) => {
+    if (heading.textContent.trim().toLowerCase() !== "para discutir en clase") return;
+    const box = document.createElement("section");
+    box.className = "class-discussion";
+    heading.parentNode.insertBefore(box, heading);
+    box.appendChild(heading);
+    let next = box.nextSibling;
+    while (next) {
+      if (next.nodeType === 1 && (next.tagName === "H2" || next.tagName === "H3")) break;
+      const move = next;
+      next = next.nextSibling;
+      box.appendChild(move);
+    }
+  });
+
+  // Convierte los enlaces a fotografías originales en una tarjeta visual sin copiar imágenes con licencia.
+  content.querySelectorAll("p").forEach((p) => {
+    if (!p.textContent.trim().toLowerCase().startsWith("imagen original:")) return;
+    p.classList.add("source-image-link");
+    const link = p.querySelector("a");
+    if (link) {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener");
+    }
+  });
+
+  // Mejora la presentación de imágenes reutilizables incluidas por la fuente.
+  content.querySelectorAll("img").forEach((img) => {
+    if (img.closest(".post-infographic")) return;
+    img.loading = "lazy";
+    img.decoding = "async";
+    const parent = img.parentElement;
+    if (parent && parent.tagName === "P") parent.classList.add("article-image");
+  });
+});
+</script>
