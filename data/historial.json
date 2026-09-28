@@ -46,5 +46,47 @@
       "https://www.nature.com/articles/s41591-026-04609-x"
     ],
     "model": "editorial-manual-web"
+  },
+  {
+    "date": "2026-09-28",
+    "edition_type": "weekly",
+    "period_start": "2026-09-22",
+    "period_end": "2026-09-28",
+    "post": "_posts/2026-09-28-ia-al-dia.md",
+    "titles": [
+      "Estados Unidos y China exploran un canal para incidentes de IA",
+      "La ONU recibe nuevas advertencias sobre riesgos de sistemas avanzados",
+      "OpenAI pausa el entrenamiento con herramientas tras incidentes de agentes",
+      "Los bancos alertan sobre fraudes y privacidad en agentes de compras",
+      "El crecimiento de los centros de datos genera oposición local y presión energética",
+      "Alibaba refuerza la carrera china por chips y modelos de IA",
+      "La IA sigue ampliando su presencia en la investigación científica",
+      "El debate público mezcla advertencias legítimas con predicciones difíciles de comprobar"
+    ],
+    "urls": [
+      "https://aiweekly.co/ai-news-today/edition/2026-09-28",
+      "https://apnews.com/article/2c7f54f07e755f506d9db9b91df282bd",
+      "https://apnews.com/article/2c7f54f07e755f506d9db9b91df282bd?utm_source=openai",
+      "https://apnews.com/article/98316b0d64de17191f33c0fbf1d37858",
+      "https://apnews.com/article/b29908e516faff9f5a82b201ba954aab",
+      "https://apnews.com/article/b29908e516faff9f5a82b201ba954aab?utm_source=openai",
+      "https://apnews.com/article/d08e58524de21511dcaba51f43faad95",
+      "https://apnews.com/article/e560910c897fedb0448eda4cdbfdbaea",
+      "https://apnews.com/article/e560910c897fedb0448eda4cdbfdbaea?utm_source=openai",
+      "https://podcasts.apple.com/lu/podcast/podcast/id1873892136/episodes?utm_source=openai",
+      "https://www.investing.com/news/economy-news/ai-leaders-to-brief-un-amid-warnings-the-technology-could-slip-beyond-human-control-4912463",
+      "https://www.investing.com/news/stock-market-news/factboxtech-leaders-governments-split-over-ai-doom-fears-4908878",
+      "https://www.investing.com/news/stock-market-news/factboxtech-leaders-governments-split-over-ai-doom-fears-4908878?utm_source=openai",
+      "https://www.latimes.com/business/story/2026-09-22/ai-backlash-puts-68-billion-in-u-s-data-center-projects-on-hold",
+      "https://www.marketscreener.com/news/uk-ready-to-lead-global-push-on-ai-standards-burnham-tells-un-ce785ad9d888f023?utm_source=openai",
+      "https://www.nature.com/articles/s41598-026-04609-x",
+      "https://www.nature.com/subjects/artificial-intelligence",
+      "https://www.nature.com/subjects/artificial-intelligence?utm_source=openai",
+      "https://www.reuters.com/legal/litigation/banks-warn-ai-shopping-bots-raise-scam-fraud-data-privacy-risks-2026-09-22/",
+      "https://www.reuters.com/world/uk-ready-lead-global-push-ai-standards-burnham-tells-un-2026-09-22/",
+      "https://www.theguardian.com/technology/artificialintelligenceai/2026/sep/26/all",
+      "https://www.theguardian.com/technology/artificialintelligenceai/2026/sep/26/all?utm_source=openai"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]

@@ -14,5 +14,16 @@
     "post_url": "/2026/09/16/ia-al-dia/",
     "alt": "Infografía con el resumen de noticias de inteligencia artificial del 16 de septiembre de 2026",
     "model": "SVG automático IA al Día"
+  },
+  {
+    "date": "2026-09-28",
+    "edition_type": "weekly",
+    "period_start": "2026-09-22",
+    "period_end": "2026-09-28",
+    "title": "Infografía IA al Día — Semana 22–28 de septiembre de 2026",
+    "image": "/assets/infografias/2026-09-28.svg",
+    "post_url": "/2026/09/28/ia-al-dia/",
+    "alt": "Infografía con el consolidado semanal de noticias de inteligencia artificial, semana 22–28 de septiembre de 2026",
+    "model": "SVG automático IA al Día"
   }
 ]
