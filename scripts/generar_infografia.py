@@ -21,14 +21,20 @@ MONTHS = [
     "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
 ]
 
-COLORS = [
-    ("#FDE8EC", "#E9365A", "#7F1D2D"),
-    ("#E5F2FF", "#1376C5", "#103B66"),
-    ("#FFF3C9", "#F2B705", "#6B4F00"),
-    ("#EDE8FF", "#6748C8", "#36256C"),
-    ("#DCF7EA", "#078766", "#064E3B"),
-    ("#FFE5EC", "#EC2E62", "#7A1735"),
+CARD_PALETTES = [
+    ("#FDECEF", "#D92D4F", "#6E1730"),
+    ("#EAF4FF", "#1F75C9", "#123E69"),
+    ("#FFF6D8", "#E2A600", "#5C4700"),
+    ("#F0ECFF", "#6C51C7", "#392B73"),
+    ("#E5F8EF", "#16976D", "#075E47"),
+    ("#FFF0F4", "#DA3A67", "#731A37"),
 ]
+
+CRITICITY = {
+    "ALTO": ("#DC2626", "#FFF1F2", "#FFFFFF"),
+    "MEDIO": ("#F59E0B", "#FFFBEB", "#2D2200"),
+    "BAJO": ("#16A34A", "#ECFDF5", "#FFFFFF"),
+}
 
 
 def esc(text: str) -> str:
@@ -37,22 +43,28 @@ def esc(text: str) -> str:
 
 def strip_md(text: str) -> str:
     text = re.sub(r"\[([^\]]+)\]\([^\)]+\)", r"\1", text)
+    text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"[*_`>#]", "", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 
-def short(text: str, limit: int = 210) -> str:
+def complete_excerpt(text: str, limit: int = 220) -> str:
+    """Resume visualmente sin terminar en una palabra cortada ni usar puntos suspensivos."""
     text = strip_md(text)
     if len(text) <= limit:
         return text
-    cut = text[:limit].rsplit(" ", 1)[0].rstrip(".,;:")
-    return cut + "…"
+    candidate = text[:limit]
+    sentence_end = max(candidate.rfind("."), candidate.rfind("?"), candidate.rfind("!"))
+    if sentence_end >= int(limit * 0.55):
+        return candidate[: sentence_end + 1].strip()
+    return candidate.rsplit(" ", 1)[0].rstrip(" ,;:")
 
 
 def wrap(text: str, max_chars: int, max_lines: int) -> list[str]:
     words = strip_md(text).split()
-    lines, current = [], []
+    lines: list[str] = []
+    current: list[str] = []
     for word in words:
         trial = " ".join(current + [word])
         if len(trial) <= max_chars or not current:
@@ -64,9 +76,6 @@ def wrap(text: str, max_chars: int, max_lines: int) -> list[str]:
                 break
     if len(lines) < max_lines and current:
         lines.append(" ".join(current))
-    consumed = sum(len(line.split()) for line in lines)
-    if consumed < len(words) and lines:
-        lines[-1] = lines[-1].rstrip(".,;:") + "…"
     return lines[:max_lines]
 
 
@@ -83,19 +92,18 @@ def extract_news(markdown: str) -> list[dict]:
     )
     items = []
     for number, title, block in re.findall(pattern, markdown, flags=re.MULTILINE | re.DOTALL | re.IGNORECASE):
-        tipo = re.search(r"\*\*Tipo:\*\*\s*([^\n]+)", block, flags=re.IGNORECASE)
         tema = re.search(r"\*\*Tema:\*\*\s*([^\n]+)", block, flags=re.IGNORECASE)
         criticality = re.search(r"\*\*Nivel de criticidad:\*\*\s*([^\n]+)", block, flags=re.IGNORECASE)
         occurred = section(block, "Qué ocurrió")
-        topic = short(tema.group(1), 34) if tema else "IA"
-        if criticality:
-            topic = f"{topic} · {short(criticality.group(1), 10)}"
+        level = strip_md(criticality.group(1)).upper() if criticality else "MEDIO"
+        if level not in CRITICITY:
+            level = "MEDIO"
         items.append({
             "number": number,
-            "title": short(title, 88),
-            "type": short(tipo.group(1), 34) if tipo else "NOTICIA",
-            "topic": topic,
-            "summary": short(occurred, 260) if occurred else short(block, 260),
+            "title": strip_md(title),
+            "topic": complete_excerpt(tema.group(1), 38) if tema else "Inteligencia artificial",
+            "criticality": level,
+            "summary": complete_excerpt(occurred if occurred else block, 205),
         })
     return items[:6]
 
@@ -107,14 +115,40 @@ def extract_semaphore(markdown: str) -> list[str]:
         flags=re.MULTILINE | re.DOTALL | re.IGNORECASE,
     )
     if not match:
-        return ["Riesgo relevante", "Tema para observar", "Avance positivo"]
+        return ["Avances y usos positivos", "Regulación e infraestructura", "Autonomía sin control suficiente"]
     lines = []
     for line in match.group(1).splitlines():
-        line = strip_md(line.lstrip("- "))
-        if line:
-            line = re.sub(r"^[🟢🟡🔴]\s*", "", line)
-            lines.append(short(line, 70))
-    return (lines + ["Tema para observar", "Avance positivo"])[:3]
+        if not line.strip().startswith("-"):
+            continue
+        clean = strip_md(line.lstrip("- "))
+        clean = re.sub(r"^[🟢🟡🔴]\s*", "", clean)
+        clean = re.sub(r"^(Avance positivo|Tema para observar|Riesgo relevante):\s*", "", clean, flags=re.IGNORECASE)
+        if clean:
+            lines.append(complete_excerpt(clean, 72))
+    return (lines + ["Tema para observar", "Riesgo relevante"])[:3]
+
+
+def extract_questions(markdown: str) -> list[str]:
+    match = re.search(
+        r"^##\s+(?:Cinco|Tres) preguntas para el aula\s*\n(.*?)(?=^##\s+|\Z)",
+        markdown,
+        flags=re.MULTILINE | re.DOTALL | re.IGNORECASE,
+    )
+    if not match:
+        return [
+            "¿Qué riesgo de esta semana requiere más supervisión humana?",
+            "¿Quién debería responder cuando un agente de IA causa un daño?",
+            "¿Cómo equilibrar innovación, seguridad y derechos?",
+        ]
+    questions = []
+    for line in match.group(1).splitlines():
+        m = re.match(r"^\s*\d+[.)]\s*(.+)", line)
+        if m:
+            questions.append(strip_md(m.group(1)))
+    return (questions + [
+        "¿Qué riesgo de esta semana requiere más supervisión humana?",
+        "¿Cómo equilibrar innovación y seguridad?",
+    ])[:3]
 
 
 def source_names(markdown: str) -> list[str]:
@@ -124,30 +158,20 @@ def source_names(markdown: str) -> list[str]:
         if host and host not in domains:
             domains.append(host)
     pretty = {
-        "reuters.com": "Reuters",
-        "apnews.com": "Associated Press",
-        "bbc.com": "BBC",
-        "bbc.co.uk": "BBC",
-        "nature.com": "Nature",
-        "science.org": "Science",
-        "technologyreview.com": "MIT Technology Review",
-        "quantamagazine.org": "Quanta",
-        "newscientist.com": "New Scientist",
-        "arstechnica.com": "Ars Technica",
-        "wired.com": "Wired",
-        "theverge.com": "The Verge",
-        "spectrum.ieee.org": "IEEE Spectrum",
-        "arxiv.org": "arXiv",
-        "unesco.org": "UNESCO",
-        "oecd.org": "OECD",
-        "nist.gov": "NIST",
+        "reuters.com": "Reuters", "apnews.com": "AP", "bbc.com": "BBC", "bbc.co.uk": "BBC",
+        "nature.com": "Nature", "science.org": "Science",
+        "technologyreview.com": "MIT Technology Review", "quantamagazine.org": "Quanta",
+        "newscientist.com": "New Scientist", "arstechnica.com": "Ars Technica",
+        "wired.com": "Wired", "theverge.com": "The Verge",
+        "spectrum.ieee.org": "IEEE Spectrum", "arxiv.org": "arXiv",
+        "unesco.org": "UNESCO", "oecd.org": "OECD", "nist.gov": "NIST",
     }
     names = []
     for domain in domains:
         name = pretty.get(domain, domain)
         if name not in names:
             names.append(name)
-    return names[:5] or ["Fuentes enlazadas en el consolidado semanal"]
+    return names[:5] or ["Fuentes enlazadas en la edición"]
 
 
 def load_metadata() -> list[dict]:
@@ -177,99 +201,97 @@ def tspans(lines: list[str], x: int, y: int, line_height: int, css: str) -> str:
 
 
 def icon_svg(index: int, x: int, y: int, accent: str) -> str:
-    if index == 0:
-        return f'<g transform="translate({x},{y})" stroke="{accent}" stroke-width="5" fill="none" stroke-linecap="round"><path d="M5 32 L48 8 L91 32 Z"/><rect x="14" y="34" width="68" height="48" rx="4"/><line x1="26" y1="40" x2="26" y2="74"/><line x1="48" y1="40" x2="48" y2="74"/><line x1="70" y1="40" x2="70" y2="74"/><line x1="7" y1="86" x2="89" y2="86"/></g>'
-    if index == 1:
-        return f'<g transform="translate({x},{y})"><rect x="8" y="20" width="82" height="62" rx="24" fill="white" stroke="{accent}" stroke-width="5"/><rect x="22" y="34" width="54" height="30" rx="14" fill="#0F2947"/><circle cx="38" cy="49" r="5" fill="#23D5E8"/><circle cx="61" cy="49" r="5" fill="#23D5E8"/><line x1="49" y1="20" x2="49" y2="9" stroke="{accent}" stroke-width="5"/><circle cx="49" cy="6" r="5" fill="{accent}"/></g>'
-    if index == 2:
-        return f'<g transform="translate({x},{y})"><path d="M50 5 L94 83 H6 Z" fill="#FFD54A" stroke="{accent}" stroke-width="5"/><line x1="50" y1="29" x2="50" y2="58" stroke="{accent}" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="70" r="4" fill="{accent}"/></g>'
-    if index == 3:
-        return f'<g transform="translate({x},{y})" fill="none" stroke="{accent}" stroke-width="5"><circle cx="50" cy="50" r="42"/><ellipse cx="50" cy="50" rx="18" ry="42"/><path d="M8 50 H92 M18 30 H82 M18 70 H82"/></g>'
-    if index == 4:
-        return f'<g transform="translate({x},{y})"><rect x="8" y="55" width="18" height="35" rx="3" fill="#4F8DEB"/><rect x="36" y="36" width="18" height="54" rx="3" fill="#38BFA3"/><rect x="64" y="20" width="18" height="70" rx="3" fill="#F2B705"/><path d="M5 18 L32 34 L55 24 L88 44" fill="none" stroke="{accent}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>'
-    return f'<g transform="translate({x},{y})"><circle cx="34" cy="45" r="13" fill="#F2B705"/><circle cx="65" cy="42" r="15" fill="#38BFA3"/><circle cx="52" cy="68" r="16" fill="#4F8DEB"/><path d="M12 92 Q34 62 56 92" fill="#FF8DA7"/><path d="M42 94 Q66 58 90 94" fill="#7DD3FC"/><path d="M64 8 Q91 13 83 37 Q62 31 64 8" fill="#46C98C" stroke="{accent}" stroke-width="3"/></g>'
+    icons = [
+        f'<g transform="translate({x},{y})" stroke="{accent}" stroke-width="5" fill="none" stroke-linecap="round"><path d="M5 32 L48 8 L91 32 Z"/><rect x="14" y="34" width="68" height="48" rx="4"/><line x1="26" y1="40" x2="26" y2="74"/><line x1="48" y1="40" x2="48" y2="74"/><line x1="70" y1="40" x2="70" y2="74"/><line x1="7" y1="86" x2="89" y2="86"/></g>',
+        f'<g transform="translate({x},{y})"><rect x="8" y="20" width="82" height="62" rx="24" fill="white" stroke="{accent}" stroke-width="5"/><rect x="22" y="34" width="54" height="30" rx="14" fill="#0F2947"/><circle cx="38" cy="49" r="5" fill="#23D5E8"/><circle cx="61" cy="49" r="5" fill="#23D5E8"/><line x1="49" y1="20" x2="49" y2="9" stroke="{accent}" stroke-width="5"/><circle cx="49" cy="6" r="5" fill="{accent}"/></g>',
+        f'<g transform="translate({x},{y})"><path d="M50 5 L94 83 H6 Z" fill="#FFD54A" stroke="{accent}" stroke-width="5"/><line x1="50" y1="29" x2="50" y2="58" stroke="{accent}" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="70" r="4" fill="{accent}"/></g>',
+        f'<g transform="translate({x},{y})" fill="none" stroke="{accent}" stroke-width="5"><circle cx="50" cy="50" r="42"/><ellipse cx="50" cy="50" rx="18" ry="42"/><path d="M8 50 H92 M18 30 H82 M18 70 H82"/></g>',
+        f'<g transform="translate({x},{y})"><rect x="8" y="55" width="18" height="35" rx="3" fill="#4F8DEB"/><rect x="36" y="36" width="18" height="54" rx="3" fill="#38BFA3"/><rect x="64" y="20" width="18" height="70" rx="3" fill="#F2B705"/><path d="M5 18 L32 34 L55 24 L88 44" fill="none" stroke="{accent}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>',
+        f'<g transform="translate({x},{y})"><circle cx="34" cy="45" r="13" fill="#F2B705"/><circle cx="65" cy="42" r="15" fill="#38BFA3"/><circle cx="52" cy="68" r="16" fill="#4F8DEB"/><path d="M12 92 Q34 62 56 92" fill="#FF8DA7"/><path d="M42 94 Q66 58 90 94" fill="#7DD3FC"/></g>',
+    ]
+    return icons[index % len(icons)]
 
 
-def build_svg(news: list[dict], semaphore: list[str], sources: list[str], week_label: str) -> str:
+def build_svg(news: list[dict], semaphore: list[str], questions: list[str], sources: list[str], week_label: str) -> str:
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">',
-        '<rect width="1080" height="1920" fill="#F8FBFF"/>',
-        '<path d="M0 0 H1080 V270 C870 330 690 245 480 300 C285 350 145 310 0 260 Z" fill="#073C68"/>',
-        '<path d="M760 0 H1080 V420 C972 383 900 320 842 235 C806 181 778 93 760 0 Z" fill="#0A74A9" opacity=".92"/>',
-        '<path d="M875 0 H1010 L890 316 C854 289 824 253 801 210 Z" fill="#35C8E8" opacity=".95"/>',
-        '<text x="48" y="105" font-family="Arial,Helvetica,sans-serif" font-size="82" font-weight="900" fill="#FFFFFF">IA <tspan fill="#23D5E8">AL DÍA</tspan></text>',
-        f'<text x="50" y="151" font-family="Arial,Helvetica,sans-serif" font-size="25" font-weight="700" fill="#FFFFFF">Consolidado semanal · {esc(week_label)}</text>',
-        '<rect x="42" y="178" width="710" height="62" rx="24" fill="#FFD52A"/>',
-        '<text x="68" y="219" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="800" fill="#0C2F4E">Lo más importante y crítico de la semana</text>',
-        '<text x="48" y="285" font-family="Arial,Helvetica,sans-serif" font-size="23" font-style="italic" fill="#163A59">Una semana de avances, riesgos y decisiones.</text>',
-        '<text x="48" y="316" font-family="Arial,Helvetica,sans-serif" font-size="23" font-style="italic" fill="#163A59">Estas son las noticias clave para entenderla.</text>',
-        '<g transform="translate(830,62)"><ellipse cx="100" cy="92" rx="88" ry="70" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="8"/><rect x="45" y="58" width="112" height="62" rx="29" fill="#092D50"/><path d="M70 88 Q82 72 94 88" fill="none" stroke="#23D5E8" stroke-width="8" stroke-linecap="round"/><path d="M112 88 Q124 72 136 88" fill="none" stroke="#23D5E8" stroke-width="8" stroke-linecap="round"/><rect x="60" y="150" width="85" height="90" rx="35" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="8"/><circle cx="102" cy="187" r="16" fill="#23D5E8"/><line x1="102" y1="20" x2="102" y2="7" stroke="#A9D8F2" stroke-width="8"/><circle cx="102" cy="4" r="7" fill="#23D5E8"/></g>',
-        '<rect x="833" y="272" width="207" height="62" rx="18" fill="#20D2D8"/><text x="856" y="298" font-family="Arial" font-size="17" font-weight="900" fill="#06395C">TECNOLOGÍA</text><text x="856" y="319" font-family="Arial" font-size="17" font-weight="900" fill="#06395C">PERSONAS · SOCIEDAD</text>',
+        '<rect width="1080" height="1920" fill="#F6FAFE"/>',
+        '<rect x="0" y="0" width="1080" height="315" fill="#073C68"/>',
+        '<path d="M775 0 H1080 V315 H905 C860 257 820 164 775 0 Z" fill="#0A74A9"/>',
+        '<path d="M906 0 H1045 L922 272 C888 239 860 198 840 150 Z" fill="#2BC4E7" opacity=".9"/>',
+        '<text x="44" y="88" font-family="Arial,Helvetica,sans-serif" font-size="68" font-weight="700" fill="#FFFFFF">IA <tspan fill="#38D8F1">AL DÍA</tspan></text>',
+        f'<text x="47" y="133" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="600" fill="#D9F6FF">Consolidado semanal · {esc(week_label)}</text>',
+        '<rect x="42" y="166" width="950" height="104" rx="24" fill="#0A4F88"/>',
+        '<text x="66" y="205" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="500" fill="#FFFFFF">Una semana de avances, riesgos y decisiones.</text>',
+        '<text x="66" y="242" font-family="Arial,Helvetica,sans-serif" font-size="24" font-weight="500" fill="#FFFFFF">Estas son las noticias clave para entenderla.</text>',
+        '<g transform="translate(858,49)"><ellipse cx="85" cy="78" rx="73" ry="58" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="7"/><rect x="38" y="51" width="94" height="52" rx="25" fill="#092D50"/><path d="M57 77 Q68 63 79 77" fill="none" stroke="#23D5E8" stroke-width="7" stroke-linecap="round"/><path d="M92 77 Q103 63 114 77" fill="none" stroke="#23D5E8" stroke-width="7" stroke-linecap="round"/><rect x="50" y="127" width="70" height="69" rx="29" fill="#FFFFFF" stroke="#A9D8F2" stroke-width="7"/><circle cx="85" cy="156" r="13" fill="#23D5E8"/></g>',
     ]
 
-    card_w, card_h = 500, 282
-    x_positions, y_positions = [30, 550], [360, 660, 960]
+    card_w, card_h = 505, 275
+    x_positions, y_positions = [25, 550], [335, 625, 915]
     for idx, item in enumerate(news[:6]):
-        bg, accent, dark = COLORS[idx]
+        bg, accent, dark = CARD_PALETTES[idx]
         x, y = x_positions[idx % 2], y_positions[idx // 2]
-        title_lines = wrap(item["title"], 26, 3)
-        summary_lines = wrap(item["summary"], 46, 5)
-        topic = short(item["topic"], 34)
+        title_font = 21 if len(item["title"]) <= 72 else 18.5
+        title_chars = 30 if title_font >= 21 else 35
+        title_lines = wrap(item["title"], title_chars, 4)
+        summary_lines = wrap(item["summary"], 48, 4)
+        level = item["criticality"]
+        badge, level_bg, badge_text = CRITICITY[level]
+        topic = complete_excerpt(item["topic"], 35)
         out += [
-            f'<rect x="{x}" y="{y}" width="{card_w}" height="{card_h}" rx="30" fill="{bg}"/>',
-            f'<circle cx="{x+45}" cy="{y+45}" r="28" fill="{accent}"/><text x="{x+45}" y="{y+54}" text-anchor="middle" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">{esc(item["number"])}</text>',
-            icon_svg(idx, x+18, y+86, dark),
-            tspans(title_lines, x+122, y+48, 30, f"font-family:Arial,Helvetica,sans-serif;font-size:25px;font-weight:900;fill:{dark}"),
-            tspans(summary_lines, x+122, y+132, 22, "font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#24364B"),
-            f'<rect x="{x+122}" y="{y+239}" width="{min(330, 22 + len(topic)*8)}" height="30" rx="15" fill="{accent}" opacity=".95"/>',
-            f'<text x="{x+137}" y="{y+260}" font-family="Arial" font-size="13" font-weight="800" fill="#FFFFFF">{esc(topic.upper())}</text>',
+            f'<rect x="{x}" y="{y}" width="{card_w}" height="{card_h}" rx="26" fill="{bg}" stroke="{level_bg}" stroke-width="2"/>',
+            f'<circle cx="{x+42}" cy="{y+42}" r="25" fill="{accent}"/><text x="{x+42}" y="{y+50}" text-anchor="middle" font-family="Arial" font-size="24" font-weight="700" fill="#FFFFFF">{esc(item["number"])}</text>',
+            icon_svg(idx, x+15, y+83, dark),
+            tspans(title_lines, x+118, y+43, 25, f"font-family:Arial,Helvetica,sans-serif;font-size:{title_font}px;font-weight:600;fill:{dark}"),
+            tspans(summary_lines, x+118, y+145, 20, "font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:400;fill:#24364B"),
+            f'<text x="{x+118}" y="{y+246}" font-family="Arial" font-size="12.5" font-weight="600" fill="#52667A">{esc(topic.upper())}</text>',
+            f'<rect x="{x+385}" y="{y+222}" width="100" height="34" rx="17" fill="{badge}"/>',
+            f'<text x="{x+435}" y="{y+245}" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="{badge_text}">{esc(level)}</text>',
         ]
 
+    # Bloque "Para discutir en clase" — mantiene la identidad visual de las ediciones previas.
     out += [
-        '<rect x="30" y="1270" width="660" height="390" rx="28" fill="#FFFFFF" stroke="#D6E4F0" stroke-width="2"/>',
-        '<rect x="30" y="1270" width="660" height="72" rx="28" fill="#073C68"/><rect x="30" y="1314" width="660" height="28" fill="#073C68"/>',
-        '<text x="62" y="1318" font-family="Arial" font-size="30" font-weight="900" fill="#FFFFFF">3 claves para leer la semana</text>',
+        '<rect x="25" y="1215" width="1030" height="250" rx="28" fill="#EAF4FF" stroke="#B8D9F7" stroke-width="2"/>',
+        '<rect x="25" y="1215" width="360" height="60" rx="22" fill="#073C68"/>',
+        '<text x="50" y="1255" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Para discutir en clase</text>',
     ]
-    ideas = [
-        ("1", "Impacto antes que hype", "No toda novedad cambia el panorama: importa el alcance real y la evidencia."),
-        ("2", "Riesgo ≠ certeza", "Una advertencia seria merece atención, pero no debe presentarse como un hecho consumado."),
-        ("3", "Fuentes primero", "Contrasta medios, papers, documentos oficiales y fuentes primarias antes de concluir."),
-    ]
-    idea_x = [48, 264, 480]
-    idea_bg = ["#E5F2FF", "#FFF3C9", "#EDE8FF"]
-    idea_accent = ["#1376C5", "#F2B705", "#6748C8"]
-    for i, (num, title, desc) in enumerate(ideas):
-        x = idea_x[i]
+    q_y = [1310, 1365, 1420]
+    for i, (q, y) in enumerate(zip(questions[:3], q_y), start=1):
         out += [
-            f'<rect x="{x}" y="1360" width="194" height="270" rx="22" fill="{idea_bg[i]}"/>',
-            f'<circle cx="{x+30}" cy="1392" r="22" fill="{idea_accent[i]}"/><text x="{x+30}" y="1400" text-anchor="middle" font-family="Arial" font-size="21" font-weight="900" fill="#FFFFFF">{num}</text>',
-            tspans(wrap(title, 18, 3), x+18, 1470, 27, "font-family:Arial;font-size:22px;font-weight:900;fill:#102A43"),
-            tspans(wrap(desc, 24, 5), x+18, 1562, 20, "font-family:Arial;font-size:15px;font-weight:500;fill:#3E5368"),
+            f'<circle cx="66" cy="{y-7}" r="20" fill="#1F75C9"/>',
+            f'<text x="66" y="{y}" text-anchor="middle" font-family="Arial" font-size="17" font-weight="700" fill="#FFFFFF">{i}</text>',
+            tspans(wrap(q, 72, 2), 100, y-6, 22, "font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:500;fill:#153A5B"),
         ]
 
+    # Semáforo semanal.
     out += [
-        '<rect x="710" y="1270" width="340" height="390" rx="28" fill="#FFFFFF" stroke="#D6E4F0" stroke-width="2"/>',
-        '<rect x="710" y="1270" width="340" height="72" rx="28" fill="#073C68"/><rect x="710" y="1314" width="340" height="28" fill="#073C68"/>',
-        '<text x="738" y="1318" font-family="Arial" font-size="28" font-weight="900" fill="#FFFFFF">Semáforo semanal</text>',
+        '<rect x="25" y="1490" width="1030" height="255" rx="28" fill="#073C68"/>',
+        '<text x="55" y="1540" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Semáforo de la semana</text>',
     ]
-    lights = [("#EF4444", semaphore[2] if len(semaphore) > 2 else semaphore[0], "Mayor atención"), ("#F2B705", semaphore[1], "En observación"), ("#10B981", semaphore[0], "Oportunidad")]
-    yy = [1383, 1474, 1565]
-    for (color, label, state), y in zip(lights, yy):
+    sem_items = [
+        ("#EF4444", "Riesgo", semaphore[2] if len(semaphore) > 2 else "Autonomía sin control suficiente"),
+        ("#F2B705", "Atención", semaphore[1] if len(semaphore) > 1 else "Regulación e infraestructura"),
+        ("#10B981", "Oportunidad", semaphore[0] if semaphore else "Ciencia y usos positivos"),
+    ]
+    sx = [48, 380, 712]
+    light_bg = ["#FFE4E7", "#FFF2C4", "#DCF7EA"]
+    for i, ((color, label, text_value), x) in enumerate(zip(sem_items, sx)):
         out += [
-            f'<circle cx="756" cy="{y}" r="25" fill="{color}"/>',
-            tspans(wrap(label, 25, 2), 795, y-7, 19, "font-family:Arial;font-size:16px;font-weight:800;fill:#20364A"),
-            f'<text x="795" y="{y+38}" font-family="Arial" font-size="13" fill="#667085">{esc(state)}</text>',
+            f'<rect x="{x}" y="1570" width="300" height="135" rx="20" fill="{light_bg[i]}"/>',
+            f'<circle cx="{x+42}" cy="1612" r="22" fill="{color}"/>',
+            f'<text x="{x+78}" y="1608" font-family="Arial" font-size="17" font-weight="700" fill="#18324A">{label}:</text>',
+            tspans(wrap(text_value, 27, 3), x+78, 1633, 19, "font-family:Arial,Helvetica,sans-serif;font-size:14.5px;font-weight:500;fill:#273E54"),
         ]
 
     source_text = " · ".join(sources)
     out += [
-        '<path d="M0 1700 C260 1630 430 1745 650 1710 C835 1680 948 1645 1080 1685 V1920 H0 Z" fill="#073C68"/>',
-        '<text x="48" y="1785" font-family="cursive" font-size="37" font-style="italic" fill="#FFFFFF">Entender la semana,</text>',
-        '<text x="48" y="1832" font-family="cursive" font-size="37" font-style="italic" fill="#FFFFFF">para decidir mejor.</text>',
-        '<line x1="52" y1="1861" x2="405" y2="1861" stroke="#23D5E8" stroke-width="8" stroke-linecap="round"/>',
-        f'<text x="1030" y="1810" text-anchor="end" font-family="Arial" font-size="15" fill="#D6E7F6">Fuentes: {esc(source_text)}</text>',
-        '<text x="1030" y="1840" text-anchor="end" font-family="Arial" font-size="15" fill="#D6E7F6">Consolidado semanal · Observatorio IA al Día</text>',
-        '<text x="1030" y="1870" text-anchor="end" font-family="Arial" font-size="14" fill="#9FDFF1">ljarias.github.io</text>',
+        '<rect x="0" y="1780" width="1080" height="140" fill="#073C68"/>',
+        '<text x="45" y="1830" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="600" fill="#FFFFFF">Fuentes principales</text>',
+        tspans(wrap(source_text, 62, 2), 45, 1857, 20, "font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:400;fill:#D6E7F6"),
+        '<text x="1035" y="1840" text-anchor="end" font-family="Arial" font-size="14" fill="#D6E7F6">Observatorio IA al Día</text>',
+        '<text x="1035" y="1865" text-anchor="end" font-family="Arial" font-size="13" fill="#9FDFF1">ljarias.github.io</text>',
+        '<text x="1035" y="1890" text-anchor="end" font-family="Arial" font-size="12" fill="#D6E7F6">Proyecto liderado por Leonardo Arias-Alemán</text>',
         '</svg>',
     ]
     return "\n".join(out)
@@ -322,16 +344,22 @@ def main() -> None:
         news.append({
             "number": str(len(news) + 1),
             "title": "Tema para seguir",
-            "type": "OBSERVACIÓN",
             "topic": "Seguimiento",
-            "summary": "Revisa el consolidado semanal para ampliar el contexto y consultar las fuentes enlazadas.",
+            "criticality": "MEDIO",
+            "summary": "Consulta el consolidado semanal para ampliar el contexto y revisar las fuentes.",
         })
 
-    svg = build_svg(news[:6], extract_semaphore(markdown), source_names(markdown), label)
+    svg = build_svg(
+        news[:6],
+        extract_semaphore(markdown),
+        extract_questions(markdown),
+        source_names(markdown),
+        label,
+    )
     image_path.write_text(svg, encoding="utf-8")
     save_metadata(record)
     print(f"Infografía semanal generada: {image_path.relative_to(ROOT)}")
-    print("Formato: SVG 1080×1920, sin costo adicional de generación de imagen.")
+    print("Formato: SVG 1080×1920, optimizado para contraste y lectura móvil.")
 
 
 if __name__ == "__main__":
