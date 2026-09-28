@@ -29,6 +29,17 @@ jobs:
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Sincronizar con main actual
+        run: |
+          # Un "Re-run" de GitHub reutiliza el commit original del run.
+          # Antes de generar contenido, avanzamos siempre al main más reciente
+          # para evitar conflictos con telemetría o publicaciones ya guardadas.
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
 
       - name: Preparar ejecución semanal
         env:
@@ -104,8 +115,15 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add _posts data _data assets/infografias 2>/dev/null || true
             git commit -m "Publicar consolidado semanal IA $(TZ=America/Bogota date +'%Y-%m-%d')"
-            git pull --rebase origin main
-            git push
+            # El checkout ya fue sincronizado con main al comenzar la ejecución.
+            # Si alguien modifica el repositorio mientras corre el agente,
+            # reintentamos una vez sobre el main actualizado.
+            if ! git push; then
+              echo "::warning::main cambió durante la ejecución; intentando rebase y nuevo push."
+              git fetch origin main
+              git rebase origin/main
+              git push
+            fi
           else
             echo "No hay cambios editoriales, visuales o de telemetría para guardar."
           fi
