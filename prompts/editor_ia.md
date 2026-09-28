@@ -110,6 +110,9 @@ Una publicación corporativa es una **fuente primaria sobre lo que la empresa af
 - Incluye al menos un desarrollo positivo o de oportunidad cuando sea relevante.
 - No inventes cifras, fechas, autores ni enlaces.
 - Incluye enlaces Markdown a las fuentes originales o a medios confiables.
+- Si una fuente original ofrece una imagen con licencia abierta, dominio público o permiso explícito de reutilización y puedes verificar una URL directa estable, puedes incorporarla con Markdown usando un texto alternativo descriptivo y una línea de atribución. No inventes URLs de imagen.
+- Si la fotografía es de una agencia o medio que exige licencia (por ejemplo Reuters, AP u otra fuente con "Purchase/License this photo"), NO la copies ni la incrustes. En ese caso agrega una línea: **Imagen original:** [Ver fotografía en la fuente](URL_DEL_ARTICULO).
+- Si no puedes verificar el permiso de reutilización, enlaza la imagen original en lugar de copiarla.
 - Redacta en español claro y natural, con utilidad pedagógica.
 
 ## Formato de salida
@@ -129,6 +132,8 @@ Después crea una sección por noticia con este formato:
 **Tipo:** HECHO / DECLARACIÓN / ESTUDIO / PROYECCIÓN / CONTROVERSIA  
 **Tema:** categoría principal  
 **Nivel de criticidad:** ALTO / MEDIO / BAJO
+
+Si la noticia original tiene una fotografía o imagen relevante, aplica las reglas anteriores de licencia: incrústala únicamente si la reutilización está permitida; de lo contrario agrega el enlace **Imagen original:** hacia la fuente.
 
 ### Qué ocurrió
 2 o 3 párrafos breves que consoliden el desarrollo de la semana.
