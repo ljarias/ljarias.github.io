@@ -88,5 +88,52 @@
       "https://www.theguardian.com/technology/artificialintelligenceai/2026/sep/26/all?utm_source=openai"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-10-04",
+    "edition_type": "weekly",
+    "period_start": "2026-09-28",
+    "period_end": "2026-10-04",
+    "post": "_posts/2026-10-04-ia-al-dia.md",
+    "titles": [
+      "OpenAI retrasa el lanzamiento de un modelo por preocupaciones de seguridad",
+      "Nvidia presenta una plataforma para contener agentes de IA",
+      "Estados Unidos combina autorregulación empresarial con nuevas investigaciones oficiales",
+      "California aprueba nuevas protecciones laborales frente a decisiones automatizadas",
+      "La carrera por agentes “siempre activos” avanza pese a los incidentes",
+      "Crece la disputa política sobre si la IA debe desacelerarse",
+      "Nuevos estudios exploran beneficios y límites de la IA en salud y ciencia"
+    ],
+    "urls": [
+      "https://ae.marketscreener.com/news/bill-gates-joins-calls-for-ai-safeguards-including-legislation-ce785adcd88fff26",
+      "https://ae.marketscreener.com/news/bill-gates-joins-calls-for-ai-safeguards-including-legislation-ce785adcd88fff26?utm_source=openai",
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://apnews.com/article/0790f258461d114c920ec6158c2a1921",
+      "https://apnews.com/article/0790f258461d114c920ec6158c2a1921?utm_source=openai",
+      "https://apnews.com/article/1aa4935e3ee79519ae8b2458b2b9ebc1",
+      "https://apnews.com/article/1aa4935e3ee79519ae8b2458b2b9ebc1?utm_source=openai",
+      "https://apnews.com/article/3c4d7c1cfde82851c0577d1fa29b8621",
+      "https://apnews.com/article/5afb865b2cddc439efdcf31ebdc406a5",
+      "https://apnews.com/article/5afb865b2cddc439efdcf31ebdc406a5?utm_source=openai",
+      "https://apnews.com/article/77b6b8888145869206996d7509d24256",
+      "https://apnews.com/article/77b6b8888145869206996d7509d24256?utm_source=openai",
+      "https://apnews.com/article/89ac416717adbfb1d72f2d85e6ce83d1",
+      "https://apnews.com/article/89ac416717adbfb1d72f2d85e6ce83d1?utm_source=openai",
+      "https://apnews.com/article/a4cfc84ed00353ff8f2dad4bed7b429e",
+      "https://apnews.com/article/a4cfc84ed00353ff8f2dad4bed7b429e?utm_source=openai",
+      "https://apnews.com/article/b8689ea07de9102a52bd1cd2049b5901",
+      "https://apnews.com/article/b8689ea07de9102a52bd1cd2049b5901?utm_source=openai",
+      "https://apnews.com/article/c6dd26d8e67270db543c37ac3762acd9",
+      "https://apnews.com/article/c6dd26d8e67270db543c37ac3762acd9?utm_source=openai",
+      "https://cdn.openai.com/papers/practices-for-governing-agentic-ai-systems.pdf",
+      "https://community.openai.com/t/devday-2026-announcements-and-developer-resources/1402006",
+      "https://openai.com/index/safety-overview-gpt-6-astra/",
+      "https://www.investing.com/news/stock-market-news/as-public-fears-of-ai-grow-trump-digs-in-on-voluntary-safeguards-4930823",
+      "https://www.nature.com/subjects/intelligence-augmentation",
+      "https://www.nature.com/subjects/intelligence-augmentation?utm_source=openai",
+      "https://www.nature.com/subjects/nanobiotechnology/nbt",
+      "https://www.nature.com/subjects/nanobiotechnology/nbt?utm_source=openai"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
