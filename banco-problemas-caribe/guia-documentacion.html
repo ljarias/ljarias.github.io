@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Por dónde empiezo a documentar mi base de datos? · Caribe BD</title>
+<meta name="description" content="Guía paso a paso para estudiantes que necesitan documentar una base de datos, desde el enunciado y el diagrama hasta el diccionario, DDL y evidencias."/>
+<style>
+  :root{
+    --navy:#17324d; --blue:#1f5f9c; --teal:#0f766e; --cyan:#e8f4fb;
+    --ink:#1f2937; --muted:#5b6573; --line:#dbe3ea; --soft:#f6f8fa;
+    --ok:#166534; --okbg:#ecfdf3; --warn:#9a3412; --warnbg:#fff7ed;
+    --danger:#991b1b; --dangerbg:#fef2f2; --violet:#6d28d9; --violetbg:#f5f3ff;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#eef2f6;color:var(--ink);font-family:Segoe UI,Arial,sans-serif;line-height:1.62}
+  .page{max-width:980px;margin:30px auto;background:white;box-shadow:0 10px 30px rgba(31,41,55,.09);border-radius:18px;overflow:hidden}
+  .hero{padding:42px 52px 34px;background:linear-gradient(135deg,#17324d 0%,#1f5f9c 58%,#0f766e 100%);color:white;position:relative;overflow:hidden}
+  .hero:after{content:"";position:absolute;width:330px;height:330px;border:42px solid rgba(255,255,255,.08);border-radius:50%;right:-135px;top:-145px}
+  .kicker{display:inline-block;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:6px 10px;border-radius:999px;margin-bottom:13px}
+  h1{font-size:2.25rem;line-height:1.12;margin:0 0 12px;max-width:820px}
+  .hero p{margin:0;color:#eaf4fb;font-size:1.04rem;max-width:780px}
+  .hero .mini{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+  .pill{font-size:.82rem;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2)}
+  .content{padding:34px 52px 55px}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 26px}
+  .btn{display:inline-block;text-decoration:none;border:1px solid var(--line);background:white;color:var(--navy);padding:9px 13px;border-radius:9px;font-weight:650;font-size:.9rem}
+  .btn.primary{background:var(--navy);color:white;border-color:var(--navy)}
+  .btn:hover{filter:brightness(.98)}
+  .toc{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin:4px 0 28px}
+  .toc strong{color:var(--navy)}
+  .toc ol{columns:2;column-gap:38px;margin:10px 0 0 22px;padding:0}
+  .toc a{color:var(--blue);text-decoration:none}
+  h2{font-size:1.45rem;color:var(--navy);margin:42px 0 14px;border-bottom:2px solid #e7edf3;padding-bottom:8px}
+  h3{font-size:1.08rem;color:var(--teal);margin:24px 0 9px}
+  p{margin:0 0 13px}
+  ul,ol{margin-top:8px}
+  li{margin-bottom:7px}
+  code{font-family:Consolas,"Courier New",monospace;font-size:.9em;color:#9f1239;background:#fff1f2;padding:1px 4px;border-radius:4px}
+  pre{background:#111827;color:#e5e7eb;border-radius:12px;padding:16px 18px;overflow:auto;border:1px solid #253047;line-height:1.5;margin:12px 0 18px}
+  pre code{background:transparent;color:inherit;padding:0;font-size:.86rem}
+  .callout{border-radius:12px;padding:15px 17px;margin:16px 0;border-left:5px solid}
+  .callout strong{display:block;margin-bottom:3px}
+  .callout.info{background:#eff6ff;border-color:#2563eb}.callout.info strong{color:#1d4ed8}
+  .callout.ok{background:var(--okbg);border-color:#16a34a}.callout.ok strong{color:var(--ok)}
+  .callout.warn{background:var(--warnbg);border-color:#ea580c}.callout.warn strong{color:var(--warn)}
+  .callout.danger{background:var(--dangerbg);border-color:#dc2626}.callout.danger strong{color:var(--danger)}
+  .callout.ai{background:var(--violetbg);border-color:#7c3aed}.callout.ai strong{color:var(--violet)}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:16px 0 20px}
+  .card{border:1px solid var(--line);border-radius:13px;padding:17px;background:white}
+  .card h3{margin-top:0}
+  .card .tag{font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);background:#eaf3fb;border-radius:999px;padding:4px 8px;display:inline-block;margin-bottom:8px}
+  table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:.91rem}
+  th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}
+  th{background:#f2f6f9;color:var(--navy);font-weight:700}
+  tr:nth-child(even) td{background:#fbfcfd}
+  .figure{border:1px solid var(--line);border-radius:14px;background:#fbfdff;padding:13px;margin:18px 0 23px}
+  .figure svg{width:100%;height:auto;display:block}
+  .caption{font-size:.82rem;color:var(--muted);text-align:center;margin:8px 5px 1px}
+  .steps{counter-reset:step;display:grid;gap:11px;margin:15px 0 20px}
+  .step{position:relative;padding:13px 15px 13px 52px;border:1px solid var(--line);border-radius:11px;background:#fff}
+  .step:before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:12px;width:27px;height:27px;border-radius:50%;background:var(--blue);color:white;display:grid;place-items:center;font-weight:700}
+  .evidence{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:14px 0}
+  .ev{border:1px solid var(--line);border-radius:11px;padding:12px 13px;background:#fcfdfd}
+  .ev b{color:var(--navy)}
+  .linkbox{display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:#fff}
+  .linkbox span{font-size:.9rem;color:var(--muted)}
+  .linkbox a{white-space:nowrap;text-decoration:none;color:white;background:var(--blue);padding:7px 10px;border-radius:8px;font-weight:650;font-size:.84rem}
+  .checklist{list-style:none;padding:0;margin:12px 0}
+  .checklist li{padding:7px 0 7px 31px;position:relative;border-bottom:1px dashed #e5e7eb}
+  .checklist li:before{content:"☐";position:absolute;left:2px;top:5px;color:var(--teal);font-size:1.12rem}
+  .small{font-size:.86rem;color:var(--muted)}
+  footer{margin-top:45px;padding-top:18px;border-top:1px solid var(--line);font-size:.84rem;color:var(--muted)}
+  .mono{font-family:Consolas,"Courier New",monospace}
+  .nowrap{white-space:nowrap}
+  @page{size:A4;margin:14mm}
+  @media print{
+    body{background:white}.page{margin:0;box-shadow:none;border-radius:0;max-width:none}.hero{padding:28px 28px 24px}.content{padding:24px 28px 30px}
+    .actions,.toc{display:none}.linkbox a{color:var(--blue);background:white;border:1px solid var(--line)}
+    .card,.callout,.figure,table,pre,.step,.ev{break-inside:avoid}.page{overflow:visible}
+    a{color:inherit;text-decoration:none}
+  }
+  @media(max-width:720px){
+    .page{margin:0;border-radius:0}.hero,.content{padding-left:22px;padding-right:22px}.hero{padding-top:32px}h1{font-size:1.75rem}
+    .grid,.evidence{grid-template-columns:1fr}.toc ol{columns:1}.linkbox{align-items:flex-start;flex-direction:column}
+  }
+</style>
+<style>.hub-top{background:#fff;position:relative;z-index:7;box-shadow:0 4px 20px #062f5620;border-bottom:1px solid #deebf4;font-family:system-ui,"Segoe UI",Arial,sans-serif}.hub-width{max-width:1180px;width:calc(100% - 34px);min-height:77px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.hub-brand{display:inline-flex;gap:10px;align-items:center;white-space:nowrap;color:#102f59!important;text-decoration:none!important}.hub-brand img{width:44px;height:44px;object-fit:contain}.hub-brand span{display:flex;flex-direction:column;line-height:1.15}.hub-brand strong{font-weight:850;font-size:17px}.hub-brand small{font-size:10px;letter-spacing:.1em;color:#087fc4;text-transform:uppercase;font-weight:700}.hub-links{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:5px}.hub-links a{padding:9px 11px;border-radius:10px;color:#22496c;text-decoration:none;font-weight:750;font-size:13px}.hub-links a:hover,.hub-links a[aria-current=page]{background:#e4f3ff;color:#05599a}.hub-bottom{max-width:980px;margin:30px auto;padding:20px 25px;background:#0d2851;color:#d8f1ff;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}.hub-bottom a{color:#9eeafa;text-decoration:underline}@media(max-width:760px){.hub-width{padding:12px 0;flex-wrap:wrap;justify-content:center}.hub-links{justify-content:center}.hub-links a{font-size:12px;padding:8px}.hub-bottom{margin:18px 12px}}
+:root{--navy:#0b2854;--blue:#047bbf;--teal:#078dba;--cyan:#e7f7ff}
+html{scroll-padding-top:25px}
+.fast-start{background:#eaf7ff;border:1px solid #b9e3fd;padding:22px;border-radius:16px;margin:0 0 26px}.fast-start h2{margin:0 0 10px;border:0;color:#093a71}.fast-start p{margin-bottom:10px}.fast-start li{margin-bottom:8px}.fast-start a{font-weight:750;color:#075c9d}.hero{background:linear-gradient(120deg,#08275a,#087cbc 70%,#00bddd)}
+@media print{.hub-top,.hub-bottom{display:none}.fast-start{break-inside:avoid}}
+</style></head>
+<body>
+(active)=>`<div class="hub-top"><div class="hub-width"><a class="hub-brand" href="index.html#catalogo"><img src="${logo}" alt="" width="44" height="44"><span><strong>Caribe BD</strong><small>Arias-Data-Lab</small></span></a><nav class="hub-links" aria-label="Navegación principal"><a href="index.html#catalogo">Enunciados</a><a href="prompt-maestro.html" ${active==="prompt"?'aria-current="page"':""}>Prompt maestro</a><a href="guia-documentacion.html" ${active==="guide"?'aria-current="page"':""}>Guía de documentación</a><a href="acerca-de.html" ${active==="about"?'aria-current="page"':""}>Acerca de</a></nav></div></div>`
+<div class="page">
+  <header class="hero">
+    <span class="kicker">Guía práctica · Bases de Datos</span>
+    <h1>¿No sabes por dónde empezar a documentar tu base de datos?</h1>
+    <p>Una guía para estudiantes que quieren documentar su proyecto <strong>sin morir en el intento</strong>. Comienza por lo sencillo: entender el problema, explicar las tablas y reunir evidencias. Luego aprende cómo documentar un esquema MySQL o MariaDB, incluso si ya existe.</p>
+    <div class="mini">
+      <span class="pill">MySQL / MariaDB</span><span class="pill">Ingeniería inversa</span><span class="pill">Diagrama E/R</span><span class="pill">Diccionario de datos</span><span class="pill">Evidencias técnicas</span>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="fast-start" id="primeros-pasos"><h2>Tu primera ruta: comienza en 5 pasos</h2><p>No tienes que dominar MySQL ni instalar cuatro programas para comenzar. Trabaja con el enunciado de tu proyecto y reúne estas cinco evidencias:</p><ol><li><strong>Entiende el problema:</strong> escribe en tus palabras qué quiere resolver la aplicación, quiénes la usan y cuáles son las reglas del negocio.</li><li><strong>Identifica las entidades:</strong> anota los objetos del problema (por ejemplo, cliente, préstamo, pago) y explica qué información conserva cada uno.</li><li><strong>Dibuja las relaciones:</strong> define quién depende de quién y si la relación es 1:1, 1:N o N:M. Obtén tu diagrama E/R.</li><li><strong>Crea el diccionario:</strong> para cada columna escribe nombre, significado, tipo, obligatoriedad y si es PK o FK.</li><li><strong>Documenta y comprueba:</strong> guarda el DDL comentado, contrasta estructura y diagrama, y prepara un pequeño informe de evidencias.</li></ol><p><strong>Tu carpeta mínima:</strong> análisis semántico · catálogo de entidades · diagrama · diccionario · DDL · verificaciones. La IA ayuda, pero las decisiones deben ser tuyas.</p><a href="prompt-maestro.html">Abrir el Prompt Maestro que te acompaña fase por fase →</a> · <a href="index.html#catalogo">Elegir un enunciado →</a></div>
+<div class="actions">
+      <a class="btn primary" href="#primeros-pasos">Comenzar desde cero</a><a class="btn" href="#decision">¿Ya tengo una BD?</a>
+      <a class="btn" href="#enlaces">Descargas oficiales</a>
+      <button class="btn" onclick="window.print()">Imprimir / Guardar como PDF</button>
+    </div>
+
+    <div class="callout danger">
+      <strong>Regla principal del laboratorio</strong>
+      <strong>Nunca ejecutes scripts generados por IA directamente en producción.</strong> Primero realiza y verifica un respaldo, restaura una copia de trabajo y valida allí las modificaciones. En producción solo se aplica un cambio mediante autorización, revisión y plan de reversión. Si la tarea es únicamente documental, puedes mantener la base productiva intacta.
+    </div>
+
+    <nav class="toc">
+      <strong>Contenido</strong>
+      <ol>
+        <li><a href="#decision">Decide tu escenario y sigue el workflow</a></li>
+        <li><a href="#prompts">Prompts y control de cambios</a></li>
+        <li><a href="#calidad">Verificación de calidad internacional</a></li>
+        <li><a href="#proposito">Propósito y producto final</a></li>
+        <li><a href="#que-documentar">Qué se debe documentar</a></li>
+        <li><a href="#flujo">Flujo general de trabajo</a></li>
+        <li><a href="#ruta-recomendada">Ruta recomendada: DBeaver</a></li>
+        <li><a href="#sql-metadata">Ruta sin herramientas extra: SQL</a></li>
+        <li><a href="#tbls">Ruta automatizada: tbls</a></li>
+        <li><a href="#schemaspy">Ruta avanzada: SchemaSpy</a></li>
+        <li><a href="#ia">Uso responsable de IA</a></li>
+        <li><a href="#evidencias">Paquete de evidencias</a></li>
+        <li><a href="#enlaces">Enlaces oficiales</a></li>
+      </ol>
+    </nav>
+
+
+    <section id="decision">
+      <h2>1. ¿En qué estado está tu base de datos?</h2>
+      <p>Selecciona la ruta que refleje tu situación. Ambas llegan al mismo punto: un <strong>esquema de trabajo validado</strong> con comentarios técnicos y una documentación externa comprobable. Documentar no equivale a cambiar tablas por cambiar: primero identifica los vacíos y separa documentación de rediseño.</p>
+      <div class="figure" aria-label="Diagrama de decisión entre base en diseño y base en producción">
+        <svg viewBox="0 0 900 400" role="img" aria-label="Decisión inicial entre proyecto nuevo y producción">
+          <defs><marker id="flowarrow" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3 Z" fill="#64748b"/></marker></defs>
+          <rect x="310" y="12" width="280" height="58" rx="14" fill="#17324d"/><text x="450" y="36" fill="white" text-anchor="middle" font-size="17" font-weight="700">¿Cuál es el estado de mi BD?</text><text x="450" y="56" fill="#cce8f9" text-anchor="middle" font-size="12">No ejecutar cambios todavía</text>
+          <path d="M450 70 V99 H208 V123 M450 99 H691 V123" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#flowarrow)"/>
+          <rect x="35" y="128" width="345" height="145" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="208" y="158" text-anchor="middle" fill="#17324d" font-weight="700" font-size="19">RUTA A · DISEÑO</text><text x="208" y="186" text-anchor="middle" fill="#334155" font-size="14">DDL / esquema inicial</text><text x="208" y="210" text-anchor="middle" fill="#334155" font-size="14">Añadir COMMENT en copia</text><text x="208" y="234" text-anchor="middle" fill="#334155" font-size="14">Crear o migrar BD vacía</text><text x="208" y="255" text-anchor="middle" fill="#334155" font-size="13">Comprobar el resultado</text>
+          <rect x="520" y="128" width="345" height="145" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/><text x="693" y="158" text-anchor="middle" fill="#9a3412" font-weight="700" font-size="19">RUTA B · PRODUCCIÓN</text><text x="693" y="186" text-anchor="middle" fill="#334155" font-size="14">Inventario y backup verificado</text><text x="693" y="210" text-anchor="middle" fill="#334155" font-size="14">Restaurar entorno aislado</text><text x="693" y="234" text-anchor="middle" fill="#334155" font-size="14">ALTER solo de COMMENT</text><text x="693" y="255" text-anchor="middle" fill="#334155" font-size="13">Validar datos y esquema</text>
+          <path d="M208 274 V309 H450 M693 274 V309 H450 V329" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#flowarrow)"/>
+          <rect x="235" y="334" width="430" height="55" rx="14" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="450" y="357" text-anchor="middle" fill="#065f46" font-size="18" font-weight="700">Elegir herramienta y documentar</text><text x="450" y="378" text-anchor="middle" fill="#334155" font-size="13">Diagrama + diccionario + controles + evidencias</text>
+        </svg>
+        <p class="caption">Figura 1. Dos rutas de preparación y una ruta de documentación compartida.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><span class="tag">Ruta A · Diseñando</span><h3>Mi BD no está documentada</h3><div class="steps"><div class="step">Guarda el DDL actual y registra versión, tablas y relaciones.</div><div class="step">Identifica descripciones faltantes y confirma su significado con los requisitos del negocio.</div><div class="step">Pide a la IA un DDL documentado y una migración <em>solo de comentarios</em>, separados de cualquier propuesta de rediseño.</div><div class="step">Si no hay datos, recrea el esquema desde cero <strong>solo en ambiente de desarrollo</strong>. Si ya existe el esquema, aplica migraciones puntuales en una copia.</div><div class="step">Valida que claves, tipos, relaciones y datos (si hay) permanezcan como se espera.</div></div><a href="#prompt-diseno">Ir al prompt A</a></div>
+        <div class="card"><span class="tag">Ruta B · Producción</span><h3>Mi BD tiene datos y desconozco su documentación</h3><div class="steps"><div class="step">Exporta inventario y DDL real (por ejemplo <code>SHOW CREATE TABLE</code>); comprueba comentarios existentes.</div><div class="step">Realiza y verifica un backup, restaura a <strong>otra BD o instancia aislada</strong>; anonimiza datos personales si se comparten.</div><div class="step">Contrasta comentarios existentes con el negocio. Solicita script idempotente o revisable de <code>ALTER TABLE ... COMMENT</code> y <code>MODIFY COLUMN ... COMMENT</code> únicamente para copia.</div><div class="step">Revisa especialmente los <code>MODIFY COLUMN</code>: deben reproducir definición completa, nulabilidad, defecto y atributos sin pérdidas.</div><div class="step">Ejecuta pruebas y toma evidencias comparativas. La producción no se modifica por esta guía.</div></div><a href="#prompt-produccion">Ir al prompt B</a></div>
+      </div>
+      <div class="callout warn"><strong>Punto de decisión: ¿hay datos que conservar?</strong>Si la base está vacía, puedes reconstruirla en desarrollo con DDL documentado. Si tiene datos, no uses <code>DROP DATABASE</code> ni recreación destructiva: genera migraciones no destructivas, respalda y ensaya sobre una restauración. Los comentarios faltantes no justifican modificar restricciones, índices o tipos.</div>
+    </section>
+    <section id="prompts">
+      <h2>2. Prompts para generar y verificar la documentación interna</h2>
+      <p>Proporciona al asistente el <strong>DDL exportado</strong>, las reglas conocidas y la versión de MySQL o MariaDB. Los comentarios de negocio deben ser revisados por una persona: la IA no puede deducirlos con certeza a partir de nombres abreviados.</p>
+      <h3 id="prompt-diseno">Prompt A · Base en diseño o sin datos</h3>
+      <pre><code>Actúa como DBA experto en MySQL/MariaDB. Estoy DISEÑANDO una base de datos en un entorno de desarrollo.
+Motor y versión: [VERSION]. Base: [NOMBRE_BD]. Adjunto DDL y requisitos de negocio.
+Objetivo: completar DOCUMENTACIÓN, no cambiar el diseño funcional sin autorización.
+
+1. Inventaría tablas, columnas, PK, FK, UNIQUE, CHECK, DEFAULT, índices, vistas y objetos.
+2. Identifica qué tablas y columnas carecen de COMMENT; señala ambigüedades para que yo las confirme.
+3. Entrega un DDL COMPLETO documentado para CREAR una BD vacía en desarrollo, conservando
+   tipos, longitudes, atributos, restricciones y relaciones originales.
+4. Entrega POR SEPARADO un script de migración de solo comentarios para un esquema existente.
+5. Separa en un reporte las sugerencias de rediseño: NO las apliques al DDL ni a la migración.
+6. Propón verificaciones: SHOW CREATE TABLE, INFORMATION_SCHEMA y comparación antes/después.
+7. Nunca incluyas DROP, TRUNCATE ni operaciones sobre registros en la migración.
+8. Si falta información semántica, escribe 'PENDIENTE DE CONFIRMAR' y pregunta.
+
+DDL: [PEGAR O ADJUNTAR]
+REQUISITOS: [PEGAR O ADJUNTAR]</code></pre>
+      <h3 id="prompt-produccion">Prompt B · Base en producción con datos</h3>
+      <pre><code>Actúa como DBA y auditor de MySQL/MariaDB. Esta BD está EN PRODUCCIÓN y contiene datos.
+Trabajo exclusivamente sobre COPIA RESTAURADA desde backup y nunca sobre producción.
+Versión: [VERSION]. BD de prueba: [NOMBRE_COPIA]. Adjunto DDL REAL exportado,
+metadatos actuales y requisitos de negocio, sin datos personales ni credenciales.
+
+1. INVENTARIO: identifica comentarios existentes, faltantes y ambiguos, por tabla y columna.
+2. Redacta comentarios semánticos concretos; marca cualquier inferencia para aprobación.
+3. Genera un archivo SQL de CAMBIOS CONTROLADOS solo para la COPIA:
+   - Comentarios de tabla: ALTER TABLE ... COMMENT = '...';
+   - Comentarios de columna: usa ALTER TABLE ... MODIFY COLUMN solo si reproduces EXACTAMENTE
+     tipo, longitud, UNSIGNED, NULL, DEFAULT, AUTO_INCREMENT, generated columns, charset/collation
+     y demás propiedades necesarias; si no puedes garantizarlo, NO generes el cambio.
+   - No uses DROP, TRUNCATE, INSERT, DELETE, UPDATE ni cambios a claves, índices o tipos.
+4. Organiza el SQL por tablas y explica riesgos y supuestos de cada instrucción.
+5. Genera CONSULTAS DE VERIFICACIÓN ANTES/DESPUÉS con INFORMATION_SCHEMA y SHOW CREATE TABLE.
+6. Diseña pruebas de conteo de filas, claves, integridad, estructura y rollback mediante restauración.
+7. Reporta diferencias esperadas (solo COMMENT) y cualquier cambio inesperado como ERROR.
+8. Separa hallazgos de mejora del modelo en un informe NO EJECUTABLE.
+9. No asegures que el script es seguro hasta que pase revisión y pruebas reales.
+
+DDL: [PEGAR O ADJUNTAR]
+METADATOS: [PEGAR O ADJUNTAR]
+REGLAS DE NEGOCIO: [PEGAR O ADJUNTAR]</code></pre>
+      <h3>Ejemplo corto · Documentación de una columna</h3>
+      <div class="grid"><div class="card"><h3>Antes</h3><pre><code>CREATE TABLE clientes (
+ id_cliente INT NOT NULL PRIMARY KEY,
+ nombre VARCHAR(100) NOT NULL
+);</code></pre></div><div class="card"><h3>Después, en DDL para desarrollo</h3><pre><code>CREATE TABLE clientes (
+ id_cliente INT NOT NULL PRIMARY KEY
+   COMMENT 'Identificador del cliente',
+ nombre VARCHAR(100) NOT NULL
+   COMMENT 'Nombre registrado del cliente'
+) COMMENT='Personas que compran';</code></pre></div></div>
+      <div class="callout danger"><strong>Atención a las migraciones</strong>En MySQL, un <code>MODIFY COLUMN</code> mal construido puede cambiar atributos distintos del comentario. Antes de ejecutar, compara la definición original con la propuesta, revisa dependencias y ensaya en copia. Para un cambio de solo <code>COMMENT</code> de tabla, usa <code>ALTER TABLE nombre COMMENT='...'</code>. Guarda por separado el SQL original y el SQL propuesto.</div>
+      <h3>Control de cambios y comprobaciones</h3>
+      <table><thead><tr><th>Momento</th><th>Qué hacer</th><th>Evidencia</th></tr></thead><tbody><tr><td>Antes</td><td>Backup + verificación de restauración; inventario de tablas y columnas; conteos y DDL.</td><td>Registro de respaldo, consultas y archivos SQL.</td></tr><tr><td>Durante</td><td>Revisión humana del script, ejecución controlada solo en la copia y registro de errores.</td><td>SQL revisado, historial o captura de ejecución.</td></tr><tr><td>Después</td><td>Comparar tablas, tipos, PK/FK, índices, defaults y conteos; verificar que únicamente variaron comentarios previstos.</td><td>Comparativo antes/después + dictamen aprobado o pendiente.</td></tr></tbody></table>
+      <p>Consulta útil para comprobar los comentarios antes y después:</p>
+      <pre><code>SELECT TABLE_NAME, COLUMN_NAME, COLUMN_TYPE,
+       IS_NULLABLE, COLUMN_DEFAULT, EXTRA, COLUMN_COMMENT
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_SCHEMA = '[NOMBRE_BD]'
+ORDER BY TABLE_NAME, ORDINAL_POSITION;</code></pre>
+    </section>
+    <section id="calidad">
+      <h2>3. Escoge tu herramienta y controla la calidad</h2>
+      <p>Una vez documentada y validada la <strong>copia de trabajo</strong>, elige la herramienta con la que te sientas más cómodo. <strong>No tienes que instalarlas todas.</strong> Lo evaluable es el resultado y la evidencia, no la marca del programa.</p>
+      <table><thead><tr><th>Tu preferencia</th><th>Herramienta sugerida</th><th>Entrega típica</th></tr></thead><tbody>
+      <tr><td>Interfaz visual, poco terminal</td><td><a href="#ruta-recomendada">DBeaver</a> + SQL</td><td>Diagrama PNG + CSV del diccionario + informe</td></tr>
+      <tr><td>Solo SQL y herramientas disponibles</td><td><a href="#sql-metadata">INFORMATION_SCHEMA</a> + diagramador</td><td>CSV/HTML de metadatos + modelo visual</td></tr>
+      <tr><td>Markdown y repositorios Git</td><td><a href="#tbls">tbls</a></td><td>Documentación Markdown + diagramas</td></tr>
+      <tr><td>Portal HTML navegable y diagnóstico</td><td><a href="#schemaspy">SchemaSpy</a></td><td>Portal HTML + relaciones y hallazgos</td></tr></tbody></table>
+      <div class="figure"><svg viewBox="0 0 900 126" role="img" aria-label="Proceso común de calidad documental"><rect x="10" y="30" rx="12" width="190" height="65" fill="#e8f4fb" stroke="#1f5f9c"/><text x="105" y="57" text-anchor="middle" font-size="16" font-weight="700" fill="#17324d">Base validada</text><text x="105" y="77" text-anchor="middle" font-size="13" fill="#334155">con comentarios</text><path d="M200 62 H255" stroke="#64748b" stroke-width="3"/><polygon points="255,62 245,56 245,68" fill="#64748b"/><rect x="260" y="30" rx="12" width="180" height="65" fill="#f5f3ff" stroke="#7c3aed"/><text x="350" y="57" text-anchor="middle" font-size="16" font-weight="700" fill="#5b21b6">Herramienta</text><text x="350" y="77" text-anchor="middle" font-size="13" fill="#334155">elegida</text><path d="M440 62 H495" stroke="#64748b" stroke-width="3"/><polygon points="495,62 485,56 485,68" fill="#64748b"/><rect x="500" y="30" rx="12" width="180" height="65" fill="#fff7ed" stroke="#ea580c"/><text x="590" y="57" text-anchor="middle" font-size="16" font-weight="700" fill="#9a3412">Revisión</text><text x="590" y="77" text-anchor="middle" font-size="13" fill="#334155">de completitud</text><path d="M680 62 H735" stroke="#64748b" stroke-width="3"/><polygon points="735,62 725,56 725,68" fill="#64748b"/><rect x="740" y="30" rx="12" width="150" height="65" fill="#ecfdf3" stroke="#16a34a"/><text x="815" y="57" text-anchor="middle" font-size="16" font-weight="700" fill="#166534">Entrega</text><text x="815" y="77" text-anchor="middle" font-size="13" fill="#334155">verificable</text></svg><p class="caption">Figura 3. El flujo de generación es común para ambos escenarios.</p></div>
+      <h3>Criterios mínimos de calidad documental</h3>
+      <table><thead><tr><th>Criterio</th><th>Comprobación exigida</th></tr></thead><tbody>
+      <tr><td>Identificación y control de versión</td><td>Nombre y propósito de la BD, gestor/versión, entorno y fecha; responsable y versión del documento.</td></tr>
+      <tr><td>Cobertura</td><td>100 % de tablas y columnas del alcance, tipos exactos, nulabilidad, valores por defecto y comentarios confirmados o marcados como pendientes.</td></tr>
+      <tr><td>Estructura relacional</td><td>Modelo E/R legible con PK/FK, cardinalidades contrastadas y relaciones realmente implementadas.</td></tr>
+      <tr><td>Integridad</td><td>PK, FK, UNIQUE, CHECK cuando existen, índices y acciones referenciales documentadas sin inventar restricciones.</td></tr>
+      <tr><td>Objetos y dependencias</td><td>Vistas, rutinas, triggers y eventos según existan, con propósito y dependencias conocidas.</td></tr>
+      <tr><td>Seguridad y privacidad</td><td>No exponer contraseñas, datos personales ni copias productivas sin control; minimizar o anonimizar datos de prueba.</td></tr>
+      <tr><td>Verificabilidad</td><td>Capturas, exportaciones, consultas SQL de extracción y discrepancias registradas; resultados reproducibles.</td></tr>
+      <tr><td>Mantenibilidad</td><td>Índice, glosario, fecha de actualización, ubicación de fuentes y procedimiento para regenerar documentos.</td></tr></tbody></table>
+      <div class="callout info"><strong>Relación con estándares internacionales</strong>Estos controles están <em>alineados con buenas prácticas</em> de calidad y documentación asociadas a ISO/IEC 25010 (mantenibilidad y calidad del producto), ISO/IEC/IEEE 15289 (contenido de elementos de información del ciclo de vida) e ISO/IEC/IEEE 26514 (documentación para usuarios). <strong>No equivalen por sí solos a una certificación ISO</strong>, y estas normas no fijan una plantilla universal obligatoria de diccionario SQL.</div>
+      <h3>Rúbrica sugerida · 100 puntos</h3>
+      <table><thead><tr><th>Aspecto</th><th>Puntos</th></tr></thead><tbody><tr><td>Selección de ruta, respaldo y trazabilidad de cambios (o justificación de BD vacía)</td><td>20</td></tr><tr><td>Cobertura y precisión del diccionario de datos</td><td>25</td></tr><tr><td>Diagrama relacional, restricciones y objetos documentados</td><td>20</td></tr><tr><td>Documentación generada con herramienta elegida y navegabilidad</td><td>15</td></tr><tr><td>Verificación antes/después, capturas e informe analítico</td><td>20</td></tr><tr><th>Total</th><th>100</th></tr></tbody></table>
+    </section>
+
+    <section id="proposito">
+      <h2>Propósito de la actividad y producto final</h2>
+      <p>Documentar una base de datos significa construir una explicación verificable de su estructura: qué tablas existen, qué representa cada una, qué columnas contienen, cómo se relacionan, qué restricciones e índices están definidos y qué objetos adicionales forman parte del esquema.</p>
+      <div class="grid">
+        <div class="card"><span class="tag">Meta técnica</span><h3>Leer la base real</h3><p>La fuente principal es el catálogo de MySQL: <code>INFORMATION_SCHEMA</code>, el DDL que genera el motor y las relaciones que la herramienta detecta.</p></div>
+        <div class="card"><span class="tag">Meta de evidencia</span><h3>Demostrar lo encontrado</h3><p>No basta con afirmar que una PK, FK o índice existe. Debe verse en un diagrama, una tabla de metadatos, el DDL o una captura legible.</p></div>
+      </div>
+      <div class="callout ok"><strong>Producto esperado</strong>Un paquete ordenado con diagrama E/R, diccionario completo, restricciones, capturas, documentación generada en la herramienta elegida, archivos SQL de documentación (si aplica), y un breve informe de validación de cambios.</div>
+    </section>
+
+    <section id="que-documentar">
+      <h2>2. ¿Qué se debe documentar?</h2>
+      <table>
+        <thead><tr><th>Elemento</th><th>Qué registrar</th><th>Evidencia recomendada</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Base de datos</strong></td><td>Nombre, motor, versión, host/entorno y propósito general.</td><td>Captura de conexión + <code>SELECT VERSION();</code></td></tr>
+          <tr><td><strong>Tablas</strong></td><td>Nombre y propósito funcional.</td><td>Listado del esquema + diccionario.</td></tr>
+          <tr><td><strong>Columnas</strong></td><td>Tipo, longitud, NULL/NOT NULL, valor por defecto, clave, extra y comentario si existe.</td><td>Consulta a <code>INFORMATION_SCHEMA.COLUMNS</code>.</td></tr>
+          <tr><td><strong>Claves</strong></td><td>PK, FK, columnas involucradas y tabla referenciada.</td><td>Diagrama E/R + reporte de relaciones.</td></tr>
+          <tr><td><strong>Integridad referencial</strong></td><td>Reglas <code>ON UPDATE</code> y <code>ON DELETE</code>.</td><td>Consulta de restricciones.</td></tr>
+          <tr><td><strong>Índices</strong></td><td>Nombre, columnas, unicidad y orden.</td><td>Consulta a <code>INFORMATION_SCHEMA.STATISTICS</code>.</td></tr>
+          <tr><td><strong>Objetos adicionales</strong></td><td>Vistas, triggers, procedimientos y funciones, si existen.</td><td>Listado de objetos + captura o DDL.</td></tr>
+        </tbody>
+      </table>
+      <div class="callout info"><strong>No inventes descripciones</strong>Si la base no tiene comentarios semánticos, puedes redactar una interpretación del propósito de una tabla, pero márcala como <em>“descripción inferida a partir del nombre y relaciones”</em>. No presentes una inferencia como si fuera metadato almacenado.</div>
+    </section>
+
+    <section id="flujo">
+      <h2>Flujo común: desde el esquema hacia las evidencias</h2>
+      <div class="figure" aria-label="Flujo de documentación de base de datos">
+        <svg viewBox="0 0 900 245" role="img">
+          <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#6b7280"/></marker></defs>
+          <rect x="25" y="72" rx="18" ry="18" width="155" height="100" fill="#e8f4fb" stroke="#1f5f9c" stroke-width="2"/>
+          <text x="102" y="108" text-anchor="middle" font-weight="700" fill="#17324d" font-size="18">MySQL</text><text x="102" y="134" text-anchor="middle" fill="#4b5563" font-size="14">Esquema de trabajo</text><text x="102" y="154" text-anchor="middle" fill="#4b5563" font-size="14">validado</text>
+          <line x1="182" y1="122" x2="245" y2="122" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+          <rect x="255" y="42" rx="18" ry="18" width="170" height="160" fill="#f0fdfa" stroke="#0f766e" stroke-width="2"/>
+          <text x="340" y="82" text-anchor="middle" font-weight="700" fill="#0f5d57" font-size="17">Lectura del esquema</text><text x="340" y="110" text-anchor="middle" fill="#4b5563" font-size="13">DBeaver / SQL</text><text x="340" y="132" text-anchor="middle" fill="#4b5563" font-size="13">tbls / SchemaSpy</text><text x="340" y="162" text-anchor="middle" fill="#4b5563" font-size="13">Sin modificar datos</text>
+          <line x1="427" y1="122" x2="487" y2="122" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+          <rect x="497" y="42" rx="18" ry="18" width="165" height="160" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+          <text x="579" y="82" text-anchor="middle" font-weight="700" fill="#5b21b6" font-size="17">Documentación</text><text x="579" y="110" text-anchor="middle" fill="#4b5563" font-size="13">Diagrama E/R</text><text x="579" y="132" text-anchor="middle" fill="#4b5563" font-size="13">Diccionario</text><text x="579" y="154" text-anchor="middle" fill="#4b5563" font-size="13">Restricciones</text><text x="579" y="176" text-anchor="middle" fill="#4b5563" font-size="13">Objetos</text>
+          <line x1="664" y1="122" x2="724" y2="122" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow)"/>
+          <rect x="734" y="72" rx="18" ry="18" width="145" height="100" fill="#ecfdf3" stroke="#16a34a" stroke-width="2"/>
+          <text x="806" y="108" text-anchor="middle" font-weight="700" fill="#166534" font-size="18">Evidencias</text><text x="806" y="134" text-anchor="middle" fill="#4b5563" font-size="13">PNG / CSV</text><text x="806" y="154" text-anchor="middle" fill="#4b5563" font-size="13">HTML / PDF</text>
+        </svg>
+        <div class="caption">Figura 2. Tras completar la ruta A o B, se realiza la extracción técnica y la validación de evidencias.</div>
+      </div>
+    </section>
+
+    <section id="ruta-recomendada">
+      <h2>Ruta de generación A: DBeaver Community + consultas de metadatos</h2>
+      <p>Si prefieres una interfaz gráfica, esta es una ruta sencilla: una interfaz gráfica para el diagrama y el editor SQL para extraer el diccionario y las restricciones.</p>
+      <div class="callout ok"><strong>Ventaja para el laboratorio</strong>DBeaver permite abrir el diagrama de un esquema existente, reorganizarlo y exportarlo; además, los resultados de una consulta pueden exportarse a formatos como CSV o HTML.</div>
+
+      <h3>Paso a paso</h3>
+      <div class="steps">
+        <div class="step"><strong>Instala DBeaver Community</strong> desde el enlace oficial de la sección final. Si ya tienes una herramienta equivalente y puedes generar un diagrama y ejecutar SQL, no es obligatorio cambiarla.</div>
+        <div class="step"><strong>Conéctate a la base</strong> usando host, puerto, usuario y contraseña. Verifica que ves las tablas correctas. Toma una primera captura donde se reconozca el nombre del esquema, pero oculta contraseñas y datos sensibles.</div>
+        <div class="step"><strong>Genera el diagrama E/R</strong>: abre el esquema o el nodo de tablas y usa la pestaña de diagrama. Organiza las tablas para que las relaciones queden legibles. Exporta como PNG.</div>
+        <div class="step"><strong>Ejecuta las consultas de metadatos</strong> de la sección 5. Exporta cada resultado como CSV o HTML.</div>
+        <div class="step"><strong>Completa la descripción funcional</strong> de las tablas. Esta parte sí requiere análisis: una herramienta puede mostrar la estructura, pero no conoce necesariamente el significado del negocio.</div>
+        <div class="step"><strong>Arma el informe de evidencias</strong> con una portada breve, el diagrama, el diccionario y 4–6 capturas clave.</div>
+      </div>
+    </section>
+
+    <section id="sql-metadata">
+      <h2>Ruta de generación B: consultas sobre INFORMATION_SCHEMA</h2>
+      <p>MySQL guarda metadatos del esquema en <code>INFORMATION_SCHEMA</code>. Las siguientes consultas son de solo lectura y sirven para crear evidencias directamente desde el motor.</p>
+
+      <h3>5.1. Identificar motor, versión y base activa</h3>
+      <pre><code>SELECT VERSION() AS version_motor,
+       DATABASE() AS base_actual;</code></pre>
+
+      <h3>5.2. Diccionario de columnas</h3>
+      <pre><code>SELECT
+    TABLE_NAME       AS tabla,
+    ORDINAL_POSITION AS posicion,
+    COLUMN_NAME      AS columna,
+    COLUMN_TYPE      AS tipo,
+    IS_NULLABLE      AS permite_null,
+    COLUMN_DEFAULT   AS valor_default,
+    COLUMN_KEY       AS clave,
+    EXTRA,
+    COLUMN_COMMENT   AS comentario
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_SCHEMA = DATABASE()
+ORDER BY TABLE_NAME, ORDINAL_POSITION;</code></pre>
+
+      <h3>5.3. Relaciones y reglas de integridad referencial</h3>
+      <pre><code>SELECT
+    kcu.TABLE_NAME              AS tabla_hija,
+    kcu.COLUMN_NAME             AS columna_fk,
+    kcu.CONSTRAINT_NAME         AS restriccion,
+    kcu.REFERENCED_TABLE_NAME   AS tabla_padre,
+    kcu.REFERENCED_COLUMN_NAME  AS columna_referenciada,
+    rc.UPDATE_RULE              AS on_update,
+    rc.DELETE_RULE              AS on_delete
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu
+JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc
+  ON rc.CONSTRAINT_SCHEMA = kcu.CONSTRAINT_SCHEMA
+ AND rc.CONSTRAINT_NAME   = kcu.CONSTRAINT_NAME
+ AND rc.TABLE_NAME        = kcu.TABLE_NAME
+WHERE kcu.CONSTRAINT_SCHEMA = DATABASE()
+  AND kcu.REFERENCED_TABLE_NAME IS NOT NULL
+ORDER BY kcu.TABLE_NAME, kcu.CONSTRAINT_NAME, kcu.ORDINAL_POSITION;</code></pre>
+
+      <h3>5.4. Índices</h3>
+      <pre><code>SELECT
+    TABLE_NAME,
+    INDEX_NAME,
+    CASE WHEN NON_UNIQUE = 0 THEN 'SI' ELSE 'NO' END AS es_unico,
+    SEQ_IN_INDEX,
+    COLUMN_NAME,
+    INDEX_TYPE
+FROM INFORMATION_SCHEMA.STATISTICS
+WHERE TABLE_SCHEMA = DATABASE()
+ORDER BY TABLE_NAME, INDEX_NAME, SEQ_IN_INDEX;</code></pre>
+
+      <h3>5.5. Objetos adicionales</h3>
+      <pre><code>-- Vistas
+SELECT TABLE_NAME AS vista
+FROM INFORMATION_SCHEMA.VIEWS
+WHERE TABLE_SCHEMA = DATABASE();
+
+-- Triggers
+SELECT TRIGGER_NAME, EVENT_MANIPULATION, EVENT_OBJECT_TABLE, ACTION_TIMING
+FROM INFORMATION_SCHEMA.TRIGGERS
+WHERE TRIGGER_SCHEMA = DATABASE();
+
+-- Procedimientos y funciones
+SELECT ROUTINE_NAME, ROUTINE_TYPE
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_SCHEMA = DATABASE();</code></pre>
+
+      <div class="callout warn"><strong>Importante sobre los comentarios en MySQL</strong>MySQL almacena comentarios de tablas y columnas cuando se definen con la opción <code>COMMENT</code>. Para esta actividad no es obligatorio agregarlos a la base si no existen; pueden documentarse externamente en el informe. Evita modificar el esquema solo para “llenar comentarios”.</div>
+    </section>
+
+    <section id="tbls">
+      <h2>Ruta de generación C: tbls</h2>
+      <p><strong>tbls</strong> genera documentación en Markdown y diagramas a partir de una conexión real. Es útil si se quiere una carpeta de documentación reproducible y fácil de subir a Git.</p>
+      <div class="callout info"><strong>Úsalo como alternativa, no como requisito adicional</strong>Si el estudiante ya obtuvo un buen diagrama y diccionario con DBeaver/SQL, no necesita repetir todo con tbls. Esta ruta sirve para profundizar en documentación automatizada.</div>
+
+      <h3>Configuración básica en Windows</h3>
+      <p>Descarga el ZIP para Windows x64 desde Releases, descomprímelo y crea en la misma carpeta un archivo <code>.tbls.yml</code>. Reemplaza los valores entre corchetes.</p>
+      <pre><code>name: "Documentacion de [NOMBRE_BD]"
+dsn: "mysql://[USUARIO]:[PASSWORD]@127.0.0.1:3306/[NOMBRE_BD]"
+docPath: "docs_bd"
+er:
+  format: svg</code></pre>
+      <p>Si el usuario no tiene contraseña en un entorno local de laboratorio, puede omitirse el segmento <code>:[PASSWORD]</code>.</p>
+      <pre><code>.\tbls.exe doc</code></pre>
+      <p>La carpeta <code>docs_bd</code> contendrá la documentación del esquema y el diagrama. Conserva como evidencia el <code>README.md</code>, el diagrama y, si se genera, <code>schema.json</code>.</p>
+      <div class="callout danger"><strong>No publiques credenciales</strong>Si vas a subir <code>.tbls.yml</code> a un repositorio, no dejes una contraseña real escrita allí. Usa un usuario de solo lectura o variables de entorno.</div>
+    </section>
+
+    <section id="schemaspy">
+      <h2>Ruta de generación D: SchemaSpy</h2>
+      <p>SchemaSpy genera un sitio HTML navegable con tablas, relaciones y diagramas. Es una buena opción cuando se quiere entregar una documentación web completa, aunque su instalación requiere más componentes.</p>
+      <h3>Requisitos</h3>
+      <ul>
+        <li>Java 17 o superior.</li>
+        <li>Archivo JAR de SchemaSpy.</li>
+        <li>Driver JDBC para MySQL.</li>
+        <li>Para versiones recientes puede usarse <code>-vizjs</code> para renderizar diagramas sin instalar Graphviz.</li>
+      </ul>
+      <h3>Ejemplo de ejecución en PowerShell</h3>
+      <pre><code>java -jar .\schemaspy.jar `
+  -t mysql `
+  -dp .\mysql-connector-j.jar `
+  -host 127.0.0.1 `
+  -port 3306 `
+  -db [NOMBRE_BD] `
+  -s [NOMBRE_BD] `
+  -u [USUARIO] `
+  -p [PASSWORD] `
+  -vizjs `
+  -o .\reporte_schemaspy</code></pre>
+      <p>Al terminar, abre <code>reporte_schemaspy\index.html</code>. Esa carpeta completa puede conservarse como evidencia navegable.</p>
+    </section>
+
+    <section id="ia">
+      <h2>Uso responsable de IA para apoyar la documentación</h2>
+      <p>La IA puede ayudar a interpretar el DDL o a redactar descripciones, pero la fuente de verdad debe seguir siendo la base de datos real.</p>
+      <div class="callout ai"><strong>Prompt recomendado: auditoría en modo lectura</strong>El objetivo del prompt es analizar y explicar, no modificar automáticamente el esquema.</div>
+      <pre><code>Actúa como analista de bases de datos. Voy a entregarte el DDL exportado de una base MySQL que YA está desplegada.
+
+Tu tarea es SOLO documentar y revisar; no generes ALTER TABLE ni propongas cambios como si ya estuvieran aprobados.
+
+1. Resume el propósito probable de cada tabla.
+2. Identifica PK, FK y relaciones.
+3. Explica restricciones, índices y valores por defecto.
+4. Señala posibles dudas o inconsistencias, pero sepáralas claramente de los hechos observados.
+5. Genera un borrador de diccionario de datos en tabla.
+6. Marca como "inferencia" cualquier descripción que no esté explícita en COMMENT, nombres o restricciones.
+
+DDL:
+[PEGA AQUÍ EL DDL]</code></pre>
+      <div class="callout warn"><strong>Validación obligatoria</strong>Antes de entregar, compara lo que diga la IA con el diagrama, el DDL y las consultas de <code>INFORMATION_SCHEMA</code>. Si hay contradicción, prevalece la evidencia del motor.</div>
+    </section>
+
+    <section id="evidencias">
+      <h2>Paquete final de evidencias</h2>
+      <p>La entrega debe ser fácil de revisar. Evita decenas de capturas sin contexto. Organiza la carpeta con nombres claros:</p>
+      <pre><code>Documentacion_BD_GrupoX/
+│
+├── 01_diagrama_er.png
+├── 02_diccionario_datos.csv
+├── 03_relaciones_fk.csv
+├── 04_indices.csv
+├── 05_objetos_adicionales.csv       (si aplica)
+├── 06_documentacion_generada/       (herramienta elegida)
+├── 07_sql_original_y_propuesto/     (sin credenciales)
+├── 08_validacion_antes_despues/
+└── Informe_Evidencias.pdf</code></pre>
+
+      <div class="evidence">
+        <div class="ev"><b>Evidencia 1 · Contexto</b><br>Captura del esquema visible en la herramienta y resultado de <code>SELECT VERSION(), DATABASE()</code>.</div>
+        <div class="ev"><b>Evidencia 2 · Diagrama E/R</b><br>Imagen completa, legible y con nombres de tablas, PK y FK visibles.</div>
+        <div class="ev"><b>Evidencia 3 · Diccionario</b><br>Exportación de columnas con tipo, nulabilidad, default, clave y comentario.</div>
+        <div class="ev"><b>Evidencia 4 · Integridad</b><br>Listado de FK con tabla padre, columna referenciada, <code>ON UPDATE</code> y <code>ON DELETE</code>.</div>
+        <div class="ev"><b>Evidencia 5 · Índices</b><br>Listado de índices y una breve interpretación de los más importantes.</div>
+        <div class="ev"><b>Evidencia 6 · Explicación</b><br>Descripción de 5 a 10 tablas principales y de las relaciones más relevantes del sistema.</div>
+      </div>
+
+      <h3>Lista de verificación antes de entregar</h3>
+      <ul class="checklist">
+        <li>El diagrama coincide con las tablas que realmente existen.</li>
+        <li>El diccionario incluye todas las columnas del esquema asignado.</li>
+        <li>Las PK y FK están identificadas correctamente.</li>
+        <li>Las capturas son legibles y no muestran contraseñas.</li>
+        <li>Se distinguen hechos técnicos de interpretaciones o inferencias.</li>
+        <li>El informe explica la estructura; no se limita a pegar capturas.</li>
+        <li>Si se usó IA, la información fue contrastada con la base real.</li>
+        <li>El informe identifica ruta A o B y evidencia backup/restauración cuando corresponda.</li>
+        <li>Se conserva el DDL original, el documentado y las diferencias aprobadas, sin ejecutar cambios destructivos.</li>
+      </ul>
+    </section>
+
+    <section id="enlaces">
+      <h2>Descargas y documentación oficial</h2>
+      <p class="small">Se recomienda descargar siempre desde el sitio oficial o el repositorio oficial del proyecto.</p>
+      <div class="linkbox"><div><strong>DBeaver Community</strong><br><span>Ruta recomendada para diagrama y trabajo visual.</span></div><a href="https://dbeaver.io/download/" target="_blank" rel="noopener">Descargar</a></div>
+      <div class="linkbox"><div><strong>tbls</strong><br><span>Releases oficiales para Windows, Linux y macOS.</span></div><a href="https://github.com/k1LoW/tbls/releases" target="_blank" rel="noopener">Abrir Releases</a></div>
+      <div class="linkbox"><div><strong>SchemaSpy</strong><br><span>JAR y versiones publicadas.</span></div><a href="https://github.com/schemaspy/schemaspy/releases" target="_blank" rel="noopener">Abrir Releases</a></div>
+      <div class="linkbox"><div><strong>MySQL Connector/J</strong><br><span>Driver JDBC oficial para SchemaSpy.</span></div><a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="noopener">Descargar</a></div>
+      <div class="linkbox"><div><strong>Eclipse Temurin (Java)</strong><br><span>JDK/JRE para ejecutar SchemaSpy.</span></div><a href="https://adoptium.net/temurin/releases/" target="_blank" rel="noopener">Descargar</a></div>
+      <div class="linkbox"><div><strong>Graphviz</strong><br><span>Opcional; útil para otras herramientas de diagramación.</span></div><a href="https://graphviz.org/download/" target="_blank" rel="noopener">Descargar</a></div>
+      <div class="linkbox"><div><strong>dbdocs</strong><br><span>Documentación web basada en DBML; alternativa opcional.</span></div><a href="https://dbdocs.io/" target="_blank" rel="noopener">Sitio oficial</a></div>
+      <div class="linkbox"><div><strong>Dataedo</strong><br><span>Herramienta comercial de catálogo y gobierno de datos.</span></div><a href="https://dataedo.com/download" target="_blank" rel="noopener">Descargas</a></div>
+      <div class="linkbox"><div><strong>Visual Studio Code</strong><br><span>Útil para revisar Markdown generado por tbls.</span></div><a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">Descargar</a></div>
+    </section>
+
+    
+
+    <footer>
+      <strong>Nota de seguridad:</strong> no incluyas contraseñas, cadenas de conexión con credenciales, datos personales de clientes/usuarios ni capturas sensibles. Los accesos de documentación deben tener privilegios mínimos y cualquier cambio de metadatos se prueba primero en una restauración aislada.
+    </footer>
+  </main>
+</div>
+<div class="hub-bottom"><div><strong>Arias-Data-Lab</strong> · Recursos para aprender ingeniería de bases de datos<br><small>Profesor: Leonardo Arias-Alemán</small></div><a href="acerca-de.html">Conoce al profesor ↗</a></div></body>
+</html>
