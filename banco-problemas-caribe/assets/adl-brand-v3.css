@@ -1,11 +1,10 @@
 /* Arias-Data-Lab · Patrón corporativo v3.1 · Banco de Problemas del Caribe
  * Basado en el kit aprobado. El logo no debe redibujarse ni recolorearse.
  */
+@import url("../../assets/brand/adl-tokens.css");
 :root{
- --adl-azul:#102A43;--adl-turquesa:#087F8C;--adl-celeste:#D7F1F5;
- --adl-amarillo:#F4B942;--adl-hielo:#F6F9FC;--adl-gris:#475569;--adl-borde:#DCE6EC;
- --navy:#102A43;--deep:#102A43;--ocean:#087F8C;--mint:#087F8C;
- --sun:#F4B942;--paper:#F6F9FC;--line:#DCE6EC;--muted:#475569;--ink:#102A43;
+ --navy:var(--adl-azul);--deep:var(--adl-azul);--ocean:var(--adl-turquesa);--mint:var(--adl-turquesa);
+ --sun:var(--adl-amarillo);--paper:var(--adl-hielo);--line:var(--adl-borde);--muted:var(--adl-gris);--ink:var(--adl-azul);
 }
 body{background:var(--adl-hielo);color:var(--adl-azul)}
 a{color:#086b77}
@@ -37,7 +36,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--adl-amarillo);outli
 .criterio-main h2 em{color:var(--adl-turquesa)}
 .criterio-aside{background:linear-gradient(145deg,#102A43,#087F8C)}
 .help-eyebrow,.help-num{color:var(--adl-turquesa)}
-footer,.footer,.adl-footer{background:var(--adl-azul);color:#eff8fb}
+body > footer,.footer,.adl-footer{background:var(--adl-azul);color:#eff8fb}
 .adl-footer__logo-surface{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:10px;padding:8px 14px;border:1px solid #e2edf2}
 .adl-footer__logo-surface img{width:140px;height:auto;max-height:103px;object-fit:contain;display:block}
 .adl-slogan{font-size:12px;font-weight:750;color:var(--adl-celeste);margin-top:7px}
@@ -102,3 +101,9 @@ footer,.footer,.adl-footer{background:var(--adl-azul);color:#eff8fb}
 }
 @media(prefers-reduced-motion:reduce){.site-header .nav a,.hub-links a{transition:none}}
 @media print{.site-header,.hub-top,.hub-bottom,.footer-links{box-shadow:none}.footer,.hub-bottom{background:white;color:#102A43}.adl-footer-legal,.adl-hub-signature small{color:#475569}}
+
+/* Enlace de acceso rápido al contenido (teclado y lector de pantalla) */
+.adl-skip-link{position:absolute;left:-9999px;top:0;z-index:1100;background:#fff;color:#102A43;border:3px solid #F4B942;border-radius:8px;padding:12px 16px;font-weight:800}
+.adl-skip-link:focus{left:10px;top:10px}
+/* Pie informativo local de la guía: no recibe el fondo corporativo */
+.page main.content > footer{background:initial;color:inherit}
