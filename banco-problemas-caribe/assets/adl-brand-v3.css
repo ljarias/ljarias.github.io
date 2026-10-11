@@ -1,4 +1,4 @@
-/* Arias-Data-Lab · Identidad oficial v3.0 · Banco de Problemas del Caribe
+/* Arias-Data-Lab · Patrón corporativo v3.1 · Banco de Problemas del Caribe
  * Basado en el kit aprobado. El logo no debe redibujarse ni recolorearse.
  */
 :root{
@@ -56,3 +56,49 @@ footer,.footer,.adl-footer{background:var(--adl-azul);color:#eff8fb}
 .footer-brand{flex-wrap:wrap}
 .brand-chip{max-width:100%;flex-wrap:wrap}
 @media(max-width:650px){.site-header .brand-sub{max-width:225px;line-height:1.25}.footer-brand{gap:12px}}
+
+
+/* Patrón ADL v3.1 · Integración octubre 2026
+   Únicamente se usan derivados optimizados del diseño aprobado.
+   Sin retoques ni redibujos del símbolo/wordmark. */
+:root{--adl-fuente:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--adl-ancho:1160px}
+.site-header,.hub-top,.footer,.hub-bottom{font-family:var(--adl-fuente)}
+.site-header .header-flex{gap:12px 22px}
+.site-header .brand{flex-shrink:0;min-width:0}
+.site-header .brand-symbol{background:#fff}
+.site-header .brand-wordmark{line-height:1.2}
+.site-header .nav,.hub-links{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+.site-header .nav a,.hub-links a{transition:background-color .16s,color .16s}
+.site-header .nav a:focus-visible,.hub-links a:focus-visible,.footer-links a:focus-visible,.hub-bottom a:focus-visible{outline:3px solid var(--adl-amarillo);outline-offset:3px;border-radius:5px}
+.adl-footer__logo-surface{background:#fff;color:var(--adl-azul);flex-shrink:0;overflow:hidden}
+.adl-footer__logo-surface img{object-fit:contain}
+.footer-brand{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-brand .adl-slogan{font-size:13px}
+.footer-flex{align-items:center}
+.footer-links{row-gap:8px}
+.adl-footer-legal{max-width:var(--adl-ancho);margin:15px auto 0;padding:14px 0 0;border-top:1px solid #567083;color:#d7eff5;font-size:12px;line-height:1.6}
+.adl-footer-legal a{color:var(--adl-celeste)}
+.footer .adl-footer-legal{border-color:#567083}
+.hub-bottom{max-width:var(--adl-ancho);gap:20px;padding:17px 22px;line-height:1.5}
+.adl-hub-signature{display:flex;align-items:center;gap:14px;min-width:0}
+.adl-hub-signature .adl-footer__logo-surface{padding:5px 9px}
+.adl-hub-signature .adl-footer__logo-surface img{width:88px;height:auto;max-height:70px}
+.adl-hub-signature small{color:var(--adl-celeste)}
+.brand-chip{line-height:1.45}
+@media(max-width:760px){
+ .site-header .header-flex{justify-content:center;padding-block:10px}
+ .site-header .nav,.hub-links{justify-content:center}
+ .hub-width{gap:8px;padding:12px 0}
+ .footer-flex{align-items:flex-start;flex-direction:column}
+ .hub-bottom{margin:18px 12px}
+}
+@media(max-width:420px){
+ .site-header .brand-wordmark{font-size:13px}
+ .site-header .brand-symbol{width:62px;height:47px;flex-basis:62px}
+ .site-header .nav a,.hub-links a{padding:8px 9px;font-size:12px}
+ .hub-brand{white-space:normal}
+ .hub-brand img{width:65px!important;height:50px!important}
+ .adl-hub-signature{align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){.site-header .nav a,.hub-links a{transition:none}}
+@media print{.site-header,.hub-top,.hub-bottom,.footer-links{box-shadow:none}.footer,.hub-bottom{background:white;color:#102A43}.adl-footer-legal,.adl-hub-signature small{color:#475569}}
