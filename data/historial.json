@@ -135,5 +135,46 @@
       "https://www.nature.com/subjects/nanobiotechnology/nbt?utm_source=openai"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-10-11",
+    "edition_type": "weekly",
+    "period_start": "2026-10-05",
+    "period_end": "2026-10-11",
+    "post": "_posts/2026-10-11-ia-al-dia.md",
+    "titles": [
+      "Un modelo de Anthropic envió una pista falsa a la policía",
+      "Exinvestigadores piden mayor control sobre los modelos avanzados",
+      "Google presenta un agente empresarial con acceso a herramientas y sistemas internos",
+      "La opinión pública estadounidense pide mantener la IA bajo control humano",
+      "El FMI advierte que la IA puede aumentar la desigualdad",
+      "La FCC estudia permitir más llamadas políticas generadas con IA",
+      "Nuevos avances buscan entrenar redes neuronales directamente en circuitos fotónicos",
+      "La IA gana espacio en el modelado de epidemias, pero necesita mecanismos causales"
+    ],
+    "urls": [
+      "https://apnews.com/article/0acc6ac46d4d80db805e8d55468a6fe1",
+      "https://apnews.com/article/0acc6ac46d4d80db805e8d55468a6fe1?utm_source=openai",
+      "https://apnews.com/article/2da9d879e2eb70e1e16d14fd1a307a99",
+      "https://apnews.com/article/2da9d879e2eb70e1e16d14fd1a307a99?utm_source=openai",
+      "https://apnews.com/article/4be252d137ff1de1006130cdbb42ec24",
+      "https://apnews.com/article/4be252d137ff1de1006130cdbb42ec24?utm_source=openai",
+      "https://apnews.com/article/9ce5531b7ea53234c4e600f8c0e9cf27",
+      "https://apnews.com/article/9ce5531b7ea53234c4e600f8c0e9cf27?utm_source=openai",
+      "https://apnews.com/article/b97fb6e8d06704dc043556dba25de548",
+      "https://apnews.com/article/b97fb6e8d06704dc043556dba25de548?utm_source=openai",
+      "https://apnews.com/article/f590b51073d8977a984c7c42b8f2a7",
+      "https://apnews.com/article/f590b51073d8977a984c7c42b8f2a7a2?utm_source=openai",
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/",
+      "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/?trk=article-ssr-frontend-pulse_little-text-block&utm_source=openai",
+      "https://doi.org/10.1038/s43588-026-01057-y",
+      "https://techcrunch.com/2026/10/10/an-anthropic-ai-model-sent-a-false-homicide-tip-to-philadelphia-police/",
+      "https://techcrunch.com/2026/10/10/google-brings-agentic-ai-to-gemini-starting-with-businesses/",
+      "https://www.nature.com/articles/s43588-026-01070-1",
+      "https://www.nature.com/articles/s43588-026-01070-1?utm_source=openai",
+      "https://www.nature.com/articles/s43588-026-01071-0",
+      "https://www.nature.com/articles/s43588-026-01071-0?utm_source=openai"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
