@@ -1,0 +1,53 @@
+/* Arias-Data-Lab · Identidad oficial v3.0 · Banco de Problemas del Caribe
+ * Basado en el kit aprobado. El logo no debe redibujarse ni recolorearse.
+ */
+:root{
+ --adl-azul:#102A43;--adl-turquesa:#087F8C;--adl-celeste:#D7F1F5;
+ --adl-amarillo:#F4B942;--adl-hielo:#F6F9FC;--adl-gris:#475569;--adl-borde:#DCE6EC;
+ --navy:#102A43;--deep:#102A43;--ocean:#087F8C;--mint:#087F8C;
+ --sun:#F4B942;--paper:#F6F9FC;--line:#DCE6EC;--muted:#475569;--ink:#102A43;
+}
+body{background:var(--adl-hielo);color:var(--adl-azul)}
+a{color:#086b77}
+a:focus-visible,button:focus-visible{outline:3px solid var(--adl-amarillo);outline-offset:3px}
+.site-header,.hub-top{background:#fff;border-color:var(--adl-borde)}
+.site-header .brand-symbol{width:87px;height:66px;padding:0;background:#fff;border-radius:9px;box-shadow:none;overflow:visible;flex:0 0 87px}
+.site-header .brand-logo{display:block;width:100%;height:100%;object-fit:contain;padding:0}
+.site-header .brand-wordmark{font-size:16px;color:var(--adl-azul)}
+.site-header .brand-sub{color:var(--adl-turquesa);letter-spacing:.045em}
+.site-header .header-flex{min-height:85px}
+.site-header .nav a.current,.site-header .nav a:hover,
+.hub-links a:hover,.hub-links a[aria-current=page]{background:var(--adl-celeste);color:var(--adl-azul)}
+.hub-brand img{width:85px!important;height:65px!important;object-fit:contain;background:white}
+.hub-brand strong{color:var(--adl-azul);font-size:16px}
+.hub-brand small{color:var(--adl-turquesa)}
+.hero,.pm-hero{background:linear-gradient(118deg,#102A43 0%,#14566b 64%,#087F8C 100%)}
+.hero:before,.hero:after{background-image:none!important}
+.problem-card:after,.mentor-card:after,.prompt-hero:after{display:none!important}
+.mentor-orbit{display:none!important}
+.btn-primary,.hero .btn-primary,.pm-button.accent{background:var(--adl-amarillo);border-color:var(--adl-amarillo);color:#102A43}
+.btn-primary:hover,.hero .btn-primary:hover,.pm-button.accent:hover{background:#ffd474}
+.btn-dark{background:var(--adl-azul)}
+.card-num{background:var(--adl-celeste);color:var(--adl-azul)}
+.notice,.notice-brand{background:#edf8fa;color:var(--adl-azul);border-color:#b9dfe5}
+.problem-card:hover,.help-tile:hover{border-color:var(--adl-turquesa)}
+.detail-hero,.prompt-hero{background:linear-gradient(115deg,#102A43,#087F8C)}
+.criterio-section{background:var(--adl-hielo)}
+.criterio-layout{border-color:var(--adl-borde)}
+.criterio-main h2 em{color:var(--adl-turquesa)}
+.criterio-aside{background:linear-gradient(145deg,#102A43,#087F8C)}
+.help-eyebrow,.help-num{color:var(--adl-turquesa)}
+footer,.footer,.adl-footer{background:var(--adl-azul);color:#eff8fb}
+.adl-footer__logo-surface{display:inline-flex;align-items:center;justify-content:center;background:#fff;border-radius:10px;padding:8px 14px;border:1px solid #e2edf2}
+.adl-footer__logo-surface img{width:140px;height:auto;max-height:103px;object-fit:contain;display:block}
+.adl-slogan{font-size:12px;font-weight:750;color:var(--adl-celeste);margin-top:7px}
+.footer-links a{color:var(--adl-celeste)}
+.hub-bottom{background:var(--adl-azul);color:white}
+.hub-bottom a{color:var(--adl-celeste)}
+.pm-step strong,.pm-paper h2,.feature h3{color:var(--adl-turquesa)}
+.pm-hero,.guide-hero{background:linear-gradient(120deg,#102A43,#087F8C)}
+.brand-chip{display:inline-flex;align-items:center;gap:12px;background:white;border:1px solid var(--adl-borde);padding:10px 13px;border-radius:14px;color:var(--adl-azul);max-width:100%}
+.brand-chip img{display:block;max-width:130px;width:100%;height:auto}
+.brand-chip span{font-size:12px;font-weight:750}
+@media(max-width:900px){.hub-width{flex-wrap:wrap;justify-content:center}}
+@media(max-width:650px){.site-header .header-flex{min-height:75px}.site-header .brand-symbol{width:70px;height:52px;flex-basis:70px}.site-header .brand-wordmark{font-size:14px}.hub-brand img{width:68px!important;height:52px!important}.brand-chip img{max-width:100px}}
