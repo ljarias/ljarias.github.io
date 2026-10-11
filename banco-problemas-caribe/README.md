@@ -34,3 +34,10 @@ El archivo `assets/logo-adl-v3.webp` es una **versión reducida para interfaz** 
 Sitio HTML estático alojado en GitHub Pages. Las 4 páginas están enlazadas entre sí, y la hoja `assets/adl-brand-v3.css` centraliza la paleta corporativa.
 
 © 2026 Arias-Data-Lab · Santa Marta, Colombia.
+
+
+## Patrón ADL v3.1 (2026-10-11)
+
+Identidad corporativa aplicada al catálogo y las páginas Acerca de, Guía de documentación y Prompt maestro. El recurso `assets/logo-adl-v3.webp` es una miniatura web optimizada, derivada de la imagen que el propietario aprobó sin rediseñarla. El original de máxima resolución permanece en el kit maestro externo y **no es un SVG vectorial editable**. El favicon existente corresponde al isotipo aprobado. Colores: `#102A43`, `#087F8C`, `#D7F1F5`, `#F4B942`.
+
+Cambios: archivo CSS central compartido; pie de página con créditos y firma; adaptaciones responsive sin modificar las fichas de problemas, el prompt ni las funciones JavaScript.
