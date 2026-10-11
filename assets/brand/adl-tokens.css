@@ -1,0 +1,12 @@
+/* Arias-Data-Lab — tokens corporativos v3.2
+   Fuente única para productos propios. Mantener el logo ORIGINAL sin redibujar. */
+:root{
+  --adl-azul:#102A43;
+  --adl-turquesa:#087F8C;
+  --adl-celeste:#D7F1F5;
+  --adl-amarillo:#F4B942;
+  --adl-hielo:#F6F9FC;
+  --adl-gris:#475569;
+  --adl-borde:#DCE6EC;
+  --adl-fuente:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
