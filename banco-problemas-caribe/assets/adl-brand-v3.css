@@ -13,7 +13,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--adl-amarillo);outli
 .site-header,.hub-top{background:#fff;border-color:var(--adl-borde)}
 .site-header .brand-symbol{width:87px;height:66px;padding:0;background:#fff;border-radius:9px;box-shadow:none;overflow:visible;flex:0 0 87px}
 .site-header .brand-logo{display:block;width:100%;height:100%;object-fit:contain;padding:0}
-.site-header .brand-wordmark{font-size:16px;color:var(--adl-azul)}
+.site-header .brand-wordmark{font-size:16px;color:var(--adl-azul);font-weight:850}
 .site-header .brand-sub{color:var(--adl-turquesa);letter-spacing:.045em}
 .site-header .header-flex{min-height:85px}
 .site-header .nav a.current,.site-header .nav a:hover,
@@ -51,3 +51,8 @@ footer,.footer,.adl-footer{background:var(--adl-azul);color:#eff8fb}
 .brand-chip span{font-size:12px;font-weight:750}
 @media(max-width:900px){.hub-width{flex-wrap:wrap;justify-content:center}}
 @media(max-width:650px){.site-header .header-flex{min-height:75px}.site-header .brand-symbol{width:70px;height:52px;flex-basis:70px}.site-header .brand-wordmark{font-size:14px}.hub-brand img{width:68px!important;height:52px!important}.brand-chip img{max-width:100px}}
+
+/* Firma y navegación flexibles en pantallas pequeñas */
+.footer-brand{flex-wrap:wrap}
+.brand-chip{max-width:100%;flex-wrap:wrap}
+@media(max-width:650px){.site-header .brand-sub{max-width:225px;line-height:1.25}.footer-brand{gap:12px}}
