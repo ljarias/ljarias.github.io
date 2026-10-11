@@ -7,19 +7,23 @@
   <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/infografias.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/adl-ia-al-dia.css' | relative_url }}">
+  <meta name="theme-color" content="#102A43">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/banco-problemas-caribe/assets/favicon-32.png' | relative_url }}">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="{{ '/' | relative_url }}">
-        <span class="brand-mark">IA</span>
-        <span><strong>IA al Día</strong><small>Observatorio educativo</small></span>
+        <span class="brand-mark adl-brand-mark"><img src="{{ '/banco-problemas-caribe/assets/logo-adl-v3.webp' | relative_url }}" alt="Arias-Data-Lab" width="108" height="80" decoding="async"></span>
+        <span class="adl-site-title"><strong>IA al Día</strong><small>Observatorio educativo · Arias-Data-Lab</small></span>
       </a>
       <nav>
         <a href="{{ '/' | relative_url }}">Inicio</a>
         <a href="{{ '/#infografias' | relative_url }}">Infografías</a>
         <a href="{{ '/telemetria/' | relative_url }}">Telemetría</a>
         <a href="{{ '/acerca/' | relative_url }}">Acerca de</a>
+        <a class="nav-lab" href="{{ '/banco-problemas-caribe/' | relative_url }}">Recursos ADL <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -28,12 +32,17 @@
 
   <footer class="site-footer">
     <div class="container footer-grid">
-      <div>
-        <strong>IA al Día</strong>
-        <p>Consolidado semanal de inteligencia artificial con contexto, pensamiento crítico y aplicación educativa.</p>
+      <div class="footer-identity">
+        <a class="footer-logo-card" href="{{ '/banco-problemas-caribe/' | relative_url }}" aria-label="Conocer Arias-Data-Lab"><img src="{{ '/banco-problemas-caribe/assets/logo-adl-v3.webp' | relative_url }}" alt="Logo oficial Arias-Data-Lab" width="128" height="94" loading="lazy"></a>
+        <div>
+          <strong>IA al Día</strong>
+          <p>Observatorio educativo de inteligencia artificial.<br><span class="adl-motto">Tecnología con criterio humano.</span></p>
+          <small>Un proyecto de <a href="{{ '/banco-problemas-caribe/' | relative_url }}">Arias-Data-Lab</a> · Profesor Leonardo Arias-Alemán</small>
+        </div>
       </div>
-      <div class="footer-note">Contenido generado con apoyo de IA y revisión basada en fuentes públicas. Las predicciones y opiniones se identifican como tales. Cada domingo se publica un consolidado semanal y, cuando es posible, una infografía automática de síntesis.</div>
+      <div class="footer-note">Contenido elaborado con apoyo de IA y referencias públicas. Lee las fuentes originales y contrasta los datos: las opiniones y predicciones no son hechos comprobados. <a href="{{ '/acerca/' | relative_url }}">Conoce nuestro enfoque editorial</a>.</div>
     </div>
+    <div class="container footer-tail">© {{ site.time | date: '%Y' }} Arias-Data-Lab · Santa Marta, Colombia. <a href="{{ '/banco-problemas-caribe/' | relative_url }}">Explorar recursos educativos ↗</a></div>
   </footer>
 </body>
 </html>

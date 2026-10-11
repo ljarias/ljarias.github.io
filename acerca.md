@@ -10,7 +10,7 @@ permalink: /acerca/
 
   <div class="info-card" style="margin: 1.5rem 0 2rem 0;">
     <h3>Liderazgo del proyecto</h3>
-    <p>Este proyecto es liderado por el <strong>Ingeniero Leonardo Arias-Alemán</strong>. Contacto: <a href="mailto:ljarias@gmail.com">ljarias@gmail.com</a>.</p>
+    <p>Este proyecto es liderado por el <strong>Ingeniero Leonardo Arias-Alemán</strong> y hace parte de <a href="{{ '/banco-problemas-caribe/' | relative_url }}"><strong>Arias-Data-Lab</strong></a>, un espacio dedicado a tecnología, datos y educación con criterio humano. Contacto: <a href="mailto:ljarias@gmail.com">ljarias@gmail.com</a>. <a href="{{ '/banco-problemas-caribe/acerca-de.html' | relative_url }}">Consultar perfil profesional y académico ↗</a>.</p>
   </div>
 
   <div class="info-grid">

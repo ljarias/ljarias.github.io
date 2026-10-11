@@ -1,12 +1,12 @@
 # IA al Día | Observatorio educativo de Inteligencia Artificial
 
-Sitio y agente editorial automático para publicar un resumen diario de noticias de inteligencia artificial con enfoque educativo.
+Sitio Jekyll y agente editorial automático para publicar un consolidado semanal de noticias de inteligencia artificial con enfoque educativo. Forma parte del ecosistema **Arias-Data-Lab**.
 
 ## Qué hace
 
-- Ejecuta una búsqueda web diaria sobre noticias de IA.
+- Ejecuta una búsqueda web semanal sobre noticias de IA.
 - Prioriza hechos recientes, fuentes confiables y temas con impacto social o educativo.
-- Genera una entrada en Markdown con 5 a 7 noticias, contexto, riesgos, oportunidades y preguntas para el aula.
+- Genera una entrada Markdown con noticias, contexto, riesgos, oportunidades y preguntas para el aula.
 - Guarda un historial para reducir noticias repetidas.
 - Publica el sitio con GitHub Pages mediante GitHub Actions.
 
@@ -16,7 +16,7 @@ Sitio y agente editorial automático para publicar un resumen diario de noticias
 2. En **Settings → Secrets and variables → Actions**, crea el secreto `OPENAI_API_KEY` con una clave de la API de OpenAI. No publiques la clave en ningún archivo.
 3. En **Settings → Pages → Build and deployment**, selecciona **GitHub Actions** como fuente.
 4. Abre la pestaña **Actions**, entra en el workflow **Publicar IA al Día** y usa **Run workflow** para ejecutar una primera edición manual.
-5. Después, el workflow se ejecutará diariamente a las **7:15 a. m. (America/Bogota)**.
+5. Después, el workflow está programado para ejecutarse los **domingos a las 8:00 a. m. (America/Bogota)**.
 
 ## Estructura
 
@@ -43,3 +43,12 @@ GitHub Pages y GitHub Actions pueden operar sin costo en este repositorio públi
 ## Seguridad
 
 Nunca agregues `OPENAI_API_KEY` al repositorio. Debe existir únicamente como secreto de GitHub Actions.
+
+## Identidad visual Arias-Data-Lab v3
+
+La portada, la plantilla de artículos y el pie de página comparten el logotipo oficial aprobado, el lema **«Tecnología con criterio humano.»** y la paleta corporativa (azul `#102A43`, turquesa `#087F8C`, celeste `#D7F1F5`, amarillo `#F4B942`, blanco hielo `#F6F9FC` y gris `#475569`).
+
+- CSS complementario: `assets/css/adl-ia-al-dia.css` (se carga tras los estilos originales).
+- Logo y favicon: recursos optimizados oficiales ubicados en `banco-problemas-caribe/assets/` dentro de este mismo repositorio.
+- El logotipo no se modifica ni redibuja; las infografías históricas tampoco se alteran.
+- La automatización semanal `.github/workflows/publicar.yml` y la generación editorial permanecen sin cambios.

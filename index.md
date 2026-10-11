@@ -5,14 +5,16 @@ title: Inicio
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow">Observatorio educativo de Inteligencia Artificial</div>
+      <div class="eyebrow">IA al Día · Una iniciativa Arias-Data-Lab</div>
       <h1>Entender la IA exige más que leer titulares.</h1>
       <p class="hero-copy">Cada semana seleccionamos y explicamos las noticias de inteligencia artificial más importantes y críticas para comprender qué está cambiando, qué preocupa a los expertos y qué vale la pena discutir en el aula.</p>
       <div class="hero-actions">
         <a class="button" href="#ultimas">Ver últimos consolidados</a>
         <a class="button secondary" href="#infografias">Ver infografías</a>
         <a class="button secondary" href="{{ '/acerca/' | relative_url }}">Cómo funciona</a>
+        <a class="button secondary" href="{{ '/banco-problemas-caribe/' | relative_url }}">Laboratorio educativo ↗</a>
       </div>
+      <p class="adl-hero-message"><strong>Tecnología con criterio humano.</strong> Noticias, contexto y preguntas para pensar por cuenta propia.</p>
     </div>
     <aside class="hero-card">
       <span class="status-dot"></span>
@@ -99,6 +101,7 @@ title: Inicio
       <div><strong>01</strong><h3>Fuentes primero</h3><p>Las afirmaciones importantes deben estar respaldadas por fuentes identificables.</p></div>
       <div><strong>02</strong><h3>Contexto</h3><p>No basta con decir qué ocurrió: explicamos por qué importa y qué incertidumbres existen.</p></div>
       <div><strong>03</strong><h3>Uso educativo</h3><p>Cada edición propone preguntas que ayudan a convertir la noticia en aprendizaje.</p></div>
+      <div><strong>04</strong><h3>Criterio humano</h3><p>La automatización ayuda a reunir información; interpretar sus límites y contrastarla sigue siendo responsabilidad de las personas.</p></div>
     </div>
   </div>
 </section>
