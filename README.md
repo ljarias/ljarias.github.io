@@ -44,11 +44,13 @@ GitHub Pages y GitHub Actions pueden operar sin costo en este repositorio públi
 
 Nunca agregues `OPENAI_API_KEY` al repositorio. Debe existir únicamente como secreto de GitHub Actions.
 
-## Identidad visual Arias-Data-Lab v3
+## Identidad visual Arias-Data-Lab v4.0
 
 La portada, la plantilla de artículos y el pie de página comparten el logotipo oficial aprobado, el lema **«Tecnología con criterio humano.»** y la paleta corporativa (azul `#102A43`, turquesa `#087F8C`, celeste `#D7F1F5`, amarillo `#F4B942`, blanco hielo `#F6F9FC` y gris `#475569`).
 
 - CSS complementario: `assets/css/adl-ia-al-dia.css` (se carga tras los estilos originales).
-- Logo y favicon: recursos optimizados oficiales ubicados en `banco-problemas-caribe/assets/` dentro de este mismo repositorio.
+- Logo principal: SVG multicolor aprobado en `assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg`, con 25 trazados y 13 degradados; isotipo cuadrado oficial en el mismo directorio.
+- Favicon SVG en los navegadores compatibles, con PNG de 32 px en `banco-problemas-caribe/assets/` como respaldo.
+- La migración está aplicada a la plantilla Jekyll de IA al Día, al portal Arias-Data-Lab y a las cuatro páginas del Banco de Problemas. El resto del contenido histórico permanece sin cambios.
 - El logotipo no se modifica ni redibuja; las infografías históricas tampoco se alteran.
 - La automatización semanal `.github/workflows/publicar.yml` y la generación editorial permanecen sin cambios.

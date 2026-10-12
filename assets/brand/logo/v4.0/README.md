@@ -28,4 +28,4 @@ El PDF vectorial de impresión y los PNG maestros continúan disponibles en el k
 
 ## Despliegue y versiones
 
-Los SVG se almacenan en carpeta fija versionada `v4.0` para no romper referencias. Su incorporación **no reemplaza** el logo web preexistente; la migración visual deberá hacerse en otro cambio con control de caché, pruebas en móvil y verificación de fidelidad.
+Los SVG se almacenan en carpeta fija versionada `v4.0` para no romper referencias. **La migración de los nueve documentos web corporativos se aplicó posteriormente**: IA al Día (plantilla Jekyll), portal y fichas ADL y cuatro páginas del Banco de Problemas. Las referencias WebP previas continúan solo como respaldo histórico. Se conserva el favicon PNG alternativo para compatibilidad; no se han modificado los proyectos privados. Consultar [registro de migración](../../MIGRACION-SITIOS-V4.md).

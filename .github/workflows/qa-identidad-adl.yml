@@ -1,0 +1,29 @@
+name: Verificar identidad corporativa ADL
+on:
+  push:
+    branches: [main]
+    paths:
+      - "assets/brand/**"
+      - "arias-data-lab/**"
+      - "banco-problemas-caribe/**"
+      - "_layouts/default.html"
+      - "scripts/verificar_marca_adl.py"
+      - ".github/workflows/qa-identidad-adl.yml"
+  pull_request:
+    paths:
+      - "assets/brand/**"
+      - "arias-data-lab/**"
+      - "banco-problemas-caribe/**"
+      - "_layouts/default.html"
+      - "scripts/verificar_marca_adl.py"
+      - ".github/workflows/qa-identidad-adl.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  identidad:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar logo vectorial, recursos y rutas públicas
+        run: python3 scripts/verificar_marca_adl.py
