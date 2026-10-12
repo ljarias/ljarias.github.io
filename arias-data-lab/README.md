@@ -9,14 +9,14 @@ Sitio: https://ljarias.github.io/arias-data-lab/
 - `/arias-data-lab/index.html` contiene la presentación corporativa: áreas de trabajo, portafolio, metodología, perfil y contacto.
 - `/arias-data-lab/portal.css` define la presentación mobile-first sin dependencias de JavaScript.
 - Se usan los tokens centralizados en `/assets/brand/adl-tokens.css`.
-- **Logotipo original:** se carga sin modificaciones desde `/banco-problemas-caribe/assets/logo-adl-v3.webp`. El favicon se carga desde el isotipo aprobado.
+- **Logo oficial v4.0:** el portal, el catálogo y las fichas de productos cargan `/assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg`; el favicon prioritario usa el isotipo cuadrado SVG, manteniendo el PNG anterior como respaldo.
 - IA al Día sigue en `/` con sus noticias, publicaciones y automatización intactas; el Banco de Problemas sigue en `/banco-problemas-caribe/`.
 - La plantilla Jekyll `/_layouts/default.html` y `/acerca.md` enlazan a este portal.
 
 ## Contenido verificable
 
 - IA al Día y Banco de Problemas tienen páginas públicas dentro del mismo sitio.
-- Otros cuatro proyectos se enlazan a repositorios públicos del perfil `github.com/ljarias`: Tablero ICFES INEM, Acceso Escolar INEM, Red Piezométrica y Préstamos SaaS.
+- Los proyectos abiertos remiten a recursos públicos de IA al Día, Banco de Problemas, Tablero ICFES y Red Piezométrica. Préstamos SaaS y Acceso Escolar INEM cuentan con **fichas públicas informativas** y conservan sus repositorios privados.
 - La sección de perfil enlaza a la presentación académica y profesional publicada en el Banco de Problemas.
 - Contacto: correo ya publicado previamente en la sección Acerca de de IA al Día.
 
@@ -46,7 +46,7 @@ Se añadieron únicamente:
 
 Se mantiene explícitamente **maestría en curso** y no se afirma obtención del título. Otros empleos de LinkedIn no se incorporaron al no estar visibles sus cargos. La relación con Universidad Cooperativa de Colombia y Universidad del Magdalena ya estaba publicada en el perfil anterior.
 
-Cambios de presentación: nueva sección de trayectoria en el portal, ampliación del dossier profesional en el Banco de Problemas y enlace al perfil público. Se preservan logotipo, recursos, navegación a los seis proyectos y automatización de IA al Día.
+Cambios de presentación: nueva sección de trayectoria en el portal, ampliación del dossier profesional en el Banco de Problemas y enlace al perfil público. Se preservan la estructura de los recursos, la navegación corporativa y la automatización de IA al Día.
 
 Nota de mantenimiento: confirmar en LinkedIn cargos, periodos, responsabilidades y afiliaciones cuando se disponga de una exportación auténtica del perfil, antes de ampliar la cronología.
 
@@ -78,3 +78,7 @@ Las fichas:
 - Ofrecen contacto por el correo público corporativo ya presente en el sitio.
 
 **Política:** ningún archivo de prueba con información de personas, inventarios, préstamos, registros escolares ni datos de menores debe subirse a estas páginas. Las posibles imágenes de interfaz se validarán y anonimizarán/sintetizarán antes de publicación. Mantener privado no sustituye auditoría de seguridad y revisión de licencias/autorizaciones institucionales.
+
+## Migración del logo oficial v4.0 (12/10/2026)
+
+Las cuatro páginas del portal y sus fichas pasaron a usar el **SVG maestro editable** centralizado en `/assets/brand/logo/v4.0/`. El icono compacto del encabezado y el favicon SVG usan el isotipo cuadrado. Las versiones anteriores WebP/PNG se conservan solo como respaldo compatible. La migración no altera el contenido profesional, la privacidad de los repositorios ni las rutas de proyectos. Ver [registro de validación](../assets/brand/MIGRACION-SITIOS-V4.md).

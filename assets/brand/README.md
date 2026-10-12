@@ -36,7 +36,7 @@ Para nuevas páginas, emplear una ruta relativa al SVG maestro:
 
 Para íconos, usar `ADL_isotipo-cuadrado_EDITABLE_v4.0.svg`. Conservar proporciones y espacio de seguridad. No modificar ni reinterpretar el arte.
 
-**Migración pendiente, intencional:** las páginas existentes de IA al Día, Banco de Problemas y portal ADL pueden seguir apuntando temporalmente a `banco-problemas-caribe/assets/logo-adl-v3.webp` para preservar su presentación actual. Este PR **solo incorpora los nuevos archivos fuente aprobados**, no sustituye de forma silenciosa el logo que ya se publica.
+**Migración web completada (12/10/2026):** la plantilla Jekyll de IA al Día, el portal Arias-Data-Lab, sus tres páginas de productos y las cuatro páginas del Banco de Problemas utilizan el logo SVG maestro aprobado v4.0. Los encabezados, pies y fondos decorativos emplean rutas al mismo recurso centralizado. Los favicons modernos utilizan el isotipo cuadrado SVG, con `favicon-32.png` conservado como compatibilidad. Los archivos raster anteriores permanecen disponibles como respaldo histórico; ya no son la fuente gráfica activa de las páginas migradas. Los proyectos de aplicaciones independientes y sus repositorios privados no fueron alterados. Ver [registro de migración y QA](MIGRACION-SITIOS-V4.md).
 
 ## Origen y alcance de la aprobación
 
