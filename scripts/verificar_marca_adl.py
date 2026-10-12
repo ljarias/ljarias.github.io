@@ -18,7 +18,7 @@ MASTER = "ADL_logo-maestro-color_EDITABLE_v4.0.svg"
 ISOTYPE = "ADL_isotipo-cuadrado_EDITABLE_v4.0.svg"
 PAGES = [
     "_layouts/default.html",
-    "arias-data-lab/index.html",
+    "index.html",
     "arias-data-lab/productos/index.html",
     "arias-data-lab/productos/prestamos-saas.html",
     "arias-data-lab/productos/acceso-escolar-inem.html",
