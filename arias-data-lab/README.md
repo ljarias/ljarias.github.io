@@ -49,3 +49,13 @@ Se mantiene explícitamente **maestría en curso** y no se afirma obtención del
 Cambios de presentación: nueva sección de trayectoria en el portal, ampliación del dossier profesional en el Banco de Problemas y enlace al perfil público. Se preservan logotipo, recursos, navegación a los seis proyectos y automatización de IA al Día.
 
 Nota de mantenimiento: confirmar en LinkedIn cargos, periodos, responsabilidades y afiliaciones cuando se disponga de una exportación auténtica del perfil, antes de ampliar la cronología.
+
+## Perfil profesional ampliado (exportación de LinkedIn · 12/10/2026)
+
+La edición se basó en un PDF de 4 páginas entregado por el titular (**no publicado en el repositorio**). Se utilizaron sus nombres de cargo, entidades, responsabilidades, herramientas y fechas. Para la página `/banco-problemas-caribe/acerca-de.html` se añadió una cronología agrupada y una hoja de estilos independiente (`assets/adl-perfil-timeline-v4.css`). La portada `/arias-data-lab/` presenta una síntesis con cuatro líneas de experiencia.
+
+**Periodos recogidos:** CETECOS 1997–2003; INVEMAR 2000–2024; Fundación Universitaria San Martín 2005; UCC 2006–2018 y desde 2024; CORGEDAS 2015–2017; Unimag desde 2017; NaturalSIG desde 2018; Secretaría de Salud Distrital 2020–2022; INEM desde 2024. Los cargos pueden ser concurrentes y las expresiones «hasta la actualidad» corresponden a lo consignado en la exportación.
+
+**Responsabilidades descritas:** administración de módulos SIAM; datos e indicadores para CMA2 y SPINCAM; representación ante comité técnico SIAC; apoyo en Power BI, Survey123 y ArcGIS a salud pública; docencia, mentoría y transferencia de conocimiento. Se incorporó formación en Universidad del Norte, Arcitura, MinTIC y programa pedagógico Unimag, además de idiomas y certificación de buceo publicados en el propio LinkedIn.
+
+**Protección de datos:** no se expone número telefónico del archivo ni se sube el PDF bruto a GitHub. No se derivaron métricas de impacto o logros cuantitativos ausentes del documento. La maestría en UTB continúa descrita como **en curso** porque no figura en el PDF de LinkedIn y no debe tratarse como grado terminado.
