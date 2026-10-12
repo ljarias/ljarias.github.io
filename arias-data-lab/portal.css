@@ -125,3 +125,14 @@ h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.045em;line-height:1.14}h1{font
 .career-links a:hover{text-decoration:underline}
 @media(max-width:850px){.career-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.career-grid{grid-template-columns:1fr}.career-card{min-height:auto}}
+
+
+/* Fase perfil documentado: hitos concretos desde la exportación de LinkedIn */
+.career-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:3px 0 23px}
+.career-stats>div{background:#102A43;color:#fff;border-radius:13px;padding:20px 22px;min-width:0}
+.career-stats strong{display:block;font-weight:850;font-size:clamp(19px,2.6vw,27px);line-height:1.25;letter-spacing:-.03em}
+.career-stats span{display:block;margin-top:5px;font-size:11px;color:#c6e5ea;line-height:1.45}
+.career-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.career-card{min-height:252px}
+@media(max-width:700px){.career-stats{grid-template-columns:1fr}.career-stats>div{padding:14px 19px}.career-card{min-height:0}}
+@media(max-width:600px){.career-grid{grid-template-columns:1fr}}
