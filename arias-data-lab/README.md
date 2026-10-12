@@ -31,3 +31,21 @@ Revisar rutas, anclas, contraste y adaptación a 360, 768 y 1280 px tras la publ
 ## Reversión
 
 Esta versión introduce archivos independientes y dos ajustes de enlaces. Puede revertirse mediante el pull request de esta fase sin afectar las publicaciones históricas de IA al Día ni los datos del Banco de Problemas.
+
+
+## Enriquecimiento de perfil y trayectoria — 12/10/2026
+
+Fuente primaria declarativa: [LinkedIn de Leonardo Arias-Alemán](https://www.linkedin.com/in/ljarias), versión pública indexada. El acceso directo a LinkedIn puede estar restringido y algunos empleos/fechas aparecen ocultos; no se reconstruyeron.
+
+Se añadieron únicamente:
+- Más de dos décadas de experiencia profesional (el extracto público dice 24 años).
+- Participación registrada en **Caribbean Marine Atlas – Phase 2** (proyecto fechado desde 2016); sin inventar título laboral, periodo de contrato ni responsabilidad técnica específica.
+- Mentoría en **Colombia Programa / nodo 268** (2024).
+- Formación pedagógica de **480 horas** en Universidad del Magdalena (2024).
+- Voluntariado ambiental en limpieza de playas con **Club de Buceo Narvales** (1994–2000).
+
+Se mantiene explícitamente **maestría en curso** y no se afirma obtención del título. Otros empleos de LinkedIn no se incorporaron al no estar visibles sus cargos. La relación con Universidad Cooperativa de Colombia y Universidad del Magdalena ya estaba publicada en el perfil anterior.
+
+Cambios de presentación: nueva sección de trayectoria en el portal, ampliación del dossier profesional en el Banco de Problemas y enlace al perfil público. Se preservan logotipo, recursos, navegación a los seis proyectos y automatización de IA al Día.
+
+Nota de mantenimiento: confirmar en LinkedIn cargos, periodos, responsabilidades y afiliaciones cuando se disponga de una exportación auténtica del perfil, antes de ampliar la cronología.

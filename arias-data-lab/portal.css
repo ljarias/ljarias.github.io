@@ -110,3 +110,18 @@ h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.045em;line-height:1.14}h1{font
 @media(max-width:750px){.container{width:calc(100% - 32px)}.header-row{flex-wrap:wrap;gap:8px;padding:10px 0}.primary-nav{flex-basis:100%;justify-content:center}.primary-nav a{padding:8px 10px;font-size:12px}.primary-nav .nav-contact{margin-left:0}.hero-layout{grid-template-columns:1fr;padding-top:57px;padding-bottom:88px;min-height:0;gap:43px}.hero h1{font-size:clamp(2.6rem,9vw,4rem)}.hero-intro{font-size:14px}.hero-side{max-width:500px;width:100%;margin:0 auto}.floating-note{left:8px;bottom:-42px}.section-padding{padding:68px 0}.section-head{display:block}.section-head>p{margin-top:18px}.principles-layout,.about-layout{grid-template-columns:1fr;gap:26px}.about-monogram{height:185px}.contact-layout{align-items:flex-start;flex-direction:column;gap:20px}.footer-main{align-items:flex-start;flex-direction:column}}
 @media(max-width:480px){.brand-label strong{font-size:17px}.brand-icon{height:43px;width:43px}.primary-nav{justify-content:space-between}.primary-nav a{font-size:11px;padding:8px 5px}.hero-layout{padding-top:42px;padding-bottom:60px}.hero-actions{flex-direction:column}.hero-actions .button{width:100%}.hero-logo{height:225px}.hero-logo img{max-height:220px}.logo-panel{padding:15px 17px}.floating-note{position:relative;left:auto;bottom:auto;width:100%;margin-top:18px;transform:none}.focus-grid,.projects-grid{grid-template-columns:1fr}.focus-card{min-height:0}.project-card{min-height:270px}.footer-main nav{gap:10px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button,.project-card{transition:none}.button:hover,.project-card:hover{transform:none}}
+
+/* Trayectoria profesional · fuentes verificables en LinkedIn */
+.career-section{background:#edf5f7}
+.career-section h2{max-width:690px}
+.career-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.career-card{background:white;border:1px solid #cfdfe5;border-radius:17px;padding:27px 24px;box-shadow:0 9px 28px #102a430b;display:flex;flex-direction:column;min-height:274px}
+.career-label{font-size:10px;letter-spacing:.11em;font-weight:850;color:#087f8c;margin-bottom:20px}
+.career-card h3{font-size:20px;color:#102a43;margin-bottom:12px}
+.career-card p{font-size:13px;color:#4a6573;line-height:1.75;margin-bottom:20px}
+.career-card small{border-top:1px solid #e2ecef;padding-top:12px;color:#416675;font-size:11px;font-weight:700;margin-top:auto}
+.career-links{margin-top:24px;display:flex;gap:20px;flex-wrap:wrap}
+.career-links a{font-size:13px;color:#066e7b;font-weight:800;text-underline-offset:3px}
+.career-links a:hover{text-decoration:underline}
+@media(max-width:850px){.career-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.career-grid{grid-template-columns:1fr}.career-card{min-height:auto}}
