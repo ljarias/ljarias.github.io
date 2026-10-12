@@ -1,17 +1,46 @@
-# Arias-Data-Lab — Patrón ADL v3.2
+# Arias-Data-Lab · Identidad corporativa (Patrón ADL)
 
-Este directorio centraliza los **tokens para interfaces**. El logotipo maestro es la imagen original aprobada por el propietario; **no debe redibujarse ni sustituirse por diseños generativos**.
+**Logo maestro oficial: versión 4.0 · aprobado el 12/10/2026.**
 
-## Recursos
-- `adl-tokens.css`: variables corporativas compartidas (sin modificar automáticamente el aspecto de otros proyectos).
-- Logotipo web usado en el Banco de Problemas: `../../banco-problemas-caribe/assets/logo-adl-v3.webp`, miniatura derivada del diseño aprobado.
-- Favicon: `../../banco-problemas-caribe/assets/favicon-32.png`.
-- Archivo maestro PNG 1254 × 1254: se conserva en el kit corporativo descargable. SHA-256: `4bf5ac3e7ed932cce40e743fc9758598609e552d940a27fe330d3e25300c2e54`.
+El titular aprobó la reconstrucción vectorial multicolor basada en su PNG original de 1254 × 1254 px. La versión **SVG v4.0** es la referencia corporativa editable; el PNG original sigue siendo la **referencia visual histórica**. Los SVG se incorporaron al repositorio **sin alterar sus bytes** respecto al kit maestro aprobado.
 
-## Integración (por sitio)
-Importar la hoja `/assets/brand/adl-tokens.css` desde la ubicación correspondiente. Los componentes del producto mantienen su identidad propia: no sobrescribir colores semánticos, estados o accesibilidad.
+## Archivos maestros
 
-Eslogan: **Tecnología con criterio humano.** Nombre: **Arias-Data-Lab**.
+| Aplicación | Archivo |
+|---|---|
+| **Logo principal multicolor y transparente** | [ADL_logo-maestro-color_EDITABLE_v4.0.svg](logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg) |
+| Logo multicolor con fondo blanco | [ADL_logo-sobre-blanco_EDITABLE_v4.0.svg](logo/v4.0/ADL_logo-sobre-blanco_EDITABLE_v4.0.svg) |
+| Isotipo multicolor sin texto | [ADL_isotipo-color_EDITABLE_v4.0.svg](logo/v4.0/ADL_isotipo-color_EDITABLE_v4.0.svg) |
+| Isotipo cuadrado para iconos | [ADL_isotipo-cuadrado_EDITABLE_v4.0.svg](logo/v4.0/ADL_isotipo-cuadrado_EDITABLE_v4.0.svg) |
+| Variante auxiliar de una tinta azul | [ADL_logo-una-tinta-azul_VARIANTE.svg](logo/v4.0/ADL_logo-una-tinta-azul_VARIANTE.svg) |
+| Variante auxiliar de una tinta blanca | [ADL_logo-una-tinta-blanco_VARIANTE.svg](logo/v4.0/ADL_logo-una-tinta-blanco_VARIANTE.svg) |
 
-## Vectorización
-El SVG de color 100% idéntico que incorpora una imagen PNG **no es un vector editable**; no etiquetar como vectorización completa. El SVG de una tinta es autotrazado y requiere aprobación antes de llevarlo a imprenta. Conservar la imagen aprobada como fuente de verdad hasta contar con el arte original de diseño (capas y curvas).
+Ver [guía de uso y verificación](logo/v4.0/README.md) y [manifest.json](logo/v4.0/manifest.json) para confirmar integridad.
+
+## Identidad
+
+**Nombre:** Arias-Data-Lab  
+**Lema:** Tecnología con criterio humano.  
+**Paleta de interfaz:** [adl-tokens.css](adl-tokens.css) — navy `#102A43`, turquesa `#087F8C`, celeste `#D7F1F5`, amarillo `#F4B942`, hielo `#F6F9FC` y gris `#475569`.
+
+Los degradados de la marca reproducen los colores reconstruidos del PNG y **no deben reemplazarse** automáticamente por los colores planos de interfaz.
+
+## Integración web
+
+Para nuevas páginas, emplear una ruta relativa al SVG maestro:
+
+```html
+<img src="/assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg"
+     alt="Arias-Data-Lab" width="240" height="240">
+```
+
+Para íconos, usar `ADL_isotipo-cuadrado_EDITABLE_v4.0.svg`. Conservar proporciones y espacio de seguridad. No modificar ni reinterpretar el arte.
+
+**Migración pendiente, intencional:** las páginas existentes de IA al Día, Banco de Problemas y portal ADL pueden seguir apuntando temporalmente a `banco-problemas-caribe/assets/logo-adl-v3.webp` para preservar su presentación actual. Este PR **solo incorpora los nuevos archivos fuente aprobados**, no sustituye de forma silenciosa el logo que ya se publica.
+
+## Origen y alcance de la aprobación
+
+- Referencia PNG original intacta: SHA-256 `4bf5ac3e7ed932cce40e743fc9758598609e552d940a27fe330d3e25300c2e54`.
+- Reconstrucción aprobada: logo SVG maestro v4.0 con 8 capas, 25 trazados editables y 13 degradados. Sin imágenes incrustadas ni elementos `<text>`.
+- La aprobación corresponde a una reconstrucción visual fiel, **no** a una recuperación exacta de las curvas y fuentes originales de un archivo fuente ya no disponible.
+- Se conservan las variantes para impresión en PDF y los PNG preparados en el kit de identidad entregado al titular; el repositorio almacena aquí las fuentes SVG.
