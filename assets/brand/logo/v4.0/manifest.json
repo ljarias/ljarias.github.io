@@ -1,0 +1,48 @@
+{
+  "name": "Arias-Data-Lab",
+  "version": "4.0",
+  "approved_on": "2026-10-12",
+  "status": "approved-vector-reconstruction",
+  "base_path": "/assets/brand/logo/v4.0/",
+  "original_png_sha256": "4bf5ac3e7ed932cce40e743fc9758598609e552d940a27fe330d3e25300c2e54",
+  "canonical": "ADL_logo-maestro-color_EDITABLE_v4.0.svg",
+  "files": [
+    {
+      "name": "ADL_logo-maestro-color_EDITABLE_v4.0.svg",
+      "sha256": "dcee83585c28f792a36d3900fc170a82a4cba30c9cb49da67ec0f3affa229633",
+      "gitBlob": "c82a4df340612c13c81c0b6bafd0bc9bdadd06f1",
+      "bytes": 13587
+    },
+    {
+      "name": "ADL_logo-sobre-blanco_EDITABLE_v4.0.svg",
+      "sha256": "d986a454c3aebc164330de8c45176c8c32bd7fcdaf59212873abaa0bb30b024b",
+      "gitBlob": "08cbcacdf906c7f8c7360269f1072c4ac8d39b39",
+      "bytes": 13613
+    },
+    {
+      "name": "ADL_isotipo-color_EDITABLE_v4.0.svg",
+      "sha256": "3c01df59a7b299d032c0d36eedab9b23e582b78968a16cc11a6693db789777d2",
+      "gitBlob": "6211b489ff780c9683ce579e246d2eb5cfc73cfb",
+      "bytes": 7274
+    },
+    {
+      "name": "ADL_isotipo-cuadrado_EDITABLE_v4.0.svg",
+      "sha256": "0c7fc14520fb5730ff7d88f7d0ae2c84663671c1af1e03f8e60988f4d89febc0",
+      "gitBlob": "c8cfb80902a272c3a1256b91eeef53a9a6153f0b",
+      "bytes": 7273
+    },
+    {
+      "name": "ADL_logo-una-tinta-azul_VARIANTE.svg",
+      "sha256": "4c88e26c8534b254afb1fa3d6ec6d43120d7fbc83e5f0594a3018e9b8d5e1d77",
+      "gitBlob": "4828562249237b60d59d9562a425f320e118f3b5",
+      "bytes": 10249
+    },
+    {
+      "name": "ADL_logo-una-tinta-blanco_VARIANTE.svg",
+      "sha256": "2d7f235e1136de390ea0728bba7f091bf3a07293b8e3f0f90d5cf31327f54ff7",
+      "gitBlob": "f67e3fdbd82e033c548d7b4de4fd59515d7c5c2e",
+      "bytes": 10249
+    }
+  ],
+  "notes": "Contenidos idénticos al kit v4.0 aprobado. La publicación en sitio sigue con los recursos anteriores hasta una migración específica."
+}
