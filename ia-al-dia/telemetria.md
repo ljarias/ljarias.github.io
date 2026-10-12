@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Telemetría
-permalink: /telemetria/
+permalink: /ia-al-dia/telemetria/
 ---
 
 <section class="page container narrow">

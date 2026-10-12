@@ -334,7 +334,7 @@ def main() -> None:
 
     INFO_DIR.mkdir(parents=True, exist_ok=True)
     image_path = INFO_DIR / f"{date_iso}.svg"
-    post_url = f"/{now:%Y/%m/%d}/ia-al-dia/"
+    post_url = f"/ia-al-dia/{now:%Y/%m/%d}/ia-al-dia/"
     record = {
         "date": date_iso,
         "edition_type": "weekly",
