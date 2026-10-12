@@ -136,3 +136,18 @@ h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.045em;line-height:1.14}h1{font
 .career-card{min-height:252px}
 @media(max-width:700px){.career-stats{grid-template-columns:1fr}.career-stats>div{padding:14px 19px}.career-card{min-height:0}}
 @media(max-width:600px){.career-grid{grid-template-columns:1fr}}
+
+/* Catálogo público de productos con repositorios privados · ADL 2026 */
+.products-showcase{background:#edf5f6}
+.products-showcase .section-head h2{color:#102A43}
+.products-showcase-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.product-teaser{background:#fff;border:1px solid #d5e4e8;border-radius:18px;padding:29px;box-shadow:0 12px 28px #102a430b;display:flex;align-items:flex-start;flex-direction:column;min-height:325px}
+.product-teaser-icon{background:#e3f4f4;border-radius:12px;width:51px;height:51px;display:grid;place-items:center;font-size:29px;font-weight:800;color:#086b78;margin-bottom:21px}
+.teaser-label{font-size:11px;letter-spacing:.08em;font-weight:820;color:#166b76}
+.product-teaser h3{font-size:26px;color:#102A43;margin:9px 0 10px}
+.product-teaser p{font-size:14px;color:#475569;line-height:1.7;max-width:500px}
+.product-teaser a{font-weight:800;color:#066e79;font-size:14px;margin-top:auto;text-underline-offset:3px}
+.product-teaser a:hover,.products-showcase-tail a:hover{text-decoration:underline}
+.products-showcase-tail{border-top:1px solid #d3e3e8;padding-top:20px;margin-top:22px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:13px;color:#566f79}
+.products-showcase-tail a{color:#056a75;font-weight:800}
+@media(max-width:720px){.products-showcase-grid{grid-template-columns:1fr}.product-teaser{min-height:0}}
