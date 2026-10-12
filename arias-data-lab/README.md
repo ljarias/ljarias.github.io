@@ -59,3 +59,22 @@ La edición se basó en un PDF de 4 páginas entregado por el titular (**no publ
 **Responsabilidades descritas:** administración de módulos SIAM; datos e indicadores para CMA2 y SPINCAM; representación ante comité técnico SIAC; apoyo en Power BI, Survey123 y ArcGIS a salud pública; docencia, mentoría y transferencia de conocimiento. Se incorporó formación en Universidad del Norte, Arcitura, MinTIC y programa pedagógico Unimag, además de idiomas y certificación de buceo publicados en el propio LinkedIn.
 
 **Protección de datos:** no se expone número telefónico del archivo ni se sube el PDF bruto a GitHub. No se derivaron métricas de impacto o logros cuantitativos ausentes del documento. La maestría en UTB continúa descrita como **en curso** porque no figura en el PDF de LinkedIn y no debe tratarse como grado terminado.
+
+
+## Productos y soluciones · presentación pública sin código (12/10/2026)
+
+Se incorpora `/arias-data-lab/productos/` con fichas independientes para:
+
+- `productos/prestamos-saas.html`: Préstamos SaaS, gestión de clientes, préstamos, pagos y cartera.
+- `productos/acceso-escolar-inem.html`: Acceso Escolar INEM, control de ingreso y asistencia.
+
+Ambos proyectos siguen como **repositorios privados** en GitHub. El portal principal ahora los presenta dentro de «Productos y soluciones», con enlaces exclusivamente a estas fichas públicas y no a GitHub privado. «Recursos y proyectos abiertos» mantiene solo enlaces públicos.
+
+Las fichas:
+- Presentan objetivos y alcance general sin prometer funcionalidades finalizadas, conformidad legal, certificaciones ni disponibilidad comercial.
+- No incluyen capturas de datos reales, QR, credenciales, rutas internas de aplicaciones ni enlaces a repositorios privados.
+- Usan la marca gráfica original aprobada y estilos reutilizados del portal; respetan accesibilidad básica y puntos de quiebre responsive.
+- Indican explícitamente que el producto está en desarrollo y que el código no es público.
+- Ofrecen contacto por el correo público corporativo ya presente en el sitio.
+
+**Política:** ningún archivo de prueba con información de personas, inventarios, préstamos, registros escolares ni datos de menores debe subirse a estas páginas. Las posibles imágenes de interfaz se validarán y anonimizarán/sintetizarán antes de publicación. Mantener privado no sustituye auditoría de seguridad y revisión de licencias/autorizaciones institucionales.
