@@ -1,0 +1,46 @@
+name: Verificar migración portal corporativo e IA al Día
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "index.md"
+      - "_config.yml"
+      - "_layouts/**"
+      - "ia-al-dia/**"
+      - "rutas-anteriores/**"
+      - "_data/infografias.json"
+      - "scripts/generar_infografia.py"
+      - "scripts/verificar_rutas_portal.py"
+      - "arias-data-lab/**"
+      - ".github/workflows/qa-portal-raiz.yml"
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "index.md"
+      - "_config.yml"
+      - "_layouts/**"
+      - "ia-al-dia/**"
+      - "rutas-anteriores/**"
+      - "_data/infografias.json"
+      - "scripts/generar_infografia.py"
+      - "scripts/verificar_rutas_portal.py"
+      - "arias-data-lab/**"
+      - ".github/workflows/qa-portal-raiz.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rutas-y-jekyll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar rutas en código fuente
+        run: python3 scripts/verificar_rutas_portal.py
+      - name: Construir Jekyll (sin publicar)
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site
+      - name: Verificar URLs y redirecciones en sitio compilado
+        run: python3 scripts/verificar_rutas_portal.py --built

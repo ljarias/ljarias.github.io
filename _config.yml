@@ -1,11 +1,11 @@
-title: "IA al Día"
-description: "Observatorio educativo de Inteligencia Artificial: consolidado semanal de noticias, contexto, riesgos, oportunidades y preguntas para el aula."
+title: "Arias-Data-Lab"
+description: "Arias-Data-Lab: tecnología con criterio humano, ingeniería de software, ciencia de datos, inteligencia artificial y recursos educativos."
 lang: es-CO
 timezone: America/Bogota
-url: ""
+url: "https://ljarias.github.io"
 baseurl: ""
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
+permalink: /ia-al-dia/:year/:month/:day/:title/
 future: false
 show_excerpts: true
 exclude:

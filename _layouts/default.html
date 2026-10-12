@@ -9,22 +9,23 @@
   <link rel="stylesheet" href="{{ '/assets/css/infografias.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/adl-ia-al-dia.css' | relative_url }}">
   <meta name="theme-color" content="#102A43">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/brand/logo/v4.0/ADL_isotipo-cuadrado_EDITABLE_v4.0.svg' | relative_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/banco-problemas-caribe/assets/favicon-32.png' | relative_url }}">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="{{ '/' | relative_url }}">
+      <a class="brand" href="{{ '/ia-al-dia/' | relative_url }}">
         <span class="brand-mark adl-brand-mark"><img src="{{ '/assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg' | relative_url }}" alt="Arias-Data-Lab" width="108" height="80" decoding="async"></span>
         <span class="adl-site-title"><strong>IA al Día</strong><small>Observatorio educativo · Arias-Data-Lab</small></span>
       </a>
-      <nav>
-        <a href="{{ '/' | relative_url }}">Inicio</a>
-        <a href="{{ '/#infografias' | relative_url }}">Infografías</a>
-        <a href="{{ '/telemetria/' | relative_url }}">Telemetría</a>
-        <a href="{{ '/acerca/' | relative_url }}">Acerca de</a>
-        <a class="nav-lab" href="{{ '/arias-data-lab/' | relative_url }}">Arias-Data-Lab <span aria-hidden="true">↗</span></a>
+      <nav aria-label="Navegación de IA al Día">
+        <a href="{{ '/ia-al-dia/' | relative_url }}">Inicio</a>
+        <a href="{{ '/ia-al-dia/#infografias' | relative_url }}">Infografías</a>
+        <a href="{{ '/ia-al-dia/telemetria/' | relative_url }}">Telemetría</a>
+        <a href="{{ '/ia-al-dia/acerca/' | relative_url }}">Acerca de</a>
+        <a class="nav-lab" href="{{ '/' | relative_url }}">Arias-Data-Lab <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -34,14 +35,14 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-identity">
-        <a class="footer-logo-card" href="{{ '/arias-data-lab/' | relative_url }}" aria-label="Conocer Arias-Data-Lab"><img src="{{ '/assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg' | relative_url }}" alt="Logo oficial Arias-Data-Lab" width="128" height="94" loading="lazy"></a>
+        <a class="footer-logo-card" href="{{ '/' | relative_url }}" aria-label="Conocer Arias-Data-Lab"><img src="{{ '/assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg' | relative_url }}" alt="Logo oficial Arias-Data-Lab" width="128" height="94" loading="lazy"></a>
         <div>
           <strong>IA al Día</strong>
           <p>Observatorio educativo de inteligencia artificial.<br><span class="adl-motto">Tecnología con criterio humano.</span></p>
-          <small>Un proyecto de <a href="{{ '/arias-data-lab/' | relative_url }}">Arias-Data-Lab</a> · Profesor Leonardo Arias-Alemán</small>
+          <small>Un proyecto de <a href="{{ '/' | relative_url }}">Arias-Data-Lab</a> · Profesor Leonardo Arias-Alemán</small>
         </div>
       </div>
-      <div class="footer-note">Contenido elaborado con apoyo de IA y referencias públicas. Lee las fuentes originales y contrasta los datos: las opiniones y predicciones no son hechos comprobados. <a href="{{ '/acerca/' | relative_url }}">Conoce nuestro enfoque editorial</a>.</div>
+      <div class="footer-note">Contenido elaborado con apoyo de IA y referencias públicas. Lee las fuentes originales y contrasta los datos: las opiniones y predicciones no son hechos comprobados. <a href="{{ '/ia-al-dia/acerca/' | relative_url }}">Conoce nuestro enfoque editorial</a>.</div>
     </div>
     <div class="container footer-tail">© {{ site.time | date: '%Y' }} Arias-Data-Lab · Santa Marta, Colombia. <a href="{{ '/banco-problemas-caribe/' | relative_url }}">Explorar recursos educativos ↗</a></div>
   </footer>

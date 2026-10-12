@@ -1,6 +1,8 @@
 ---
 layout: default
-title: Inicio
+title: IA al Día
+permalink: /ia-al-dia/
+description: "Observatorio educativo IA al Día: noticias semanales, contexto, riesgos, oportunidades e infografías."
 ---
 <section class="hero">
   <div class="container hero-grid">
@@ -11,7 +13,7 @@ title: Inicio
       <div class="hero-actions">
         <a class="button" href="#ultimas">Ver últimos consolidados</a>
         <a class="button secondary" href="#infografias">Ver infografías</a>
-        <a class="button secondary" href="{{ '/acerca/' | relative_url }}">Cómo funciona</a>
+        <a class="button secondary" href="{{ '/ia-al-dia/acerca/' | relative_url }}">Cómo funciona</a>
         <a class="button secondary" href="{{ '/banco-problemas-caribe/' | relative_url }}">Laboratorio educativo ↗</a>
       </div>
       <p class="adl-hero-message"><strong>Tecnología con criterio humano.</strong> Noticias, contexto y preguntas para pensar por cuenta propia.</p>

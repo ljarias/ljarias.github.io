@@ -82,3 +82,13 @@ Las fichas:
 ## Migración del logo oficial v4.0 (12/10/2026)
 
 Las cuatro páginas del portal y sus fichas pasaron a usar el **SVG maestro editable** centralizado en `/assets/brand/logo/v4.0/`. El icono compacto del encabezado y el favicon SVG usan el isotipo cuadrado. Las versiones anteriores WebP/PNG se conservan solo como respaldo compatible. La migración no altera el contenido profesional, la privacidad de los repositorios ni las rutas de proyectos. Ver [registro de validación](../assets/brand/MIGRACION-SITIOS-V4.md).
+
+## Portada corporativa en el dominio raíz (12/10/2026)
+
+El portal **Arias-Data-Lab** está publicado como entrada principal en `https://ljarias.github.io/`, usando la misma presentación aprobada, logo SVG v4.0 y estilos de `/arias-data-lab/portal.css`. Para evitar contenido duplicado y mantener los marcadores anteriores, la dirección `https://ljarias.github.io/arias-data-lab/` redirige a la raíz y conserva fragmentos de navegación.
+
+IA al Día se consulta en `https://ljarias.github.io/ia-al-dia/`. El Banco de Problemas permanece en su ruta anterior y el catálogo de productos conserva la URL `/arias-data-lab/productos/`, sin exposición del código de los proyectos privados.
+
+La compilación Jekyll conserva publicaciones y sus contenidos; se actualizaron los enlaces de las infografías y se generaron redirecciones estáticas desde rutas históricas de IA al Día. La automatización semanal permanece habilitada.
+
+Ver `scripts/verificar_rutas_portal.py` y `.github/workflows/qa-portal-raiz.yml` para pruebas de compilación, navegación y compatibilidad.

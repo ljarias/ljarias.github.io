@@ -1,56 +1,47 @@
-# IA al Día | Observatorio educativo de Inteligencia Artificial
+# Arias-Data-Lab · Portal corporativo y ecosistema digital
 
-Sitio Jekyll y agente editorial automático para publicar un consolidado semanal de noticias de inteligencia artificial con enfoque educativo. Forma parte del ecosistema **Arias-Data-Lab**.
+**Portada principal:** https://ljarias.github.io/  
+**Identidad:** Arias-Data-Lab · *Tecnología con criterio humano.*
 
-## Qué hace
+Este repositorio público reúne el portal profesional, recursos educativos, el observatorio de inteligencia artificial y las presentaciones públicas de proyectos con código privado.
 
-- Ejecuta una búsqueda web semanal sobre noticias de IA.
-- Prioriza hechos recientes, fuentes confiables y temas con impacto social o educativo.
-- Genera una entrada Markdown con noticias, contexto, riesgos, oportunidades y preguntas para el aula.
-- Guarda un historial para reducir noticias repetidas.
-- Publica el sitio con GitHub Pages mediante GitHub Actions.
+## Arquitectura del sitio
 
-## Configuración necesaria
+| Página | Dirección |
+|---|---|
+| Portal corporativo principal | [ljarias.github.io](https://ljarias.github.io/) |
+| IA al Día — Observatorio de IA | [ljarias.github.io/ia-al-dia/](https://ljarias.github.io/ia-al-dia/) |
+| Archivo y noticias de IA | [ljarias.github.io/ia-al-dia/](https://ljarias.github.io/ia-al-dia/#ultimas) |
+| Transparencia y telemetría | [ljarias.github.io/ia-al-dia/telemetria/](https://ljarias.github.io/ia-al-dia/telemetria/) |
+| Acerca de IA al Día | [ljarias.github.io/ia-al-dia/acerca/](https://ljarias.github.io/ia-al-dia/acerca/) |
+| Banco de Problemas del Caribe | [ljarias.github.io/banco-problemas-caribe/](https://ljarias.github.io/banco-problemas-caribe/) |
+| Productos y soluciones | [ljarias.github.io/arias-data-lab/productos/](https://ljarias.github.io/arias-data-lab/productos/) |
 
-1. **Nombre del repositorio.** Para que el sitio principal de la cuenta `ljarias` quede en `https://ljarias.github.io/`, renombra este repositorio exactamente a `ljarias.github.io`. Mientras conserve el nombre actual, GitHub Pages lo tratará como un sitio de proyecto.
-2. En **Settings → Secrets and variables → Actions**, crea el secreto `OPENAI_API_KEY` con una clave de la API de OpenAI. No publiques la clave en ningún archivo.
-3. En **Settings → Pages → Build and deployment**, selecciona **GitHub Actions** como fuente.
-4. Abre la pestaña **Actions**, entra en el workflow **Publicar IA al Día** y usa **Run workflow** para ejecutar una primera edición manual.
-5. Después, el workflow está programado para ejecutarse los **domingos a las 8:00 a. m. (America/Bogota)**.
+El portal antiguo `/arias-data-lab/` sigue accesible como redirección hacia la portada raíz. El catálogo y las fichas de productos **no se han movido**.
 
-## Estructura
+## Cambios en las direcciones de IA al Día
 
-```text
-.github/workflows/publicar.yml   Automatización diaria y despliegue
-scripts/generar_resumen.py       Agente editorial
-prompts/editor_ia.md             Criterios editoriales
-data/historial.json              Control básico de duplicados
-_posts/                          Resúmenes diarios
-_layouts/                        Plantillas del sitio
-assets/css/style.css              Diseño visual
-index.md                         Portada
-acerca.md                        Acerca del proyecto
-```
+- Portada del observatorio: `/` → `/ia-al-dia/`
+- Acerca de: `/acerca/` → `/ia-al-dia/acerca/`
+- Telemetría: `/telemetria/` → `/ia-al-dia/telemetria/`
+- Ediciones fechadas: `/AAAA/MM/DD/titulo/` → `/ia-al-dia/AAAA/MM/DD/titulo/`
+- Cada una de las seis entradas previas tiene una página de redirección compatible con navegadores. El archivo original de publicaciones y la información histórica no se alteraron.
+- Infografías: los SVG continúan en `/assets/infografias/`; se actualizaron los enlaces de sus fichas al nuevo destino de las noticias.
 
-## Criterio editorial
+El generador `scripts/generar_infografia.py` guarda automáticamente `post_url` con el nuevo prefijo. Los archivos `_posts`, `data/historial.json` y `_data/consumo_api.json` continúan en sus directorios originales para que la automatización conserve su funcionamiento.
 
-El sitio diferencia entre hechos, declaraciones, estudios, proyecciones y controversias. No intenta presentar predicciones sobre la IA como hechos confirmados. Cada publicación debe incluir fuentes y una sección de aplicación educativa.
+## Publicación y mantenimiento
 
-## Costos
+La automatización editorial semanal permanece en `.github/workflows/publicar.yml`; mantiene su calendario de domingos a las 8:00 a. m. (hora de Bogotá), historial, telemetría y construcción Jekyll de GitHub Pages.
 
-GitHub Pages y GitHub Actions pueden operar sin costo en este repositorio público dentro de los límites de GitHub. El uso de la API de OpenAI y de búsqueda web genera costos según el modelo y las herramientas utilizadas.
+- **QA de identidad:** `.github/workflows/qa-identidad-adl.yml`, valida los seis SVG maestros y las referencias del sitio.
+- **QA de rutas:** `.github/workflows/qa-portal-raiz.yml`, ejecuta `scripts/verificar_rutas_portal.py`, construye el sitio Jekyll sin publicar y prueba las rutas del archivo histórico.
+- El sitio utiliza el vector aprobado de Arias-Data-Lab v4.0 en `assets/brand/logo/v4.0/`.
 
-## Seguridad
+## Privacidad
 
-Nunca agregues `OPENAI_API_KEY` al repositorio. Debe existir únicamente como secreto de GitHub Actions.
+Los repositorios `ljarias/prestamos-saas` y `ljarias/acceso-escolar-inem` son privados. El portal público ofrece fichas descriptivas sin enlazar al código interno, incluir bases de datos o divulgar información de estudiantes o clientes.
 
-## Identidad visual Arias-Data-Lab v4.0
+## Principio de operación
 
-La portada, la plantilla de artículos y el pie de página comparten el logotipo oficial aprobado, el lema **«Tecnología con criterio humano.»** y la paleta corporativa (azul `#102A43`, turquesa `#087F8C`, celeste `#D7F1F5`, amarillo `#F4B942`, blanco hielo `#F6F9FC` y gris `#475569`).
-
-- CSS complementario: `assets/css/adl-ia-al-dia.css` (se carga tras los estilos originales).
-- Logo principal: SVG multicolor aprobado en `assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg`, con 25 trazados y 13 degradados; isotipo cuadrado oficial en el mismo directorio.
-- Favicon SVG en los navegadores compatibles, con PNG de 32 px en `banco-problemas-caribe/assets/` como respaldo.
-- La migración está aplicada a la plantilla Jekyll de IA al Día, al portal Arias-Data-Lab y a las cuatro páginas del Banco de Problemas. El resto del contenido histórico permanece sin cambios.
-- El logotipo no se modifica ni redibuja; las infografías históricas tampoco se alteran.
-- La automatización semanal `.github/workflows/publicar.yml` y la generación editorial permanecen sin cambios.
+Arias-Data-Lab es el punto de entrada y paraguas institucional; IA al Día y los demás productos mantienen sus identidades y su navegación independiente. Evitar cambios de rutas sin conservar compatibilidad o enlaces históricos.

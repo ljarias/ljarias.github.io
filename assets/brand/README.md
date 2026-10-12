@@ -44,3 +44,7 @@ Para íconos, usar `ADL_isotipo-cuadrado_EDITABLE_v4.0.svg`. Conservar proporcio
 - Reconstrucción aprobada: logo SVG maestro v4.0 con 8 capas, 25 trazados editables y 13 degradados. Sin imágenes incrustadas ni elementos `<text>`.
 - La aprobación corresponde a una reconstrucción visual fiel, **no** a una recuperación exacta de las curvas y fuentes originales de un archivo fuente ya no disponible.
 - Se conservan las variantes para impresión en PDF y los PNG preparados en el kit de identidad entregado al titular; el repositorio almacena aquí las fuentes SVG.
+
+## Ubicación principal del ecosistema (12/10/2026)
+
+La entrada pública canónica de Arias-Data-Lab es **https://ljarias.github.io/**. IA al Día se ofrece como observatorio independiente en **/ia-al-dia/**, manteniendo sus publicaciones, telemetría, infografías y automatización. El antiguo portal `/arias-data-lab/` redirige a la nueva portada raíz y sus fichas de productos siguen en `/arias-data-lab/productos/`. Esta reorganización no altera los seis SVG oficiales, los datos ni los repositorios privados.
