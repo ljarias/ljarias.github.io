@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.github.com; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+<title>Carteriva · Monitor de desarrollo</title>
+<style>
+:root{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:#0b1220;color:#eaf0fb;font-size:14px;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0}header{background:#111b2e;border-bottom:1px solid #2c3e57;padding:21px clamp(16px,3vw,38px)}h1{font-size:24px;margin:0;letter-spacing:-.5px}h2{font-size:17px;margin:0 0 12px}h3{font-size:15px;margin:0 0 9px}p{line-height:1.5}a{color:#9bc7ff}a:hover{text-decoration:underline}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
+.wrap{max-width:1620px;margin:auto;padding:20px clamp(15px,3vw,32px)}.bar{display:flex;align-items:center;flex-wrap:wrap;gap:11px}.grow{flex:1}.muted{color:#a4b5d0}.small{font-size:12px}.tiny{font-size:11px}.title-sub{font-size:13px;color:#a9bbd7;margin-top:6px}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #526583;border-radius:99px;font-size:12px;font-weight:550}.ok{color:#77eac4}.warn{color:#ffd07b}.bad{color:#ffb0ba}.blue{color:#9bc7ff}.panels{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(340px,1fr);gap:17px}.panel,.metric,.phase{background:#131e31;border:1px solid #2c405d;border-radius:14px;padding:17px}.panel+.panel{margin-top:14px}.notice{background:#192b44;border-left:3px solid #5c9fed;border-radius:6px;margin:12px 0 0;padding:12px 14px;line-height:1.5}.error-notice{background:#39202e;border-left-color:#ff8399}.top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.metric b{display:block;font-size:27px;margin:7px 0}.metric .small{display:block;min-height:16px}button,input,select{font:inherit;border:1px solid #536986;border-radius:9px;padding:10px 12px;background:#192a45;color:#f3f7ff}input{min-width:160px}button{cursor:pointer;background:#2967b9;border-color:#2967b9;font-weight:650}button:hover{background:#327dda}button.subtle{background:#263a56;border-color:#4c6482}button:disabled{opacity:.6;cursor:wait}label{font-size:13px}label.check{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#d4e2fb;cursor:pointer}input[type=checkbox]{width:16px;height:16px;min-width:0;accent-color:#56d7b5}#repo{width:205px}#token{width:235px;flex:1;max-width:340px}#search{width:240px;max-width:100%}.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin:0 0 17px}.phase{padding:14px;min-width:0}.phase strong{display:block;margin:6px 0}.phase .pct{font-size:23px;font-weight:700}.phase .small{line-height:1.4}.progress{height:8px;border-radius:30px;background:#35465c;overflow:hidden;margin:7px 0}.fill{height:100%;background:#3bd6a3;transition:width .25s}.fill.amber{background:#f1bc58}.fill.slate{background:#8c9fb7}.graphbox{max-height:720px;overflow:auto;border:1px solid #30425e;border-radius:12px;background:radial-gradient(ellipse at 35% 20%,#1c314f,#0e192b 68%);min-height:450px}#graph{min-width:1100px;width:100%;display:block}#graph text{font-family:inherit;fill:#eaf0fc}.node{cursor:pointer}.node:hover circle,.node:hover rect{filter:brightness(1.2)}.edge{stroke:#597b9e;stroke-width:1.6;fill:none;opacity:.58}.edge.target{stroke-dasharray:4 7;opacity:.36}.edge.active{stroke:#5be3b7;opacity:.92;stroke-width:2.5}.node-label{font-size:12px}.detail{padding:15px;margin-top:14px;min-height:135px;background:#0e1929;border-radius:11px;overflow-wrap:anywhere}.detail p{margin:8px 0}.tasklist{max-height:770px;overflow:auto}.task{padding:12px 8px;border-bottom:1px solid #2e3f59;cursor:pointer;border-radius:8px}.task:hover,.task:focus-visible{background:#1a2c45}.task strong{font-size:13px;line-height:1.4;display:block}.task.active{outline:1px solid #64c8f8}.task .bar{justify-content:space-between;margin-top:6px}.task .progress{margin:7px 0 4px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.foot{margin:18px 0;font-size:12px;color:#a1b3cd}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#b3c3dc}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}.hidden{display:none!important}.links{display:flex;gap:13px;flex-wrap:wrap}.badge{padding:2px 7px;border:1px solid #466282;border-radius:15px;font-size:11px}.wrap-any{overflow-wrap:anywhere}.phase summary{cursor:pointer}.cirow{display:flex;align-items:center;justify-content:space-between;padding:5px 0;gap:7px}.phase-info{color:#cfdef4}.skeleton{color:#8498b8;font-size:13px}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}.info-grid div{background:#162940;padding:9px;border-radius:8px}
+@media(max-width:1100px){.panels{grid-template-columns:1fr}.top{grid-template-columns:repeat(2,minmax(0,1fr))}.phases{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:660px){.top,.grid,.info-grid{grid-template-columns:1fr}.phases{grid-template-columns:repeat(2,minmax(0,1fr))}header,.wrap{padding:15px}.panel,.metric,.phase{padding:13px}h1{font-size:21px}#token,#repo,#search{width:100%;max-width:none}.graphbox{max-height:570px}}
+@media(prefers-reduced-motion:reduce){.fill{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="grow"><h1>◈ Carteriva <span class="blue">/ Monitor de desarrollo</span></h1><div class="title-sub">Ramas, PR, criterios y CI de GitHub · seguimiento verificable</div></div>
+    <span class="pill" id="connection" role="status">● Sin conectar</span><span class="pill" id="tick">50 s</span>
+  </div>
+</header>
+<main class="wrap">
+  <section class="panel" aria-label="Conexión con GitHub">
+    <div class="bar">
+      <label for="repo">Repositorio</label><input id="repo" value="ljarias/prestamos-saas" spellcheck="false" autocomplete="off" aria-label="Propietario y nombre del repositorio">
+      <label for="token">Token de solo lectura</label><input id="token" type="password" placeholder="github_pat_…" spellcheck="false" autocomplete="off" aria-label="Token GitHub">
+      <button id="connect">Conectar / actualizar</button><button id="clear" class="subtle">Desconectar</button>
+    </div>
+    <div class="bar" style="margin-top:12px"><label class="check"><input id="remember" type="checkbox"> Conservar conexión al recargar esta pestaña</label><span class="small muted">Solo sessionStorage y únicamente si activas esta opción; nunca localStorage.</span></div>
+    <p class="small muted" style="margin:9px 0 0">Sitio estático y público; <strong>los datos del repositorio privado solo los ve quien conecte un token autorizado</strong>. El token se envía exclusivamente a <code>api.github.com</code>. No pegues el token en otra página ni compartas capturas que lo muestren. El almacenamiento de sesión puede ser leído por otros scripts alojados en el mismo dominio; desmarca la opción si prefieres máxima privacidad.</p>
+    <div class="notice" id="status" role="status" aria-live="polite">Conecta GitHub para obtener datos actuales. No se atribuye actividad sin evidencia.</div>
+  </section>
+  <section class="top" aria-label="Resumen GitHub">
+    <div class="metric"><span class="muted small">PR abiertos</span><b id="m-pr">—</b><span class="small muted">No implica cierre de fase</span></div>
+    <div class="metric"><span class="muted small">Ramas detectadas</span><b id="m-branches">—</b><span class="small muted">Incluye ramas sin PR</span></div>
+    <div class="metric"><span class="muted small">Pruebas CI del HEAD declarado</span><b id="m-ci">—</b><span class="small muted">Solo ejecución correspondiente a SHA actual</span></div>
+    <div class="metric"><span class="muted small">Última consulta</span><b id="m-time" style="font-size:19px">—</b><span class="small muted">Cada 50 s si está abierto</span></div>
+  </section>
+  <section class="panel" style="margin-bottom:16px" aria-label="Actividad principal">
+    <h2>Frente declarado y actividad GitHub</h2>
+    <div id="active-summary" class="muted">Se leerá <code>docs/seguimiento/estado.json</code> de la rama de seguimiento, cuando exista y sea accesible. La fecha del registro permite reconocer si está desactualizado.</div>
+  </section>
+  <section id="phases" class="phases" aria-label="Avance de las fases"><div class="phase muted">Conecta para calcular los avances verificables.</div></section>
+  <div class="panels">
+    <section class="panel">
+      <h2>Grafo de ramas y solicitudes de integración</h2>
+      <div class="bar" style="margin:0 0 10px">
+        <label for="filter">Vista</label>
+        <select id="filter"><option value="all">Todas las ramas</option><option value="open">Con PR abierto</option><option value="orphan">Sin PR</option><option value="recent">Actividad reciente</option></select>
+        <input id="search" type="search" placeholder="Buscar rama o PR" aria-label="Filtrar ramas y pull requests">
+      </div>
+      <div class="legend" style="margin-bottom:9px"><span><span class="dot" style="background:#60a5fa"></span>Rama</span><span><span class="dot" style="background:#f2bd5b"></span>PR abierto</span><span><span class="dot" style="background:#4ad3a1"></span>PR fusionado</span><span><span class="dot" style="background:#718096"></span>PR cerrado</span><span><span class="dot" style="background:#49dfc8"></span>Rama declarada</span></div>
+      <div class="graphbox"><svg id="graph" viewBox="0 0 1100 450" height="450" role="img" aria-label="Grafo interactivo de ramas y pull requests"><text x="35" y="60">Conecta el repositorio para cargar el grafo.</text></svg></div>
+      <p class="small muted">Las líneas unen un PR con sus ramas de origen y destino; no reconstruyen el árbol genealógico exacto de Git. <strong>Un commit reciente no demuestra que alguien esté trabajando en vivo.</strong> Selecciona cualquier nodo para ver métricas y pruebas.</p>
+      <div id="detail" class="detail" aria-live="polite">Selecciona una rama o un PR.</div>
+    </section>
+    <section class="panel">
+      <h2>PR y tareas medibles</h2>
+      <div class="bar" style="margin-bottom:10px"><label for="phase">Filtrar por fase</label><select id="phase"><option value="all">Todas</option><option value="1">Fase 1</option><option value="2">Fase 2</option><option value="3">Fase 3</option><option value="4">Fase 4</option><option value="5">Fase 5</option></select></div>
+      <p class="small muted">Porcentaje de PR = casillas <code>[x]</code> / casillas <code>[ ]</code> y <code>[x]</code> de su descripción. La rama toma exclusivamente los PR de los que es <strong>origen</strong>; no se suman PR de otras ramas. Sin checklist se indica «Sin medición».</p>
+      <div id="tasks" class="tasklist"></div>
+    </section>
+  </div>
+  <section class="panel" style="margin-top:17px">
+    <h2>Cómo leer los indicadores</h2>
+    <div class="grid small">
+      <p><strong>Avance documental del PR y la rama:</strong> expresa casillas marcadas sobre casillas totales. No mide automáticamente porcentaje de código, tiempo invertido ni calidad de pruebas.</p>
+      <p><strong>Cierre de fase:</strong> cuando existe un archivo de criterios, solo cuenta requisitos con estado <code>verificado</code>/<code>accepted</code>/<code>closed</code>. <code>implemented</code> o <code>qa</code> se muestran aparte y no equivalen a cierre.</p>
+      <p><strong>Pruebas CI:</strong> el estado se asocia con el SHA actual de la rama o PR. Una ejecución verde no demuestra por sí sola que una fase sea apta para producción.</p>
+      <p><strong>Conexión:</strong> reintenta cada 50 segundos y al regresar internet o reabrir la pestaña. Las actualizaciones no continúan mientras el navegador está cerrado; nunca se ejecutan tareas de desarrollo desde este tablero.</p>
+    </div>
+  </section>
+</main>
+<footer class="wrap foot">Monitor Carteriva · GitHub Pages · Solo consultas de lectura a GitHub REST API · No se publica el repositorio privado ni un token en el HTML.</footer>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const escapeHtml = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const escapeSvg = escapeHtml;
+const span = (v,cls='') => `<span class="${cls}">${escapeHtml(v)}</span>`;
+const fmt = d => { if(!d) return 'Sin fecha comprobada';const t=new Date(d);return Number.isNaN(t.getTime())?'Fecha desconocida':t.toLocaleString('es-CO',{dateStyle:'medium',timeStyle:'short'}); };
+const pct = (d,t) => t>0 ? Math.round(100*d/t) : null;
+const progressHtml = (done,total,label='avance documental') => {
+  const percent=pct(done,total);
+  return percent===null?`<span class="muted">Sin medición</span>`:`<b>${percent}%</b> <span class="muted small">(${done}/${total} ${escapeHtml(label)})</span><div class="progress" role="progressbar" aria-label="${escapeHtml(label)}" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100"><div class="fill" style="width:${percent}%"></div></div>`;
+};
+let branches=[], prs=[], runs=[], ciAvailable=false, tracker=null, token='', loaded=false, busy=false, connected=false;
+let nextDue=0,lastSync=null,knownNames=new Set(),selected='',commits=new Map(),apiErrors=[], generation=0;
+const INTERVAL=50000;
+const repoName=()=>String($('repo').value||'').trim();
+const validRepo=()=>/^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(repoName());
+const root=()=>`https://api.github.com/repos/${repoName()}`;
+const ghUrl=name=>`https://github.com/${repoName()}/tree/${name.split('/').map(encodeURIComponent).join('/')}`;
+const prUrl=p=>p.html_url||`https://github.com/${repoName()}/pull/${Number(p.number)||0}`;
+const storageKey='carteriva-monitor-session-v2';
+const infoColor=kind=>kind==='success'?'ok':kind==='failure'?'bad':kind==='pending'?'warn':'muted';
+const ciLabel = kind=>({success:'Aprobado',failure:'Falló',pending:'En curso / pendiente',unknown:'Sin CI para HEAD',unavailable:'Sin acceso a Actions'})[kind]||'Sin datos';
+function checklist(body){const rows=String(body||'').match(/^\s*[-*]\s*\[([xX ])\]/gm)||[];const done=rows.filter(v=>/\[[xX]\]/.test(v)).length;return {done,total:rows.length,pct:pct(done,rows.length)};}
+function aggregate(list){const all=list.map(p=>checklist(p.body));return {done:all.reduce((a,c)=>a+c.done,0),total:all.reduce((a,c)=>a+c.total,0)};}
+function phasesFromText(str){
+ const input=String(str||''); const ids=new Set();let m;
+ const range=/\b(?:fases?|f)\s*[-_: ]*([1-5])(?:\s*[-–—/]\s*(?:f(?:ase)?\s*)?([1-5]))?/gi;
+ while((m=range.exec(input))!==null){let a=Number(m[1]),b=m[2]?Number(m[2]):a;if(Math.abs(b-a)<=4){for(let i=Math.min(a,b);i<=Math.max(a,b);i++)ids.add(i);}}
+ const joins=/\b(?:fases?|f)\s*([1-5])\s*(?:,|\by\b|&)\s*([1-5])/gi;
+ while((m=joins.exec(input))!==null){ids.add(Number(m[1]));ids.add(Number(m[2]));}
+ return [...ids].sort((a,b)=>a-b);
+}
+function phasesOfPr(p){return phasesFromText(`${p.title||''} ${p.head?.ref||''}`);}
+function headPrs(b){return prs.filter(p=>p.head?.ref===b.name);}
+function statusPr(p){return p.merged_at?'Fusionado':p.state==='open'?(p.draft?'Borrador':'Abierto'):'Cerrado';}
+function defaultNext(t=INTERVAL){nextDue=Date.now()+t;}
+function storeToken(){try{if($('remember').checked && token){sessionStorage.setItem(storageKey,JSON.stringify({repo:repoName(),token}));}else sessionStorage.removeItem(storageKey);}catch(e){$('status').textContent='El navegador impide guardar la sesión. La conexión seguirá activa hasta cerrar esta página.';}}
+function clearSession(){try{sessionStorage.removeItem(storageKey);}catch(e){}}
+function restoreSession(){try{const raw=sessionStorage.getItem(storageKey);if(!raw)return false;const v=JSON.parse(raw);if(!v?.token||!v?.repo)return false;token=v.token;$('repo').value=v.repo;$('remember').checked=true;return true;}catch(e){clearSession();return false;}}
+function errorMessage(r){if(r.status===401)return 'Token inválido o revocado (401)';if(r.status===403)return (r.headers.get('x-ratelimit-remaining')==='0'?'Límite de GitHub alcanzado':'Acceso denegado o límite secundario (403)');if(r.status===404)return 'Ruta no encontrada o repositorio privado sin permiso (404)';if(r.status===429)return 'Demasiadas peticiones a GitHub (429)';return `Error HTTP ${r.status}`;}
+async function api(url){
+ const target=new URL(url);if(target.origin!=='https://api.github.com')throw Error('Solo se permiten consultas a api.github.com');
+ const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),25000);
+ try{
+ const r=await fetch(target.href,{method:'GET',headers:{'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(token?{'Authorization':'Bearer '+token}:{})},signal:controller.signal,cache:'no-store',redirect:'follow'});
+ if(!r.ok){const msg=errorMessage(r),error=new Error(msg);error.status=r.status;error.reset=r.headers.get('x-ratelimit-reset');throw error;}
+ return await r.json();
+ }catch(e){if(e.name==='AbortError')throw Error('Tiempo de espera agotado');throw e;}finally{clearTimeout(timer);}
+}
+async function paged(path,max=12){const rows=[];for(let n=1;n<=max;n++){const sep=path.includes('?')?'&':'?';let response=await api(`${root()}${path}${sep}per_page=100&page=${n}`);if(!Array.isArray(response))throw Error('Respuesta inesperada de GitHub');rows.push(...response);if(response.length<100)return {items:rows,truncated:false};}return {items:rows,truncated:true};}
+function decodeUtf8Base64(value){const binary=atob(String(value||'').replace(/\s/g,''));const bytes=Uint8Array.from(binary,ch=>ch.charCodeAt(0));return new TextDecoder().decode(bytes);}
+async function readTracker(){
+ const path=`${root()}/contents/docs/seguimiento/estado.json?ref=${encodeURIComponent('monitor/seguimiento-ramas')}`;
+ try{const obj=await api(path);if(!obj?.content)return {value:null,error:'Archivo de seguimiento no disponible'};return {value:JSON.parse(decodeUtf8Base64(obj.content)),error:null};}
+ catch(e){return {value:null,error:`No se pudo leer el registro de ramas (${e.message})`};}
+}
+async function readActions(){try{const d=await api(root()+'/actions/runs?per_page=100');return {items:Array.isArray(d.workflow_runs)?d.workflow_runs:[],available:true,error:null};}catch(e){return {items:[],available:false,error:`Actions: ${e.message}`};}}
+function ciForSha(sha){
+ if(!ciAvailable)return {kind:'unavailable',runs:[]};if(!sha)return {kind:'unknown',runs:[]};
+ const matches=runs.filter(r=>r.head_sha===sha).sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+ const names=new Set();const newest=matches.filter(r=>{if(names.has(r.name))return false;names.add(r.name);return true;});
+ if(!newest.length)return {kind:'unknown',runs:[]};
+ let kind=newest.some(r=>r.status!=='completed')?'pending':newest.some(r=>r.conclusion!=='success')?'failure':'success';
+ return {kind,runs:newest};
+}
+function ciText(sha){let ci=ciForSha(sha);return `<span class="${infoColor(ci.kind)}">● ${ciLabel(ci.kind)}</span>${ci.runs.length?` <span class="muted small">(${ci.runs.length} workflow${ci.runs.length>1?'s':''})</span>`:''}`;}
+function phaseSummary(){const phaseData=Array.isArray(tracker?.phases)?tracker.phases:[];
+ $('phases').innerHTML=Array.from({length:5},(_,i)=>{
+ const num=i+1;const formal=phaseData.find(p=>Number(p.id)===num),requirements=Array.isArray(formal?.requirements)?formal.requirements:[];
+ const completed=requirements.filter(r=>['verified','verificado','accepted','aprobado','closed','cerrado'].includes(String(r.state||'').toLowerCase())).length;
+ const implemented=requirements.filter(r=>['implemented','implementado'].includes(String(r.state||'').toLowerCase())).length;
+ const qa=requirements.filter(r=>['qa','en_qa','testing','en pruebas'].includes(String(r.state||'').toLowerCase())).length;
+ const associated=prs.filter(p=>phasesOfPr(p).includes(num));const doc=aggregate(associated);
+ return `<div class="phase"><div class="small blue">FASE ${num}</div><strong>${escapeHtml(formal?.title||`Seguimiento ${num}`)}</strong>
+ <div class="pct">${requirements.length?pct(completed,requirements.length)+'%':doc.total?pct(doc.done,doc.total)+'%':'—'}</div>
+ ${requirements.length?`<div class="small phase-info">${completed}/${requirements.length} criterios verificados</div><div class="progress"><div class="fill" style="width:${pct(completed,requirements.length)}%"></div></div><div class="small muted">${implemented} implementados · ${qa} en QA</div>`:
+ doc.total?`<div class="small phase-info">${doc.done}/${doc.total} casillas de PR</div><div class="progress"><div class="fill amber" style="width:${pct(doc.done,doc.total)}%"></div></div><div class="small muted">Solo progreso documental</div>`:'<div class="small muted">Sin criterios medibles</div>'}
+ <div class="small muted" style="margin-top:5px">${escapeHtml(formal?.state||'Sin cierre confirmado')} · ${associated.length} PR</div></div>`;
+ }).join('');
+}
+function activeBranch(){return tracker?.active_branch||null;}
+function recentBranch(){const p=prs.filter(p=>p.head?.ref).sort((a,b)=>new Date(b.updated_at||0)-new Date(a.updated_at||0))[0];return p?.head?.ref||null;}
+function drawActive(){const declared=activeBranch(),b=branches.find(x=>x.name===declared),fallback=recentBranch();const name=declared||fallback;
+ if(!name){$('active-summary').textContent='GitHub no dispone de una rama declarada como activa ni de un PR con actividad reciente.';return;}
+ const related=prs.filter(p=>p.head?.ref===name),doc=aggregate(related),ci=ciForSha(b?.commit?.sha||related[0]?.head?.sha),date=tracker?.updated_at||null;
+ const tag=declared?'Rama declarada en archivo de seguimiento':'PR con actualización más reciente (no implica actividad en vivo)';
+ const task=declared?tracker.active_task||'Sin tarea declarada':'No hay tarea activa declarada';
+ $('active-summary').innerHTML=`<div class="bar"><span class="pill ${declared?'ok':'warn'}">${escapeHtml(tag)}</span><strong class="wrap-any">${escapeHtml(name)}</strong></div>
+ <div class="info-grid"><div><span class="muted small">Tarea registrada</span><div>${escapeHtml(task)}</div></div><div><span class="muted small">Fecha de declaración</span><div>${declared?escapeHtml(date||'No informada'):'Sin declaración'}</div></div><div><span class="muted small">Progreso documental de la rama</span><div>${doc.total?`${pct(doc.done,doc.total)}% (${doc.done}/${doc.total} casillas)`:'Sin medición propia'}</div></div><div><span class="muted small">CI del HEAD</span><div>${ciText(b?.commit?.sha||related[0]?.head?.sha)}</div></div></div>
+ <div class="links small" style="margin-top:10px">${b?`<a target="_blank" rel="noopener noreferrer" href="${escapeHtml(ghUrl(name))}">Abrir rama ↗</a>`:'<span class="bad">Rama declarada no encontrada</span>'}${declared?`<a target="_blank" rel="noopener noreferrer" href="https://github.com/${escapeHtml(repoName())}/blob/monitor/seguimiento-ramas/docs/seguimiento/estado.json">Ver registro ↗</a>`:''}</div>
+ <p class="small muted" style="margin:10px 0 0">La declaración puede estar desactualizada. El tablero no detecta quién está escribiendo código en este instante.</p>`;
+ $('m-ci').innerHTML=`<span class="${infoColor(ci.kind)}" style="font-size:16px">${escapeHtml(ciLabel(ci.kind))}</span>`;
+}
+function detailPr(p){const c=checklist(p.body),ci=ciForSha(p.head?.sha);return `<h3>${escapeHtml(p.title)}</h3><p class="muted">PR #${p.number} · ${escapeHtml(statusPr(p))} · ${escapeHtml(p.head?.ref||'?')} → ${escapeHtml(p.base?.ref||'?')}</p><p><b>Avance del PR:</b> ${progressHtml(c.done,c.total,'casillas del PR')}</p><p><b>Fases:</b> ${phasesOfPr(p).length?phasesOfPr(p).map(v=>'F'+v).join(', '):'Sin clasificar'}</p><p><b>Pruebas en SHA actual:</b> ${ciText(p.head?.sha)}</p>${ci.runs.slice(0,5).map(r=>`<div class="cirow small"><span>${escapeHtml(r.name)} · ${escapeHtml(r.conclusion||r.status)}</span><a href="${escapeHtml(r.html_url||'#')}" target="_blank" rel="noopener noreferrer">Ver prueba ↗</a></div>`).join('')}<p class="muted">Última actualización: ${fmt(p.updated_at)}</p><a href="${escapeHtml(prUrl(p))}" target="_blank" rel="noopener noreferrer">Ver PR en GitHub ↗</a>`;}
+function detailBranch(b){const list=headPrs(b),c=aggregate(list),ci=ciForSha(b.commit?.sha),cm=commits.get(b.commit?.sha);return `<h3 class="wrap-any">Rama: ${escapeHtml(b.name)} ${activeBranch()===b.name?'<span class="badge ok">Declarada activa</span>':''}</h3><p class="muted">HEAD: <code>${escapeHtml((b.commit?.sha||'').slice(0,14))}</code> · Último commit: ${fmt(cm?.date)}</p>${cm?.message?`<p>${escapeHtml(cm.message)}</p>`:''}<p><b>Avance propio:</b> ${progressHtml(c.done,c.total,'casillas de PR originados aquí')}</p><p><b>CI del HEAD:</b> ${ciText(b.commit?.sha)}</p>${ci.runs.slice(0,6).map(r=>`<div class="cirow small"><span>${escapeHtml(r.name)} · ${escapeHtml(r.conclusion||r.status)}</span><a href="${escapeHtml(r.html_url||'#')}" target="_blank" rel="noopener noreferrer">Ver ↗</a></div>`).join('')}<p class="small muted">PR originados aquí: ${list.length?list.map(p=>`<a target="_blank" rel="noopener noreferrer" href="${escapeHtml(prUrl(p))}">#${p.number}</a>`).join(' · '):'Ninguno (sin medición documental)'}</p><a target="_blank" rel="noopener noreferrer" href="${escapeHtml(ghUrl(b.name))}">Abrir rama en GitHub ↗</a>`;}
+function selectedDetail(){if(!selected)return;const [kind,...rest]=selected.split(':'),value=rest.join(':');const item=kind==='b'?branches.find(b=>b.name===value):prs.find(p=>String(p.number)===value);if(item){$('detail').innerHTML=kind==='b'?detailBranch(item):detailPr(item);}else{$('detail').textContent='El elemento seleccionado ya no está en la consulta actual.';}}
+function visibleItems(){
+ const q=$('search').value.toLowerCase().trim(),mode=$('filter').value;
+ const selectedPrs=prs.filter(p=>!q||`${p.title||''} ${p.number} ${p.head?.ref||''} ${p.base?.ref||''}`.toLowerCase().includes(q));
+ const bs=branches.filter(b=>{
+  const matches=!q||b.name.toLowerCase().includes(q)||selectedPrs.some(p=>p.head?.ref===b.name||p.base?.ref===b.name);
+  if(!matches)return false;
+  const related=prs.filter(p=>p.head?.ref===b.name);
+  if(mode==='open')return related.some(p=>p.state==='open');
+  if(mode==='orphan')return related.length===0;
+  if(mode==='recent'){const date=commits.get(b.commit?.sha)?.date||related[0]?.updated_at;return date&&Date.now()-new Date(date).getTime()<=7*86400000;}
+  return true;
+ });
+ const shownNames=new Set(bs.map(b=>b.name));
+ const ps=selectedPrs.filter(p=>mode==='all'||(mode==='open'&&p.state==='open'&&shownNames.has(p.head?.ref))||(mode==='recent'&&shownNames.has(p.head?.ref)));
+ return {bs,ps:mode==='orphan'?[]:ps};
+}
+function draw(){const {bs,ps}=visibleItems(),B=bs.length,P=ps.length,step=62,H=Math.max(450,125+Math.max(B,P)*step),W=1250,yB=new Map(bs.map((b,i)=>[b.name,90+i*step])),yP=new Map(ps.map((p,i)=>[p.number,90+i*step]));
+ $('graph').setAttribute('viewBox',`0 0 ${W} ${H}`);$('graph').setAttribute('height',String(H));let out=`<text x="34" y="37" font-size="16">RAMAS (${B})</text><text x="700" y="37" font-size="16">PULL REQUESTS (${P})</text>`;
+ for(const p of ps){let from=yB.get(p.head?.ref),to=yB.get(p.base?.ref),y=yP.get(p.number),active=p.head?.ref===activeBranch();if(from!==undefined)out+=`<path class="edge ${active?'active':''}" d="M 510 ${from} C 590 ${from}, 625 ${y}, 690 ${y}"/>`;if(to!==undefined)out+=`<path class="edge target" d="M 690 ${y} C 610 ${y}, 585 ${to}, 510 ${to}"/>`;}
+ bs.forEach(b=>{const y=yB.get(b.name),head=b.commit?.sha,ci=ciForSha(head),active=b.name===activeBranch(),m=aggregate(headPrs(b)),label=b.name.length>51?b.name.slice(0,48)+'…':b.name;
+  out+=`<g class="node" data-b="${escapeSvg(b.name)}" tabindex="0" role="button" aria-label="Rama ${escapeSvg(b.name)}"><circle cx="55" cy="${y}" r="${active?17:13}" fill="${active?'#1aaf9d':'#3079da'}" stroke="${active?'#b6fff1':'#8bc3fc'}" stroke-width="${active?4:2}"/><text x="84" y="${y-4}" class="node-label">${escapeSvg(label)}</text><text x="84" y="${y+13}" font-size="11" fill="#9db4d4">${m.total?`${pct(m.done,m.total)}% · ${m.done}/${m.total}`:'Sin medición'} · ${escapeSvg(ciLabel(ci.kind))}</text></g>`;
+ });
+ ps.forEach(p=>{const y=yP.get(p.number),ci=ciForSha(p.head?.sha),data=checklist(p.body),label=String(p.title||'').length>53?String(p.title).slice(0,50)+'…':p.title,color=p.merged_at?'#34d399':p.state==='open'?'#f2bd5b':'#718096';
+  out+=`<g class="node" data-p="${p.number}" tabindex="0" role="button" aria-label="Pull request ${p.number}"><circle cx="716" cy="${y}" r="17" fill="${color}" stroke="#e5eeff" stroke-width="2"/><text x="716" y="${y+4}" font-size="11" text-anchor="middle" style="fill:#0b1220;font-weight:800">${p.number}</text><text x="744" y="${y-3}" class="node-label">${escapeSvg(label)}</text><text x="744" y="${y+14}" font-size="11" fill="#aec0de">${data.total?`${data.pct}% · ${data.done}/${data.total}`:'Sin medición'} · ${escapeSvg(statusPr(p))} · ${escapeSvg(ciLabel(ci.kind))}</text></g>`;
+ });
+ if(!bs.length&&!ps.length)out+='<text x="40" y="90">Sin resultados con estos filtros.</text>';
+ $('graph').innerHTML=out;
+ document.querySelectorAll('#graph [data-b],#graph [data-p]').forEach(node=>{
+ const action=()=>{selected=node.hasAttribute('data-b')?'b:'+node.getAttribute('data-b'):'p:'+node.getAttribute('data-p');selectedDetail();};node.addEventListener('click',action);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();action();}});
+ });
+}
+function taskList(){const phase=$('phase').value,q=$('search').value.toLowerCase().trim();let listed=prs.filter(p=>(phase==='all'||phasesOfPr(p).includes(Number(phase)))&&(!q||`${p.title||''} ${p.head?.ref||''} ${p.number}`.toLowerCase().includes(q)));
+ $('tasks').innerHTML=listed.length?listed.map(p=>{const check=checklist(p.body),cls=p.state==='open'?'warn':p.merged_at?'ok':'muted',ci=ciForSha(p.head?.sha);return `<div class="task" tabindex="0" role="button" data-task="${p.number}" aria-label="Detalles del PR ${p.number}"><strong>#${p.number} ${escapeHtml(p.title)}</strong><div class="small muted wrap-any">${escapeHtml(p.head?.ref||'?')} · <span class="${cls}">${escapeHtml(statusPr(p))}</span> · ${fmt(p.updated_at)}</div><div class="bar small"><span>${check.total?`${check.done}/${check.total} criterios`:'Sin checklist medible'}</span><b>${check.pct===null?'—':check.pct+'%'}</b></div>${check.pct===null?'':`<div class="progress"><div class="fill" style="width:${check.pct}%"></div></div>`}<div class="small ${infoColor(ci.kind)}">CI HEAD: ${escapeHtml(ciLabel(ci.kind))} · ${phasesOfPr(p).length?phasesOfPr(p).map(n=>'F'+n).join(', '):'Sin fase clasificada'}</div></div>`;}).join(''):'<div class="muted">No hay PR asociados a esta selección.</div>';
+ document.querySelectorAll('[data-task]').forEach(item=>{const select=()=>{selected='p:'+item.dataset.task;selectedDetail();$('detail').scrollIntoView({block:'nearest',behavior:'smooth'});};item.addEventListener('click',select);item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select();}});});
+}
+function render(){if(!loaded)return;$('m-pr').textContent=prs.filter(p=>p.state==='open').length;$('m-branches').textContent=branches.length;$('m-time').textContent=lastSync?lastSync.toLocaleTimeString('es-CO'):'—';phaseSummary();drawActive();draw();taskList();selectedDetail();}
+async function commitDetails(gen){const candidates=[...new Set(branches.map(b=>b.commit?.sha).filter(x=>x&&!commits.has(x)))].slice(0,14);let cursor=0;
+ async function worker(){while(cursor<candidates.length&&gen===generation&&connected){const sha=candidates[cursor++];try{const data=await api(`${root()}/commits/${encodeURIComponent(sha)}`);if(gen!==generation)return;commits.set(sha,{date:data.commit?.committer?.date||data.commit?.author?.date||null,message:data.commit?.message?.split('\n')[0]||''});}catch(e){commits.set(sha,{date:null,message:'No disponible'});}}}
+ await Promise.all(Array.from({length:3},()=>worker()));if(gen===generation&&loaded){draw();selectedDetail();}
+}
+async function refresh(force=false){if(busy||!connected)return;busy=true;const gen=++generation;$('connection').textContent='● Actualizando';
+ try{
+ if(!validRepo())throw Error('Repositorio inválido; utiliza propietario/nombre');
+ const [branchResponse,prResponse,actionsResponse,trackerResponse]=await Promise.all([paged('/branches'),paged('/pulls?state=all&sort=updated&direction=desc'),readActions(),readTracker()]);
+ if(gen!==generation)return;
+ const names=new Set(branchResponse.items.map(b=>b.name));const fresh=loaded?[...names].filter(n=>!knownNames.has(n)):[];
+ branches=branchResponse.items;prs=prResponse.items;runs=actionsResponse.items;ciAvailable=actionsResponse.available;tracker=trackerResponse.value;knownNames=names;lastSync=new Date();loaded=true;apiErrors=[actionsResponse.error,trackerResponse.error].filter(Boolean);
+ $('connection').innerHTML='<span class="ok">● Conectado</span>';
+ const warnings=(branchResponse.truncated||prResponse.truncated)?' · <span class="warn">Consulta paginada incompleta</span>':'';
+ $('status').classList.remove('error-notice');$('status').innerHTML=`<b>${branches.length}</b> ramas · <b>${prs.length}</b> PR · actualizado ${lastSync.toLocaleString('es-CO')}${warnings}${fresh.length?`<p class="ok small">Ramas nuevas desde la última consulta: ${escapeHtml(fresh.join(', '))}</p>`:''}${apiErrors.length?`<p class="warn small">${escapeHtml(apiErrors.join(' · '))}</p>`:''}`;
+ render();void commitDetails(gen);defaultNext();
+ }catch(e){if(gen!==generation)return;let message=e.message||'Error no identificado';if(!navigator.onLine)message='Sin internet; se mantienen los últimos datos descargados';$('connection').innerHTML='<span class="bad">● Sin actualización</span>';$('status').classList.add('error-notice');$('status').textContent=`${message}. ${loaded?'La información visible podría estar desactualizada.':'No se pudieron obtener datos todavía.'}`;
+ if(e.status===401){token='';clearSession();connected=false; $('remember').checked=false; $('status').textContent='GitHub rechazó el token (401). La credencial temporal se borró: pega un token válido para reconectar.';}
+ if((e.status===403||e.status===429)&&e.reset){let ms=Number(e.reset)*1000-Date.now();defaultNext(Math.max(INTERVAL,Math.min(ms||INTERVAL,3600000)));}else defaultNext();
+ }finally{busy=false;}
+}
+function connect(){token=$('token').value.trim()||token;$('token').value='';if(!validRepo()){$('status').textContent='Formato de repositorio inválido. Ejemplo: ljarias/prestamos-saas';return;}const wasConnected=connected;connected=true;storeToken();if(!wasConnected){knownNames.clear();commits.clear();}defaultNext();void refresh(true);}
+function disconnect(){generation++;connected=false;token='';clearSession();$('remember').checked=false;$('token').value='';branches=[];prs=[];runs=[];tracker=null;loaded=false;busy=false;ciAvailable=false;selected='';knownNames.clear();commits.clear();['m-pr','m-branches','m-ci','m-time'].forEach(id=>$(id).textContent='—');$('connection').textContent='● Desconectado';$('status').classList.remove('error-notice');$('status').textContent='Conexión cerrada. Se borró el token de la sesión y no se hacen consultas.';$('graph').innerHTML='<text x="40" y="90">Desconectado.</text>';$('tasks').innerHTML='';$('phases').innerHTML='<div class="phase muted">Conecta para leer los requisitos.</div>';$('detail').textContent='Selecciona una rama o un PR.';$('active-summary').textContent='Sin conexión.';}
+$('connect').addEventListener('click',connect);$('clear').addEventListener('click',disconnect);
+$('remember').addEventListener('change',storeToken);$('filter').addEventListener('change',draw);$('search').addEventListener('input',()=>{draw();taskList();});$('phase').addEventListener('change',taskList);
+$('repo').addEventListener('change',()=>{if(loaded){disconnect();$('status').textContent='Repositorios distintos requieren una nueva conexión.';}});
+window.addEventListener('online',()=>{if(connected&&!busy)void refresh(true);});window.addEventListener('offline',()=>{if(connected){$('connection').innerHTML='<span class="warn">● Sin internet</span>';$('status').textContent='Sin internet. Se conservan los últimos resultados y la conexión de esta sesión.';}});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&connected&&!busy&&Date.now()>nextDue)void refresh();});
+setInterval(()=>{if(!connected)return;const remaining=Math.max(0,Math.ceil((nextDue-Date.now())/1000));$('tick').textContent=`Actualización en ${remaining} s`;if(!busy&&Date.now()>=nextDue)void refresh();},1000);
+if(restoreSession()){connected=true;defaultNext();void refresh();}else{$('tick').textContent='50 s';}
+</script>
+</body></html>
