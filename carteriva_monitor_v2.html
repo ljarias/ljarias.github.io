@@ -4,14 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.github.com; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-d+OraPJtn6Utdtz8IjlhkdHdaEHLMx0jTysnBzmr5zg='; style-src 'unsafe-inline'; connect-src https://api.github.com; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
 <title>Carteriva · Monitor de desarrollo</title>
 <style>
 :root{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:#0b1220;color:#eaf0fb;font-size:14px;color-scheme:dark}
 *{box-sizing:border-box}body{margin:0}header{background:#111b2e;border-bottom:1px solid #2c3e57;padding:21px clamp(16px,3vw,38px)}h1{font-size:24px;margin:0;letter-spacing:-.5px}h2{font-size:17px;margin:0 0 12px}h3{font-size:15px;margin:0 0 9px}p{line-height:1.5}a{color:#9bc7ff}a:hover{text-decoration:underline}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
-.wrap{max-width:1620px;margin:auto;padding:20px clamp(15px,3vw,32px)}.bar{display:flex;align-items:center;flex-wrap:wrap;gap:11px}.grow{flex:1}.muted{color:#a4b5d0}.small{font-size:12px}.tiny{font-size:11px}.title-sub{font-size:13px;color:#a9bbd7;margin-top:6px}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #526583;border-radius:99px;font-size:12px;font-weight:550}.ok{color:#77eac4}.warn{color:#ffd07b}.bad{color:#ffb0ba}.blue{color:#9bc7ff}.panels{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(340px,1fr);gap:17px}.panel,.metric,.phase{background:#131e31;border:1px solid #2c405d;border-radius:14px;padding:17px}.panel+.panel{margin-top:14px}.notice{background:#192b44;border-left:3px solid #5c9fed;border-radius:6px;margin:12px 0 0;padding:12px 14px;line-height:1.5}.error-notice{background:#39202e;border-left-color:#ff8399}.top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.metric b{display:block;font-size:27px;margin:7px 0}.metric .small{display:block;min-height:16px}button,input,select{font:inherit;border:1px solid #536986;border-radius:9px;padding:10px 12px;background:#192a45;color:#f3f7ff}input{min-width:160px}button{cursor:pointer;background:#2967b9;border-color:#2967b9;font-weight:650}button:hover{background:#327dda}button.subtle{background:#263a56;border-color:#4c6482}button:disabled{opacity:.6;cursor:wait}label{font-size:13px}label.check{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#d4e2fb;cursor:pointer}input[type=checkbox]{width:16px;height:16px;min-width:0;accent-color:#56d7b5}#repo{width:205px}#token{width:235px;flex:1;max-width:340px}#search{width:240px;max-width:100%}.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin:0 0 17px}.phase{padding:14px;min-width:0}.phase strong{display:block;margin:6px 0}.phase .pct{font-size:23px;font-weight:700}.phase .small{line-height:1.4}.progress{height:8px;border-radius:30px;background:#35465c;overflow:hidden;margin:7px 0}.fill{height:100%;background:#3bd6a3;transition:width .25s}.fill.amber{background:#f1bc58}.fill.slate{background:#8c9fb7}.graphbox{max-height:720px;overflow:auto;border:1px solid #30425e;border-radius:12px;background:radial-gradient(ellipse at 35% 20%,#1c314f,#0e192b 68%);min-height:450px}#graph{min-width:1100px;width:100%;display:block}#graph text{font-family:inherit;fill:#eaf0fc}.node{cursor:pointer}.node:hover circle,.node:hover rect{filter:brightness(1.2)}.edge{stroke:#597b9e;stroke-width:1.6;fill:none;opacity:.58}.edge.target{stroke-dasharray:4 7;opacity:.36}.edge.active{stroke:#5be3b7;opacity:.92;stroke-width:2.5}.node-label{font-size:12px}.detail{padding:15px;margin-top:14px;min-height:135px;background:#0e1929;border-radius:11px;overflow-wrap:anywhere}.detail p{margin:8px 0}.tasklist{max-height:770px;overflow:auto}.task{padding:12px 8px;border-bottom:1px solid #2e3f59;cursor:pointer;border-radius:8px}.task:hover,.task:focus-visible{background:#1a2c45}.task strong{font-size:13px;line-height:1.4;display:block}.task.active{outline:1px solid #64c8f8}.task .bar{justify-content:space-between;margin-top:6px}.task .progress{margin:7px 0 4px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.foot{margin:18px 0;font-size:12px;color:#a1b3cd}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#b3c3dc}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}.hidden{display:none!important}.links{display:flex;gap:13px;flex-wrap:wrap}.badge{padding:2px 7px;border:1px solid #466282;border-radius:15px;font-size:11px}.wrap-any{overflow-wrap:anywhere}.phase summary{cursor:pointer}.cirow{display:flex;align-items:center;justify-content:space-between;padding:5px 0;gap:7px}.phase-info{color:#cfdef4}.skeleton{color:#8498b8;font-size:13px}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}.info-grid div{background:#162940;padding:9px;border-radius:8px}
+.wrap{max-width:1620px;margin:auto;padding:20px clamp(15px,3vw,32px)}.bar{display:flex;align-items:center;flex-wrap:wrap;gap:11px}.grow{flex:1}.muted{color:#a4b5d0}.small{font-size:12px}.tiny{font-size:11px}.title-sub{font-size:13px;color:#a9bbd7;margin-top:6px}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #526583;border-radius:99px;font-size:12px;font-weight:550}.ok{color:#77eac4}.warn{color:#ffd07b}.bad{color:#ffb0ba}.blue{color:#9bc7ff}.panels{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(340px,1fr);gap:17px}.panel,.metric,.phase{background:#131e31;border:1px solid #2c405d;border-radius:14px;padding:17px}.panels>.panel{min-width:0;overflow-wrap:anywhere}.panel+.panel{margin-top:14px}.notice{background:#192b44;border-left:3px solid #5c9fed;border-radius:6px;margin:12px 0 0;padding:12px 14px;line-height:1.5}.error-notice{background:#39202e;border-left-color:#ff8399}.top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:15px 0}.metric b{display:block;font-size:27px;margin:7px 0}.metric .small{display:block;min-height:16px}button,input,select{font:inherit;border:1px solid #536986;border-radius:9px;padding:10px 12px;background:#192a45;color:#f3f7ff}input{min-width:160px}button{cursor:pointer;background:#2967b9;border-color:#2967b9;font-weight:650}button:hover{background:#327dda}button.subtle{background:#263a56;border-color:#4c6482}button:disabled{opacity:.6;cursor:wait}label{font-size:13px}label.check{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#d4e2fb;cursor:pointer}input[type=checkbox]{width:16px;height:16px;min-width:0;accent-color:#56d7b5}#repo{width:205px}#token{width:235px;flex:1;max-width:340px}#search{width:240px;max-width:100%}.phases{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;margin:0 0 17px}.phase{padding:14px;min-width:0}.phase strong{display:block;margin:6px 0}.phase .pct{font-size:23px;font-weight:700}.phase .small{line-height:1.4}.progress{height:8px;border-radius:30px;background:#35465c;overflow:hidden;margin:7px 0}.fill{height:100%;background:#3bd6a3;transition:width .25s}.fill.amber{background:#f1bc58}.fill.slate{background:#8c9fb7}.graphbox{width:100%;min-width:0;max-width:100%;max-height:720px;overflow:auto;border:1px solid #30425e;border-radius:12px;background:radial-gradient(ellipse at 35% 20%,#1c314f,#0e192b 68%);min-height:450px}#graph{min-width:1100px;width:100%;display:block}#graph text{font-family:inherit;fill:#eaf0fc}.node{cursor:pointer}.node:hover circle,.node:hover rect{filter:brightness(1.2)}.edge{stroke:#597b9e;stroke-width:1.6;fill:none;opacity:.58}.edge.target{stroke-dasharray:4 7;opacity:.36}.edge.active{stroke:#5be3b7;opacity:.92;stroke-width:2.5}.node-label{font-size:12px}.detail{padding:15px;margin-top:14px;min-height:135px;background:#0e1929;border-radius:11px;overflow-wrap:anywhere}.detail p{margin:8px 0}.tasklist{max-height:770px;overflow:auto}.task{padding:12px 8px;border-bottom:1px solid #2e3f59;cursor:pointer;border-radius:8px}.task:hover,.task:focus-visible{background:#1a2c45}.task strong{font-size:13px;line-height:1.4;display:block}.task.active{outline:1px solid #64c8f8}.task .bar{justify-content:space-between;margin-top:6px}.task .progress{margin:7px 0 4px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.foot{margin:18px 0;font-size:12px;color:#a1b3cd}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#b3c3dc}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}.hidden{display:none!important}.links{display:flex;gap:13px;flex-wrap:wrap}.badge{padding:2px 7px;border:1px solid #466282;border-radius:15px;font-size:11px}.wrap-any{overflow-wrap:anywhere}.phase summary{cursor:pointer}.cirow{display:flex;align-items:center;justify-content:space-between;padding:5px 0;gap:7px}.phase-info{color:#cfdef4}.skeleton{color:#8498b8;font-size:13px}.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}.info-grid div{background:#162940;padding:9px;border-radius:8px}
+.control-grid{display:grid;grid-template-columns:1.2fr 1.4fr 1fr;gap:14px}.control-grid>div{border:1px solid #354968;border-radius:12px;padding:13px;background:#102039;min-width:0}.risk{padding:9px 10px;border-left:3px solid #eeb85c;border-radius:6px;background:#1d2c40;margin:7px 0;line-height:1.45}.risk.bad-border{border-left-color:#ff899b}.risk.ok-border{border-left-color:#4ad3a1}.risk .small{margin-top:4px}.pathline{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.pathline a{display:inline-flex;align-items:center;max-width:100%;overflow-wrap:anywhere;padding:6px 9px;background:#223d60;border-radius:8px;text-decoration:none}.pathline .arrow{color:#8ab6e8}.metrics-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metrics-row .progress{margin-top:4px}.meter-caption{font-size:11px;color:#b6c7e0}.phase details{margin-top:9px}.phase details summary{font-size:11px;color:#b8d6ff}.req{padding:5px 0;border-top:1px solid #36495f;font-size:11px;line-height:1.5}.history-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px}.history-grid>div{background:#102039;border:1px solid #304360;border-radius:10px;padding:13px}.history-overview{padding:12px;border-radius:10px;background:#10243d}.event-list{max-height:350px;overflow:auto}.event{padding:9px;border-bottom:1px solid #32455f;line-height:1.5}.event time{font-size:11px;color:#b4c7df}.event.bad{background:#302231}.mobile-branches{display:none}.mobile-branch{background:#142740;border:1px solid #3b5475;border-radius:10px;padding:11px;margin:7px 0;width:100%;text-align:left}.mobile-branch strong{display:block;font-size:13px;margin-bottom:4px}.compact-tools{display:none}.inspector{margin-top:9px;padding:9px;background:#172b43;border-radius:9px}.inspector .failure{color:#ffadba}.quiet{opacity:.82}.pill.warn{border-color:#b68d48}.pill.bad{border-color:#d57280}.pill.ok{border-color:#3a9d80}.phase .progress{margin:5px 0 10px}.phase .metric-line{font-size:12px;display:flex;justify-content:space-between;gap:8px}.phase .pct{font-size:18px}.critical-heading{font-weight:700;margin-bottom:6px}.banners{margin:6px 0 0}.backlog{font-size:12px;color:#c4d3e9}.actions-link{word-break:break-word}.bar button:disabled{opacity:.65}#history-export,#history-clear{font-size:12px;padding:8px 10px}
 @media(max-width:1100px){.panels{grid-template-columns:1fr}.top{grid-template-columns:repeat(2,minmax(0,1fr))}.phases{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:660px){.top,.grid,.info-grid{grid-template-columns:1fr}.phases{grid-template-columns:repeat(2,minmax(0,1fr))}header,.wrap{padding:15px}.panel,.metric,.phase{padding:13px}h1{font-size:21px}#token,#repo,#search{width:100%;max-width:none}.graphbox{max-height:570px}}
+@media(max-width:960px){.control-grid{grid-template-columns:1fr 1fr}.control-grid>div:last-child{grid-column:1/-1}}
+@media(max-width:660px){.control-grid,.history-grid{grid-template-columns:1fr}.control-grid>div:last-child{grid-column:auto}.mobile-branches{display:block}.compact-tools{display:flex}.graphbox{display:none}.graphbox.graph-open{display:block} .phases{grid-template-columns:repeat(1,minmax(0,1fr))}.top,.grid,.info-grid{grid-template-columns:1fr}.phases{grid-template-columns:repeat(2,minmax(0,1fr))}header,.wrap{padding:15px}.panel,.metric,.phase{padding:13px}h1{font-size:21px}#token,#repo,#search{width:100%;max-width:none}.graphbox{max-height:570px}}
 @media(prefers-reduced-motion:reduce){.fill{transition:none}}
 </style>
 </head>
@@ -43,17 +45,26 @@
     <h2>Frente declarado y actividad GitHub</h2>
     <div id="active-summary" class="muted">Se leerá <code>docs/seguimiento/estado.json</code> de la rama de seguimiento, cuando exista y sea accesible. La fecha del registro permite reconocer si está desactualizado.</div>
   </section>
+  <section class="panel" id="control-panel" aria-label="Control de bloqueos" style="margin-bottom:16px">
+    <div class="bar" style="justify-content:space-between"><h2>Ruta crítica y próximas acciones</h2><span class="pill" id="control-state">Pendiente de GitHub</span></div>
+    <p class="small muted">Señales verificables según bases de PR, borradores y CI; recomendaciones calculadas automáticamente, no instrucciones ejecutadas.</p>
+    <div class="control-grid"><div><h3>Cadena de dependencias</h3><div id="critical-path" class="small muted">Conecta para identificar PR dependientes.</div></div>
+    <div><h3>Bloqueos y riesgos</h3><div id="risk-panel" class="small muted">Sin datos todavía.</div></div>
+    <div><h3>Próxima acción sugerida</h3><div id="actions-panel" class="small muted">Sin evaluación todavía.</div></div></div>
+  </section>
   <section id="phases" class="phases" aria-label="Avance de las fases"><div class="phase muted">Conecta para calcular los avances verificables.</div></section>
   <div class="panels">
     <section class="panel">
       <h2>Grafo de ramas y solicitudes de integración</h2>
       <div class="bar" style="margin:0 0 10px">
         <label for="filter">Vista</label>
-        <select id="filter"><option value="all">Todas las ramas</option><option value="open">Con PR abierto</option><option value="orphan">Sin PR</option><option value="recent">Actividad reciente</option></select>
+        <select id="filter"><option value="focus" selected>Foco: activas y pendientes</option><option value="all">Todas las ramas</option><option value="open">Con PR abierto</option><option value="orphan">Sin PR</option><option value="recent">Actividad reciente</option></select>
         <input id="search" type="search" placeholder="Buscar rama o PR" aria-label="Filtrar ramas y pull requests">
       </div>
       <div class="legend" style="margin-bottom:9px"><span><span class="dot" style="background:#60a5fa"></span>Rama</span><span><span class="dot" style="background:#f2bd5b"></span>PR abierto</span><span><span class="dot" style="background:#4ad3a1"></span>PR fusionado</span><span><span class="dot" style="background:#718096"></span>PR cerrado</span><span><span class="dot" style="background:#49dfc8"></span>Rama declarada</span></div>
-      <div class="graphbox"><svg id="graph" viewBox="0 0 1100 450" height="450" role="img" aria-label="Grafo interactivo de ramas y pull requests"><text x="35" y="60">Conecta el repositorio para cargar el grafo.</text></svg></div>
+      <div id="mobile-branches" class="mobile-branches" aria-label="Ramas destacadas"></div>
+      <div class="bar compact-tools"><button type="button" class="subtle" id="toggle-graph" aria-expanded="false">Mostrar grafo completo</button><span class="small muted">En móvil, priorizamos las tarjetas de ramas y bloqueos.</span></div>
+      <div class="graphbox" id="graphbox"><svg id="graph" viewBox="0 0 1100 450" height="450" role="img" aria-label="Grafo interactivo de ramas y pull requests"><text x="35" y="60">Conecta el repositorio para cargar el grafo.</text></svg></div>
       <p class="small muted">Las líneas unen un PR con sus ramas de origen y destino; no reconstruyen el árbol genealógico exacto de Git. <strong>Un commit reciente no demuestra que alguien esté trabajando en vivo.</strong> Selecciona cualquier nodo para ver métricas y pruebas.</p>
       <div id="detail" class="detail" aria-live="polite">Selecciona una rama o un PR.</div>
     </section>
@@ -64,17 +75,33 @@
       <div id="tasks" class="tasklist"></div>
     </section>
   </div>
+  <section class="panel" id="historico" style="margin-top:17px" aria-label="Historial de avances">
+    <div class="bar" style="justify-content:space-between"><h2>Historial y alertas</h2><span class="pill" id="history-state">Sin muestras</span></div>
+    <div class="bar" style="margin:10px 0">
+      <label for="history-range">Comparar</label><select id="history-range"><option value="24">Últimas 24 horas</option><option value="168">Últimos 7 días</option></select>
+      <label class="check"><input id="keep-history" type="checkbox"> Guardar SOLO métricas agregadas durante 7 días en este navegador</label>
+      <button type="button" class="subtle" id="history-export">Exportar resumen CSV</button>
+      <button type="button" class="subtle" id="history-clear">Borrar historial</button>
+    </div>
+    <p class="small muted">Sin la casilla marcada, las muestras se conservan solo mientras esté abierta la página. El historial local no supone que se haya trabajado mientras el tablero estuvo cerrado. No se guardan tokens, nombres de clientes ni contenido de PR.</p>
+    <div id="history-overview" class="history-overview muted">Conecta para recoger la primera muestra.</div>
+    <div class="history-grid"><div><h3>Eventos detectados</h3><div id="history-events" class="event-list small muted">Los cambios aparecerán tras una segunda lectura.</div></div><div><h3>Alertas de supervisión</h3><div id="alerts" class="event-list small muted">Sin lecturas.</div></div></div>
+  </section>
   <section class="panel" style="margin-top:17px">
     <h2>Cómo leer los indicadores</h2>
     <div class="grid small">
+      <p><strong>Indicadores de fase:</strong> implementación = requisitos en implementación terminada, QA o verificados / total; cierre = únicamente criterios aceptados y verificados / total. No confundirlos con despliegue.</p>
+      <p><strong>Ruta crítica:</strong> cadena más larga de PR abiertos relacionados por ramas base. Es una heurística de dependencias, no una estimación temporal.</p>
       <p><strong>Avance documental del PR y la rama:</strong> expresa casillas marcadas sobre casillas totales. No mide automáticamente porcentaje de código, tiempo invertido ni calidad de pruebas.</p>
       <p><strong>Cierre de fase:</strong> cuando existe un archivo de criterios, solo cuenta requisitos con estado <code>verificado</code>/<code>accepted</code>/<code>closed</code>. <code>implemented</code> o <code>qa</code> se muestran aparte y no equivalen a cierre.</p>
       <p><strong>Pruebas CI:</strong> el estado se asocia con el SHA actual de la rama o PR. Una ejecución verde no demuestra por sí sola que una fase sea apta para producción.</p>
+      <p><strong>Historial:</strong> compara únicamente muestras tomadas por este monitor; no infiere trabajo entre dos fechas de captura. Guardar métricas de forma persistente es opcional.</p>
+      <p><strong>Seguridad:</strong> el token es de solo lectura y se mantiene en memoria por defecto. La sesión recordada es opcional y puede ser leída por otros scripts de este mismo origen público; para una mayor separación se requeriría alojar el monitor en un origen independiente con un servicio de autenticación dedicado.</p>
       <p><strong>Conexión:</strong> reintenta cada 50 segundos y al regresar internet o reabrir la pestaña. Las actualizaciones no continúan mientras el navegador está cerrado; nunca se ejecutan tareas de desarrollo desde este tablero.</p>
     </div>
   </section>
 </main>
-<footer class="wrap foot">Monitor Carteriva · GitHub Pages · Solo consultas de lectura a GitHub REST API · No se publica el repositorio privado ni un token en el HTML.</footer>
+<footer class="wrap foot">Monitor Carteriva 2.3 · GitHub Pages · Solo lectura de GitHub REST API · Datos de avance con fuentes verificables · Sin token incorporado al archivo.</footer>
 <script>
 'use strict';
 const $ = id => document.getElementById(id);
@@ -89,6 +116,7 @@ const progressHtml = (done,total,label='avance documental') => {
 };
 let branches=[], prs=[], runs=[], ciAvailable=false, tracker=null, token='', loaded=false, busy=false, connected=false;
 let nextDue=0,lastSync=null,knownNames=new Set(),selected='',commits=new Map(),apiErrors=[], generation=0;
+let historyPoints=[],detectedEvents=[],seenRunStates=new Map(),seenPrStates=new Map(),jobsCache=new Map(),ciQueried=new Map(),inspecting=new Set(),lastRepo='';
 const INTERVAL=50000;
 const repoName=()=>String($('repo').value||'').trim();
 const validRepo=()=>/^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(repoName());
@@ -96,6 +124,10 @@ const root=()=>`https://api.github.com/repos/${repoName()}`;
 const ghUrl=name=>`https://github.com/${repoName()}/tree/${name.split('/').map(encodeURIComponent).join('/')}`;
 const prUrl=p=>p.html_url||`https://github.com/${repoName()}/pull/${Number(p.number)||0}`;
 const storageKey='carteriva-monitor-session-v2';
+const histKey=()=>'carteriva-aggregate-v1:'+repoName();
+const histPreference='carteriva-history-optin-v1';
+const verifiedStates=new Set(['verified','verificado','accepted','aprobado','closed','cerrado']);
+const implementationStates=new Set(['implemented','implementado','qa','en_qa','testing','en pruebas',...verifiedStates]);
 const infoColor=kind=>kind==='success'?'ok':kind==='failure'?'bad':kind==='pending'?'warn':'muted';
 const ciLabel = kind=>({success:'Aprobado',failure:'Falló',pending:'En curso / pendiente',unknown:'Sin CI para HEAD',unavailable:'Sin acceso a Actions'})[kind]||'Sin datos';
 function checklist(body){const rows=String(body||'').match(/^\s*[-*]\s*\[([xX ])\]/gm)||[];const done=rows.filter(v=>/\[[xX]\]/.test(v)).length;return {done,total:rows.length,pct:pct(done,rows.length)};}
@@ -138,22 +170,31 @@ function ciForSha(sha){
  const matches=runs.filter(r=>r.head_sha===sha).sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
  const names=new Set();const newest=matches.filter(r=>{if(names.has(r.name))return false;names.add(r.name);return true;});
  if(!newest.length)return {kind:'unknown',runs:[]};
- let kind=newest.some(r=>r.status!=='completed')?'pending':newest.some(r=>r.conclusion!=='success')?'failure':'success';
+ let kind=newest.some(r=>r.status!=='completed')?'pending':newest.some(r=>['failure','timed_out','action_required','startup_failure'].includes(r.conclusion))?'failure':newest.every(r=>r.conclusion==='success')?'success':'pending';
  return {kind,runs:newest};
 }
 function ciText(sha){let ci=ciForSha(sha);return `<span class="${infoColor(ci.kind)}">● ${ciLabel(ci.kind)}</span>${ci.runs.length?` <span class="muted small">(${ci.runs.length} workflow${ci.runs.length>1?'s':''})</span>`:''}`;}
-function phaseSummary(){const phaseData=Array.isArray(tracker?.phases)?tracker.phases:[];
- $('phases').innerHTML=Array.from({length:5},(_,i)=>{
- const num=i+1;const formal=phaseData.find(p=>Number(p.id)===num),requirements=Array.isArray(formal?.requirements)?formal.requirements:[];
- const completed=requirements.filter(r=>['verified','verificado','accepted','aprobado','closed','cerrado'].includes(String(r.state||'').toLowerCase())).length;
- const implemented=requirements.filter(r=>['implemented','implementado'].includes(String(r.state||'').toLowerCase())).length;
- const qa=requirements.filter(r=>['qa','en_qa','testing','en pruebas'].includes(String(r.state||'').toLowerCase())).length;
- const associated=prs.filter(p=>phasesOfPr(p).includes(num));const doc=aggregate(associated);
- return `<div class="phase"><div class="small blue">FASE ${num}</div><strong>${escapeHtml(formal?.title||`Seguimiento ${num}`)}</strong>
- <div class="pct">${requirements.length?pct(completed,requirements.length)+'%':doc.total?pct(doc.done,doc.total)+'%':'—'}</div>
- ${requirements.length?`<div class="small phase-info">${completed}/${requirements.length} criterios verificados</div><div class="progress"><div class="fill" style="width:${pct(completed,requirements.length)}%"></div></div><div class="small muted">${implemented} implementados · ${qa} en QA</div>`:
- doc.total?`<div class="small phase-info">${doc.done}/${doc.total} casillas de PR</div><div class="progress"><div class="fill amber" style="width:${pct(doc.done,doc.total)}%"></div></div><div class="small muted">Solo progreso documental</div>`:'<div class="small muted">Sin criterios medibles</div>'}
- <div class="small muted" style="margin-top:5px">${escapeHtml(formal?.state||'Sin cierre confirmado')} · ${associated.length} PR</div></div>`;
+function phaseMetrics(num){
+ const phaseData=Array.isArray(tracker?.phases)?tracker.phases:[];
+ const formal=phaseData.find(p=>Number(p.id)===num);
+ const requirements=Array.isArray(formal?.requirements)?formal.requirements:[];
+ const verified=requirements.filter(r=>verifiedStates.has(String(r.state||'').toLowerCase())).length;
+ const implemented=requirements.filter(r=>implementationStates.has(String(r.state||'').toLowerCase())).length;
+ return {formal,requirements,verified,implemented,total:requirements.length,associated:prs.filter(p=>phasesOfPr(p).includes(num))};
+}
+function phaseSummary(){
+ $('phases').innerHTML=Array.from({length:5},(_,i)=>{const num=i+1,m=phaseMetrics(num),docs=aggregate(m.associated),has=m.total>0;
+ const label=has?`${m.implemented}/${m.total}`:'No cuantificable';
+ const implemented=has?`${pct(m.implemented,m.total)}%`:'—', closed=has?`${pct(m.verified,m.total)}%`:'—';
+ return `<div class="phase"><div class="small blue">FASE ${num}</div><strong>${escapeHtml(m.formal?.title||`Seguimiento ${num}`)}</strong>
+  <div class="metric-line"><span>Implementación</span><b>${implemented}</b></div>
+  ${has?`<div class="progress" role="progressbar" aria-label="Implementación F${num}" aria-valuenow="${pct(m.implemented,m.total)}" aria-valuemin="0" aria-valuemax="100"><div class="fill amber" style="width:${pct(m.implemented,m.total)}%"></div></div>`:'<div class="meter-caption">No cuantificable sin criterios</div>'}
+  <div class="metric-line"><span>Cierre verificado</span><b>${closed}</b></div>
+  ${has?`<div class="progress" role="progressbar" aria-label="Cierre verificado F${num}" aria-valuenow="${pct(m.verified,m.total)}" aria-valuemin="0" aria-valuemax="100"><div class="fill" style="width:${pct(m.verified,m.total)}%"></div></div>`:''}
+  <div class="small muted">${has?`${m.verified} aceptados · ${m.total} criterios · ${m.implemented} implementados o QA`: 'Sin matriz de aceptación'} · ${m.associated.length} PR</div>
+  <div class="small muted" style="margin-top:5px">${escapeHtml(m.formal?.state||'Cierre no confirmado')}${docs.total?` · PR ${docs.done}/${docs.total} casillas`:''}</div>
+  ${has?`<details><summary>Ver criterios (${m.total})</summary>${m.requirements.map(r=>`<div class="req"><span class="${verifiedStates.has(String(r.state||'').toLowerCase())?'ok':implementationStates.has(String(r.state||'').toLowerCase())?'warn':'muted'}">● ${escapeHtml(r.state||'Pendiente')}</span> ${escapeHtml(r.title||r.name||'Requisito sin descripción')}</div>`).join('')}</details>`:''}
+ </div>`;
  }).join('');
 }
 function activeBranch(){return tracker?.active_branch||null;}
@@ -161,17 +202,20 @@ function recentBranch(){const p=prs.filter(p=>p.head?.ref).sort((a,b)=>new Date(
 function drawActive(){const declared=activeBranch(),b=branches.find(x=>x.name===declared),fallback=recentBranch();const name=declared||fallback;
  if(!name){$('active-summary').textContent='GitHub no dispone de una rama declarada como activa ni de un PR con actividad reciente.';return;}
  const related=prs.filter(p=>p.head?.ref===name),doc=aggregate(related),ci=ciForSha(b?.commit?.sha||related[0]?.head?.sha),date=tracker?.updated_at||null;
+ const ageDays=date?Math.floor((Date.now()-new Date(date).getTime())/86400000):null;
+ const stale=date&&(!Number.isFinite(ageDays)||ageDays>=2);
  const tag=declared?'Rama declarada en archivo de seguimiento':'PR con actualización más reciente (no implica actividad en vivo)';
  const task=declared?tracker.active_task||'Sin tarea declarada':'No hay tarea activa declarada';
  $('active-summary').innerHTML=`<div class="bar"><span class="pill ${declared?'ok':'warn'}">${escapeHtml(tag)}</span><strong class="wrap-any">${escapeHtml(name)}</strong></div>
  <div class="info-grid"><div><span class="muted small">Tarea registrada</span><div>${escapeHtml(task)}</div></div><div><span class="muted small">Fecha de declaración</span><div>${declared?escapeHtml(date||'No informada'):'Sin declaración'}</div></div><div><span class="muted small">Progreso documental de la rama</span><div>${doc.total?`${pct(doc.done,doc.total)}% (${doc.done}/${doc.total} casillas)`:'Sin medición propia'}</div></div><div><span class="muted small">CI del HEAD</span><div>${ciText(b?.commit?.sha||related[0]?.head?.sha)}</div></div></div>
+ ${stale?'<p class="warn small">⚠ Declaración con dos o más días de antigüedad; requiere actualización manual del registro.</p>':''}
  <div class="links small" style="margin-top:10px">${b?`<a target="_blank" rel="noopener noreferrer" href="${escapeHtml(ghUrl(name))}">Abrir rama ↗</a>`:'<span class="bad">Rama declarada no encontrada</span>'}${declared?`<a target="_blank" rel="noopener noreferrer" href="https://github.com/${escapeHtml(repoName())}/blob/monitor/seguimiento-ramas/docs/seguimiento/estado.json">Ver registro ↗</a>`:''}</div>
  <p class="small muted" style="margin:10px 0 0">La declaración puede estar desactualizada. El tablero no detecta quién está escribiendo código en este instante.</p>`;
  $('m-ci').innerHTML=`<span class="${infoColor(ci.kind)}" style="font-size:16px">${escapeHtml(ciLabel(ci.kind))}</span>`;
 }
-function detailPr(p){const c=checklist(p.body),ci=ciForSha(p.head?.sha);return `<h3>${escapeHtml(p.title)}</h3><p class="muted">PR #${p.number} · ${escapeHtml(statusPr(p))} · ${escapeHtml(p.head?.ref||'?')} → ${escapeHtml(p.base?.ref||'?')}</p><p><b>Avance del PR:</b> ${progressHtml(c.done,c.total,'casillas del PR')}</p><p><b>Fases:</b> ${phasesOfPr(p).length?phasesOfPr(p).map(v=>'F'+v).join(', '):'Sin clasificar'}</p><p><b>Pruebas en SHA actual:</b> ${ciText(p.head?.sha)}</p>${ci.runs.slice(0,5).map(r=>`<div class="cirow small"><span>${escapeHtml(r.name)} · ${escapeHtml(r.conclusion||r.status)}</span><a href="${escapeHtml(r.html_url||'#')}" target="_blank" rel="noopener noreferrer">Ver prueba ↗</a></div>`).join('')}<p class="muted">Última actualización: ${fmt(p.updated_at)}</p><a href="${escapeHtml(prUrl(p))}" target="_blank" rel="noopener noreferrer">Ver PR en GitHub ↗</a>`;}
-function detailBranch(b){const list=headPrs(b),c=aggregate(list),ci=ciForSha(b.commit?.sha),cm=commits.get(b.commit?.sha);return `<h3 class="wrap-any">Rama: ${escapeHtml(b.name)} ${activeBranch()===b.name?'<span class="badge ok">Declarada activa</span>':''}</h3><p class="muted">HEAD: <code>${escapeHtml((b.commit?.sha||'').slice(0,14))}</code> · Último commit: ${fmt(cm?.date)}</p>${cm?.message?`<p>${escapeHtml(cm.message)}</p>`:''}<p><b>Avance propio:</b> ${progressHtml(c.done,c.total,'casillas de PR originados aquí')}</p><p><b>CI del HEAD:</b> ${ciText(b.commit?.sha)}</p>${ci.runs.slice(0,6).map(r=>`<div class="cirow small"><span>${escapeHtml(r.name)} · ${escapeHtml(r.conclusion||r.status)}</span><a href="${escapeHtml(r.html_url||'#')}" target="_blank" rel="noopener noreferrer">Ver ↗</a></div>`).join('')}<p class="small muted">PR originados aquí: ${list.length?list.map(p=>`<a target="_blank" rel="noopener noreferrer" href="${escapeHtml(prUrl(p))}">#${p.number}</a>`).join(' · '):'Ninguno (sin medición documental)'}</p><a target="_blank" rel="noopener noreferrer" href="${escapeHtml(ghUrl(b.name))}">Abrir rama en GitHub ↗</a>`;}
-function selectedDetail(){if(!selected)return;const [kind,...rest]=selected.split(':'),value=rest.join(':');const item=kind==='b'?branches.find(b=>b.name===value):prs.find(p=>String(p.number)===value);if(item){$('detail').innerHTML=kind==='b'?detailBranch(item):detailPr(item);}else{$('detail').textContent='El elemento seleccionado ya no está en la consulta actual.';}}
+function detailPr(p){const c=checklist(p.body),ci=ciForSha(p.head?.sha);return `<h3>${escapeHtml(p.title)}</h3><p class="muted">PR #${p.number} · ${escapeHtml(statusPr(p))} · ${escapeHtml(p.head?.ref||'?')} → ${escapeHtml(p.base?.ref||'?')}</p><p><b>Avance del PR:</b> ${progressHtml(c.done,c.total,'casillas del PR')}</p><p><b>Fases:</b> ${phasesOfPr(p).length?phasesOfPr(p).map(v=>'F'+v).join(', '):'Sin clasificar'}</p><p><b>Pruebas en SHA actual:</b> ${ciText(p.head?.sha)}</p>${ci.runs.slice(0,5).map(r=>`<div class="cirow small"><span>${escapeHtml(r.name)} · ${escapeHtml(r.conclusion||r.status)}</span><span><a href="${escapeHtml(r.html_url||'#')}" target="_blank" rel="noopener noreferrer">Ver prueba ↗</a> <button class="subtle" data-inspect="${Number(r.id)||0}" type="button" style="padding:4px 8px;font-size:11px">Pasos</button></span></div><div id="jobs-${Number(r.id)||0}" class="inspector small hidden"></div>`).join('')}<p class="muted">Última actualización: ${fmt(p.updated_at)}</p><a href="${escapeHtml(prUrl(p))}" target="_blank" rel="noopener noreferrer">Ver PR en GitHub ↗</a>`;}
+function detailBranch(b){const list=headPrs(b),c=aggregate(list),ci=ciForSha(b.commit?.sha),cm=commits.get(b.commit?.sha);return `<h3 class="wrap-any">Rama: ${escapeHtml(b.name)} ${activeBranch()===b.name?'<span class="badge ok">Declarada activa</span>':''}</h3><p class="muted">HEAD: <code>${escapeHtml((b.commit?.sha||'').slice(0,14))}</code> · Último commit: ${fmt(cm?.date)}</p>${cm?.message?`<p>${escapeHtml(cm.message)}</p>`:''}<p><b>Avance propio:</b> ${progressHtml(c.done,c.total,'casillas de PR originados aquí')}</p><p><b>CI del HEAD:</b> ${ciText(b.commit?.sha)}</p>${ci.runs.slice(0,6).map(r=>`<div class="cirow small"><span>${escapeHtml(r.name)} · ${escapeHtml(r.conclusion||r.status)}</span><span><a href="${escapeHtml(r.html_url||'#')}" target="_blank" rel="noopener noreferrer">Ver ↗</a> <button class="subtle" data-inspect="${Number(r.id)||0}" type="button" style="padding:4px 8px;font-size:11px">Pasos</button></span></div><div id="jobs-${Number(r.id)||0}" class="inspector small hidden"></div>`).join('')}<p class="small muted">PR originados aquí: ${list.length?list.map(p=>`<a target="_blank" rel="noopener noreferrer" href="${escapeHtml(prUrl(p))}">#${p.number}</a>`).join(' · '):'Ninguno (sin medición documental)'}</p><a target="_blank" rel="noopener noreferrer" href="${escapeHtml(ghUrl(b.name))}">Abrir rama en GitHub ↗</a>`;}
+function selectedDetail(){if(!selected)return;const [kind,...rest]=selected.split(':'),value=rest.join(':');const item=kind==='b'?branches.find(b=>b.name===value):prs.find(p=>String(p.number)===value);if(item){$('detail').innerHTML=kind==='b'?detailBranch(item):detailPr(item);attachInspectors();}else{$('detail').textContent='El elemento seleccionado ya no está en la consulta actual.';}}
 function visibleItems(){
  const q=$('search').value.toLowerCase().trim(),mode=$('filter').value;
  const selectedPrs=prs.filter(p=>!q||`${p.title||''} ${p.number} ${p.head?.ref||''} ${p.base?.ref||''}`.toLowerCase().includes(q));
@@ -179,13 +223,14 @@ function visibleItems(){
   const matches=!q||b.name.toLowerCase().includes(q)||selectedPrs.some(p=>p.head?.ref===b.name||p.base?.ref===b.name);
   if(!matches)return false;
   const related=prs.filter(p=>p.head?.ref===b.name);
+  if(mode==='focus')return ['main','develop',activeBranch()].includes(b.name)||related.some(p=>p.state==='open')||Boolean(commits.get(b.commit?.sha)?.date&&Date.now()-new Date(commits.get(b.commit.sha).date).getTime()<86400000);
   if(mode==='open')return related.some(p=>p.state==='open');
   if(mode==='orphan')return related.length===0;
   if(mode==='recent'){const date=commits.get(b.commit?.sha)?.date||related[0]?.updated_at;return date&&Date.now()-new Date(date).getTime()<=7*86400000;}
   return true;
  });
  const shownNames=new Set(bs.map(b=>b.name));
- const ps=selectedPrs.filter(p=>mode==='all'||(mode==='open'&&p.state==='open'&&shownNames.has(p.head?.ref))||(mode==='recent'&&shownNames.has(p.head?.ref)));
+ const ps=selectedPrs.filter(p=>mode==='all'||(mode==='focus'&&p.state==='open'&&shownNames.has(p.head?.ref))||(mode==='open'&&p.state==='open'&&shownNames.has(p.head?.ref))||(mode==='recent'&&shownNames.has(p.head?.ref)));
  return {bs,ps:mode==='orphan'?[]:ps};
 }
 function draw(){const {bs,ps}=visibleItems(),B=bs.length,P=ps.length,step=62,H=Math.max(450,125+Math.max(B,P)*step),W=1250,yB=new Map(bs.map((b,i)=>[b.name,90+i*step])),yP=new Map(ps.map((p,i)=>[p.number,90+i*step]));
@@ -199,6 +244,8 @@ function draw(){const {bs,ps}=visibleItems(),B=bs.length,P=ps.length,step=62,H=M
  });
  if(!bs.length&&!ps.length)out+='<text x="40" y="90">Sin resultados con estos filtros.</text>';
  $('graph').innerHTML=out;
+ $('mobile-branches').innerHTML=bs.slice(0,40).map(b=>{const open=headPrs(b).filter(p=>p.state==='open'),c=aggregate(headPrs(b)),ci=ciForSha(b.commit?.sha);return `<button class="mobile-branch" data-mobile-branch="${escapeHtml(b.name)}" type="button"><strong>${escapeHtml(b.name)} ${b.name===activeBranch()?'· ACTIVA':''}</strong><span class="small muted">${open.length} PR abiertos · ${c.total?`${pct(c.done,c.total)}% documental`:'Sin medición'} · <span class="${infoColor(ci.kind)}">${escapeHtml(ciLabel(ci.kind))}</span></span></button>`}).join('')||'<p class="muted">No hay ramas con estos filtros.</p>';
+ document.querySelectorAll('[data-mobile-branch]').forEach(el=>el.addEventListener('click',()=>{selected='b:'+el.getAttribute('data-mobile-branch');selectedDetail();$('detail').scrollIntoView({behavior:'smooth',block:'nearest'});}));
  document.querySelectorAll('#graph [data-b],#graph [data-p]').forEach(node=>{
  const action=()=>{selected=node.hasAttribute('data-b')?'b:'+node.getAttribute('data-b'):'p:'+node.getAttribute('data-p');selectedDetail();};node.addEventListener('click',action);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();action();}});
  });
@@ -207,7 +254,135 @@ function taskList(){const phase=$('phase').value,q=$('search').value.toLowerCase
  $('tasks').innerHTML=listed.length?listed.map(p=>{const check=checklist(p.body),cls=p.state==='open'?'warn':p.merged_at?'ok':'muted',ci=ciForSha(p.head?.sha);return `<div class="task" tabindex="0" role="button" data-task="${p.number}" aria-label="Detalles del PR ${p.number}"><strong>#${p.number} ${escapeHtml(p.title)}</strong><div class="small muted wrap-any">${escapeHtml(p.head?.ref||'?')} · <span class="${cls}">${escapeHtml(statusPr(p))}</span> · ${fmt(p.updated_at)}</div><div class="bar small"><span>${check.total?`${check.done}/${check.total} criterios`:'Sin checklist medible'}</span><b>${check.pct===null?'—':check.pct+'%'}</b></div>${check.pct===null?'':`<div class="progress"><div class="fill" style="width:${check.pct}%"></div></div>`}<div class="small ${infoColor(ci.kind)}">CI HEAD: ${escapeHtml(ciLabel(ci.kind))} · ${phasesOfPr(p).length?phasesOfPr(p).map(n=>'F'+n).join(', '):'Sin fase clasificada'}</div></div>`;}).join(''):'<div class="muted">No hay PR asociados a esta selección.</div>';
  document.querySelectorAll('[data-task]').forEach(item=>{const select=()=>{selected='p:'+item.dataset.task;selectedDetail();$('detail').scrollIntoView({block:'nearest',behavior:'smooth'});};item.addEventListener('click',select);item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select();}});});
 }
-function render(){if(!loaded)return;$('m-pr').textContent=prs.filter(p=>p.state==='open').length;$('m-branches').textContent=branches.length;$('m-time').textContent=lastSync?lastSync.toLocaleTimeString('es-CO'):'—';phaseSummary();drawActive();draw();taskList();selectedDetail();}
+// Fase 2.1: dependencias de PR basadas únicamente en ramas de destino que son origen de otro PR.
+function dependencyMap(){
+ const open=prs.filter(p=>p.state==='open'),byBranch=new Map();
+ for(const p of open){const name=p.head?.ref;if(!name)continue;const list=byBranch.get(name)||[];list.push(p);byBranch.set(name,list);}
+ const map=new Map();for(const p of open){const parents=(byBranch.get(p.base?.ref)||[]).filter(x=>x.number!==p.number);map.set(p.number,parents);}
+ return map;
+}
+function criticalChain(map){
+ const open=prs.filter(p=>p.state==='open');let longest=[];
+ const walk=(p,path,seen)=>{if(seen.has(p.number))return path;let next=new Set(seen);next.add(p.number);let best=path.concat(p);
+  for(const parent of map.get(p.number)||[]){const cand=walk(parent,path.concat(p),next);if(cand.length>best.length)best=cand;}
+  return best;
+ };
+ for(const p of open){const chain=walk(p,[],new Set());if(chain.length>longest.length)longest=chain;}
+ return longest.reverse();
+}
+function risksFor(p, deps){
+ const list=[];if(p.draft)list.push({kind:'pending',message:'PR en borrador; requiere revisión antes de integración.'});
+ if(deps.length)list.push({kind:'dependency',message:`Depende de ${deps.map(x=>'#'+x.number).join(', ')} aún abierto${deps.length>1?'s':''}.`});
+ const ci=ciForSha(p.head?.sha);if(ci.kind==='failure')list.push({kind:'failure',message:'Pruebas del commit actual con fallos.'});
+ else if(ci.kind==='pending')list.push({kind:'pending',message:'Pruebas en curso o sin resultado final.'});
+ else if(['unknown','unavailable'].includes(ci.kind))list.push({kind:'unverified',message:'Sin confirmación de CI del HEAD. No interpretar como aprobado.'});
+ const c=checklist(p.body);if(c.total&&c.done<c.total)list.push({kind:'pending',message:`Checklist incompleto: ${c.done}/${c.total}.`});
+ return list;
+}
+function linkPr(p,klass=''){return `<a class="${klass}" href="${escapeHtml(prUrl(p))}" target="_blank" rel="noopener noreferrer">#${Number(p.number)} · ${escapeHtml(String(p.title||'').slice(0,43))}</a>`;}
+function controls(){
+ const open=prs.filter(p=>p.state==='open'),deps=dependencyMap(),chain=criticalChain(deps);
+ let risks=[];for(const p of open){for(const r of risksFor(p,deps.get(p.number)||[]))risks.push({pr:p,...r});}
+ const failures=risks.filter(r=>r.kind==='failure'),dependencies=risks.filter(r=>r.kind==='dependency');
+ $('control-state').textContent=`${open.length} PR abiertos · ${failures.length} con CI fallida`;
+ $('control-state').className='pill '+(failures.length?'bad':dependencies.length?'warn':'ok');
+ $('critical-path').innerHTML=chain.length>1?`<p class="critical-heading">Cadena de PR abiertos más larga (${chain.length})</p><div class="pathline">${chain.map((p,i)=>`${i?'<span class="arrow" aria-hidden="true">→</span>':''}${linkPr(p)}`).join('')}</div><p class="muted small">Dependencias observadas por ramas base; no equivale a duración ni a ruta crítica calculada en horas.</p>`:chain.length?`Solo se detectó ${linkPr(chain[0])} en la cadena más larga. No se infieren dependencias adicionales.`:'No hay PR abiertos que requieran integración.';
+ const sorted=risks.slice().sort((a,b)=>({failure:0,dependency:1,pending:2,unverified:3}[a.kind]??4)-({failure:0,dependency:1,pending:2,unverified:3}[b.kind]??4));
+ $('risk-panel').innerHTML=sorted.length?sorted.slice(0,7).map(x=>`<div class="risk ${x.kind==='failure'?'bad-border':''}"><b>${linkPr(x.pr)}</b><div class="small">${escapeHtml(x.message)}</div></div>`).join('')+(sorted.length>7?`<p class="small muted">+${sorted.length-7} señales más. Selecciona el PR para revisar.</p>`:''):'<div class="risk ok-border">No se observaron estas señales de riesgo. No implica aprobación global.</div>';
+ const relevant=failures[0]||dependencies[0]||sorted[0];
+ let textAction='No hay PR pendientes. Confirmar aceptación formal antes de pasar a producción.';
+ if(relevant?.kind==='failure')textAction=`Revisar la ejecución fallida de ${'#'+relevant.pr.number} y corregir el primer paso con error.`;
+ else if(relevant?.kind==='dependency')textAction=`Revisar la integración de la base de ${'#'+relevant.pr.number} antes de proponer su fusión.`;
+ else if(relevant?.kind==='unverified')textAction=`Comprobar el resultado CI del commit actual de ${'#'+relevant.pr.number} antes de declarar cierre.`;
+ else if(relevant)textAction=`Validar criterios y revisión de ${'#'+relevant.pr.number}.`;
+ const declared=activeBranch();const active=prs.find(p=>p.state==='open'&&p.head?.ref===declared);
+ $('actions-panel').innerHTML=`<p>${escapeHtml(textAction)}</p>${relevant?linkPr(relevant.pr,'actions-link'):''}${active&&(!relevant||active.number!==relevant.pr.number)?`<p class="small muted">Frente declarado: ${linkPr(active)}</p>`:''}<p class="small muted">Sugerencia basada en reglas; no aplica modificaciones al repositorio.</p>`;
+ return {failures,risks,chain};
+}
+// Fase 2.2: leer CI específico del HEAD para el frente declarado, sin depender de la primera página global.
+async function hydrateHeadCi(gen){
+ const declared=activeBranch();const active=branches.find(b=>b.name===declared);
+ const sha=active?.commit?.sha||prs.find(p=>p.head?.ref===declared)?.head?.sha;
+ if(!sha||ciForSha(sha).kind!=='unknown'||ciQueried.get(sha)>Date.now()-120000)return;
+ ciQueried.set(sha,Date.now());
+ try{const d=await api(`${root()}/actions/runs?head_sha=${encodeURIComponent(sha)}&per_page=60`);
+  if(gen!==generation||!connected)return;
+  const hits=Array.isArray(d.workflow_runs)?d.workflow_runs:[];
+  const ids=new Set(runs.map(r=>r.id));for(const r of hits){if(!ids.has(r.id)){runs.push(r);ids.add(r.id)}}
+  render();
+ }catch(e){apiErrors.push('CI del HEAD: '+e.message);if(gen===generation&&loaded){drawActive();selectedDetail();}}
+}
+async function inspectJobs(runId){
+ runId=Number(runId);if(!Number.isSafeInteger(runId)||runId<1)return;
+ const place=$('jobs-'+runId);if(!place)return;
+ place.classList.remove('hidden');
+ if(jobsCache.has(runId)){place.innerHTML=jobsCache.get(runId);return;}
+ if(inspecting.has(runId))return;inspecting.add(runId);place.textContent='Consultando pasos de la ejecución…';
+ try{const d=await api(`${root()}/actions/runs/${runId}/jobs?per_page=100`);
+  const jobs=Array.isArray(d.jobs)?d.jobs:[];
+  let html=jobs.length?jobs.map(j=>{const bad=(j.steps||[]).filter(x=>x.conclusion==='failure'),unfinished=(j.steps||[]).filter(x=>x.status!=='completed'),url=`https://github.com/${repoName()}/actions/runs/${runId}/job/${Number(j.id)}`;
+   return `<div class="risk ${bad.length||j.conclusion==='failure'?'bad-border':''}"><b>${escapeHtml(j.name||'Job')}</b> · <span class="${j.conclusion==='failure'?'bad':j.conclusion==='success'?'ok':'warn'}">${escapeHtml(j.conclusion||j.status||'?')}</span><div class="small">${bad.length?`Falló: ${bad.map(x=>escapeHtml(x.name)).join('; ')}`:unfinished.length?'En proceso: '+unfinished.map(x=>escapeHtml(x.name)).join('; '):'Sin pasos fallidos reportados'}</div><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Ver job y registros ↗</a></div>`;
+  }).join(''):'No se encontraron jobs en esta ejecución.';
+  if(d.total_count>100)html+='<p class="small warn">Solo se muestran los primeros 100 jobs.</p>';
+  jobsCache.set(runId,html);if($('jobs-'+runId))$('jobs-'+runId).innerHTML=html;
+ }catch(e){if($('jobs-'+runId))$('jobs-'+runId).textContent='No fue posible consultar jobs: '+e.message;}
+ finally{inspecting.delete(runId);}
+}
+function attachInspectors(){document.querySelectorAll('#detail [data-inspect]').forEach(b=>b.addEventListener('click',()=>void inspectJobs(b.dataset.inspect)));}
+// Historial: snapshots agregados sin títulos, SHA ni token.
+function safeHistoryRead(){
+ try{const raw=localStorage.getItem(histKey());const d=JSON.parse(raw||'[]');return Array.isArray(d)?d.filter(validPoint).slice(-1200):[];}catch(e){return[];}
+}
+function validPoint(p){return p&&Number.isFinite(p.t)&&p.t>0&&Array.isArray(p.phases)&&p.phases.length===5&&Number.isFinite(p.branches)&&Number.isFinite(p.open);}
+function restoreHistoryPreference(){try{if(localStorage.getItem(histPreference)==='yes'){$('keep-history').checked=true;historyPoints=safeHistoryRead();}}catch(e){}}
+function persistHistory(){try{if($('keep-history').checked){localStorage.setItem(histPreference,'yes');localStorage.setItem(histKey(),JSON.stringify(historyPoints));}else{localStorage.removeItem(histPreference);localStorage.removeItem(histKey());}}catch(e){$('history-state').textContent='Almacenamiento local restringido';}}
+function snapshot(){return {t:Date.now(),branches:branches.length,open:prs.filter(p=>p.state==='open').length,failed:prs.filter(p=>p.state==='open'&&ciForSha(p.head?.sha).kind==='failure').length,
+ phases:[1,2,3,4,5].map(n=>{const m=phaseMetrics(n);return {n,total:m.total,impl:m.implemented,verified:m.verified};})};}
+function recordSnapshot(){
+ const now=Date.now(),cut=now-7*86400000;historyPoints=historyPoints.filter(x=>validPoint(x)&&x.t>=cut).slice(-1200);
+ const s=snapshot(),last=historyPoints[historyPoints.length-1];
+ if(last&&now-last.t<12*60*1000&&JSON.stringify({...last,t:0})===JSON.stringify({...s,t:0}))return;
+ historyPoints.push(s);historyPoints=historyPoints.slice(-1200);persistHistory();drawHistory();
+}
+function historyDiff(before,now){return now-before>0?'+'+(now-before):String(now-before)}
+function drawHistory(){
+ const latest=historyPoints[historyPoints.length-1];const range=Number($('history-range').value)||24;
+ const start=Date.now()-range*3600000;const old=historyPoints.find(p=>p.t>=start)||historyPoints[0];
+ $('history-state').textContent=historyPoints.length?`${historyPoints.length} muestras · ${$('keep-history').checked?'retención opcional 7 días':'solo memoria'}`:'Sin muestras';
+ if(!latest){$('history-overview').textContent='Todavía no hay muestras para comparar.';return;}
+ const validComparison=old&&old!==latest&&old.t>=start;
+ $('history-overview').innerHTML=`<div class="bar" style="justify-content:space-between"><strong>Estado de la muestra actual</strong><span class="muted small">${fmt(latest.t)}</span></div>
+ <div class="info-grid"><div>Ramas: <b>${latest.branches}</b>${validComparison?` <span class="small muted">(${historyDiff(old.branches,latest.branches)})</span>`:''}</div><div>PR abiertos: <b>${latest.open}</b>${validComparison?` <span class="small muted">(${historyDiff(old.open,latest.open)})</span>`:''}</div><div>CI fallida (PR abiertos): <b>${latest.failed}</b>${validComparison?` <span class="small muted">(${historyDiff(old.failed,latest.failed)})</span>`:''}</div><div>Fases con criterios: <b>${latest.phases.filter(p=>p.total>0).length}/5</b></div></div>
+ <div class="small" style="margin-top:9px">${latest.phases.map((p,i)=>`F${i+1}: ${p.total?`implementación ${pct(p.impl,p.total)}% · cierre ${pct(p.verified,p.total)}%${validComparison&&old.phases[i]?.total?` (cierre ${historyDiff(old.phases[i].verified,p.verified)} criterios)`:''}`:'Sin criterios'}`).join(' · ')}</div>
+ <p class="small muted">${validComparison?`Comparación con lectura del ${fmt(old.t)}`:'Sin una segunda muestra dentro del período seleccionado; no se puede inferir tendencia.'}</p>`;
+ $('history-events').innerHTML=detectedEvents.length?detectedEvents.slice(0,30).map(e=>`<div class="event ${e.kind==='failure'?'bad':''}"><time>${fmt(e.time)}</time><div>${escapeHtml(e.text)}</div></div>`).join(''):'No se han detectado cambios durante esta sesión.';
+}
+function recordEvent(kind,text){detectedEvents.unshift({kind,text,time:Date.now()});detectedEvents=detectedEvents.slice(0,70);}
+function detectUpdates(nextBranches,nextPrs,nextRuns){
+ if(!loaded)return;
+ const oldB=new Set(branches.map(b=>b.name));for(const b of nextBranches){if(!oldB.has(b.name))recordEvent('branch','Nueva rama: '+b.name);}
+ const oldPR=new Map(prs.map(p=>[p.number,p]));for(const p of nextPrs){const previous=oldPR.get(p.number);if(!previous&&p.state==='open')recordEvent('pr',`PR nuevo #${p.number}: ${p.title||''}`);
+ else if(previous&&(previous.state!==p.state||Boolean(previous.merged_at)!==Boolean(p.merged_at)))recordEvent('pr',`PR #${p.number}: ${statusPr(p)}`);}
+ const oldRunIds=new Set(runs.map(x=>String(x.id)+':'+x.status+':'+x.conclusion));
+ for(const run of nextRuns){if(run.conclusion==='failure'&&!oldRunIds.has(String(run.id)+':'+run.status+':'+run.conclusion))recordEvent('failure',`Falló CI: ${run.name||'Workflow'} (${(run.head_sha||'').slice(0,8)}).`);}
+}
+function drawAlerts(){
+ const list=[];const failed=prs.filter(p=>p.state==='open'&&ciForSha(p.head?.sha).kind==='failure');
+ if(failed.length)list.push({kind:'bad',text:`${failed.length} PR abiertos con pruebas fallidas en su SHA actual.`});
+ const notCI=prs.filter(p=>p.state==='open'&&['unknown','unavailable'].includes(ciForSha(p.head?.sha).kind));
+ if(notCI.length)list.push({kind:'warn',text:`${notCI.length} PR abiertos sin resultados de CI comprobados para su HEAD.`});
+ if(tracker?.updated_at){const age=Date.now()-new Date(tracker.updated_at).getTime();if(!Number.isFinite(age)||age>2*86400000)list.push({kind:'warn',text:'Registro de rama activa con más de 48 horas de antigüedad.'});}
+ if(apiErrors.length)list.push({kind:'warn',text:apiErrors.join(' · ')});
+ const map=dependencyMap();const deps=[...map.values()].filter(a=>a.length).length;if(deps)list.push({kind:'warn',text:`${deps} PR dependen de ramas de otros PR todavía abiertos.`});
+ $('alerts').innerHTML=list.length?list.map(x=>`<div class="event ${x.kind}">● ${escapeHtml(x.text)}</div>`).join(''):'<div class="event ok">No se detectaron alertas de estas categorías. No implica cierre de fases.</div>';
+}
+function exportHistory(){
+ if(!historyPoints.length){$('history-state').textContent='No hay muestras que exportar';return;}
+ const head='timestamp,ramas,pr_abiertos,ci_fallida,f1_impl,f1_cierre,f2_impl,f2_cierre,f3_impl,f3_cierre,f4_impl,f4_cierre,f5_impl,f5_cierre';
+ const rows=historyPoints.map(h=>[new Date(h.t).toISOString(),h.branches,h.open,h.failed,...h.phases.flatMap(p=>[p.total?pct(p.impl,p.total):'',p.total?pct(p.verified,p.total):''])].join(','));
+ const blob=new Blob(['\ufeff'+[head,...rows].join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='carteriva_monitor_historial.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function render(){if(!loaded)return;$('m-pr').textContent=prs.filter(p=>p.state==='open').length;$('m-branches').textContent=branches.length;$('m-time').textContent=lastSync?lastSync.toLocaleTimeString('es-CO'):'—';phaseSummary();drawActive();controls();drawAlerts();draw();taskList();selectedDetail();}
 async function commitDetails(gen){const candidates=[...new Set(branches.map(b=>b.commit?.sha).filter(x=>x&&!commits.has(x)))].slice(0,14);let cursor=0;
  async function worker(){while(cursor<candidates.length&&gen===generation&&connected){const sha=candidates[cursor++];try{const data=await api(`${root()}/commits/${encodeURIComponent(sha)}`);if(gen!==generation)return;commits.set(sha,{date:data.commit?.committer?.date||data.commit?.author?.date||null,message:data.commit?.message?.split('\n')[0]||''});}catch(e){commits.set(sha,{date:null,message:'No disponible'});}}}
  await Promise.all(Array.from({length:3},()=>worker()));if(gen===generation&&loaded){draw();selectedDetail();}
@@ -218,24 +393,31 @@ async function refresh(force=false){if(busy||!connected)return;busy=true;const g
  const [branchResponse,prResponse,actionsResponse,trackerResponse]=await Promise.all([paged('/branches'),paged('/pulls?state=all&sort=updated&direction=desc'),readActions(),readTracker()]);
  if(gen!==generation)return;
  const names=new Set(branchResponse.items.map(b=>b.name));const fresh=loaded?[...names].filter(n=>!knownNames.has(n)):[];
+ detectUpdates(branchResponse.items,prResponse.items,actionsResponse.items);
  branches=branchResponse.items;prs=prResponse.items;runs=actionsResponse.items;ciAvailable=actionsResponse.available;tracker=trackerResponse.value;knownNames=names;lastSync=new Date();loaded=true;apiErrors=[actionsResponse.error,trackerResponse.error].filter(Boolean);
  $('connection').innerHTML='<span class="ok">● Conectado</span>';
  const warnings=(branchResponse.truncated||prResponse.truncated)?' · <span class="warn">Consulta paginada incompleta</span>':'';
  $('status').classList.remove('error-notice');$('status').innerHTML=`<b>${branches.length}</b> ramas · <b>${prs.length}</b> PR · actualizado ${lastSync.toLocaleString('es-CO')}${warnings}${fresh.length?`<p class="ok small">Ramas nuevas desde la última consulta: ${escapeHtml(fresh.join(', '))}</p>`:''}${apiErrors.length?`<p class="warn small">${escapeHtml(apiErrors.join(' · '))}</p>`:''}`;
- render();void commitDetails(gen);defaultNext();
+ render();recordSnapshot();void commitDetails(gen);void hydrateHeadCi(gen);defaultNext();
  }catch(e){if(gen!==generation)return;let message=e.message||'Error no identificado';if(!navigator.onLine)message='Sin internet; se mantienen los últimos datos descargados';$('connection').innerHTML='<span class="bad">● Sin actualización</span>';$('status').classList.add('error-notice');$('status').textContent=`${message}. ${loaded?'La información visible podría estar desactualizada.':'No se pudieron obtener datos todavía.'}`;
  if(e.status===401){token='';clearSession();connected=false; $('remember').checked=false; $('status').textContent='GitHub rechazó el token (401). La credencial temporal se borró: pega un token válido para reconectar.';}
  if((e.status===403||e.status===429)&&e.reset){let ms=Number(e.reset)*1000-Date.now();defaultNext(Math.max(INTERVAL,Math.min(ms||INTERVAL,3600000)));}else defaultNext();
  }finally{busy=false;}
 }
 function connect(){token=$('token').value.trim()||token;$('token').value='';if(!validRepo()){$('status').textContent='Formato de repositorio inválido. Ejemplo: ljarias/prestamos-saas';return;}const wasConnected=connected;connected=true;storeToken();if(!wasConnected){knownNames.clear();commits.clear();}defaultNext();void refresh(true);}
-function disconnect(){generation++;connected=false;token='';clearSession();$('remember').checked=false;$('token').value='';branches=[];prs=[];runs=[];tracker=null;loaded=false;busy=false;ciAvailable=false;selected='';knownNames.clear();commits.clear();['m-pr','m-branches','m-ci','m-time'].forEach(id=>$(id).textContent='—');$('connection').textContent='● Desconectado';$('status').classList.remove('error-notice');$('status').textContent='Conexión cerrada. Se borró el token de la sesión y no se hacen consultas.';$('graph').innerHTML='<text x="40" y="90">Desconectado.</text>';$('tasks').innerHTML='';$('phases').innerHTML='<div class="phase muted">Conecta para leer los requisitos.</div>';$('detail').textContent='Selecciona una rama o un PR.';$('active-summary').textContent='Sin conexión.';}
+function disconnect(){generation++;connected=false;token='';clearSession();$('remember').checked=false;$('token').value='';branches=[];prs=[];runs=[];tracker=null;loaded=false;busy=false;ciAvailable=false;selected='';knownNames.clear();commits.clear();['m-pr','m-branches','m-ci','m-time'].forEach(id=>$(id).textContent='—');$('connection').textContent='● Desconectado';$('status').classList.remove('error-notice');$('status').textContent='Conexión cerrada. Se borró el token de la sesión y no se hacen consultas.';$('graph').innerHTML='<text x="40" y="90">Desconectado.</text>';$('tasks').innerHTML='';$('phases').innerHTML='<div class="phase muted">Conecta para leer los requisitos.</div>';$('detail').textContent='Selecciona una rama o un PR.';$('active-summary').textContent='Sin conexión.';$('mobile-branches').innerHTML='';$('control-state').textContent='Desconectado';$('critical-path').textContent='Sin conexión';$('risk-panel').textContent='Sin conexión';$('actions-panel').textContent='Sin conexión';$('alerts').textContent='Sin conexión';}
 $('connect').addEventListener('click',connect);$('clear').addEventListener('click',disconnect);
-$('remember').addEventListener('change',storeToken);$('filter').addEventListener('change',draw);$('search').addEventListener('input',()=>{draw();taskList();});$('phase').addEventListener('change',taskList);
+$('remember').addEventListener('change',storeToken);
+$('toggle-graph').addEventListener('click',()=>{const e=$('graphbox'),open=e.classList.toggle('graph-open');$('toggle-graph').textContent=open?'Ocultar grafo completo':'Mostrar grafo completo';$('toggle-graph').setAttribute('aria-expanded',String(open));});
+$('history-range').addEventListener('change',drawHistory);
+$('keep-history').addEventListener('change',()=>{if($('keep-history').checked){const existing=safeHistoryRead();if(existing.length>historyPoints.length)historyPoints=existing.concat(historyPoints).filter(validPoint).sort((a,b)=>a.t-b.t).slice(-1200);}persistHistory();drawHistory();});
+$('history-export').addEventListener('click',exportHistory);
+$('history-clear').addEventListener('click',()=>{historyPoints=[];detectedEvents=[];try{localStorage.removeItem(histKey());}catch(e){}drawHistory();$('history-events').textContent='Historial borrado en este navegador.';});$('filter').addEventListener('change',draw);$('search').addEventListener('input',()=>{draw();taskList();});$('phase').addEventListener('change',taskList);
 $('repo').addEventListener('change',()=>{if(loaded){disconnect();$('status').textContent='Repositorios distintos requieren una nueva conexión.';}});
 window.addEventListener('online',()=>{if(connected&&!busy)void refresh(true);});window.addEventListener('offline',()=>{if(connected){$('connection').innerHTML='<span class="warn">● Sin internet</span>';$('status').textContent='Sin internet. Se conservan los últimos resultados y la conexión de esta sesión.';}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&connected&&!busy&&Date.now()>nextDue)void refresh();});
 setInterval(()=>{if(!connected)return;const remaining=Math.max(0,Math.ceil((nextDue-Date.now())/1000));$('tick').textContent=`Actualización en ${remaining} s`;if(!busy&&Date.now()>=nextDue)void refresh();},1000);
+restoreHistoryPreference();drawHistory();
 if(restoreSession()){connected=true;defaultNext();void refresh();}else{$('tick').textContent='50 s';}
 </script>
 </body></html>
