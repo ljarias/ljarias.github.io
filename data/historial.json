@@ -176,5 +176,43 @@
       "https://www.nature.com/articles/s43588-026-01071-0?utm_source=openai"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-10-18",
+    "edition_type": "weekly",
+    "period_start": "2026-10-12",
+    "period_end": "2026-10-18",
+    "post": "_posts/2026-10-18-ia-al-dia.md",
+    "titles": [
+      "Ocho estados de EE. UU. demandan a OpenAI por presuntos daños de ChatGPT",
+      "Anthropic advierte sobre la posible autorreplicación de modelos pequeños",
+      "Nvidia compromete 250 millones de dólares en recursos informáticos para seguridad de IA en Reino Unido",
+      "Meta presenta los modelos Muse Wonder para competir en agentes de IA",
+      "El FMI advierte que los riesgos de la IA podrían superar sus oportunidades sin salvaguardas",
+      "Nature examina el impacto de la IA en las carreras de jóvenes investigadores",
+      "Crecen los intentos de detectar ideas científicas generadas por IA",
+      "La IA explicable ayuda a estudiar los efectos del cambio global sobre mamíferos"
+    ],
+    "urls": [
+      "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/",
+      "https://about.fb.com/news/2026/10/introducing-muse-wonder-models/?utm_source=openai",
+      "https://apnews.com/article/f29fa6c206cfe41d46ba38ee7be78218",
+      "https://tech.yahoo.com/ai/claude/articles/ai-models-may-soon-self-051442643.html?utm_source=openai",
+      "https://www.anthropic.com/research/self-replicating-ai",
+      "https://www.investing.com/news/economy-news/ai-models-may-soon-selfreplicate-without-access-to-data-centers-anthropic-warns-4945449",
+      "https://www.investing.com/news/economy-news/imf-chief-says-ai-risks-may-exceed-opportunities-and-ethical-framework-4953345",
+      "https://www.investing.com/news/economy-news/imf-chief-says-ai-risks-may-exceed-opportunities-without-safeguards-and-ethical-framework-4953345?utm_source=openai",
+      "https://www.investing.com/news/stock-market-news/eight-us-states-sue-openai-claiming-chatgpt-harms-children-4949879",
+      "https://www.investing.com/news/stock-market-news/eight-us-states-sue-openai-claiming-chatgpt-harms-children-4949879?utm_source=openai",
+      "https://www.investing.com/news/stock-market-news/meta-releases-muse-wonder-models-challengeanthropic-and-openai-4945058",
+      "https://www.investing.com/news/stock-market-news/nvidia-pledges-250-million-to-boost-uk-ai-safety-research-4948124",
+      "https://www.investing.com/news/stock-market-news/nvidia-pledges-250-million-to-boost-uk-ai-safety-research-4948124?utm_source=openai",
+      "https://www.nature.com/articles/s41467-026-78677-5",
+      "https://www.nature.com/articles/s41467-026-78677-5?utm_source=openai",
+      "https://www.nature.com/subjects/machine-learning/nature",
+      "https://www.nature.com/subjects/machine-learning/nature?utm_source=openai",
+      "https://www.theguardian.com/technology/2026/oct/14/nvidia-donates-250m-to-uk-ai-safety-research"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
