@@ -214,5 +214,46 @@
       "https://www.theguardian.com/technology/2026/oct/14/nvidia-donates-250m-to-uk-ai-safety-research"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-10-25",
+    "edition_type": "weekly",
+    "period_start": "2026-10-19",
+    "period_end": "2026-10-25",
+    "post": "_posts/2026-10-25-ia-al-dia.md",
+    "titles": [
+      "Estados Unidos ordena retirar DeepSeek de sus agencias civiles",
+      "Agentes de IA participan en ataques contra más de cien sitios web",
+      "La IA acelera el descubrimiento de vulnerabilidades, pero también puede aumentar las interrupciones",
+      "Los mercados vuelven a cuestionar el costo de la expansión de la IA",
+      "Europa busca combinar IA soberana con herramientas abiertas",
+      "La desigualdad también puede crecer con los agentes autónomos",
+      "La IA se incorpora a la industria mientras persisten dudas sobre su rentabilidad"
+    ],
+    "urls": [
+      "https://apnews.com/article/2bffa5b0131808735280b2c0e6f0d856",
+      "https://apnews.com/article/33767691a4a0730b96d6f0c5100ea9b2",
+      "https://apnews.com/article/33767691a4a0730b96d6f0c5100ea9b2?utm_source=openai",
+      "https://apnews.com/article/f024c1e0d181677a19468657907a9025",
+      "https://apnews.com/article/f024c1e0d181677a19468657907a9025?utm_source=openai",
+      "https://blogs.nvidia.com/blog/ebu-sovereign-ai/",
+      "https://blogs.nvidia.com/blog/open-models-agentic-ai/",
+      "https://vulncheck.com/",
+      "https://www.aol.co.uk/articles/ai-discovered-bugs-may-soon-100318000.html?utm_source=openai",
+      "https://www.breakingviews.com/columns/considered-view/oxford-summit-rings-alarm-corporate-ai-2026-10-19/",
+      "https://www.ebu.ch/",
+      "https://www.govinfo.gov/content/pkg/FR-2026-10-20/pdf/2026-21447.pdf",
+      "https://www.govinfo.gov/content/pkg/FR-2026-10-20/pdf/2026-21447.pdf?utm_source=openai",
+      "https://www.marketscreener.com/news/china-says-us-deepseek-ban-disregards-xi-trump-consensus-ce785cd8da89fe2d?utm_source=openai",
+      "https://www.nature.com/articles/s42256-026-01318-5",
+      "https://www.nature.com/articles/s42256-026-01318-5?utm_source=openai",
+      "https://www.reuters.com/technology/cybersecurity/ai-discovered-bugs-may-soon-trigger-fresh-disruptions-cyber-experts-say-2026-10-23/",
+      "https://www.reuters.com/technology/cybersecurity/chinese-hacker-used-ai-agents-breach-more-than-100-company-websites-2026-10-19/",
+      "https://www.reuters.com/technology/us-banning-chinese-ai-deepseek-government-agency-it-systems-2026-10-19/",
+      "https://www.thewire.cloud/d/2026-10-19?utm_source=openai",
+      "https://www.tomshardware.com/tech-industry/artificial-intelligence/a-chinese-hacker-used-ai-agents-to-break-into-more-than-100-company-websites-deere-and-sharkninja-among-websites-hit-by-open-source-ai-powered-problem-solving-platform-demo",
+      "https://www.tomshardware.com/tech-industry/artificial-intelligence/a-chinese-hacker-used-ai-agents-to-break-into-more-than-100-company-websites-deere-and-sharkninja-among-websites-hit-by-open-source-ai-powered-problem-solving-platform-demo?utm_source=openai"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
