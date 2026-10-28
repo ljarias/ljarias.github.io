@@ -1,0 +1,155 @@
+{
+  "version": 2,
+  "name": "Mesa de Ayuda TI · Diagnóstico inicial (simulación)",
+  "description": "Caso académico de mesa de ayuda de primer nivel: energía, rendimiento y red, con verificación externa y escalamiento seguro.",
+  "start": "q_inicio",
+  "routes": [
+    {
+      "id": "r_sin_video",
+      "title": "Revisar salida de imagen con seguridad",
+      "message": "Si el equipo muestra luces o sonido pero no imagen, podría haber distintas causas. Comprueba solamente los cables externos de pantalla, el brillo o la entrada del monitor, si es seguro. Intenta un reinicio normal. No abras el equipo ni retires módulos RAM. Si el problema continúa, solicita una visita técnica o evaluación de taller.",
+      "phone": ""
+    },
+    {
+      "id": "r_sin_energia",
+      "title": "Revisión externa de alimentación",
+      "message": "Si no enciende, verifica sin manipular componentes internos que el cable externo y el tomacorriente estén conectados correctamente. Si el cable está roto, hay chispas, olor a quemado o batería inflada, no sigas usando el equipo. Nunca abras ni puentes una fuente de alimentación: puede acumular carga peligrosa. Solicita soporte técnico.",
+      "phone": ""
+    },
+    {
+      "id": "r_aplicacion",
+      "title": "Orientación para un programa lento",
+      "message": "Guarda el trabajo, cierra y vuelve a abrir el programa desde sus controles normales. Comprueba si hay actualizaciones oficiales. Antes de reinstalar, respalda tus archivos y configuraciones y confirma licencias; no desinstales programas institucionales sin autorización. Si continúa, comunica a soporte el nombre del programa y el error.",
+      "phone": ""
+    },
+    {
+      "id": "r_sistema",
+      "title": "Mantenimiento básico del sistema",
+      "message": "Haz una copia de seguridad de tus documentos. Revisa espacio libre, actualizaciones oficiales y aplicaciones de inicio; utiliza la protección antimalware confiable ya instalada. No desactives servicios de seguridad ni descargues limpiadores desconocidos. Si persiste la lentitud, solicita diagnóstico.",
+      "phone": ""
+    },
+    {
+      "id": "r_ethernet",
+      "title": "Revisar conexión Ethernet",
+      "message": "Comprueba visualmente que el cable de red externo esté bien insertado en ambos extremos sin forzar el conector. Si hay otro cable probado y autorizado, solicita cambiarlo. Verifica si otros equipos de la red tienen internet. No reinicies ni restablezcas equipos de red institucionales sin autorización.",
+      "phone": ""
+    },
+    {
+      "id": "r_wifi",
+      "title": "Revisar conexión inalámbrica",
+      "message": "Comprueba que el modo avión esté desactivado y que estés usando la red Wi-Fi correcta. Puedes desconectarte y volver a conectarte desde los controles habituales. Si otros equipos tampoco navegan, informa al administrador de red. No desinstales controladores ni compartas la contraseña con desconocidos.",
+      "phone": ""
+    },
+    {
+      "id": "r_riesgo",
+      "title": "Suspender uso y solicitar asistencia urgente",
+      "message": "Si observas humo, chispas, olor a quemado, líquidos o batería inflada, deja de utilizar el equipo y aléjate del riesgo. Desconecta únicamente si es seguro; no abras baterías ni fuentes de poder. Solicita ayuda especializada o servicios de emergencia si corresponde.",
+      "phone": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "q_inicio",
+      "type": "question",
+      "text": "Mesa de ayuda técnica (demostración). ¿Qué problema presenta tu equipo? No escribas contraseñas ni datos privados.",
+      "options": [
+        {
+          "label": "No enciende",
+          "to": "q_energia"
+        },
+        {
+          "label": "Funciona muy lento",
+          "to": "q_rendimiento"
+        },
+        {
+          "label": "No tengo conexión a internet",
+          "to": "q_red"
+        },
+        {
+          "label": "Hay humo, chispas, líquido o batería hinchada",
+          "to": "n_riesgo"
+        }
+      ]
+    },
+    {
+      "id": "q_energia",
+      "type": "question",
+      "text": "Cuando presionas el botón de encendido, ¿se iluminan indicadores o se escucha el ventilador?",
+      "options": [
+        {
+          "label": "Sí, hay luces o sonidos, pero no imagen",
+          "to": "n_sin_video"
+        },
+        {
+          "label": "No aparece ninguna señal de encendido",
+          "to": "n_sin_energia"
+        }
+      ]
+    },
+    {
+      "id": "q_rendimiento",
+      "type": "question",
+      "text": "¿La lentitud sucede en un programa o en todo el sistema?",
+      "options": [
+        {
+          "label": "En un programa específico",
+          "to": "n_aplicacion"
+        },
+        {
+          "label": "En todo el sistema operativo",
+          "to": "n_sistema"
+        }
+      ]
+    },
+    {
+      "id": "q_red",
+      "type": "question",
+      "text": "¿Cómo se conecta el equipo a la red?",
+      "options": [
+        {
+          "label": "Por cable Ethernet",
+          "to": "n_ethernet"
+        },
+        {
+          "label": "Por Wi-Fi",
+          "to": "n_wifi"
+        }
+      ]
+    },
+    {
+      "id": "n_sin_video",
+      "type": "end",
+      "routeId": "r_sin_video"
+    },
+    {
+      "id": "n_sin_energia",
+      "type": "end",
+      "routeId": "r_sin_energia"
+    },
+    {
+      "id": "n_aplicacion",
+      "type": "end",
+      "routeId": "r_aplicacion"
+    },
+    {
+      "id": "n_sistema",
+      "type": "end",
+      "routeId": "r_sistema"
+    },
+    {
+      "id": "n_ethernet",
+      "type": "end",
+      "routeId": "r_ethernet"
+    },
+    {
+      "id": "n_wifi",
+      "type": "end",
+      "routeId": "r_wifi"
+    },
+    {
+      "id": "n_riesgo",
+      "type": "end",
+      "routeId": "r_riesgo"
+    }
+  ]
+}
