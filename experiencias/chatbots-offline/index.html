@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102A43">
+<meta name="description" content="Del diagrama al chatbot: experiencia de tecnología educativa en Santa Marta sobre árboles de decisión, validación lógica y asistentes conversacionales offline.">
+<title>Del diagrama al chatbot | Experiencias académicas · Arias Data Lab</title>
+<link rel="canonical" href="https://ljarias.github.io/experiencias/chatbots-offline/">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/logo/v4.0/ADL_isotipo-cuadrado_EDITABLE_v4.0.svg">
+<link rel="stylesheet" href="../../arias-data-lab/portal.css?v=1.4">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Arias Data Lab">
+<meta property="og:title" content="Del diagrama al chatbot | Arias Data Lab">
+<meta property="og:description" content="Una experiencia académica sobre pensamiento computacional, construcción visual de árboles de decisión y chatbots que funcionan sin internet.">
+<meta property="og:url" content="https://ljarias.github.io/experiencias/chatbots-offline/">
+<style>
+/* Estilos de la experiencia. Conserva los tokens, fuentes y logotipo originales del portal ADL. */
+.case-hero{background:radial-gradient(circle at 88% 20%,rgba(43,180,171,.24),transparent 35%),linear-gradient(115deg,#0b273e,#0e4155 66%,#086a76);color:#fff;padding:76px 0 79px}
+.case-hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:46px}
+.case-hero h1{font-size:clamp(2.5rem,5.4vw,4.9rem);line-height:1.08;margin:0 0 20px;color:white;letter-spacing:-.045em}
+.case-hero h1 em{font-style:normal;color:#96f6e6}
+.case-hero .deck{font-size:clamp(1.05rem,1.5vw,1.19rem);line-height:1.72;color:#e5f4f5;max-width:650px}
+.case-meta{display:flex;gap:9px;flex-wrap:wrap;margin:21px 0 28px}
+.case-meta span{border:1px solid #b0dee368;border-radius:100px;padding:6px 12px;font-size:.82rem;color:#ebfafa}
+.case-links{display:flex;flex-wrap:wrap;gap:12px}
+.case-links a{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:10px;font-size:.91rem;font-weight:800;text-decoration:none}
+.case-links a:first-child{background:#F4B942;color:#102A43}
+.case-links a:last-child{border:1px solid #b9e1e0;color:#fff}
+.case-links a:hover,.case-links a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+.case-hero-note{margin:20px 0 0;color:#d0e7eb;font-size:.85rem}
+.case-diagram{background:#f7fcff;color:#173449;padding:22px;border-radius:22px;box-shadow:0 24px 54px #05172644;border:1px solid #d8f5f1}
+.case-diagram h2{font-size:1.04rem;letter-spacing:0;margin:0 0 12px;color:#18374a}
+.case-diagram p{font-size:.78rem;color:#506a76;margin:13px 0 0}
+.flow-node{border:2px solid #a9cdda;border-radius:12px;background:#fff;padding:13px 14px;text-align:center;font-size:.95rem;font-weight:780;line-height:1.4}
+.flow-node small{display:block;font-size:.72rem;color:#536977;font-weight:600;margin-top:4px}
+.flow-node.question{border-color:#087F8C;background:#e6f6f5}
+.flow-arrow{text-align:center;color:#087F8C;font-size:1.2rem;height:24px;line-height:24px;font-weight:900}
+.flow-split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.flow-result{background:#fff;border:1px solid #c9dce4;border-radius:12px;padding:13px 11px;font-size:.87rem;line-height:1.45;text-align:center}
+.flow-result strong{display:block;color:#143c4d;font-size:.86rem;margin-bottom:6px}
+.flow-result.good{border-top:4px solid #147a72}
+.flow-result.check{border-top:4px solid #ad791d}
+.flow-caption{font-size:.75rem;color:#587485;text-align:center;margin-top:12px}
+.case-main{background:#f7fafc;padding:58px 0 80px}
+.case-layout{display:grid;grid-template-columns:230px minmax(0,760px);gap:54px;align-items:start;justify-content:center}
+.case-toc{position:sticky;top:118px;background:#fff;border:1px solid #dbe8ed;border-radius:15px;padding:22px}
+.case-toc h2{font-size:.95rem;letter-spacing:0;margin:0 0 12px;color:#14374a}
+.case-toc a{display:block;font-size:.86rem;color:#285a68;font-weight:650;padding:7px 0;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px}
+.case-toc a:hover,.case-toc a:focus-visible{text-decoration-color:currentColor}
+.case-article{min-width:0}
+.case-article>section{scroll-margin-top:130px;margin-bottom:52px}
+.case-article h2{font-size:clamp(1.6rem,2.9vw,2.22rem);color:#102A43;margin:0 0 17px;letter-spacing:-.035em}
+.case-article h3{font-size:1.12rem;letter-spacing:0;color:#153e4e;margin:0 0 9px}
+.case-article p,.case-article li{font-size:1rem;line-height:1.82;color:#304e5d}
+.case-article ul{padding-left:22px}
+.case-article li+li{margin-top:9px}
+.case-article a{color:#086575;text-decoration:underline;text-underline-offset:3px;font-weight:750}
+.case-article a:hover{color:#064852}
+.case-lead{font-size:1.22rem!important;line-height:1.76!important;color:#183e50!important}
+.case-label{display:inline-block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:#086b74;font-weight:850;margin:0 0 12px!important}
+.case-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:19px 0 24px}
+.case-card{background:#fff;border:1px solid #d3e5e9;border-radius:13px;padding:19px}
+.case-card b{display:block;color:#0e6270;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 10px}
+.case-card p{font-size:.89rem;line-height:1.65;margin:0}
+.case-callout{background:#eaf5f5;border-left:5px solid #087F8C;border-radius:0 12px 12px 0;padding:19px 22px;margin:22px 0}
+.case-callout p{margin:0;color:#20485b;font-size:.96rem}
+.case-steps{counter-reset:steps;list-style:none;margin:20px 0;padding:0}
+.case-steps li{counter-increment:steps;display:flex;align-items:flex-start;gap:15px;margin:0 0 14px;padding:16px;background:#fff;border:1px solid #dce9ed;border-radius:12px}
+.case-steps li:before{content:counter(steps,decimal-leading-zero);flex:0 0 36px;font-size:1rem;font-weight:900;color:#087F8C}
+.case-table{border-collapse:collapse;width:100%;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #d5e4e9;margin:21px 0}
+.case-table caption{text-align:left;font-size:.83rem;font-weight:650;color:#566f79;padding-bottom:9px}
+.case-table th,.case-table td{padding:14px 16px;border-bottom:1px solid #dae7eb;text-align:left;vertical-align:top;font-size:.91rem}
+.case-table th{background:#e8f3f5;color:#173c4e}
+.case-table tr:last-child td{border-bottom:0}
+.case-table td{color:#355566}
+.case-footnote{font-size:.86rem!important;color:#587280!important}
+.case-cta{background:#102A43;color:#fff;border-radius:18px;padding:29px;margin-top:32px}
+.case-cta h2{color:white;margin-bottom:13px;font-size:1.6rem}
+.case-cta p{color:#d9ebf0}
+.case-cta a{color:#b0fff0}
+.case-footer-nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:15px;border-top:1px solid #d0e1e5;margin-top:30px;padding-top:19px;font-size:.9rem}
+.case-footer-nav a{color:#076875}
+@media(max-width:1040px){.case-hero-grid{gap:25px}.case-layout{gap:27px;grid-template-columns:195px minmax(0,1fr)}}
+@media(max-width:760px){.case-hero{padding:48px 0 54px}.case-hero-grid,.case-layout{grid-template-columns:1fr}.case-diagram{max-width:570px}.case-toc{position:static}.case-toc nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 14px}.case-main{padding:35px 0 65px}.case-card-grid{grid-template-columns:1fr}}
+@media(max-width:460px){.case-links{flex-direction:column}.case-links a{width:100%}.flow-split{gap:8px}.flow-result{padding:12px 6px;font-size:.8rem}.case-diagram{padding:16px}.case-table{display:block;overflow-x:auto}.case-toc nav{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.case-links a{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+<header class="site-header">
+  <div class="container header-row">
+    <a href="../../" class="site-brand" aria-label="Arias Data Lab, volver al inicio">
+      <span class="brand-icon"><img src="../../assets/brand/logo/v4.0/ADL_isotipo-cuadrado_EDITABLE_v4.0.svg" alt="" width="38" height="38"></span>
+      <span class="brand-label"><strong>Arias-Data-Lab</strong><small>Tecnología con criterio humano</small></span>
+    </a>
+    <nav class="primary-nav" aria-label="Navegación principal">
+      <a href="../../#proyectos">Recursos</a>
+      <a href="../../arias-data-lab/productos/">Productos</a>
+      <a href="../../#contacto" class="nav-contact">Contacto</a>
+    </nav>
+  </div>
+</header>
+<main id="contenido">
+  <section class="case-hero" aria-labelledby="case-title">
+    <div class="container case-hero-grid">
+      <div>
+        <p class="eyebrow"><span class="accent-line" aria-hidden="true"></span> Experiencia académica · Tecnología educativa</p>
+        <h1 id="case-title">Del diagrama al <em>chatbot</em></h1>
+        <p class="deck">Aprender a construir decisiones sin internet: una experiencia de diseño de asistentes conversacionales con árboles de decisión, validación lógica y herramientas visuales.</p>
+        <div class="case-meta" aria-label="Datos de la experiencia">
+          <span>Santa Marta, Colombia</span>
+          <span>Educación media</span>
+          <span>Proyecto en evolución</span>
+        </div>
+        <div class="case-links">
+          <a href="#experiencia">Conocer la experiencia</a>
+          <a href="#evidencia">Revisar evidencias y límites</a>
+        </div>
+        <p class="case-hero-note">Trabajo pedagógico contextualizado; no es una publicación oficial de la institución educativa.</p>
+      </div>
+      <aside class="case-diagram" aria-label="Ejemplo ilustrativo de un árbol de decisión">
+        <h2>Así se ve una decisión programada</h2>
+        <div class="flow-node question">¿El portátil enciende?<small>Pregunta inicial</small></div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="flow-split">
+          <div class="flow-result good"><strong>Sí</strong>Continuar con preguntas básicas sobre su funcionamiento.</div>
+          <div class="flow-result check"><strong>No</strong>Orientar una revisión externa segura o solicitar ayuda técnica.</div>
+        </div>
+        <p class="flow-caption">Esquema didáctico, no captura del constructor ni diagnóstico real.</p>
+      </aside>
+    </div>
+  </section>
+  <div class="case-main">
+    <div class="container case-layout">
+      <aside class="case-toc" aria-label="Contenido del artículo">
+        <h2>En esta experiencia</h2>
+        <nav aria-label="Secciones del artículo">
+          <a href="#origen">Una necesidad del aula</a>
+          <a href="#experiencia">Casos de aprendizaje</a>
+          <a href="#constructor">Constructor visual</a>
+          <a href="#metamodelo">Metamodelo y validación</a>
+          <a href="#offline">Por qué offline</a>
+          <a href="#evidencia">Evidencias y límites</a>
+          <a href="#proximos-pasos">Lo que sigue</a>
+        </nav>
+      </aside>
+      <article class="case-article">
+        <section id="origen" aria-labelledby="origen-title">
+          <p class="case-label">El punto de partida</p>
+          <h2 id="origen-title">Una necesidad que nace en el aula</h2>
+          <p class="case-lead">¿Cómo enseñar a diseñar una conversación programada cuando los estudiantes tienen distintos niveles de experiencia y la conectividad no siempre está disponible?</p>
+          <p>Esta pregunta orientó actividades de Tecnología e Informática de grado 11 en el contexto de la IEDT INEM Simón Bolívar, en Santa Marta. El propósito fue acercar el pensamiento computacional a situaciones comprensibles: formular preguntas, identificar alternativas, justificar decisiones y comprobar resultados.</p>
+          <p>El reto no consistía solamente en crear un chatbot que respondiera. También interesaba que los estudiantes pudieran explicar cómo se conectan sus preguntas, por qué una respuesta conduce a cierto resultado y qué ocurre cuando una ruta está incompleta.</p>
+        </section>
+        <section id="experiencia" aria-labelledby="experiencia-title">
+          <p class="case-label">Tres situaciones, una estructura común</p>
+          <h2 id="experiencia-title">Del problema cotidiano al árbol de decisiones</h2>
+          <p>Las actividades pedagógicas consideraron escenarios distintos, pero todos se podían representar mediante preguntas, opciones y resultados:</p>
+          <div class="case-card-grid">
+            <div class="case-card"><b>Emprendimiento</b><h3>Sweets Pinkys</h3><p>Preguntas frecuentes sobre productos y servicios de un emprendimiento escolar.</p></div>
+            <div class="case-card"><b>Orientación</b><h3>SST Orienta</h3><p>Rutas basadas en reglas para situaciones simuladas de seguridad y salud en el trabajo.</p></div>
+            <div class="case-card"><b>Soporte técnico</b><h3>Portátiles</h3><p>Clasificación inicial de problemas y decisiones de escalamiento a soporte especializado.</p></div>
+          </div>
+          <p>En cada caso, el recorrido didáctico comienza por entender el problema, dibujar las decisiones, construir las rutas, probarlas y corregirlas. Los materiales de clase son antecedentes de la experiencia; no todos constituyen entregables públicos del constructor.</p>
+        </section>
+        <section id="constructor" aria-labelledby="constructor-title">
+          <p class="case-label">Desarrollo tecnológico</p>
+          <h2 id="constructor-title">Un constructor que permite ver y corregir la lógica</h2>
+          <p>La experiencia evolucionó hacia un constructor de propósito general que funciona localmente en el navegador. Su editor permite crear preguntas, añadir alternativas, conectar destinos, consultar un diagrama y exportar un asistente conversacional basado en reglas.</p>
+          <ol class="case-steps">
+            <li>Definir los resultados posibles antes de escribir las preguntas.</li>
+            <li>Agregar preguntas y asociar cada opción con otra pregunta o un resultado.</li>
+            <li>Revisar el mapa visual y detectar conexiones incompletas o inválidas.</li>
+            <li>Probar los recorridos y exportar el chatbot como archivo HTML autónomo.</li>
+          </ol>
+          <div class="case-callout"><p><strong>Lo que aporta la visualización:</strong> un error deja de ser solamente un mensaje técnico. Puede señalarse en el diagrama para que el aprendiz observe qué conexión falta y razone cómo resolverla.</p></div>
+        </section>
+        <section id="metamodelo" aria-labelledby="metamodelo-title">
+          <p class="case-label">Formalización académica</p>
+          <h2 id="metamodelo-title">Hacia un metamodelo de construcción de chatbots</h2>
+          <p>Un mismo patrón aparece en los distintos ejemplos: existe una pregunta inicial, hay opciones con destinos definidos y el recorrido debe conducir a un resultado. Formalizar ese patrón permite describir los componentes, atributos, relaciones y restricciones de los chatbots construidos.</p>
+          <p>El modelo técnico vigente utiliza proyectos JSON versión 2 y un validador que revisa elementos como identificadores, destinos, ciclos y rutas inaccesibles. En paralelo, se estudia una especificación académica de metamodelo que todavía debe conciliarse con la implementación existente.</p>
+          <table class="case-table">
+            <caption>Elementos principales que comparte un chatbot determinístico</caption>
+            <thead><tr><th scope="col">Elemento</th><th scope="col">Función</th></tr></thead>
+            <tbody>
+              <tr><td>Pregunta</td><td>Solicita información para decidir el siguiente paso.</td></tr>
+              <tr><td>Opción</td><td>Presenta una respuesta posible.</td></tr>
+              <tr><td>Transición</td><td>Relaciona la respuesta con el nodo siguiente.</td></tr>
+              <tr><td>Resultado</td><td>Ofrece una orientación o cierre del recorrido.</td></tr>
+              <tr><td>Validador</td><td>Comprueba la estructura y el funcionamiento lógico del árbol.</td></tr>
+            </tbody>
+          </table>
+          <p>La formalización está en proceso. No se presenta como un estándar universal ni como un metamodelo ya evaluado empíricamente.</p>
+        </section>
+        <section id="offline" aria-labelledby="offline-title">
+          <p class="case-label">Tecnología adecuada al contexto</p>
+          <h2 id="offline-title">¿Por qué trabajar sin internet?</h2>
+          <p>La posibilidad de ejecutar el chatbot desde un archivo HTML permite practicar sin depender de cuentas, servidores o servicios de inteligencia artificial. El proyecto JSON conserva la estructura editable para continuar trabajando después.</p>
+          <p>Se trata de un chatbot determinístico: sigue rutas previstas por quien lo diseñó. <strong>No es un modelo generativo ni interpreta libremente todas las preguntas.</strong> Esa limitación también es una oportunidad pedagógica, porque cada decisión puede examinarse y justificarse.</p>
+          <p class="case-footnote">Una función opcional que abra un enlace externo, por ejemplo WhatsApp, sí requiere conexión a ese servicio. El funcionamiento offline se refiere al árbol conversacional local.</p>
+        </section>
+        <section id="evidencia" aria-labelledby="evidencia-title">
+          <p class="case-label">Rigor y transparencia</p>
+          <h2 id="evidencia-title">Lo que está implementado y lo que todavía debemos comprobar</h2>
+          <table class="case-table">
+            <caption>Estado de la experiencia al 27 de octubre de 2026</caption>
+            <thead><tr><th scope="col">Aspecto</th><th scope="col">Situación documentada</th></tr></thead>
+            <tbody>
+              <tr><td>Constructor visual</td><td>Implementado con editor, diagrama, simulación y exportación offline.</td></tr>
+              <tr><td>Pruebas técnicas</td><td>15 pruebas automáticas aprobadas en la evidencia técnica revisada; no certifican todos los dispositivos.</td></tr>
+              <tr><td>Metamodelo formal</td><td>En contrastación con el formato de proyecto existente.</td></tr>
+              <tr><td>Evaluación pedagógica</td><td>Piloto de grado 11 propuesto; aún no existen resultados de aprendizaje medidos para divulgar.</td></tr>
+              <tr><td>Acceso público al software</td><td>No habilitado; sujeto a revisión de licencia, privacidad, pruebas y autorizaciones.</td></tr>
+            </tbody>
+          </table>
+          <p>Las pruebas de software ayudan a comprobar comportamiento técnico. Para afirmar que una herramienta favorece el aprendizaje se necesita una evaluación educativa independiente, con instrumentos y evidencias apropiadas.</p>
+        </section>
+        <section id="proximos-pasos" aria-labelledby="proximos-title">
+          <p class="case-label">Siguiente etapa</p>
+          <h2 id="proximos-title">Evaluar cómo aprenden los estudiantes</h2>
+          <p>El siguiente paso académico será realizar un piloto guiado: los participantes deberán crear rutas, encontrar errores intencionales, corregir conexiones y explicar sus decisiones. Se observarán dificultades de uso, autonomía y calidad de las explicaciones, sin dar por demostrados resultados antes de recoger evidencia.</p>
+          <p>Si se desarrolla una investigación formal, la participación, las autorizaciones institucionales y la protección de datos de niños y adolescentes deberán resolverse previamente. Los materiales divulgativos utilizarán ejemplos ficticios y no contendrán información individual.</p>
+          <div class="case-cta">
+            <h2>Tecnología con criterio humano</h2>
+            <p>A veces, aprender programación comienza antes del código: al formular una pregunta, analizar sus alternativas y comprender las consecuencias de cada respuesta.</p>
+            <p>Esta experiencia forma parte de la exploración educativa de Arias Data Lab y se presenta como iniciativa profesional independiente, sin atribución institucional oficial.</p>
+          </div>
+          <div class="case-footer-nav">
+            <a href="../../#proyectos">← Volver a recursos de Arias Data Lab</a>
+            <a href="../../#contacto">Contacto y colaboraciones →</a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div class="footer-logo"><img src="../../assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg" alt="Arias Data Lab" width="120" height="90" loading="lazy"><div><strong>Arias-Data-Lab</strong><p>Tecnología con criterio humano.</p></div></div>
+    <nav aria-label="Enlaces del pie de página"><a href="../../">Portal principal</a><a href="../../ia-al-dia/">IA al Día</a><a href="../../banco-problemas-caribe/">Banco de Problemas</a></nav>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Arias-Data-Lab · Santa Marta, Colombia</span><span>Experiencia académica · Edición inicial para revisión</span></div>
+</footer>
+</body>
+</html>
