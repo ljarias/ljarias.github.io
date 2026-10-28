@@ -1,11 +1,10 @@
-CONSTRUCTOR VISUAL DE CHATBOTS | PUBLICACION EDUCATIVA
+CONSTRUCTOR VISUAL DE CHATBOTS v1.0.0
+Código original: Apache License, Version 2.0.
+Consulta LICENSE y NOTICE incluidos en esta carpeta.
+La licencia permite redistribución y modificaciones cumpliendo sus términos.
 
-Esta versión se ofrece públicamente para explorar y utilizar el constructor en el navegador.
-La licencia abierta del código original del proyecto aún debe ser elegida por su titular.
-El acceso público a la aplicación NO equivale a una cesión de derechos ni a una licencia general para redistribuir el código propio.
+Biblioteca externa vis-network 9.1.9: MIT.
+Consulta vendor/LICENSE-vis-network-MIT.txt.
 
-COMPONENTES DE TERCEROS
-vis-network 9.1.9 se distribuye bajo licencia MIT, conservada en vendor/LICENSE-vis-network-MIT.txt.
-
-El constructor funciona localmente en el navegador; no requiere crear una cuenta.
-No se autoriza presentar ejemplos ficticios como protocolos oficiales de SST, EPS o proveedores.
+Los ejemplos son ficticios y no constituyen instrucciones oficiales de ninguna institución.
+La licencia de software no concede derechos sobre marcas o logotipos.
