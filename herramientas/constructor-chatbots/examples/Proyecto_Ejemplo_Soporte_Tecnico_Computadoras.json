@@ -1,0 +1,368 @@
+{
+  "version": 2,
+  "name": "Diagnóstico orientativo de computadores · Soporte técnico",
+  "description": "Ejemplo didáctico offline: triage seguro de fallas físicas y lógicas, sin reemplazar al técnico",
+  "start": "q_inicio",
+  "routes": [
+    {
+      "id": "r_riesgo",
+      "title": "Detener uso y pedir ayuda segura",
+      "message": "Si hay humo, chispas, olor a quemado, batería inflada o líquido en el equipo: deja de utilizarlo, evita manipularlo o volver a encenderlo y desconéctalo solo si es seguro. No abras el portátil ni intentes reparar la batería. Aléjate si hay riesgo y solicita asistencia técnica cualificada; ante incendio o emergencia, llama al servicio local de emergencias.",
+      "phone": ""
+    },
+    {
+      "id": "r_autoservicio",
+      "title": "Comprobación básica segura",
+      "message": "Si no observas señales de peligro, confirma que el tomacorriente y los cables externos están bien conectados. Puedes intentar un reinicio normal y comprobar si el problema desaparece. Evita abrir el equipo o manipular componentes internos. Si falla nuevamente, solicita soporte.",
+      "phone": ""
+    },
+    {
+      "id": "r_taller",
+      "title": "Llevar el computador al taller",
+      "message": "El síntoma puede requerir revisión física, mediciones o pruebas con repuestos. Apaga el equipo si hacerlo es seguro. Registra el síntoma, modelo y momento en que empezó. No intentes abrir la fuente de energía ni manipular la batería; solicita evaluación en un taller autorizado.",
+      "phone": ""
+    },
+    {
+      "id": "r_visita",
+      "title": "Agendar visita técnica",
+      "message": "Se recomienda una revisión presencial para examinar pantalla, teclado integrado, cables externos o conectividad local. Anota el problema, el modelo y las pruebas seguras que hiciste; acuerda una visita con soporte autorizado.",
+      "phone": ""
+    },
+    {
+      "id": "r_remoto",
+      "title": "Solicitar orientación remota",
+      "message": "El problema no quedó identificado con estas preguntas. Anota los mensajes y síntomas, intenta describir cuándo ocurre y solicita soporte remoto con un canal oficial de confianza. No compartas claves ni códigos de verificación.",
+      "phone": ""
+    },
+    {
+      "id": "r_respaldo",
+      "title": "Priorizar protección de archivos",
+      "message": "Si tienes documentos importantes, evita formatear, reinstalar o restablecer el equipo sin un respaldo verificado. No hagas pruebas repetidas si escuchas ruidos inusuales del disco. Pide orientación técnica antes de intervenir.",
+      "phone": ""
+    },
+    {
+      "id": "r_mantenimiento",
+      "title": "Realizar mantenimiento lógico básico",
+      "message": "Sin señales de peligro, revisa el espacio libre, cierra aplicaciones innecesarias y utiliza las opciones normales de actualización del sistema. Guarda tus documentos antes de actualizar. No instales limpiadores desconocidos ni desactives la seguridad.",
+      "phone": ""
+    },
+    {
+      "id": "r_seguridad",
+      "title": "Consultar posible incidente de software",
+      "message": "Si aparecen ventanas engañosas, programas desconocidos o alertas sospechosas, evita introducir datos y no descargues reparadores desde enlaces no verificados. Desconecta redes si sospechas compromiso y contacta soporte de seguridad; conserva evidencia de mensajes sin abrir enlaces.",
+      "phone": ""
+    },
+    {
+      "id": "r_wifi",
+      "title": "Comprobar conexión del computador",
+      "message": "Si otros dispositivos usan internet, verifica que el modo avión esté desactivado y que el equipo esté conectado a la red correcta. Puedes reiniciar la conexión Wi-Fi desde los controles normales. Si no se soluciona, solicita asistencia remota.",
+      "phone": ""
+    },
+    {
+      "id": "r_red",
+      "title": "Revisar conexión general de internet",
+      "message": "Si ningún dispositivo tiene acceso, comprueba luces y conexiones externas del router sin abrirlo, y consulta al administrador de la red o proveedor. En una red institucional no restablezcas la configuración del equipo sin autorización.",
+      "phone": ""
+    },
+    {
+      "id": "r_periferico",
+      "title": "Probar periférico externo",
+      "message": "Si el periférico es externo, verifica el conector e intenta otra entrada disponible sin forzarla. Si el problema persiste, prueba con otro periférico conocido que funcione o consulta soporte. No desmontes el portátil.",
+      "phone": ""
+    },
+    {
+      "id": "r_asistencia",
+      "title": "Revisión de software o inicio de sesión",
+      "message": "Registra el mensaje de error exacto y verifica que estás usando tu cuenta autorizada. Evita descargar herramientas de reparación sin respaldo. Solicita soporte remoto o presencial según la disponibilidad y no compartas contraseñas.",
+      "phone": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "q_inicio",
+      "type": "question",
+      "text": "¿Hay humo, chispas, olor a quemado, batería hinchada o un derrame de líquido?",
+      "options": [
+        {
+          "label": "Sí, hay señales de riesgo",
+          "to": "n_riesgo"
+        },
+        {
+          "label": "No veo señales de riesgo",
+          "to": "q_sintoma"
+        }
+      ]
+    },
+    {
+      "id": "q_sintoma",
+      "type": "question",
+      "text": "¿Qué problema presenta principalmente el computador?",
+      "options": [
+        {
+          "label": "No enciende",
+          "to": "q_energia"
+        },
+        {
+          "label": "La pantalla está negra o defectuosa",
+          "to": "q_pantalla"
+        },
+        {
+          "label": "No inicia Windows u otro sistema",
+          "to": "q_arranque"
+        },
+        {
+          "label": "Funciona muy lento",
+          "to": "q_lentitud"
+        },
+        {
+          "label": "No se conecta a internet",
+          "to": "q_red"
+        },
+        {
+          "label": "Falla teclado, mouse u otro periférico",
+          "to": "q_perifericos"
+        },
+        {
+          "label": "Se calienta o falla la batería",
+          "to": "q_temperatura"
+        },
+        {
+          "label": "Otro problema o no estoy seguro",
+          "to": "n_remoto"
+        }
+      ]
+    },
+    {
+      "id": "q_energia",
+      "type": "question",
+      "text": "Cuando intentas encenderlo, ¿qué observas?",
+      "options": [
+        {
+          "label": "No enciende ninguna luz",
+          "to": "q_cargador"
+        },
+        {
+          "label": "Encienden luces, pero no muestra imagen",
+          "to": "q_pantalla"
+        },
+        {
+          "label": "Enciende después de un reinicio normal",
+          "to": "n_autoservicio"
+        },
+        {
+          "label": "La batería está hinchada o huele a quemado",
+          "to": "n_riesgo"
+        }
+      ]
+    },
+    {
+      "id": "q_cargador",
+      "type": "question",
+      "text": "Sin abrir el equipo, ¿qué puedes comprobar?",
+      "options": [
+        {
+          "label": "El tomacorriente estaba desconectado",
+          "to": "n_autoservicio"
+        },
+        {
+          "label": "El cargador o cable está roto o caliente",
+          "to": "n_taller"
+        },
+        {
+          "label": "Sigue sin encender con conexiones externas correctas",
+          "to": "n_taller"
+        }
+      ]
+    },
+    {
+      "id": "q_pantalla",
+      "type": "question",
+      "text": "¿Qué describe mejor el problema de pantalla?",
+      "options": [
+        {
+          "label": "Un monitor externo sí muestra imagen",
+          "to": "n_visita"
+        },
+        {
+          "label": "Hay luces, pero no imagen en ninguna pantalla",
+          "to": "n_taller"
+        },
+        {
+          "label": "La imagen volvió tras reinicio normal",
+          "to": "n_autoservicio"
+        },
+        {
+          "label": "Hay olor extraño o indicios de daño eléctrico",
+          "to": "n_riesgo"
+        }
+      ]
+    },
+    {
+      "id": "q_arranque",
+      "type": "question",
+      "text": "¿Qué ocurre cuando intenta iniciar el sistema?",
+      "options": [
+        {
+          "label": "Muestra solicitud de contraseña o cuenta",
+          "to": "n_asistencia"
+        },
+        {
+          "label": "Aparece pantalla azul o mensaje de error",
+          "to": "n_respaldo"
+        },
+        {
+          "label": "Se queda detenido en el logo o reinicia continuamente",
+          "to": "n_taller"
+        },
+        {
+          "label": "Arrancó después de reinicio normal",
+          "to": "n_autoservicio"
+        }
+      ]
+    },
+    {
+      "id": "q_lentitud",
+      "type": "question",
+      "text": "¿Qué situación acompaña la lentitud?",
+      "options": [
+        {
+          "label": "El disco está casi lleno",
+          "to": "n_mantenimiento"
+        },
+        {
+          "label": "Aparecen ventanas o alertas sospechosas",
+          "to": "n_seguridad"
+        },
+        {
+          "label": "Hay archivos importantes y temo perderlos",
+          "to": "n_respaldo"
+        },
+        {
+          "label": "Es lento incluso después de reiniciar",
+          "to": "n_asistencia"
+        }
+      ]
+    },
+    {
+      "id": "q_red",
+      "type": "question",
+      "text": "¿Otros equipos o celulares se conectan a la misma red?",
+      "options": [
+        {
+          "label": "Sí, otros equipos tienen internet",
+          "to": "n_wifi"
+        },
+        {
+          "label": "No, nadie tiene internet",
+          "to": "n_red"
+        },
+        {
+          "label": "Hay un conector o cable físico dañado",
+          "to": "n_visita"
+        }
+      ]
+    },
+    {
+      "id": "q_perifericos",
+      "type": "question",
+      "text": "¿Qué dispositivo presenta el problema?",
+      "options": [
+        {
+          "label": "Mouse, teclado o USB externo",
+          "to": "n_periferico"
+        },
+        {
+          "label": "Teclado o panel táctil integrado al portátil",
+          "to": "n_visita"
+        },
+        {
+          "label": "El fallo ocurrió después de derramar líquido",
+          "to": "n_riesgo"
+        }
+      ]
+    },
+    {
+      "id": "q_temperatura",
+      "type": "question",
+      "text": "¿Qué señal observas cuando el equipo se calienta?",
+      "options": [
+        {
+          "label": "Batería hinchada, humo o olor a quemado",
+          "to": "n_riesgo"
+        },
+        {
+          "label": "Rejillas obstruidas y uso prolongado",
+          "to": "n_mantenimiento"
+        },
+        {
+          "label": "Ventilador ruidoso o apagados repetidos",
+          "to": "n_taller"
+        },
+        {
+          "label": "Está demasiado caliente para manipularlo",
+          "to": "n_riesgo"
+        }
+      ]
+    },
+    {
+      "id": "n_riesgo",
+      "type": "end",
+      "routeId": "r_riesgo"
+    },
+    {
+      "id": "n_autoservicio",
+      "type": "end",
+      "routeId": "r_autoservicio"
+    },
+    {
+      "id": "n_taller",
+      "type": "end",
+      "routeId": "r_taller"
+    },
+    {
+      "id": "n_visita",
+      "type": "end",
+      "routeId": "r_visita"
+    },
+    {
+      "id": "n_remoto",
+      "type": "end",
+      "routeId": "r_remoto"
+    },
+    {
+      "id": "n_respaldo",
+      "type": "end",
+      "routeId": "r_respaldo"
+    },
+    {
+      "id": "n_mantenimiento",
+      "type": "end",
+      "routeId": "r_mantenimiento"
+    },
+    {
+      "id": "n_seguridad",
+      "type": "end",
+      "routeId": "r_seguridad"
+    },
+    {
+      "id": "n_wifi",
+      "type": "end",
+      "routeId": "r_wifi"
+    },
+    {
+      "id": "n_red",
+      "type": "end",
+      "routeId": "r_red"
+    },
+    {
+      "id": "n_periferico",
+      "type": "end",
+      "routeId": "r_periferico"
+    },
+    {
+      "id": "n_asistencia",
+      "type": "end",
+      "routeId": "r_asistencia"
+    }
+  ]
+}
