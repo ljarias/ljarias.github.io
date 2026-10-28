@@ -1,0 +1,92 @@
+{
+  "version": 2,
+  "name": "SST Orienta · Árbol de decisiones",
+  "description": "Decide qué hacer ante una situación laboral simulada",
+  "start": "q1",
+  "routes": [
+    {
+      "id": "r_emergencia",
+      "title": "Pedir ayuda urgente",
+      "message": "Aléjate del peligro si es seguro hacerlo. Solicita ayuda humana y activa el plan de emergencias. Si corresponde, llama al 123 en Colombia. No esperes al chatbot.",
+      "phone": ""
+    },
+    {
+      "id": "r_incidente",
+      "title": "Informar un casi accidente",
+      "message": "No hubo lesión. Informa cuanto antes a tu supervisor o responsable SST y evita exponerte al peligro. La empresa debe registrar e investigar el incidente.",
+      "phone": ""
+    },
+    {
+      "id": "r_accidente",
+      "title": "Solicitar atención por accidente",
+      "message": "Prioriza la atención médica y avisa a tu jefe o responsable SST. La empresa debe gestionar los reportes e investigación según el procedimiento vigente.",
+      "phone": ""
+    },
+    {
+      "id": "r_duda",
+      "title": "No estoy seguro / necesito orientación",
+      "message": "Evita exponerte al peligro. Avisa al supervisor o responsable de SST para que revisen lo sucedido. Si hay síntomas, busca valoración profesional; si hay emergencia, solicita ayuda inmediata.",
+      "phone": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "q1",
+      "type": "question",
+      "text": "¿Existe un peligro inmediato o alguien necesita ayuda urgente?",
+      "options": [
+        {
+          "label": "Sí, hay urgencia",
+          "to": "n_emergencia"
+        },
+        {
+          "label": "No, podemos revisar",
+          "to": "q2"
+        },
+        {
+          "label": "No puedo determinarlo",
+          "to": "n_duda"
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "question",
+      "text": "¿Una persona sufrió una lesión?",
+      "options": [
+        {
+          "label": "Sí",
+          "to": "n_accidente"
+        },
+        {
+          "label": "No",
+          "to": "n_incidente"
+        },
+        {
+          "label": "No estoy seguro",
+          "to": "n_duda"
+        }
+      ]
+    },
+    {
+      "id": "n_emergencia",
+      "type": "end",
+      "routeId": "r_emergencia"
+    },
+    {
+      "id": "n_incidente",
+      "type": "end",
+      "routeId": "r_incidente"
+    },
+    {
+      "id": "n_accidente",
+      "type": "end",
+      "routeId": "r_accidente"
+    },
+    {
+      "id": "n_duda",
+      "type": "end",
+      "routeId": "r_duda"
+    }
+  ]
+}
