@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preguntas frecuentes | Constructor Visual de Chatbots</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f4f7fc;color:#193554;color-scheme:light}
+*{box-sizing:border-box}body{margin:0}header{background:#173b6d;color:white;padding:20px clamp(16px,5vw,72px)}
+header a{color:white}header h1{margin:14px 0 4px;font-size:clamp(1.45rem,3vw,2.3rem)}
+main{max-width:1000px;margin:20px auto;padding:0 14px}section{background:white;border:1px solid #cbd8e6;border-radius:13px;padding:18px;margin-bottom:16px}
+h2{font-size:1.22rem}h3{font-size:1.04rem;margin:4px 0 12px}label{display:block;margin:10px 0;font-weight:650}label span{display:block;margin-bottom:5px}
+input,textarea{display:block;width:100%;padding:10px;border:1px solid #73899f;border-radius:7px;font:inherit;color:#12304e;background:white}
+textarea{min-height:76px;resize:vertical}button{font:inherit;border:2px solid transparent;border-radius:9px;background:#184b82;color:white;padding:10px 15px;cursor:pointer;margin:4px 5px 4px 0}
+button.secondary{background:#e9f0fa;color:#173b6d;border-color:#9eb9da}button.danger{background:#fff1f2;color:#9b2533;border-color:#d5a0a7}
+button:disabled{opacity:.55;cursor:not-allowed}a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #d29c0b;outline-offset:3px}
+.rule{border-left:4px solid #7592b0;background:#f7faff;padding:12px;margin:13px 0;border-radius:8px}
+.help{font-size:.93rem;line-height:1.5;color:#324f70}.notice{padding:12px;background:#eaf1f9;border-radius:8px;white-space:pre-wrap;overflow-wrap:anywhere}
+.alert{background:#fff0d9;border:1px solid #b17615}.response{background:#e7f6ed;border:1px solid #34805c}
+.controls{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.tag{font-size:.88rem;background:#dae8fa;color:#204c79;padding:4px 8px;border-radius:20px}
+#query{min-height:90px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+footer{text-align:center;padding:20px;color:#345271}
+</style>
+</head>
+<body>
+<header>
+<nav aria-label="Navegación de modalidades"><a href="index.html">Inicio</a> · <a href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html">Modo árbol de decisiones</a></nav>
+<h1>💬 Constructor de preguntas frecuentes</h1>
+<p>Escribe palabras clave y respuestas. Funciona sin conexión y explica qué regla respondió.</p>
+<span class="tag">Modo FAQ · formato JSON legado independiente del JSON v2</span>
+</header>
+<main>
+<section aria-labelledby="explica"><h2 id="explica">¿Cómo responde este chatbot?</h2>
+<p class="help">Busca palabras o frases dentro de la consulta, sin distinguir mayúsculas ni tildes. Si varias reglas coinciden, <strong>gana la primera</strong>. Cuando no encuentra ninguna, utiliza «No entiendo». El orden de las reglas importa.</p>
+<p class="help"><strong>Este modo no utiliza IA generativa.</strong> Para preguntas encadenadas con flechas, usa el <a href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html">modo árbol de decisiones</a>.</p>
+<p class="help">Puedes empezar desde cero o abrir el ejemplo de biblioteca sin buscar archivos JSON.</p>
+<button id="loadDemoFaq" type="button" class="secondary">📚 Abrir ejemplo FAQ de biblioteca</button></section>
+<section aria-labelledby="datos"><h2 id="datos">1. Presenta tu chatbot</h2>
+<label><span>Nombre del chatbot</span><input id="nombre" maxlength="90" autocomplete="off"></label>
+<label><span>Descripción</span><textarea id="descripcion" maxlength="200"></textarea></label>
+<label><span>Mensaje de bienvenida</span><textarea id="bienvenida" maxlength="500"></textarea></label>
+<label><span>Respuesta cuando no entiende</span><textarea id="noEntiendo" maxlength="500"></textarea></label></section>
+<section aria-labelledby="reglasTitulo"><h2 id="reglasTitulo">2. Escribe las reglas SI → ENTONCES</h2>
+<p class="help">Por cada pregunta, escribe palabras clave separadas por comas. Coloca primero las reglas más específicas. Máximo 50 reglas.</p>
+<div id="rules"></div>
+<button id="addRule" type="button" class="secondary">+ Agregar regla</button>
+<h3>Revisa las coincidencias</h3><div id="diagnostics" role="status" class="notice" aria-live="polite"></div></section>
+<section aria-labelledby="pruebas"><h2 id="pruebas">3. Simula una pregunta</h2>
+<label for="query">¿Qué preguntaría una persona?</label><textarea id="query" maxlength="600" placeholder="Por ejemplo: ¿Cuáles son los horarios?"></textarea>
+<button type="button" id="simulate">▶ Probar respuesta</button>
+<div id="answer" class="notice response" role="status" aria-live="polite">Escribe una consulta y pulsa «Probar respuesta».</div>
+<p id="explanation" class="help"></p></section>
+<section aria-labelledby="guarda"><h2 id="guarda">4. Guarda y comparte</h2>
+<div class="controls">
+<button id="saveJSON" type="button">💾 Guardar proyecto JSON</button>
+
+<button id="openJSON" type="button" class="secondary">📂 Abrir mi proyecto FAQ guardado</button>
+<button id="exportHTML" type="button">⬇ Descargar chatbot HTML</button>
+<button id="downloadFaqDiagnostics" type="button" class="secondary">⬇ Guardar diagnóstico JSON</button>
+</div>
+<input id="file" class="sr-only" type="file" accept=".json,application/json" aria-label="Seleccionar proyecto FAQ JSON">
+<p class="help">El JSON permite seguir editando. El HTML exportado es un chatbot autónomo que funciona sin internet. No contiene cuentas ni almacena tus consultas en servidores. Los informes de diagnóstico pueden contener textos escritos por ti: revísalos antes de compartir.</p>
+<div id="status" role="status" aria-live="polite" class="notice">Proyecto de ejemplo ficticio. Guarda el JSON antes de cerrar el navegador; no hay autoguardado.</div>
+</section>
+</main>
+<footer>Constructor Visual de Chatbots · Modo FAQ offline · Material de aprendizaje</footer>
+<script>
+"use strict";
+const MAX_BYTES=1024000;
+const INITIAL={
+ nombre:"Asistente de ejemplo",descripcion:"Consultas ficticias para practicar",bienvenida:"Hola. Escribe una pregunta o usa una sugerencia.",
+ noEntiendo:"No tengo esa respuesta. Prueba otra pregunta.",
+ reglas:[
+  {pregunta:"¿Cuáles son los horarios?",claves:"horario, horarios, atención",respuesta:"El horario de ejemplo es de lunes a viernes."},
+  {pregunta:"¿Qué productos ofrecen?",claves:"productos, catálogo, servicios",respuesta:"Consulta el catálogo ficticio disponible."}
+ ]
+};
+// Ejemplo de demostración incluido para funcionar incluso bajo restricciones file://.
+// Se comprueba en CI que coincida exactamente con examples/Proyecto_Ejemplo_FAQ.json.
+const FAQ_EXAMPLE={"nombre":"FAQ de biblioteca ficticia","descripcion":"Ejemplo de práctica sin datos personales","bienvenida":"Hola. Pregunta por préstamos de libros, horarios o renovaciones.","noEntiendo":"No encontré información para esa consulta. Pregunta por préstamos, horarios o renovaciones.","reglas":[{"pregunta":"¿Puedo renovar un libro?","claves":"renovar, renovación, ampliar préstamo","respuesta":"En esta biblioteca ficticia puedes solicitar la renovación antes del vencimiento."},{"pregunta":"¿Cuál es el horario?","claves":"horario, atención, abierto","respuesta":"Este es un ejemplo; verifica los horarios de la biblioteca real."},{"pregunta":"¿Cómo pido un libro prestado?","claves":"préstamo, prestar, pedir libro","respuesta":"En el ejemplo, consulta el catálogo y solicita el préstamo al encargado."}]};
+let project=JSON.parse(JSON.stringify(INITIAL));
+const $=id=>document.getElementById(id);
+function normalizeText(value){
+ return String(value).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim().replace(/\s+/g," ");
+}
+function keywords(rule){return String(rule.claves).split(",").map(normalizeText).filter(Boolean)}
+function selectFAQ(data,query){
+ const q=" "+normalizeText(query)+" ";
+ if(q.trim()){
+  for(let i=0;i<data.reglas.length;i++){
+   const rule=data.reglas[i];
+   for(const key of keywords(rule)){
+    if(q.includes(" "+key+" ")){
+     return {response:rule.respuesta,ruleIndex:i,keyword:key,matched:true};
+    }
+   }
+  }
+ }
+ return {response:data.noEntiendo,ruleIndex:-1,keyword:"",matched:false};
+}
+function assertFAQ(data){
+ const plain=x=>x!==null&&typeof x==="object"&&!Array.isArray(x);
+ const sized=(x,max)=>typeof x==="string"&&x.length<=max;
+ if(!plain(data)||Object.hasOwn(data,"version")||!sized(data.nombre,90)||
+    !sized(data.descripcion,200)||!sized(data.bienvenida,500)||!sized(data.noEntiendo,500)||
+    !Array.isArray(data.reglas)||data.reglas.length<1||data.reglas.length>50){
+  throw Error("Este archivo no tiene formato FAQ compatible. JSON v2 pertenece al modo árbol.");
+ }
+ for(const rule of data.reglas){
+  if(!plain(rule)||!sized(rule.pregunta,240)||!sized(rule.claves,400)||!sized(rule.respuesta,1500)){
+   throw Error("Cada regla necesita pregunta, claves y respuesta de texto dentro de los límites.");
+  }
+ }
+ if(new Blob([JSON.stringify(data,null,2)]).size>MAX_BYTES)throw Error("El proyecto supera el tamaño máximo de 1 MB.");
+}
+function diagnoseFAQ(data){
+ const findings=[],seen=new Map();
+ const issue=(severity,code,message,index)=>findings.push({severity,code,message,index});
+ if(!data.nombre.trim())issue("error","FAQ_NAME","Escribe el nombre del chatbot.",-1);
+ if(!data.bienvenida.trim())issue("error","FAQ_WELCOME","Escribe un mensaje de bienvenida.",-1);
+ if(!data.noEntiendo.trim())issue("error","FAQ_FALLBACK","Escribe la respuesta para preguntas desconocidas.",-1);
+ data.reglas.forEach((r,i)=>{
+  if(!r.pregunta.trim())issue("error","FAQ_QUESTION","Regla "+(i+1)+": escribe una pregunta de referencia.",i);
+  if(!r.respuesta.trim())issue("error","FAQ_RESPONSE","Regla "+(i+1)+": escribe la respuesta.",i);
+  const list=keywords(r);
+  if(!list.length)issue("error","FAQ_KEYS","Regla "+(i+1)+": escribe al menos una palabra o frase clave.",i);
+  const local=new Set();
+  for(const key of list){
+   if(local.has(key))issue("warning","FAQ_KEY_REPEATED","Regla "+(i+1)+": palabra clave repetida («"+key+"»).",i);
+   local.add(key);
+   for(const [old,where] of seen){
+    if((" "+key+" ").includes(" "+old+" ")){
+     issue("warning","FAQ_SHADOW","Regla "+(i+1)+": «"+key+"» puede responderse antes por la regla "+(where+1)+" («"+old+"»).",i);
+     break;
+    }
+   }
+   if(!seen.has(key))seen.set(key,i);
+  }
+ });
+ return findings;
+}
+const FAQ_HELP={
+ FAQ_NAME:'Escribe un nombre para identificar tu chatbot.',
+ FAQ_WELCOME:'Explica brevemente cómo puede preguntar la persona.',
+ FAQ_FALLBACK:'Escribe una respuesta honesta cuando no haya coincidencias.',
+ FAQ_QUESTION:'Escribe una consulta de ejemplo para esta regla.',
+ FAQ_RESPONSE:'Completa la respuesta que verá la persona.',
+ FAQ_KEYS:'Escribe una o más claves separadas por comas.',
+ FAQ_KEY_REPEATED:'Elimina las claves repetidas para que la regla sea más clara.',
+ FAQ_SHADOW:'Reordena las reglas o cambia las claves para priorizar la respuesta deseada.',
+ FAQ_FORMAT:'Abre un archivo FAQ válido, no un proyecto de árbol JSON v2.'
+};
+function faqDiagnosticReport(data){
+ try{
+  assertFAQ(data);
+  const items=diagnoseFAQ(data).map(f=>({
+   code:f.code,severity:f.severity,
+   location:{kind:f.index<0?'project':'rule',id:'',index:f.index,
+    field:f.code==='FAQ_NAME'?'nombre':f.code==='FAQ_WELCOME'?'bienvenida':
+     f.code==='FAQ_FALLBACK'?'noEntiendo':f.code==='FAQ_RESPONSE'?'respuesta':
+     ['FAQ_KEYS','FAQ_KEY_REPEATED','FAQ_SHADOW'].includes(f.code)?'claves':'pregunta'},
+   message:f.message,suggestion:FAQ_HELP[f.code]||'Revisa los datos de esta regla.'
+  }));
+  return {schema:'chatbot-diagnostics/v1',mode:'faq',exportable:!items.some(f=>f.severity==='error'),items};
+ }catch(err){
+  return {schema:'chatbot-diagnostics/v1',mode:'faq',exportable:false,items:[{
+   code:'FAQ_FORMAT',severity:'error',location:{kind:'project',id:'',index:-1,field:''},
+   message:err.message,suggestion:FAQ_HELP.FAQ_FORMAT
+  }]};
+ }
+}
+function readyFAQ(data){assertFAQ(data);const errors=diagnoseFAQ(data).filter(f=>f.severity==="error");if(errors.length)throw Error("Completa los campos: "+errors[0].message)}
+function currentInputs(){
+ for(const key of ["nombre","descripcion","bienvenida","noEntiendo"])project[key]=$(key).value;
+}
+function showDiagnostics(){
+ const report=faqDiagnosticReport(project);
+ const errors=report.items;
+ const holder=$("diagnostics");
+ holder.className="notice"+(errors.length?" alert":"");
+ holder.replaceChildren();
+ if(!errors.length){holder.textContent="✅ No se encontraron problemas. Puedes probar y exportar.";return;}
+ const top=document.createElement("p");top.textContent=errors.length+" observación(es). Las advertencias no impiden exportar si las reglas son completas.";holder.append(top);
+ const ul=document.createElement("ul");
+ errors.forEach(f=>{
+  const li=document.createElement("li");
+  const b=document.createElement("button");b.type="button";b.className="secondary";
+  b.textContent=(f.severity==="error"?"❌ ":"⚠ ")+f.code+": "+f.message;
+  b.addEventListener("click",()=>{
+   const target=f.location.kind==="rule"?document.querySelector('[data-index="'+f.location.index+'"][data-field="'+f.location.field+'"]'):
+     $(f.location.field||"nombre");
+   target?.focus();target?.scrollIntoView({block:"center",behavior:"smooth"});
+  });
+  const hint=document.createElement("p");hint.className="help";hint.textContent="Cómo corregir: "+f.suggestion;
+  li.append(b,hint);ul.append(li);
+ });
+ holder.append(ul);
+}
+function labeledField(title,field,value,index,tag,max){
+ const label=document.createElement("label");
+ const span=document.createElement("span");span.textContent=title;
+ const input=document.createElement(tag);
+ input.value=value;input.maxLength=max;input.dataset.index=String(index);input.dataset.field=field;
+ input.setAttribute("aria-label","Regla "+(index+1)+": "+title);
+ label.append(span,input);return label;
+}
+function render(){
+ for(const field of ["nombre","descripcion","bienvenida","noEntiendo"])$(field).value=project[field];
+ const holder=$("rules");holder.replaceChildren();
+ project.reglas.forEach((rule,i)=>{
+  const card=document.createElement("div");card.className="rule";
+  const title=document.createElement("h3");title.textContent="Regla "+(i+1);card.append(title);
+  card.append(
+   labeledField("Pregunta de referencia","pregunta",rule.pregunta,i,"input",240),
+   labeledField("Palabras clave separadas por comas","claves",rule.claves,i,"input",400),
+   labeledField("Respuesta automática","respuesta",rule.respuesta,i,"textarea",1500)
+  );
+  const up=document.createElement("button");up.type="button";up.className="secondary";up.textContent="↑ Subir";
+  up.disabled=i===0;up.addEventListener("click",()=>move(i,-1));
+  const down=document.createElement("button");down.type="button";down.className="secondary";down.textContent="↓ Bajar";
+  down.disabled=i===project.reglas.length-1;down.addEventListener("click",()=>move(i,1));
+  const del=document.createElement("button");del.type="button";del.className="danger";del.textContent="Eliminar regla";
+  del.disabled=project.reglas.length===1;del.addEventListener("click",()=>{if(project.reglas.length>1){project.reglas.splice(i,1);render()}});
+  card.append(up,down,del);holder.append(card);
+ });
+ $("addRule").disabled=project.reglas.length>=50;
+ showDiagnostics();
+}
+function move(i,by){const target=i+by;if(target<0||target>=project.reglas.length)return;[project.reglas[i],project.reglas[target]]=[project.reglas[target],project.reglas[i]];render()}
+function explain(result){
+ $("answer").textContent=result.response;
+ $("explanation").textContent=result.matched?
+  "✅ Coincidió «"+result.keyword+"» con la regla "+(result.ruleIndex+1)+". Si varias reglas coinciden, tiene prioridad la primera.":
+  "ℹ Ninguna regla coincidió. Se utilizó la respuesta «No entiendo».";
+}
+function safeFileName(name){return String(name).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"_").slice(0,44)||"chatbot_faq"}
+function download(name,data,mime){
+ const url=URL.createObjectURL(new Blob([data],{type:mime}));
+ const a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function faqRuntime(data){
+ const el=id=>document.getElementById(id);
+ el("title").textContent=data.nombre;
+ el("welcome").textContent=data.bienvenida;
+ const suggestions=el("suggestions");
+ for(const r of data.reglas){
+  const b=document.createElement("button");b.type="button";b.textContent=r.pregunta;
+  b.addEventListener("click",()=>ask(r.pregunta));suggestions.append(b);
+ }
+ function ask(q){
+  const result=selectFAQ(data,q);
+  el("answer").textContent=result.response;
+  el("why").textContent=result.matched?
+   "Respondió la regla "+(result.ruleIndex+1)+" por la clave «"+result.keyword+"».":
+   "No se encontraron palabras clave; se utilizó la respuesta predeterminada.";
+ }
+ el("submit").addEventListener("click",()=>ask(el("query").value));
+ el("query").addEventListener("keydown",event=>{if(event.key==="Enter"&&!event.shiftKey){event.preventDefault();ask(el("query").value)}});
+}
+function exportFAQ(){
+ readyFAQ(project);
+ const safe=JSON.stringify(project).replace(/</g,"\\u003c").replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029");
+ const code='"use strict";\nconst FAQ_DATA='+safe+';\n'+normalizeText.toString()+'\n'+keywords.toString()+'\n'+selectFAQ.toString()+'\n('+faqRuntime.toString()+')(FAQ_DATA);';
+ const open="<scr"+"ipt>",close="</scr"+"ipt>";
+ return '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
+  '<title>Chatbot de preguntas frecuentes</title><style>body{font:1rem system-ui,sans-serif;max-width:740px;margin:30px auto;padding:14px;color:#193554;background:#f5f8fc}main{background:white;border:1px solid #cbd9e8;border-radius:12px;padding:22px}textarea{width:100%;min-height:78px;padding:9px;box-sizing:border-box;font:inherit}button{margin:4px;padding:10px;border-radius:7px;border:1px solid #718caf;background:#e9f1fd;color:#153e6c;cursor:pointer}button:focus-visible,textarea:focus-visible{outline:3px solid #bf8500}#answer{padding:12px;background:#eaf6ef;white-space:pre-wrap;overflow-wrap:anywhere}#why{font-size:.85rem}</style></head>'+
+  '<body><main><h1 id="title"></h1><p id="welcome"></p><h2>Consultas frecuentes</h2><div id="suggestions"></div>'+
+  '<label for="query">Escribe tu pregunta</label><textarea id="query" maxlength="600"></textarea><button id="submit" type="button">Enviar</button>'+
+  '<h2>Respuesta</h2><p id="answer" role="status" aria-live="polite">Escribe una pregunta.</p><p id="why"></p></main>'+
+  open+code+close+'</body></html>';
+}
+$("rules").addEventListener("input",event=>{
+ const t=event.target;if(!Object.hasOwn(t.dataset,"index"))return;
+ const index=Number(t.dataset.index);if(!Number.isInteger(index)||!project.reglas[index])return;
+ if(!["pregunta","claves","respuesta"].includes(t.dataset.field))return;
+ project.reglas[index][t.dataset.field]=t.value;showDiagnostics();
+});
+for(const id of ["nombre","descripcion","bienvenida","noEntiendo"])$(id).addEventListener("input",()=>{currentInputs();showDiagnostics()});
+$("addRule").addEventListener("click",()=>{if(project.reglas.length>=50)return;project.reglas.push({pregunta:"",claves:"",respuesta:""});render()});
+$("simulate").addEventListener("click",()=>{currentInputs();explain(selectFAQ(project,$("query").value))});
+$("downloadFaqDiagnostics").addEventListener("click",()=>{
+ currentInputs();
+ const report=faqDiagnosticReport(project);
+ download("diagnostico_faq.json",JSON.stringify(report,null,2),"application/json;charset=utf-8");
+ $("status").textContent="✅ Diagnóstico descargado; revísalo antes de compartir.";
+});
+$("saveJSON").addEventListener("click",()=>{
+ try{currentInputs();assertFAQ(project);download(safeFileName(project.nombre)+"_faq.json",JSON.stringify(project,null,2),"application/json;charset=utf-8");$("status").textContent="✅ Proyecto FAQ editable descargado."}
+ catch(err){$("status").textContent="❌ "+err.message}
+});
+$("exportHTML").addEventListener("click",()=>{
+ try{currentInputs();download(safeFileName(project.nombre)+"_faq.html",exportFAQ(),"text/html;charset=utf-8");$("status").textContent="✅ Chatbot FAQ HTML exportado. Pruébalo sin internet."}
+ catch(err){$("status").textContent="❌ "+err.message}
+});
+$("loadDemoFaq").addEventListener("click",()=>{
+ project=JSON.parse(JSON.stringify(FAQ_EXAMPLE));render();
+ $("status").textContent="✅ Ejemplo FAQ de biblioteca cargado. Prueba sus preguntas y después guarda tu proyecto.";
+});
+$("openJSON").addEventListener("click",()=>$("file").click());
+$("file").addEventListener("change",async event=>{
+ const f=event.target.files?.[0];if(!f)return;
+ try{
+  if(f.size>MAX_BYTES)throw Error("El archivo supera el límite de 1 MB.");
+  const data=JSON.parse(await f.text());assertFAQ(data);
+  project={nombre:data.nombre,descripcion:data.descripcion,bienvenida:data.bienvenida,noEntiendo:data.noEntiendo,reglas:data.reglas.map(r=>({pregunta:r.pregunta,claves:r.claves,respuesta:r.respuesta}))};
+  render();$("status").textContent="✅ Proyecto FAQ abierto. Revisa las reglas antes de exportar.";
+ }catch(err){$("status").textContent="❌ No se pudo abrir el FAQ: "+err.message+" Abre este archivo en «Constructor de preguntas frecuentes». Para probar sin importar, pulsa «Cargar ejemplo de biblioteca»."}
+ finally{event.target.value=""}
+});
+render();
+const requestedDemo=new URLSearchParams(window.location.search).get('demo');
+if(requestedDemo==='biblioteca')$('loadDemoFaq').click();
+</script>
+</body>
+</html>
