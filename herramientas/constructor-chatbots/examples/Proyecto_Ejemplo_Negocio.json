@@ -1,0 +1,88 @@
+{
+  "version": 2,
+  "name": "Mi negocio · Ayuda con pedidos",
+  "description": "Ejemplo ficticio para aprender a crear un chatbot de un pequeño negocio",
+  "start": "q_inicio",
+  "routes": [
+    {
+      "id": "r_catalogo",
+      "title": "Consultar catálogo",
+      "message": "Pide el catálogo actualizado al negocio antes de decidir. No se muestran precios de ejemplo como si fueran reales.",
+      "phone": ""
+    },
+    {
+      "id": "r_retiro",
+      "title": "Retiro del pedido",
+      "message": "Consulta la dirección, el horario y la confirmación del pedido directamente con el negocio.",
+      "phone": ""
+    },
+    {
+      "id": "r_domicilio",
+      "title": "Solicitar domicilio",
+      "message": "Pregunta si hacen entregas a tu sector y confirma el costo y el tiempo antes de pagar.",
+      "phone": ""
+    },
+    {
+      "id": "r_persona",
+      "title": "Hablar con una persona",
+      "message": "Comunícate con el negocio mediante su canal oficial para recibir atención personalizada.",
+      "phone": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "q_inicio",
+      "type": "question",
+      "text": "¿Qué deseas hacer?",
+      "options": [
+        {
+          "label": "Ver catálogo",
+          "to": "n_catalogo"
+        },
+        {
+          "label": "Opciones para recibir mi pedido",
+          "to": "q_entrega"
+        },
+        {
+          "label": "Hablar con alguien",
+          "to": "n_persona"
+        }
+      ]
+    },
+    {
+      "id": "q_entrega",
+      "type": "question",
+      "text": "¿Cómo prefieres recibir tu pedido?",
+      "options": [
+        {
+          "label": "Recoger personalmente",
+          "to": "n_retiro"
+        },
+        {
+          "label": "Solicitar domicilio",
+          "to": "n_domicilio"
+        }
+      ]
+    },
+    {
+      "id": "n_catalogo",
+      "type": "end",
+      "routeId": "r_catalogo"
+    },
+    {
+      "id": "n_retiro",
+      "type": "end",
+      "routeId": "r_retiro"
+    },
+    {
+      "id": "n_domicilio",
+      "type": "end",
+      "routeId": "r_domicilio"
+    },
+    {
+      "id": "n_persona",
+      "type": "end",
+      "routeId": "r_persona"
+    }
+  ]
+}
