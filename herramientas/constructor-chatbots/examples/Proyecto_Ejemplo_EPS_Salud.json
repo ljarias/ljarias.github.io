@@ -1,0 +1,129 @@
+{
+  "version": 2,
+  "name": "EPS Salud · Orientación de trámites (simulación)",
+  "description": "Ejemplo académico offline de citas, autorizaciones y urgencias; no es una EPS real ni tramita servicios",
+  "start": "q_inicio",
+  "routes": [
+    {
+      "id": "r_urgencias",
+      "title": "Orientación ante una urgencia",
+      "message": "Si hay síntomas graves, riesgo inmediato para la vida o una emergencia, busca atención médica urgente ahora. Dirígete a un servicio de urgencias habilitado o contacta los servicios locales de emergencia. Este chatbot no evalúa síntomas, no determina gravedad y no indica qué instituciones pertenecen a una red de EPS. Confirma la red y los canales oficiales con tu entidad cuando sea seguro hacerlo.",
+      "phone": ""
+    },
+    {
+      "id": "r_cita_general",
+      "title": "Agendar cita de medicina general",
+      "message": "Este es un ejemplo académico. Para solicitar medicina general, utiliza el portal, la aplicación o el canal telefónico oficial de tu EPS o IPS asignada. Verifica la disponibilidad y los requisitos directamente allí; este chatbot no agenda citas ni conoce horarios de atención.",
+      "phone": ""
+    },
+    {
+      "id": "r_cita_odontologia",
+      "title": "Agendar cita de odontología",
+      "message": "Consulta con tu EPS o IPS asignada los canales de asignación de citas odontológicas y los requisitos aplicables a tu afiliación. Las condiciones pueden variar. Este demo no confirma disponibilidad, autorizaciones ni agendas reales.",
+      "phone": ""
+    },
+    {
+      "id": "r_cancelar",
+      "title": "Cancelar o modificar una cita",
+      "message": "Para cancelar o reprogramar una cita, utiliza un canal oficial de tu EPS o IPS. No envíes número de documento, datos clínicos ni códigos de verificación a canales que no hayas comprobado. Esta simulación no modifica ninguna cita.",
+      "phone": ""
+    },
+    {
+      "id": "r_medicamentos",
+      "title": "Consultar autorización o entrega de medicamentos",
+      "message": "Verifica los requisitos actuales y el canal de autorizaciones o dispensación directamente con tu EPS y su operador autorizado. La necesidad de autorización depende del caso. Evita subir fórmulas médicas o datos personales a este demo; aquí no se radican solicitudes ni se entregan medicamentos.",
+      "phone": ""
+    },
+    {
+      "id": "r_procedimientos",
+      "title": "Consultar exámenes y procedimientos",
+      "message": "Consulta en los canales oficiales de tu EPS o IPS si tu orden requiere autorización, cómo tramitarla y cuáles son los tiempos vigentes para tu caso. Este chatbot no recibe historia clínica, no radica órdenes ni promete plazos de respuesta. En caso de urgencia, busca atención médica inmediata en lugar de esperar un trámite.",
+      "phone": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "q_inicio",
+      "type": "question",
+      "text": "Bienvenido al asistente de demostración EPS Salud. ¿Sobre qué trámite quieres orientación? No ingreses datos personales ni información clínica.",
+      "options": [
+        {
+          "label": "Agendar o cancelar una cita",
+          "to": "q_citas"
+        },
+        {
+          "label": "Consultar autorizaciones",
+          "to": "q_autorizaciones"
+        },
+        {
+          "label": "Atención de urgencias",
+          "to": "n_urgencias"
+        }
+      ]
+    },
+    {
+      "id": "q_citas",
+      "type": "question",
+      "text": "¿Qué necesitas hacer con tus citas?",
+      "options": [
+        {
+          "label": "Agendar medicina general",
+          "to": "n_cita_general"
+        },
+        {
+          "label": "Agendar odontología",
+          "to": "n_cita_odontologia"
+        },
+        {
+          "label": "Cancelar o reprogramar una cita",
+          "to": "n_cancelar"
+        }
+      ]
+    },
+    {
+      "id": "q_autorizaciones",
+      "type": "question",
+      "text": "¿Sobre qué autorización necesitas orientación?",
+      "options": [
+        {
+          "label": "Medicamentos",
+          "to": "n_medicamentos"
+        },
+        {
+          "label": "Exámenes o procedimientos",
+          "to": "n_procedimientos"
+        }
+      ]
+    },
+    {
+      "id": "n_urgencias",
+      "type": "end",
+      "routeId": "r_urgencias"
+    },
+    {
+      "id": "n_cita_general",
+      "type": "end",
+      "routeId": "r_cita_general"
+    },
+    {
+      "id": "n_cita_odontologia",
+      "type": "end",
+      "routeId": "r_cita_odontologia"
+    },
+    {
+      "id": "n_cancelar",
+      "type": "end",
+      "routeId": "r_cancelar"
+    },
+    {
+      "id": "n_medicamentos",
+      "type": "end",
+      "routeId": "r_medicamentos"
+    },
+    {
+      "id": "n_procedimientos",
+      "type": "end",
+      "routeId": "r_procedimientos"
+    }
+  ]
+}
