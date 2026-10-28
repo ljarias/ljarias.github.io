@@ -1,0 +1,13 @@
+Constructor Visual de Chatbots
+Copyright 2026 Leonardo Arias
+Licensed under the Apache License, Version 2.0.
+See LICENSE for permissions and limitations.
+
+Third-party components:
+- vis-network 9.1.9: MIT license. Its separate copyright notice and MIT
+  license are preserved in vendor/LICENSE-vis-network-MIT.txt.
+- Example organizations and scenarios (ElectroCiudad, EPS Salud, SST) are
+  fictional educational demonstrations, not institutional endorsements.
+
+Arias Data Lab and institutional logos, names and trademarks are not
+licensed as trademarks by the Apache License 2.0.
