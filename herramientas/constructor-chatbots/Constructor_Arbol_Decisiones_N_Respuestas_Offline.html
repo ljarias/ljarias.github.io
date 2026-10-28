@@ -1,0 +1,431 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Constructor Visual de Chatbots · Offline</title><style>
+:root{font-family:system-ui,Segoe UI,sans-serif;color:#1b3442;background:#edf3f0}*{box-sizing:border-box}body{margin:0}header{background:#145f40;color:#fff;padding:23px 5vw}header h1{margin:0 0 8px;font-size:1.65rem}header p{margin:0;line-height:1.5;max-width:970px}.wrap{max-width:1250px;margin:auto;padding:20px}.steps{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 15px}.steps span{background:#d9e8df;border:1px solid #b8cfbf;padding:8px 12px;border-radius:20px;font-weight:700;font-size:.88rem}.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{border:1px solid #c8d9d0;background:white;border-radius:15px;padding:19px;margin-bottom:16px}h2{margin:0 0 12px;font-size:1.2rem;color:#165b3b}h3{font-size:1rem;margin:11px 0}label{display:block;font-weight:700;margin:11px 0 5px}input,textarea,select{display:block;width:100%;font:inherit;border:1px solid #92a99d;border-radius:8px;padding:10px;margin-top:5px;background:#fff}textarea{min-height:76px;resize:vertical}button{font:inherit;cursor:pointer;background:#166746;color:white;border:2px solid #166746;border-radius:10px;padding:10px 13px;font-weight:700;margin:5px 5px 5px 0}button.secondary{background:white;color:#145c3d}button.danger{background:#fff;color:#9e2d31;border-color:#c18f91}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #e5b744;outline-offset:2px}.item{padding:15px;background:#f5faf7;border:1px solid #cbded2;border-radius:12px;margin:12px 0}.small{font-size:.86rem;color:#435a50;line-height:1.5}.warn{background:#fff4d5;padding:14px;border-radius:10px;line-height:1.5}.ok{background:#e1f4e5;padding:13px;border-radius:9px;white-space:pre-wrap}.error{background:#ffe4df;padding:13px;border-radius:9px;white-space:pre-wrap}iframe{width:100%;height:640px;border:1px solid #d4dfd7;border-radius:12px;background:white}.map{overflow:auto;max-height:550px;background:#f6faf7;border:1px solid #cbded2;border-radius:10px;padding:16px}.map ol{padding-left:27px}.map li{margin-bottom:9px}.map small{color:#466556} .option{padding:12px;border:1px dashed #b0c5b9;background:white;border-radius:9px;margin:8px 0}.option.missing{border-color:#c95050;background:#fff4f0}.option .hint{display:block;font-size:.85rem;color:#7a3939;margin-top:4px}.count{font-size:.87rem;border-radius:14px;padding:5px 9px;background:#e6f1e9;display:inline-block}.batch{display:flex;align-items:end;gap:7px;flex-wrap:wrap;margin:8px 0}.batch label{margin:0;max-width:200px}.batch input{width:105px}.help{background:#eaf3fc;padding:12px;border-radius:10px;line-height:1.45;margin:8px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}footer{font-size:.8rem;color:#607067;padding:15px;text-align:center}@media(max-width:920px){.layout,.two{grid-template-columns:1fr}}@media print{header,.steps,button,iframe{display:none}}
+
+/* Diagrama offline: CSS y DOM nativos, sin CDN. */
+.flow-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+.flow-legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.flow-legend span{background:#f2f5f6;border:1px solid #bdced2;padding:6px 10px;border-radius:16px;font-size:.85rem}
+.flow-surface{background:#f6f9fc;border:1px solid #bdcbd7;border-radius:12px;max-height:680px;overflow:auto;padding:15px}
+.flow-surface p{line-height:1.4}
+.flow-group{border-left:3px solid #a4b6c9;padding:0 0 0 13px;margin:10px 0 12px 12px;min-width:0}
+.flow-group>.flow-path{border-left:2px solid #c4d0df;padding:6px 0 3px 12px;margin:8px 0 0 5px;position:relative}
+.flow-group>.flow-path:before{content:"↳";position:absolute;left:-7px;top:4px;background:#f6f9fc;font-weight:800}
+.flow-box{display:block;text-align:left;max-width:100%;overflow-wrap:anywhere;background:#fff;border:2px solid #98b5d9;border-radius:11px;color:#15334b;padding:10px 12px;margin:4px 0 6px;box-shadow:0 2px 5px #1112}
+.flow-box small{display:block;font-weight:500;font-size:.77rem;margin-top:4px}
+.flow-box.good{border-color:#20855a;background:#e8f7ee}
+.flow-box.warn{border-color:#bc7900;background:#fff4d8}
+.flow-box.bad{border-color:#a82b36;background:#ffe9eb}
+.flow-box.unused{border-color:#77818b;background:#edf0f2}
+.flow-path>.flow-box{font-weight:600}
+.flow-section{margin:13px 0 5px;font-weight:800;color:#183b53}
+.flow-empty{padding:12px;background:#fff3dd;border:1px solid #ad741c;border-radius:8px}
+.flow-more{background:#eaf1fa;color:#173a68;border-color:#7492b9;max-width:100%}
+.flow-outline{outline:4px solid #d9a600!important;outline-offset:3px}
+details>summary{font-weight:800;cursor:pointer;padding:12px 0;color:#174d70}
+details>summary:focus-visible,.flow-box:focus-visible{outline:3px solid #d59b16;outline-offset:3px}
+@media(max-width:620px){.flow-surface{padding:8px;max-height:520px}.flow-group{margin-left:3px;padding-left:7px}.flow-group>.flow-path{padding-left:7px}.flow-tools button{width:100%}}
+
+
+/* La vista Canvas experimental puede alternarse con la lista accesible original. */
+.vis-tools{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:12px 0}
+.vis-tools button{font-size:.88rem}
+.vis-tools button[aria-pressed="true"]{background:#165e42;color:#fff}
+.vis-graph{height:490px;width:100%;border:1px solid #a9bbc5;border-radius:10px;background:#f7fafc}
+.vis-graph:focus-visible{outline:3px solid #bf8500;outline-offset:3px}
+.vis-panel[hidden],.flow-surface[hidden]{display:none!important}
+@media(max-width:620px){.vis-graph{height:390px}.vis-tools button{flex:1 1 auto}}
+
+</style></head><body><nav aria-label="Modalidades" style="padding:10px 20px;background:#e7f0fc"><a href="index.html">Inicio y modalidades</a> · <a href="Constructor_FAQ_Sin_Internet.html">Cambiar a preguntas frecuentes</a></nav><header><h1>🌳 Constructor visual de árboles de decisión</h1><p>Herramienta educativa offline · <b>Hasta 200 respuestas por pregunta</b>. Crea las <strong>rutas finales primero</strong>, luego las preguntas, conecta sus opciones y prueba tu chatbot. No necesitas programar ni tener internet.</p></header><main class="wrap"><div class="steps"><span>1. Resultados finales</span><span>2. Preguntas</span><span>3. Conexiones</span><span>4. Simular</span><span>5. Exportar al celular</span></div><div class="warn">⚠️ Solo para aprender. No uses números privados sin autorización. Los botones de WhatsApp <b>no hacen llamadas</b>: abren un chat cuando hay internet y el usuario pulsa el enlace. Ante una emergencia real, busca ayuda inmediatamente.</div><div class="layout"><div>
+<section class="card" aria-labelledby="exampleTitle"><h2 id="exampleTitle">📚 Cargar un ejemplo de árbol de decisiones</h2>
+<p class="small">Elige un caso y pulsa <strong>«Abrir ejemplo»</strong>. Aparecerá listo para editar y probar, sin buscar archivos JSON. <strong>Guarda antes tu proyecto</strong> si no quieres reemplazarlo.</p>
+<label for="demoSelect">Ejemplo disponible</label>
+<select id="demoSelect">
+<option value="">Selecciona un ejemplo…</option>
+<option value="negocio">Negocio y emprendimiento</option>
+<option value="sst">Seguridad y salud en el trabajo (SST)</option>
+<option value="soporte">Soporte técnico de computadores</option>
+<option value="electrociudad">ElectroCiudad: servicio eléctrico</option>
+<option value="eps">EPS Salud: trámites</option>
+<option value="mesa_ayuda">Mesa de Ayuda TI</option>
+<option value="tramites">Trámites académicos</option>
+</select>
+<button type="button" id="loadDemo" class="secondary">▶ Abrir ejemplo seleccionado</button>
+<p class="small" id="demoStatus" role="status" aria-live="polite">Estos siete ejemplos están incluidos en el paquete offline.</p>
+</section><section class="card"><h2>Nombre y descripción</h2><label>Nombre del chatbot<input id="name" maxlength="90"></label><label>¿Para qué ayuda?<input id="description" maxlength="200"></label></section><section class="card"><h2>1. Diseña las rutas finales</h2><p class="small">Una ruta final es la recomendación que verá la persona cuando termine el árbol. Si necesita contactar a un responsable, escribe su número de WhatsApp de Colombia con indicativo <b>57</b>, sin + ni espacios (ejemplo ficticio: 573001234567).</p><div id="routes"></div><button id="addRoute" class="secondary">+ Nueva ruta final</button></section><section class="card"><h2>2. Construye las preguntas</h2><p class="small">Cada pregunta puede tener <b>1, 2, 3, 4… o N respuestas</b>. Cada opción representa una condición («SI elige esta respuesta, ENTONCES…») y <b>DEBE</b> llevar a otra pregunta o a una ruta final. Puedes añadir y quitar respuestas.</p><label>Pregunta donde comienza el árbol<select id="start"></select></label><div class="help"><b>Ejemplo:</b> «¿Qué necesitas?» puede tener 3 respuestas: «Ver productos», «Preguntar por entregas» y «Hablar con alguien». Cada opción puede llevar a una pregunta o a una solución diferente. Las opciones nuevas quedan pendientes hasta que las conectes.</div><div id="questions"></div><button id="addQuestion" class="secondary">+ Nueva pregunta</button></section></div><div><section class="card"><h2>3. Revisa tu árbol</h2><p class="small">Este esquema permite revisar los caminos. El verificador comprueba que <b>TODAS</b> las respuestas tengan destino válido, alcancen una solución final y no existan ciclos ni rutas desconectadas.</p><details id="flowDetails" open><summary>🧭 Ver diagrama de flujo y estado de las ramas</summary><p class="small">Selecciona una pregunta o respuesta para ir al campo que necesitas editar. Abre las ramas largas poco a poco.</p><div class="flow-tools"><button id="flowIssues" class="secondary" type="button">⚠ Revisar problemas</button><span id="flowStats" role="status" aria-live="polite"></span></div><div class="flow-legend" aria-label="Significado de los estados"><span>✅ Completa</span><span>⚠ Incompleta</span><span>❌ Error</span><span>◻ Sin conectar al inicio</span></div><details open><summary>Explicación de los problemas y cómo corregirlos</summary><div id="treeDiagnostics" aria-live="polite"></div></details><button type="button" class="secondary" id="downloadTreeDiagnostics">⬇ Guardar diagnóstico JSON</button><p class="small">El informe puede incluir textos de tu proyecto; revísalo antes de compartirlo.</p><div class="vis-tools" role="group" aria-label="Tipo de visualización">
+<button id="visShowGraph" class="secondary" type="button" aria-pressed="true">🕸 Vista gráfica</button>
+<button id="visShowList" class="secondary" type="button" aria-pressed="false">📋 Lista accesible</button>
+<button id="visFit" class="secondary" type="button">⤢ Ajustar</button>
+<button id="visMore" class="secondary" type="button">+ Mostrar respuestas</button>
+</div>
+<p id="visNotice" class="small" role="status" aria-live="polite"></p>
+<div id="visPanel" class="vis-panel"><div class="vis-tools" role="group" aria-label="Controles del grafo">
+<button id="visZoomIn" class="secondary" type="button">+ Acercar</button>
+<button id="visZoomOut" class="secondary" type="button">− Alejar</button>
+<button id="visPanUp" class="secondary" type="button">↑ Ver arriba</button>
+<button id="visPanDown" class="secondary" type="button">↓ Ver abajo</button>
+<button id="visPanLeft" class="secondary" type="button">← Ver izquierda</button>
+<button id="visPanRight" class="secondary" type="button">→ Ver derecha</button>
+</div><div id="visNetwork" class="vis-graph" role="img" tabindex="0"
+aria-label="Grafo de preguntas, respuestas y resultados. Para explorar con teclado usa el botón Lista accesible."></div>
+<p class="small">Haz clic en una flecha o pregunta para editarla. Usa los botones de acercar, alejar y desplazamiento con Tab y Enter o espacio. También puedes usar zoom y arrastre, o «Ajustar» para centrar.</p></div>
+<div class="flow-surface" id="flowCanvas" hidden aria-label="Lista accesible del árbol de decisiones"></div></details><details><summary>Ver también el árbol en texto</summary><div class="map" id="map"></div></details><button id="validate">✓ Verificar árbol</button><div id="validation" role="status"></div></section><section class="card"><h2>4. Prueba como si fueras el usuario</h2><p class="small">El chatbot se ejecuta dentro de esta ventana. Sus preguntas funcionan offline.</p><button id="preview">▶ Actualizar simulación</button><iframe id="frame" sandbox="allow-scripts" title="Simulador del árbol"></iframe></section><section class="card"><h2>5. Guarda y comparte</h2><button id="saveJSON">💾 Guardar proyecto JSON</button><button id="openJSON" class="secondary">📂 Abrir mi proyecto JSON guardado</button><input type="file" id="file" accept=".json,application/json" hidden><button id="exportHTML">⬇ Descargar chatbot HTML</button><p class="small">El <b>JSON</b> sirve para volver a editar. El <b>HTML</b> es el chatbot completo para abrir en el navegador del computador o celular.</p><p class="small"><b>En el celular:</b> envía el HTML al teléfono y ábrelo en un navegador o visor HTML que permita JavaScript. Algunos celulares bloquean archivos locales: en ese caso, publícalo en una página web HTTPS sencilla y comparte el enlace. Para usar WhatsApp hace falta conexión.</p><div id="status" role="status" class="ok">Empieza con el proyecto genérico, modifica una pregunta y prueba el árbol. Para practicar usa «Cargar un ejemplo» al principio del editor.</div></section></div></div></main><footer>Constructor Visual de Chatbots · Funciona sin servidores y sin conexión a internet · Grafo con biblioteca local vis-network</footer><script src="vendor/vis-network.min.js"></script><script src="vendor/visor_red.js"></script><script src="examples/catalogo.js"></script><script>"use strict";
+const RUNTIME="\u003c!doctype html>\u003chtml lang=\"es\">\u003chead>\u003cmeta charset=\"utf-8\">\u003cmeta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\u003ctitle>Asistente de decisiones\u003c/title>\u003cstyle>\n:root{font-family:system-ui,Segoe UI,sans-serif;color:#15334b;background:#eef4f2}*{box-sizing:border-box}body{margin:0;padding:14px}.app{max-width:690px;margin:auto;background:#fff;border:1px solid #b6d0c8;border-radius:18px;overflow:hidden;box-shadow:0 12px 40px #1232}header{background:#176145;color:white;padding:22px}h1{margin:0 0 5px;font-size:1.5rem}header p{margin:0;color:#e5f7ed}.note{padding:12px 20px;background:#fff6da;line-height:1.5}.content{padding:18px}.bubble{background:#edf4f9;padding:15px;border-radius:12px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}.actions{display:grid;grid-template-columns:1fr;gap:10px;margin:18px 0}button,a.cta{display:block;cursor:pointer;border:2px solid #176145;border-radius:12px;padding:13px;background:white;color:#135039;font:inherit;font-weight:700;text-align:left;text-decoration:none}button:hover,button:focus-visible,a.cta:hover,a.cta:focus-visible{outline:3px solid #ffca42;outline-offset:2px}a.cta{background:#176145;color:#fff;text-align:center}.secondary{border-color:#82908b!important;color:#314c46!important;background:#f6faf8!important}.trail{border-top:1px solid #ddd;padding:12px 18px;color:#4f5d63;font-size:.84rem}footer{padding:12px 18px;border-top:1px solid #eee;color:#64726c;font-size:.77rem} @media(min-width:500px){.actions{grid-template-columns:1fr 1fr}} \u003c/style>\u003c/head>\u003cbody>\u003cmain class=\"app\">\u003cheader>\u003ch1 id=\"title\">\u003c/h1>\u003cp id=\"subtitle\">\u003c/p>\u003c/header>\u003cdiv class=\"note\">⚠️ Guía educativa: ante un peligro real, busca ayuda humana inmediata. El chatbot no llama automáticamente ni realiza reportes oficiales.\u003c/div>\u003csection class=\"content\">\u003cdiv class=\"bubble\" id=\"message\" aria-live=\"polite\">\u003c/div>\u003cdiv class=\"actions\" id=\"actions\">\u003c/div>\u003c/section>\u003cdiv class=\"trail\" id=\"trail\">\u003c/div>\u003cfooter>Opera sin internet, salvo los enlaces a WhatsApp, que necesitan conexión y la aplicación o web de WhatsApp.\u003c/footer>\u003c/main>\n\u003cscript>\"use strict\";\nconst PROJECT=__PROJECT_JSON__;\nconst $=id=>document.getElementById(id);let history=[];const nodes=Object.assign(Object.create(null),Object.fromEntries(PROJECT.nodes.map(x=>[x.id,x])));const routes=Object.assign(Object.create(null),Object.fromEntries(PROJECT.routes.map(x=>[x.id,x])));\n$('title').textContent=PROJECT.name;$('subtitle').textContent=PROJECT.description||'Árbol de decisiones';\nfunction btn(text,fn,cls=''){let b=document.createElement('button');b.type='button';b.textContent=text;b.className=cls;b.addEventListener('click',fn);$('actions').append(b)}\nfunction go(id){const n=nodes[id];$('actions').replaceChildren();if(!n){$('message').textContent='Ruta incompleta. Regresa al inicio y consulta al docente.';btn('Volver al inicio',reset,'secondary');return}history.push(id);$('trail').textContent='Pasos recorridos: '+history.length;if(n.type==='question'){$('message').textContent=n.text;for(const o of n.options){btn(o.label,()=>go(o.to))}}else{const r=routes[n.routeId];$('message').textContent=r?r.title+'\\n\\n'+r.message:'Ruta final no encontrada.';if(/^57[0-9]{10}$/.test(r?.phone||'')){const link=document.createElement('a');link.className='cta';link.href='https://wa.me/'+r.phone+'?text='+encodeURIComponent('Hola, necesito orientación sobre: '+r.title);link.textContent='💬 Abrir WhatsApp del responsable';link.target='_blank';link.rel='noopener noreferrer';$('actions').append(link)}btn('↩ Empezar de nuevo',reset,'secondary');} }\nfunction reset(){history=[];go(PROJECT.start)}reset();\n\u003c/script>\u003c/body>\u003c/html>\n";
+const SEED={"version":2,"name":"Mi primer chatbot","description":"Personaliza las preguntas y respuestas para tu proyecto","start":"q1","routes":[{"id":"r_info","title":"Consultar información","message":"Aquí puedes escribir la información que deseas compartir.","phone":""},{"id":"r_ayuda","title":"Solicitar ayuda","message":"Aquí puedes explicar cómo hablar con una persona responsable.","phone":""}],"nodes":[{"id":"q1","type":"question","text":"¿Qué deseas hacer?","options":[{"label":"Consultar información","to":"n_info"},{"label":"Hablar con alguien","to":"n_ayuda"},{"label":"Tengo otra pregunta","to":"q2"}]},{"id":"q2","type":"question","text":"¿Qué tipo de orientación necesitas?","options":[{"label":"Información general","to":"n_info"},{"label":"Ayuda personalizada","to":"n_ayuda"}]},{"id":"n_info","type":"end","routeId":"r_info"},{"id":"n_ayuda","type":"end","routeId":"r_ayuda"}]};
+let state=structuredClone(SEED);const $=id=>document.getElementById(id);
+const randId=(prefix)=>prefix+'_'+Math.random().toString(36).slice(2,9);
+const esc=(s)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeFilename=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'_').slice(0,42)||'chatbot_arbol';
+function targetChoices(selected){let opts=['<option value="">Elige el siguiente paso...</option>'];for(const n of state.nodes.filter(x=>x.type==='question'))opts.push(`<option value="${esc(n.id)}" ${selected===n.id?'selected':''}>❓ ${esc(n.text.slice(0,60)||n.id)}</option>`);for(const n of state.nodes.filter(x=>x.type==='end')){const r=state.routes.find(x=>x.id===n.routeId);opts.push(`<option value="${esc(n.id)}" ${selected===n.id?'selected':''}>🏁 ${esc(r?.title||n.id)}</option>`)}return opts.join('')}
+function render(){ $('name').value=state.name;$('description').value=state.description;$('routes').innerHTML=state.routes.map(r=>`<div class="item"><h3>🏁 Ruta final</h3><label>Nombre de la ruta<input data-kind="route" data-id="${esc(r.id)}" data-prop="title" maxlength="110" value="${esc(r.title)}"></label><label>Orientación al finalizar<textarea data-kind="route" data-id="${esc(r.id)}" data-prop="message" maxlength="1500">${esc(r.message)}</textarea></label><label>WhatsApp responsable (opcional, sin + ni espacios)<input data-kind="route" data-id="${esc(r.id)}" data-prop="phone" inputmode="tel" maxlength="16" placeholder="573001234567" value="${esc(r.phone||'')}"></label><button class="danger" data-action="delRoute" data-id="${esc(r.id)}">Eliminar ruta</button></div>`).join('');
+$('start').innerHTML=state.nodes.filter(n=>n.type==='question').map(n=>`<option value="${esc(n.id)}" ${n.id===state.start?'selected':''}>${esc(n.text.slice(0,65)||n.id)}</option>`).join('');
+$('questions').innerHTML=state.nodes.filter(n=>n.type==='question').map(n=>`<div class="item"><h3>❓ Pregunta</h3><label>Texto que verá la persona<textarea data-kind="question" data-id="${esc(n.id)}" data-prop="text" maxlength="400">${esc(n.text)}</textarea></label><b>Respuestas y destinos</b> <span class="count">${n.options.length} respuesta(s)</span>${n.options.map((o,i)=>`<div class="option ${!o.to?'missing':''}"><label>Respuesta ${i+1}<input data-kind="option" data-id="${esc(n.id)}" data-index="${i}" data-prop="label" maxlength="120" value="${esc(o.label)}"></label><label>SI el usuario elige esta respuesta, ENTONCES ir a:<select required data-kind="option" data-id="${esc(n.id)}" data-index="${i}" data-prop="to">${targetChoices(o.to)}</select></label>${!o.to?'<small class="hint">⚠ Falta conectar esta respuesta.</small>':''}<button class="danger" data-action="delOption" data-id="${esc(n.id)}" data-index="${i}">Quitar respuesta</button></div>`).join('')}<button class="secondary" data-action="addOption" data-id="${esc(n.id)}">+ Añadir 1 respuesta</button><div class="batch"><label>¿Cuántas respuestas deseas agregar?<input type="number" min="1" max="20" step="1" value="3" data-add-count="${esc(n.id)}"></label><button class="secondary" data-action="addMany" data-id="${esc(n.id)}">+ Añadir varias respuestas</button></div><button class="danger" data-action="delQuestion" data-id="${esc(n.id)}">Eliminar pregunta</button></div>`).join(''); drawMap()}
+function drawMap(){const nodes=Object.assign(Object.create(null),Object.fromEntries(state.nodes.map(n=>[n.id,n])));const seen=new Set();let shown=0;function subtree(id,stack=[]){if(++shown>350)return '<li>… Más caminos. Usa «Verificar árbol» para comprobarlos todos.</li>'; if(stack.includes(id))return `<li>⚠️ CICLO: ${esc(id)}</li>`;let n=nodes[id];if(!n)return `<li>⚠️ Destino perdido: ${esc(id)}</li>`;if(n.type==='end'){let r=state.routes.find(x=>x.id===n.routeId);return `<li>🏁 ${esc(r?.title||'Ruta sin nombre')}</li>`}return `<li>❓ ${esc(n.text||'Pregunta vacía')}<ol>${n.options.map(o=>`<li><small>Si responde: ${esc(o.label)}</small><ol>${subtree(o.to,[...stack,id])}</ol></li>`).join('')}</ol></li>`}let html='<ol>'+subtree(state.start)+'</ol>';$('map').innerHTML=html.length>60000?'<p>Árbol demasiado grande para mostrar. Revisa la estructura.</p>':html;if($('flowDetails').open)renderFlow()}
+
+
+// Diagrama de flujo offline. Ningún texto del proyecto se interpreta como HTML.
+const flowExpanded=new Map();
+let flowProblems=[];
+let flowProblemCursor=-1;
+function flowAnalyze(){
+ const byId=new Map(state.nodes.map(n=>[n.id,n]));
+ const routes=new Map(state.routes.map(r=>[r.id,r]));
+ const reachable=new Set();
+ function markReachable(id){
+  if(reachable.has(id)||!byId.has(id))return;
+  reachable.add(id);
+  const n=byId.get(id);
+  if(n.type==='question')for(const o of n.options)if(o.to)markReachable(o.to);
+ }
+ markReachable(state.start);
+ const memo=new Map(),visiting=new Set();
+ function worst(a,b){return a==='bad'||b==='bad'?'bad':a==='warn'||b==='warn'?'warn':'good'}
+ function stateOf(id){
+  if(visiting.has(id))return 'bad';
+  if(!byId.has(id))return 'bad';
+  if(memo.has(id))return memo.get(id);
+  visiting.add(id);
+  const n=byId.get(id);
+  let result='good';
+  if(n.type==='end'){
+   const r=routes.get(n.routeId);
+   if(!r)result='bad';
+   else{
+    if(!r.title.trim()||!r.message.trim())result='warn';
+    if(r.phone&&!/^57[0-9]{10}$/.test(r.phone))result='bad';
+   }
+  }else{
+   if(!n.text.trim())result='warn';
+   const labels=new Set();
+   for(const o of n.options){
+    const key=o.label.trim().toLocaleLowerCase('es');
+    if(!key)result=worst(result,'warn');
+    if(key&&labels.has(key))result='bad';
+    labels.add(key);
+    if(!o.to)result=worst(result,'warn');
+    else result=worst(result,stateOf(o.to));
+   }
+  }
+  visiting.delete(id);memo.set(id,result);return result;
+ }
+ for(const n of state.nodes)stateOf(n.id);
+ const problems=[];
+ function problem(level,text,kind,id,index,prop,code){
+  problems.push({level,text,kind,id,index,prop,code});
+ }
+ if(!byId.has(state.start)||byId.get(state.start).type!=='question'){
+  problem('bad','Selecciona una pregunta de inicio válida.','start','','','','TREE_START');
+ }
+ for(const n of state.nodes){
+  const unused=!reachable.has(n.id);
+  if(unused)problem('unused','Nodo sin conexión desde el inicio: '+(n.text||n.id),n.type==='question'?'question':'end',n.id,0,'text','TREE_UNREACHABLE_NODE');
+  if(n.type==='question'){
+   if(!n.text.trim())problem('warn','Escribe el texto de la pregunta.', 'question',n.id,0,'text','TREE_QUESTION_EMPTY');
+   const labels=new Set();
+   n.options.forEach((o,i)=>{
+    const key=o.label.trim().toLocaleLowerCase('es');
+    if(!key)problem('warn','La respuesta '+(i+1)+' no tiene texto.','option',n.id,i,'label','TREE_OPTION_EMPTY');
+    if(key&&labels.has(key))problem('bad','Hay una respuesta repetida: '+o.label,'option',n.id,i,'label','TREE_OPTION_DUPLICATE');
+    labels.add(key);
+    if(!o.to)problem('warn','La respuesta '+(i+1)+' no está conectada.','option',n.id,i,'to','TREE_OPTION_UNCONNECTED');
+    else if(!byId.has(o.to))problem('bad','El destino de «'+o.label+'» no existe.','option',n.id,i,'to','TREE_DESTINATION_UNKNOWN');
+   });
+  }else{
+   const r=routes.get(n.routeId);
+   if(!r)problem('bad','Este resultado apunta a una ruta inexistente.','end',n.id,0,'','TREE_ROUTE_UNKNOWN');
+  }
+ }
+ for(const r of state.routes){
+  if(!r.title.trim())problem('warn','Escribe el nombre de una ruta final.','route',r.id,0,'title','TREE_ROUTE_TITLE');
+  if(!r.message.trim())problem('warn','Falta el mensaje de la ruta «'+r.title+'».','route',r.id,0,'message','TREE_ROUTE_MESSAGE');
+  if(r.phone&&!/^57[0-9]{10}$/.test(r.phone))problem('bad','Número de WhatsApp inválido en «'+r.title+'».','route',r.id,0,'phone','TREE_PHONE');
+  const visitedRoute=state.nodes.some(n=>n.type==='end'&&n.routeId===r.id&&reachable.has(n.id));
+  if(!visitedRoute)problem('unused','La ruta «'+r.title+'» no se alcanza desde el inicio.','route',r.id,0,'title','TREE_ROUTE_UNREACHABLE');
+ }
+ const cycles=new Set(),done=new Set(),stack=new Set();
+ function lookForCycles(id){
+  if(stack.has(id)){cycles.add(id);return}
+  if(done.has(id)||!byId.has(id))return;
+  stack.add(id);
+  const n=byId.get(id);
+  if(n.type==='question')for(const o of n.options){
+   if(stack.has(o.to)){
+    cycles.add(o.to);
+    problem('bad','La respuesta «'+(o.label||'sin texto')+'» crea un ciclo.','option',n.id,n.options.indexOf(o),'to','TREE_CYCLE');
+   }else lookForCycles(o.to);
+  }
+  stack.delete(id);done.add(id);
+ }
+ lookForCycles(state.start);
+ const errors=validate();
+ if(errors.length&&!problems.some(x=>x.level==='bad'||x.level==='warn'||x.level==='unused')){
+  problem('bad',errors[0],'start','','','','TREE_VALIDATION');
+ }
+ function edgeState(n,i){
+  if(!reachable.has(n.id))return 'unused';
+  const o=n.options[i],key=o.label.trim().toLocaleLowerCase('es');
+  if(key&&n.options.slice(0,i).some(other=>other.label.trim().toLocaleLowerCase('es')===key))return 'bad';
+  if(!o.label.trim()||!o.to)return 'warn';
+  return !byId.has(o.to)?'bad':stateOf(o.to);
+ }
+ return {byId,routes,reachable,stateOf,edgeState,problems,errors,cycles};
+}
+const TREE_HELP={
+ TREE_START:'Escoge una pregunta de inicio existente.',
+ TREE_UNREACHABLE_NODE:'Conecta este nodo con una respuesta que se pueda elegir desde el inicio.',
+ TREE_QUESTION_EMPTY:'Escribe una pregunta clara que pueda responder la persona.',
+ TREE_OPTION_EMPTY:'Escribe el texto que verá la persona en esta respuesta.',
+ TREE_OPTION_DUPLICATE:'Cambia la etiqueta para diferenciarla de las demás opciones.',
+ TREE_OPTION_UNCONNECTED:'Selecciona en «ENTONCES ir a» otra pregunta o un resultado final.',
+ TREE_DESTINATION_UNKNOWN:'Selecciona un destino que exista; posiblemente se eliminó una pregunta o ruta.',
+ TREE_ROUTE_UNKNOWN:'Revisa o recrea la ruta final a la que debe conducir este resultado.',
+ TREE_ROUTE_TITLE:'Pon un nombre corto a esta solución.',
+ TREE_ROUTE_MESSAGE:'Explica qué debe hacer la persona al llegar a esta solución.',
+ TREE_PHONE:'Usa 57 seguido de diez dígitos, o deja el teléfono vacío.',
+ TREE_ROUTE_UNREACHABLE:'Conecta una respuesta inicial con este resultado.',
+ TREE_CYCLE:'Cambia la conexión para que el camino termine en un resultado y no vuelva atrás.',
+ TREE_VALIDATION:'Pulsa «Verificar árbol» y atiende el mensaje detallado.'
+};
+function treeDiagnosticReport(analysis=flowAnalyze()){
+ const issues=analysis.problems.map(p=>({
+  code:p.code||'TREE_VALIDATION',
+  severity:p.level==='bad'?'error':p.level==='unused'?'warning':'warning',
+  location:{kind:p.kind,id:p.id,index:p.index,field:p.prop},
+  message:p.text,
+  suggestion:TREE_HELP[p.code]||TREE_HELP.TREE_VALIDATION
+ }));
+ if(analysis.errors.length&&!issues.some(x=>x.severity==='error')){
+  issues.push({code:'TREE_VALIDATION',severity:'error',location:{kind:'start',id:'',index:0,field:''},
+   message:'El verificador todavía encuentra problemas que bloquean la exportación.',
+   suggestion:'Pulsa «Verificar árbol» y atiende sus indicaciones.'});
+ }
+ return {schema:'chatbot-diagnostics/v1',mode:'decision_tree',
+  exportable:analysis.errors.length===0,items:issues};
+}
+function renderTreeDiagnostics(report){
+ const holder=$('treeDiagnostics');
+ holder.replaceChildren();
+ const intro=document.createElement('p');
+ intro.className='small';
+ intro.textContent=report.exportable?
+  '✅ El proyecto es exportable. Las advertencias no bloqueantes se muestran para ayudarte a mejorarlo.':
+  '⚠ El árbol aún no es exportable. Corrige primero los errores.';
+ holder.append(intro);
+ if(!report.items.length)return;
+ const list=document.createElement('ol');
+ for(const item of report.items){
+  const li=document.createElement('li');
+  const button=document.createElement('button');
+  button.type='button';button.className='secondary';
+  button.textContent=(item.severity==='error'?'❌ ':'⚠ ')+item.code+': '+item.message;
+  button.addEventListener('click',()=>flowJump(item.location.kind,item.location.id,item.location.index,item.location.field));
+  const hint=document.createElement('p');hint.className='small';hint.textContent='Cómo corregir: '+item.suggestion;
+  li.append(button,hint);list.append(li);
+ }
+ holder.append(list);
+}
+function flowJump(kind,id,index,prop){
+ let target;
+ if(kind==='start')target=$('start');
+ else{
+  const all=Array.from(document.querySelectorAll('[data-kind]'));
+  const wanted=kind==='end'?'route':kind;
+  const realId=kind==='end'?(state.nodes.find(n=>n.id===id)?.routeId):id;
+  target=all.find(el=>el.dataset.kind===wanted&&el.dataset.id===realId&&
+   (wanted!=='option'||Number(el.dataset.index)===Number(index))&&
+   (!prop||el.dataset.prop===prop));
+  if(!target)target=all.find(el=>el.dataset.kind===wanted&&el.dataset.id===realId);
+ }
+ if(!target)return;
+ const card=target.closest('.item')||target;
+ card.classList.add('flow-outline');
+ target.scrollIntoView({behavior:'smooth',block:'center'});
+ target.focus({preventScroll:true});
+ setTimeout(()=>card.classList.remove('flow-outline'),1800);
+}
+function renderFlow(){
+ if(!$('flowDetails').open)return;
+ const canvas=$('flowCanvas');
+ if(!canvas)return;
+ const a=flowAnalyze();
+ renderTreeDiagnostics(treeDiagnosticReport(a));
+ flowProblems=a.problems.slice().sort((x,y)=>({bad:0,warn:1,unused:2}[x.level])-({bad:0,warn:1,unused:2}[y.level]));
+ flowProblemCursor=-1;
+ const questionCount=state.nodes.filter(n=>n.type==='question').length;
+ const answerCount=state.nodes.filter(n=>n.type==='question').reduce((sum,n)=>sum+n.options.length,0);
+ const disconnected=state.nodes.filter(n=>!a.reachable.has(n.id)).length;
+ const counters={good:0,warn:0,bad:0,unused:0};
+ for(const n of state.nodes.filter(n=>n.type==='question')){
+  n.options.forEach((o,i)=>{counters[a.edgeState(n,i)]++});
+ }
+ $('flowStats').textContent=questionCount+' preguntas · '+state.routes.length+' soluciones · '+
+  answerCount+' respuestas · ✅ '+counters.good+' completas · ⚠ '+counters.warn+
+  ' incompletas · ❌ '+counters.bad+' con error · ◻ '+counters.unused+
+  ' desconectadas · '+(a.errors.length?'NO exportable':'Lista para exportar');
+ $('flowIssues').disabled=flowProblems.length===0;
+ canvas.replaceChildren();
+ const top=document.createElement('p');
+ top.className='small';
+ top.textContent=a.errors.length?'El diagrama tiene problemas. Selecciona una caja o pulsa «Revisar problemas».':'✅ Todos los caminos se validaron correctamente.';
+ canvas.append(top);
+ let rendered=0;
+ function nodeBox(text,status,kind,id,index,prop){
+  const b=document.createElement('button');
+  b.type='button';b.className='flow-box '+status;b.textContent=text;
+  b.dataset.flowKind=kind;b.dataset.flowId=id;
+  b.dataset.flowIndex=String(index||0);b.dataset.flowProp=prop||'';
+  return b;
+ }
+ function draw(id,parent,stack){
+  if(rendered++>=350){
+   const cap=document.createElement('p');cap.className='flow-empty';
+   cap.textContent='Hay más elementos. Contrae otras ramas o edita las preguntas para revisar el resto.';
+   parent.append(cap);return;
+  }
+  if(stack.includes(id)){
+   parent.append(nodeBox('❌ Ciclo: vuelve a '+id,'bad','start','','',''));
+   return;
+  }
+  const n=a.byId.get(id);
+  if(!n){parent.append(nodeBox('❌ Destino inexistente: '+(id||'sin destino'),id?'bad':'warn','start','','',''));return;}
+  const unused=!a.reachable.has(id);
+  const status=unused?'unused':a.stateOf(id);
+  const section=document.createElement('div');section.className='flow-group';
+  parent.append(section);
+  if(n.type==='end'){
+   const r=a.routes.get(n.routeId);
+   section.append(nodeBox((status==='good'?'✅ ':status==='warn'?'⚠ ':status==='unused'?'◻ ':'❌ ')+
+    '🏁 '+(r?r.title:'Ruta inexistente'),status,'route',r?r.id:n.id,0,'title'));
+   return;
+  }
+  section.append(nodeBox((status==='good'?'✅ ':status==='warn'?'⚠ ':status==='unused'?'◻ ':'❌ ')+
+   '❓ '+(n.text||'Pregunta sin texto'),status,'question',n.id,0,'text'));
+  const count=Math.min(n.options.length,flowExpanded.get(n.id)||8);
+  n.options.slice(0,count).forEach((o,i)=>{
+   const path=document.createElement('div');path.className='flow-path';section.append(path);
+   const edgeStatus=a.edgeState(n,i);
+   const prefix=edgeStatus==='good'?'✅':edgeStatus==='warn'?'⚠':edgeStatus==='unused'?'◻':'❌';
+   path.append(nodeBox(prefix+' ↓ '+(o.label||'Respuesta '+(i+1)+' sin texto'),edgeStatus,'option',n.id,i,!o.label.trim()?'label':'to'));
+   if(o.to)draw(o.to,path,[...stack,id]);
+   else{
+    const missing=document.createElement('p');missing.className='flow-empty';
+    missing.textContent='⚠ Falta conectar esta respuesta con una pregunta o solución.';
+    path.append(missing);
+   }
+  });
+  if(count<n.options.length){
+   const more=document.createElement('button');more.className='flow-more';more.type='button';
+   more.textContent='Mostrar más respuestas ('+(n.options.length-count)+' ocultas)';
+   more.dataset.flowMore=n.id;section.append(more);
+  }
+ }
+ if(a.byId.has(state.start))draw(state.start,canvas,[]);
+ else canvas.append(nodeBox('❌ Selecciona una pregunta de inicio','bad','start','','',''));
+ if(disconnected){
+  const title=document.createElement('p');title.className='flow-section';
+  title.textContent='◻ Sin conectar desde el inicio ('+disconnected+')';canvas.append(title);
+  for(const n of state.nodes.filter(n=>!a.reachable.has(n.id))){
+   const r=n.type==='end'?a.routes.get(n.routeId):null;
+   canvas.append(nodeBox('◻ '+(n.type==='question'?'❓ '+(n.text||n.id):'🏁 '+(r?.title||n.id)),
+    'unused',n.type==='question'?'question':'route',n.type==='question'?n.id:(r?.id||n.id),0,''));
+  }
+ }
+ if(typeof renderVisGraph==='function')renderVisGraph(a);
+}
+$('flowDetails').addEventListener('toggle',()=>{if($('flowDetails').open)renderFlow()});
+$('flowCanvas').addEventListener('click',e=>{
+ const more=e.target.closest('button[data-flow-more]');
+ if(more){const id=more.dataset.flowMore;flowExpanded.set(id,(flowExpanded.get(id)||8)+12);renderFlow();return;}
+ const b=e.target.closest('button[data-flow-kind]');
+ if(b)flowJump(b.dataset.flowKind,b.dataset.flowId,Number(b.dataset.flowIndex),b.dataset.flowProp);
+});
+$('downloadTreeDiagnostics').addEventListener('click',()=>{
+ const report=treeDiagnosticReport();
+ dl('diagnostico_arbol.json',JSON.stringify(report,null,2),'application/json;charset=utf-8');
+});
+$('flowIssues').addEventListener('click',()=>{
+ if(!flowProblems.length)return;
+ flowProblemCursor=(flowProblemCursor+1)%flowProblems.length;
+ const p=flowProblems[flowProblemCursor];
+ $('flowStats').textContent='Problema '+(flowProblemCursor+1)+' de '+flowProblems.length+': '+p.text;
+ flowJump(p.kind,p.id,p.index,p.prop);
+});
+
+// El esquema admite borradores incompletos; validate() comprueba el grafo.
+function assertProject(d){
+ const fail=()=>{throw Error('El JSON tiene formato, campos o límites no válidos.');};
+ if(new Blob([JSON.stringify(d,null,2)]).size>1024000)fail();
+ const obj=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
+ const str=(x,max)=>typeof x==='string'&&x.length<=max;
+ const id=x=>str(x,80)&&x.length>0;
+ if(!obj(d)||d.version!==2||!str(d.name,90)||!(d.description===undefined||str(d.description,200))||!str(d.start,80)||!Array.isArray(d.routes)||!Array.isArray(d.nodes)||d.routes.length>30||d.nodes.length>120)fail();
+ for(const r of d.routes)if(!obj(r)||!id(r.id)||!str(r.title,110)||!str(r.message,1500)||!(r.phone===undefined||str(r.phone,16)))fail();
+ for(const n of d.nodes){
+  if(!obj(n)||!id(n.id)||!['question','end'].includes(n.type))fail();
+  if(n.type==='end'){if(!id(n.routeId))fail();}
+  else if(!str(n.text,400)||!Array.isArray(n.options)||n.options.length<1||n.options.length>200||n.options.some(o=>!obj(o)||!str(o.label,120)||!str(o.to,80)))fail();
+ }
+ if(new Set(d.nodes.map(n=>n.id)).size!==d.nodes.length||new Set(d.routes.map(r=>r.id)).size!==d.routes.length)fail();
+}
+function validate(){const issues=[];try{assertProject(state)}catch(e){$('validation').className='error';$('validation').textContent=e.message;return [e.message]}if(!state.name.trim())issues.push('Pon nombre al chatbot.');if(!state.routes.length)issues.push('Crea al menos una ruta final.');if(!state.nodes.some(n=>n.type==='question'))issues.push('Crea alguna pregunta.');const ids=new Set();for(const n of state.nodes){if(ids.has(n.id))issues.push('Hay identificadores de nodo repetidos.');ids.add(n.id)}const routeIds=new Set();for(const r of state.routes){if(routeIds.has(r.id))issues.push('Hay rutas finales duplicadas.');routeIds.add(r.id);if(!r.title.trim()||!r.message.trim())issues.push('Completa el título y el mensaje de todas las rutas.');if(r.phone&&!/^57[0-9]{10}$/.test(r.phone))issues.push('Número WhatsApp no válido en '+r.title+'. Usa 57 y diez dígitos (12 en total).')}
+let endCount=0;for(const n of state.nodes){if(n.type==='end'){endCount++;if(!routeIds.has(n.routeId))issues.push('Un nodo final no tiene una ruta válida.')}else{if(!n.text.trim())issues.push('Completa el texto de todas las preguntas.');if(!Array.isArray(n.options)||n.options.length<1)issues.push('Una pregunta necesita al menos una respuesta.');if(n.options.length>200)issues.push('Una pregunta tiene más de 200 respuestas.');const labels=new Set();for(const o of n.options){const key=o.label.trim().toLocaleLowerCase('es');if(key&&labels.has(key))issues.push('Hay respuestas repetidas en la pregunta: '+n.text.slice(0,45));labels.add(key);if(!o.label.trim())issues.push('Hay una respuesta vacía.');if(!o.to||!ids.has(o.to))issues.push('La opción «'+(o.label||'sin texto')+'» de «'+n.text.slice(0,42)+'» no está conectada con ninguna pregunta o ruta final.')}}}if(!state.nodes.some(n=>n.id===state.start&&n.type==='question'))issues.push('Selecciona una pregunta inicial.');
+const byId=Object.assign(Object.create(null),Object.fromEntries(state.nodes.map(n=>[n.id,n])));const visiting=new Set(),visited=new Set(),terminal=new Set();function dfs(id){if(visiting.has(id)){issues.push('Hay un ciclo que podría dejar atrapada a la persona.');return}if(visited.has(id))return;let n=byId[id];if(!n)return;visiting.add(id);if(n.type==='end')terminal.add(n.routeId);else for(const o of n.options)dfs(o.to);visiting.delete(id);visited.add(id)}dfs(state.start);if(!terminal.size)issues.push('El árbol no llega a ninguna ruta final.');for(const r of state.routes)if(!terminal.has(r.id))issues.push('La ruta «'+r.title+'» nunca se alcanza desde el inicio.');for(const n of state.nodes)if(!visited.has(n.id))issues.push('Hay un nodo que no se alcanza: '+(n.text||n.id).slice(0,50));const uniq=[...new Set(issues)];$('validation').className=uniq.length?'error':'ok';$('validation').textContent=uniq.length?'Revisa estos puntos:\n• '+uniq.join('\n• '):'✅ Árbol válido: '+state.routes.length+' rutas finales, '+state.nodes.filter(n=>n.type==='question').length+' preguntas, sin ciclos ni rutas desconectadas.';return uniq}
+function finalHTML(){const errors=validate();if(errors.length)throw Error('Primero corrige los problemas señalados en el verificador.');let json=JSON.stringify(state).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');return RUNTIME.replace('__PROJECT_JSON__',()=>json)}
+function preview(){try{$('frame').srcdoc=finalHTML();$('status').textContent='✅ Simulación actualizada.';$('status').className='ok'}catch(e){$('frame').srcdoc='';$('status').textContent=e.message;$('status').className='error'}}
+function dl(filename,data,type){let blob=new Blob([data],{type});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
+$('name').addEventListener('change',e=>{state.name=e.target.value;drawMap()});$('description').addEventListener('change',e=>{state.description=e.target.value});$('start').addEventListener('change',e=>{state.start=e.target.value;drawMap()});
+document.addEventListener('change',e=>{const k=e.target.dataset.kind;if(!k)return;const id=e.target.dataset.id;const prop=e.target.dataset.prop;let item=k==='route'?state.routes.find(r=>r.id===id):state.nodes.find(n=>n.id===id);if(!item)return;if(k==='option')item.options[Number(e.target.dataset.index)][prop]=e.target.value;else item[prop]=e.target.value;drawMap()});
+document.addEventListener('click',e=>{const button=e.target.closest('button[data-action]');if(!button)return;const action=button.dataset.action,id=button.dataset.id;let n=state.nodes.find(x=>x.id===id);if(action==='addOption'){if(n.options.length>=200){alert('Máximo 200 respuestas por pregunta.');return}n.options.push({label:'',to:''})};if(action==='addMany'){const el=[...document.querySelectorAll('input[data-add-count]')].find(x=>x.dataset.addCount===id);const count=Number(el?.value);if(!Number.isInteger(count)||count<1||count>20){alert('Elige entre 1 y 20 respuestas por vez. Puedes repetirlo tantas veces como necesites.');return}if(n.options.length+count>200){alert('Por seguridad, el máximo práctico es 200 respuestas por pregunta.');return}for(let i=0;i<count;i++)n.options.push({label:'',to:''})}if(action==='delOption'){if(n.options.length<=1){alert('Cada pregunta necesita por lo menos una respuesta.');return}n.options.splice(Number(button.dataset.index),1)}if(action==='delQuestion'){if(state.nodes.filter(x=>x.type==='question').length<=1){alert('Se necesita al menos una pregunta.');return}if(!confirm('¿Eliminar esta pregunta? Después tendrás que volver a conectar las opciones que apuntaban aquí.'))return;state.nodes=state.nodes.filter(x=>x.id!==id);if(state.start===id)state.start=state.nodes.find(x=>x.type==='question').id}if(action==='delRoute'){if(state.routes.length<=1){alert('Se necesita al menos una ruta final.');return}if(!confirm('¿Eliminar esta ruta final? Puede dejar opciones desconectadas.'))return;state.routes=state.routes.filter(r=>r.id!==id);state.nodes=state.nodes.filter(x=>!(x.type==='end'&&x.routeId===id))}render()});
+$('addRoute').addEventListener('click',()=>{if(state.routes.length>=30||state.nodes.length>=120){alert('Máximo 30 rutas y 120 nodos.');return}const id=randId('r');state.routes.push({id,title:'Nueva ruta',message:'Escribe la orientación que recibirá la persona.',phone:''});state.nodes.push({id:randId('n'),type:'end',routeId:id});render()});$('addQuestion').addEventListener('click',()=>{if(state.nodes.length>=120){alert('Máximo 120 nodos.');return}state.nodes.push({id:randId('q'),type:'question',text:'Nueva pregunta',options:[{label:'',to:''}]});render()});$('validate').addEventListener('click',validate);$('preview').addEventListener('click',preview);$('saveJSON').addEventListener('click',()=>{state.name=$('name').value;state.description=$('description').value;try{assertProject(state);dl(safeFilename(state.name)+'_proyecto.json',JSON.stringify(state,null,2),'application/json;charset=utf-8')}catch(e){$('status').className='error';$('status').textContent=e.message}});$('exportHTML').addEventListener('click',()=>{state.name=$('name').value;state.description=$('description').value;try{dl(safeFilename(state.name)+'.html',finalHTML(),'text/html;charset=utf-8');$('status').className='ok';$('status').textContent='✅ HTML exportado. Pruébalo sin internet y guárdalo en el celular.'}catch(e){$('status').className='error';$('status').textContent=e.message}});$('openJSON').addEventListener('click',()=>$('file').click());$('file').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{if(f.size>1024000)throw Error('El archivo es demasiado grande (máximo 1 MB).');const d=JSON.parse(await f.text());if(Array.isArray(d?.reglas)&&typeof d?.nombre==='string')throw Error('Este proyecto es de preguntas frecuentes (FAQ), no un árbol de decisiones. Ábrelo en el Constructor FAQ desde la portada.');assertProject(d);state=d;state.description??='';render();$('frame').srcdoc='';$('validation').textContent='';$('status').textContent='✅ Proyecto abierto. Verifica el árbol antes de exportar.';$('status').className='ok'}catch(err){$('status').textContent='No se pudo abrir: '+err.message;$('status').className='error'}finally{e.target.value=''}});
+function loadIncludedDemo(id){
+ const source=window.CHATBOT_DEMOS;
+ if(!source||!Object.prototype.hasOwnProperty.call(source,id)){
+  $('demoStatus').textContent='❌ El ejemplo no está disponible. Abre el ZIP completo desde index.html.';
+  return false;
+ }
+ try{
+  const data=JSON.parse(JSON.stringify(source[id]));
+  assertProject(data);
+  state=data;
+  state.description??='';
+  render();
+  preview();
+  $('validation').textContent='';
+  $('demoSelect').value=id;
+  $('demoStatus').textContent='✅ Cargado: '+data.name+'. Ya puedes editar, explorar el diagrama y probar el chatbot.';
+  $('status').className='ok';
+  $('status').textContent='✅ Ejemplo de árbol precargado: '+data.name+'.';
+  return true;
+ }catch(error){
+  $('demoStatus').textContent='❌ No se pudo abrir el ejemplo: '+error.message;
+  return false;
+ }
+}
+$('loadDemo').addEventListener('click',()=>{
+ const selected=$('demoSelect').value;
+ if(!selected){$('demoStatus').textContent='Selecciona primero un ejemplo de la lista.';return}
+ loadIncludedDemo(selected);
+});
+render();preview();
+const requested=(typeof window!=='undefined'&&window.location&&typeof URLSearchParams!=='undefined')?new URLSearchParams(window.location.search).get('demo'):null;
+if(requested)loadIncludedDemo(requested);
+</script></body></html>

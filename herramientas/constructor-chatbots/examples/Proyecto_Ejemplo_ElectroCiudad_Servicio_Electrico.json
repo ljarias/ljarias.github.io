@@ -1,0 +1,107 @@
+{
+  "version": 2,
+  "name": "ElectroCiudad · Atención de servicio eléctrico (simulación)",
+  "description": "Ejemplo académico offline para orientar consultas de facturación, pagos y fallas; no registra reportes reales",
+  "start": "q_inicio",
+  "routes": [
+    {
+      "id": "r_saldo",
+      "title": "Consultar saldo o factura",
+      "message": "Esta es una simulación educativa. Para consultar una factura real, utiliza exclusivamente el portal o los canales oficiales indicados por tu empresa de energía. Nunca ingreses contraseñas o datos de pago en enlaces desconocidos. Este chatbot no consulta saldos ni accede a contratos.",
+      "phone": ""
+    },
+    {
+      "id": "r_pagos",
+      "title": "Consultar medios y puntos de pago",
+      "message": "En un servicio real, consulta los medios y puntos de pago autorizados en la factura o en la web oficial de tu prestador. Comprueba que el canal sea auténtico antes de pagar. Este demo no procesa pagos ni verifica convenios bancarios.",
+      "phone": ""
+    },
+    {
+      "id": "r_sector",
+      "title": "Orientación ante interrupción del sector",
+      "message": "Si varias viviendas están sin energía, consulta el canal oficial de averías de tu proveedor para saber si hay una interrupción reportada y, si corresponde, notificarla. Este demo NO registra reportes, NO conoce si hay cuadrillas trabajando y NO puede estimar el tiempo de restablecimiento. Aléjate de cables caídos o instalaciones dañadas; en una emergencia, contacta a las autoridades y servicios competentes.",
+      "phone": ""
+    },
+    {
+      "id": "r_vivienda",
+      "title": "Orientación cuando solo una vivienda está sin energía",
+      "message": "No toques cables, fusibles, interruptores del tablero ni instalaciones que puedan estar dañadas. Si hay olor a quemado, chispas, humo o agua cerca de elementos eléctricos, mantente alejado y solicita ayuda de emergencia. En cualquier otro caso, contacta a los canales oficiales de tu empresa de energía o a personal electricista cualificado para una revisión segura. Este chatbot no agenda visitas ni emite reportes.",
+      "phone": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "q_inicio",
+      "type": "question",
+      "text": "¡Hola! Soy ElectroCiudad ⚡, un asistente de demostración. ¿Qué necesitas? Este chatbot es una simulación y no presta servicios públicos reales.",
+      "options": [
+        {
+          "label": "Consultar saldo o factura",
+          "to": "n_saldo"
+        },
+        {
+          "label": "Reportar falta de energía",
+          "to": "q_alcance"
+        },
+        {
+          "label": "Consultar puntos y medios de pago",
+          "to": "n_pagos"
+        }
+      ]
+    },
+    {
+      "id": "q_alcance",
+      "type": "question",
+      "text": "Para orientar tu consulta, ¿la falta de energía afecta también a tus vecinos o solamente a tu vivienda?",
+      "options": [
+        {
+          "label": "Afecta a todo el sector o barrio",
+          "to": "n_sector"
+        },
+        {
+          "label": "Solo afecta a mi vivienda",
+          "to": "n_vivienda"
+        },
+        {
+          "label": "No sé si afecta a otras viviendas",
+          "to": "q_confirmacion"
+        }
+      ]
+    },
+    {
+      "id": "q_confirmacion",
+      "type": "question",
+      "text": "¿Has podido consultar de manera segura si hay un aviso de interrupción en los canales oficiales de tu prestador?",
+      "options": [
+        {
+          "label": "Sí, hay una interrupción del sector anunciada",
+          "to": "n_sector"
+        },
+        {
+          "label": "No hay información o sigo sin saber",
+          "to": "n_sector"
+        }
+      ]
+    },
+    {
+      "id": "n_saldo",
+      "type": "end",
+      "routeId": "r_saldo"
+    },
+    {
+      "id": "n_pagos",
+      "type": "end",
+      "routeId": "r_pagos"
+    },
+    {
+      "id": "n_sector",
+      "type": "end",
+      "routeId": "r_sector"
+    },
+    {
+      "id": "n_vivienda",
+      "type": "end",
+      "routeId": "r_vivienda"
+    }
+  ]
+}

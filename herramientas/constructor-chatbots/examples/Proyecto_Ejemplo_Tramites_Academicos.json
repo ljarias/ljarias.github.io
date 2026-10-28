@@ -1,0 +1,181 @@
+{
+  "version": 2,
+  "name": "Trámites Académicos · Atención institucional (simulación)",
+  "description": "Ejemplo educativo de orientación escolar para aspirantes, estudiantes y acudientes; no realiza trámites ni maneja datos de menores.",
+  "start": "q_inicio",
+  "routes": [
+    {
+      "id": "r_basica",
+      "title": "Orientación para ingreso a secundaria",
+      "message": "Consulta en los canales oficiales de la institución las fechas de inscripción, cupos, grado solicitado y documentos realmente exigidos. Los requisitos cambian según el establecimiento y la normativa aplicable. No compartas aquí documentos de identidad, información médica ni datos de menores. Este demo no realiza matrículas ni recibe archivos.",
+      "phone": ""
+    },
+    {
+      "id": "r_sistemas",
+      "title": "Consultar modalidad de hardware y software",
+      "message": "Consulta directamente con la coordinación académica si existe una especialidad de hardware y software, sus cupos, plan de estudios, requisitos y proceso de selección vigente. Esta simulación no anuncia convocatorias ni exige pruebas diagnósticas reales.",
+      "phone": ""
+    },
+    {
+      "id": "r_otras",
+      "title": "Consultar otras modalidades técnicas",
+      "message": "Solicita a la institución su oferta oficial de modalidades técnicas, disponibilidad de cupos, criterios de ingreso y calendario. No supongas que existe entrevista, pago o selección por una modalidad específica; este demo sólo orienta.",
+      "phone": ""
+    },
+    {
+      "id": "r_notas",
+      "title": "Solicitar certificado de calificaciones",
+      "message": "Revisa el procedimiento oficial de certificados de notas de tu institución, sus requisitos, costos si legalmente aplican y plazos vigentes. Usa únicamente canales autorizados. Esta simulación no verifica calificaciones, cobra dinero ni entrega documentos.",
+      "phone": ""
+    },
+    {
+      "id": "r_constancia",
+      "title": "Solicitar constancia de estudio",
+      "message": "Consulta con secretaría académica o el sistema institucional autorizado cómo pedir una constancia de estudios y si el trámite es gratuito. Este chatbot no consulta matrículas ni genera certificados, y no solicita códigos estudiantiles.",
+      "phone": ""
+    },
+    {
+      "id": "r_clave",
+      "title": "Recuperar acceso a una plataforma académica",
+      "message": "Usa la función oficial de recuperación de acceso, si está disponible, o comunícate con la mesa de ayuda institucional. No compartas contraseñas, códigos de autenticación o enlaces privados con el chatbot. Esta simulación no modifica credenciales.",
+      "phone": ""
+    },
+    {
+      "id": "r_inasistencia",
+      "title": "Consultar justificación de una inasistencia",
+      "message": "Revisa el manual de convivencia y el procedimiento vigente para justificar ausencias, plazos y canal de recepción. Los soportes médicos pueden contener datos sensibles, especialmente de menores: preséntalos sólo por el canal autorizado con controles de privacidad. Este demo no recibe ni valida excusas.",
+      "phone": ""
+    },
+    {
+      "id": "r_docente",
+      "title": "Solicitar contacto o reunión con un docente",
+      "message": "Consulta los horarios y canales oficiales de atención a familias. Para solicitar un encuentro, utiliza el medio autorizado por la institución; este demo no conoce la agenda real, no confirma citas y no permite compartir información de terceros.",
+      "phone": ""
+    }
+  ],
+  "nodes": [
+    {
+      "id": "q_inicio",
+      "type": "question",
+      "text": "Bienvenido al asistente escolar de demostración. Selecciona tu perfil para recibir orientación general. No introduzcas información personal.",
+      "options": [
+        {
+          "label": "Soy aspirante o estudiante nuevo",
+          "to": "q_nuevo"
+        },
+        {
+          "label": "Soy estudiante activo",
+          "to": "q_activo"
+        },
+        {
+          "label": "Soy padre, madre o acudiente",
+          "to": "q_acudiente"
+        }
+      ]
+    },
+    {
+      "id": "q_nuevo",
+      "type": "question",
+      "text": "¿A qué nivel educativo deseas ingresar?",
+      "options": [
+        {
+          "label": "Básica secundaria (6.º a 9.º)",
+          "to": "n_basica"
+        },
+        {
+          "label": "Media técnica (10.º y 11.º)",
+          "to": "q_tecnica"
+        }
+      ]
+    },
+    {
+      "id": "q_tecnica",
+      "type": "question",
+      "text": "¿Sobre qué especialidad técnica buscas información?",
+      "options": [
+        {
+          "label": "Hardware y software",
+          "to": "n_sistemas"
+        },
+        {
+          "label": "Otras modalidades técnicas",
+          "to": "n_otras"
+        }
+      ]
+    },
+    {
+      "id": "q_activo",
+      "type": "question",
+      "text": "¿Qué documento o trámite deseas consultar?",
+      "options": [
+        {
+          "label": "Certificado de notas",
+          "to": "n_notas"
+        },
+        {
+          "label": "Constancia de estudio",
+          "to": "n_constancia"
+        },
+        {
+          "label": "Recuperar contraseña de plataforma",
+          "to": "n_clave"
+        }
+      ]
+    },
+    {
+      "id": "q_acudiente",
+      "type": "question",
+      "text": "¿Qué necesitas gestionar como acudiente?",
+      "options": [
+        {
+          "label": "Justificar una inasistencia",
+          "to": "n_inasistencia"
+        },
+        {
+          "label": "Solicitar reunión con un docente",
+          "to": "n_docente"
+        }
+      ]
+    },
+    {
+      "id": "n_basica",
+      "type": "end",
+      "routeId": "r_basica"
+    },
+    {
+      "id": "n_sistemas",
+      "type": "end",
+      "routeId": "r_sistemas"
+    },
+    {
+      "id": "n_otras",
+      "type": "end",
+      "routeId": "r_otras"
+    },
+    {
+      "id": "n_notas",
+      "type": "end",
+      "routeId": "r_notas"
+    },
+    {
+      "id": "n_constancia",
+      "type": "end",
+      "routeId": "r_constancia"
+    },
+    {
+      "id": "n_clave",
+      "type": "end",
+      "routeId": "r_clave"
+    },
+    {
+      "id": "n_inasistencia",
+      "type": "end",
+      "routeId": "r_inasistencia"
+    },
+    {
+      "id": "n_docente",
+      "type": "end",
+      "routeId": "r_docente"
+    }
+  ]
+}

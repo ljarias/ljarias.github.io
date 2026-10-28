@@ -1,0 +1,23 @@
+{
+  "nombre": "FAQ de biblioteca ficticia",
+  "descripcion": "Ejemplo de práctica sin datos personales",
+  "bienvenida": "Hola. Pregunta por préstamos de libros, horarios o renovaciones.",
+  "noEntiendo": "No encontré información para esa consulta. Pregunta por préstamos, horarios o renovaciones.",
+  "reglas": [
+    {
+      "pregunta": "¿Puedo renovar un libro?",
+      "claves": "renovar, renovación, ampliar préstamo",
+      "respuesta": "En esta biblioteca ficticia puedes solicitar la renovación antes del vencimiento."
+    },
+    {
+      "pregunta": "¿Cuál es el horario?",
+      "claves": "horario, atención, abierto",
+      "respuesta": "Este es un ejemplo; verifica los horarios de la biblioteca real."
+    },
+    {
+      "pregunta": "¿Cómo pido un libro prestado?",
+      "claves": "préstamo, prestar, pedir libro",
+      "respuesta": "En el ejemplo, consulta el catálogo y solicita el préstamo al encargado."
+    }
+  ]
+}
