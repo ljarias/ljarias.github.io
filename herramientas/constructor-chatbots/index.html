@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Crea chatbots offline: distingue FAQ y árboles de decisiones, abre ocho demos directamente en el constructor.">
+<title>Constructor Visual de Chatbots | Inicio</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f1f6fb;color:#162f47;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;line-height:1.55}
+a{color:#164c8e}a:focus-visible{outline:3px solid #bd810b;outline-offset:4px}
+.skip{position:absolute;top:-100px;left:10px;background:white;padding:8px;z-index:2}.skip:focus{top:6px}
+header{background:linear-gradient(115deg,#153f69,#146373);color:white;padding:33px clamp(16px,5vw,70px)}
+header h1{font-size:clamp(1.75rem,4vw,2.65rem);margin:5px 0 12px;line-height:1.2}
+header p{max-width:830px;margin:0;color:#f0f9fe;font-size:1.08rem}
+.tagline{font-weight:750;font-size:.85rem!important;margin:0 0 10px!important}
+.wrap{max-width:1100px;margin:auto;padding:24px 18px}
+h2{font-size:1.52rem;margin:0 0 14px}h3{font-size:1.14rem;margin:7px 0}
+section{margin:28px 0 35px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.mode,.demo{padding:20px;background:white;border:1px solid #cbdae5;border-radius:14px}
+.mode.tree{border-top:5px solid #17704c}.mode.faq{border-top:5px solid #345ba5}
+.mode p,.demo p{margin:8px 0 13px;color:#365469}
+.example{background:#e8f5ed;padding:13px 15px;border-radius:10px;font-size:.93rem;margin:13px 0}
+.faq .example{background:#eef2fe}
+.button{display:inline-block;text-decoration:none;border-radius:9px;padding:12px 15px;background:#176347;color:#fff;font-weight:750;line-height:1.4}
+.button:hover{text-decoration:underline}.faq .button{background:#294d9b}
+.kind{font-weight:700;font-size:.78rem;color:#155638;background:#e5f3e8;padding:4px 9px;border-radius:15px}
+.kind.faq{color:#264c99;background:#e9efff}
+.catalog{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:13px}
+.demo .button{font-size:.9rem}.demo p{min-height:45px}
+.notice{background:#e7f2ff;border:1px solid #b7d1ed;padding:18px;border-radius:12px}
+.muted{color:#496279;font-size:.94rem}
+footer{border-top:1px solid #cfdce6;text-align:center;padding:20px;color:#526779;font-size:.85rem}
+@media(max-width:700px){.cards{grid-template-columns:1fr}.mode,.demo{padding:16px}.wrap{padding:18px 14px}.demo p{min-height:0}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header>
+<p class="tagline">Herramienta educativa · Trabaja sin internet</p>
+<h1>🌳 Constructor Visual de Chatbots</h1>
+<p>Crea asistentes mediante reglas, sin programar. Puedes empezar desde cero o <strong>abrir uno de los ocho ejemplos directamente en su editor</strong>. No necesitas descargar ni buscar archivos JSON.</p>
+</header>
+<main class="wrap" id="contenido">
+<section aria-labelledby="modalidades">
+<h2 id="modalidades">1. Elige cómo conversará tu chatbot</h2>
+<div class="cards">
+<article class="mode faq">
+<h3>💬 Preguntas frecuentes (FAQ)</h3>
+<p><strong>El usuario escribe una consulta.</strong> El chatbot busca palabras o frases reconocidas y muestra una respuesta preparada.</p>
+<p class="example"><strong>Ejemplo:</strong> Escribes «¿A qué hora abre la biblioteca?» → identifica «horario» y responde.</p>
+<p class="muted">Útil cuando las personas formulan preguntas similares de diferentes maneras. No utiliza un árbol de opciones.</p>
+<a class="button" href="Constructor_FAQ_Sin_Internet.html">Crear chatbot de preguntas frecuentes</a>
+</article>
+<article class="mode tree">
+<h3>🌳 Árbol de decisiones</h3>
+<p><strong>El usuario elige opciones visibles.</strong> Cada respuesta lleva a otra pregunta o a una solución final.</p>
+<p class="example"><strong>Ejemplo:</strong> «¿El computador enciende?» → «Sí» o «No» → sigue una ruta de diagnóstico distinta.</p>
+<p class="muted">Útil para diagnósticos guiados, trámites, orientación y clasificación de problemas.</p>
+<a class="button" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html">Crear árbol de decisiones</a>
+</article>
+</div>
+</section>
+<section aria-labelledby="ejemplos">
+<h2 id="ejemplos">2. Prueba un ejemplo sin descargar archivos</h2>
+<p class="muted">Al pulsar <strong>Abrir ejemplo</strong>, se abrirá el constructor correcto con el chatbot precargado. Podrás editar sus preguntas o respuestas, recorrerlo y exportarlo.</p>
+<h3>💬 Ejemplos de preguntas frecuentes</h3>
+<div class="cards">
+<article class="demo"><span class="kind faq">Preguntas frecuentes (FAQ)</span><h3>📚 Biblioteca escolar</h3><p>El usuario escribe sobre horarios, préstamos y renovaciones. El asistente responde por palabras clave.</p><a class="button" style="background:#294d9b" href="Constructor_FAQ_Sin_Internet.html?demo=biblioteca">▶ Abrir ejemplo en el constructor FAQ</a></article>
+</div>
+<h3 style="margin:25px 0 12px">🌳 Ejemplos de árboles de decisiones</h3>
+<div class="catalog">
+<article class="demo"><span class="kind">Árbol de decisiones</span><h3>🧁 Negocio y emprendimiento</h3><p>Catálogo, pedidos y atención al cliente</p><a class="button action" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html?demo=negocio">▶ Abrir ejemplo en el constructor</a></article>
+<article class="demo"><span class="kind">Árbol de decisiones</span><h3>🦺 Seguridad y salud en el trabajo (SST)</h3><p>Orientación ante incidentes simulados</p><a class="button action" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html?demo=sst">▶ Abrir ejemplo en el constructor</a></article>
+<article class="demo"><span class="kind">Árbol de decisiones</span><h3>🛠️ Soporte técnico de computadores</h3><p>Diagnóstico seguro de fallas físicas y lógicas</p><a class="button action" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html?demo=soporte">▶ Abrir ejemplo en el constructor</a></article>
+<article class="demo"><span class="kind">Árbol de decisiones</span><h3>⚡ ElectroCiudad</h3><p>Factura, pagos y fallas del servicio eléctrico (simulación)</p><a class="button action" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html?demo=electrociudad">▶ Abrir ejemplo en el constructor</a></article>
+<article class="demo"><span class="kind">Árbol de decisiones</span><h3>🏥 EPS Salud</h3><p>Citas, autorizaciones y urgencias (simulación)</p><a class="button action" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html?demo=eps">▶ Abrir ejemplo en el constructor</a></article>
+<article class="demo"><span class="kind">Árbol de decisiones</span><h3>💻 Mesa de Ayuda TI</h3><p>Encendido, rendimiento y redes</p><a class="button action" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html?demo=mesa_ayuda">▶ Abrir ejemplo en el constructor</a></article>
+<article class="demo"><span class="kind">Árbol de decisiones</span><h3>🎓 Trámites académicos</h3><p>Orientación a estudiantes, aspirantes y acudientes</p><a class="button action" href="Constructor_Arbol_Decisiones_N_Respuestas_Offline.html?demo=tramites">▶ Abrir ejemplo en el constructor</a></article>
+</div>
+</section>
+<section class="notice" aria-labelledby="archivos">
+<h2 id="archivos">3. ¿Y si ya tienes un proyecto guardado?</h2>
+<p>En cada editor encontrarás <strong>«Abrir mi proyecto JSON»</strong> para recuperar un archivo que guardaste anteriormente. Para practicar con los ocho ejemplos no necesitas utilizar ese botón: también están disponibles en la opción <strong>«Cargar ejemplo»</strong> dentro de cada editor.</p>
+<p><strong>Offline:</strong> los ejemplos y el funcionamiento del chatbot no requieren internet. Los enlaces externos, como WhatsApp, sí lo necesitan.</p>
+</section>
+</main>
+<footer>Constructor Visual de Chatbots · Modo FAQ y árboles de decisión · Evaluación educativa privada</footer>
+</body>
+</html>
