@@ -86,6 +86,17 @@
 @media(max-width:760px){.case-hero{padding:48px 0 54px}.case-hero-grid,.case-layout{grid-template-columns:1fr}.case-diagram{max-width:570px}.case-toc{position:static}.case-toc nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px 14px}.case-main{padding:35px 0 65px}.case-card-grid{grid-template-columns:1fr}}
 @media(max-width:460px){.case-links{flex-direction:column}.case-links a{width:100%}.flow-split{gap:8px}.flow-result{padding:12px 6px;font-size:.8rem}.case-diagram{padding:16px}.case-table{display:block;overflow-x:auto}.case-toc nav{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.case-links a{transition:none}}
+
+.case-visual{background:#fff;border:1px solid #d0e3e7;border-radius:16px;padding:20px;margin:24px 0;box-shadow:0 9px 28px #102a4310}
+.case-visual figcaption{font-size:.87rem;color:#425f70;margin-top:13px;line-height:1.6}
+.case-visual svg{display:block;max-width:100%;height:auto;margin:auto}
+.case-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0}
+.case-metric{background:#e9f5f6;border:1px solid #bcdde0;padding:17px;border-radius:14px}
+.case-metric strong{font-size:2.2rem;color:#075d69;display:block;line-height:1.1}
+.case-metric span{font-size:.84rem;color:#285667;display:block;margin-top:8px}
+.case-live{width:100%;height:510px;display:block;border:1px solid #bacfd8;border-radius:12px;background:white}
+.case-citation{font-size:.85rem;color:#4b6470;line-height:1.55}
+@media(max-width:760px){.case-metrics{grid-template-columns:1fr}.case-live{height:430px}}
 </style>
 </head>
 <body>
@@ -144,7 +155,7 @@
           <a href="#metamodelo">Metamodelo y validación</a>
           <a href="#offline">Por qué offline</a>
           <a href="#evidencia">Evidencias y límites</a>
-          <a href="#proximos-pasos">Lo que sigue</a>
+          <a href="#graficos">Cómo funciona, en gráficos</a><a href="#licencia">Licencia abierta</a><a href="#proximos-pasos">Lo que sigue</a>
         </nav>
       </aside>
       <article class="case-article">
@@ -214,18 +225,65 @@
           <p>Se trata de un chatbot determinístico: sigue rutas previstas por quien lo diseñó. <strong>No es un modelo generativo ni interpreta libremente todas las preguntas.</strong> Esa limitación también es una oportunidad pedagógica, porque cada decisión puede examinarse y justificarse.</p>
           <p class="case-footnote">Una función opcional que abra un enlace externo, por ejemplo WhatsApp, sí requiere conexión a ese servicio. El funcionamiento offline se refiere al árbol conversacional local.</p>
         </section>
-        <section id="evidencia" aria-labelledby="evidencia-title">
+        
+<section id="graficos" aria-labelledby="graficos-title">
+<p class="case-label">Del problema a la solución · Evidencia visual</p>
+<h2 id="graficos-title">Cómo se convierte una idea en un chatbot verificable</h2>
+<p>La aportación didáctica no es que el programa dibuje cajas: es que el estudiante puede <strong>justificar cada decisión, seguir sus conexiones y detectar cuándo un recorrido no conduce a una respuesta válida</strong>. Aquí se representan el ciclo de aprendizaje, un grafo simplificado y la interfaz del producto.</p>
+<div class="case-metrics" aria-label="Indicadores técnicos de la versión de octubre de 2026">
+<div class="case-metric"><strong>2</strong><span>Modalidades: FAQ y árboles de decisión</span></div>
+<div class="case-metric"><strong>8</strong><span>Ejemplos ficticios precargados</span></div>
+<div class="case-metric"><strong>39/39</strong><span>Pruebas automatizadas aprobadas en la versión candidata</span></div>
+</div>
+<figure class="case-visual">
+<svg viewBox="0 0 960 200" role="img" aria-labelledby="didact-title didact-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="didact-title">Proceso didáctico desde el problema hasta el chatbot</title><desc id="didact-desc">Cinco fases: comprender problema, diseñar preguntas, conectar rutas, validar el grafo y simular o exportar.</desc>
+<defs><marker id="g-arr" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#087f8c"/></marker></defs>
+<rect x="8" y="42" width="174" height="102" rx="13" fill="#e9f5f7" stroke="#087f8c" stroke-width="2"/><text x="95" y="80" text-anchor="middle" font-size="17" font-weight="700" fill="#174759">Comprender</text><text x="95" y="105" text-anchor="middle" font-size="17" fill="#174759">el problema</text><path d="M183 92 H197" stroke="#087f8c" stroke-width="2" marker-end="url(#g-arr)"/><rect x="200" y="42" width="174" height="102" rx="13" fill="#e9f5f7" stroke="#087f8c" stroke-width="2"/><text x="287" y="80" text-anchor="middle" font-size="17" font-weight="700" fill="#174759">Diseñar</text><text x="287" y="105" text-anchor="middle" font-size="17" fill="#174759">preguntas</text><path d="M375 92 H389" stroke="#087f8c" stroke-width="2" marker-end="url(#g-arr)"/><rect x="392" y="42" width="174" height="102" rx="13" fill="#e9f5f7" stroke="#087f8c" stroke-width="2"/><text x="479" y="80" text-anchor="middle" font-size="17" font-weight="700" fill="#174759">Conectar</text><text x="479" y="105" text-anchor="middle" font-size="17" fill="#174759">rutas</text><path d="M567 92 H581" stroke="#087f8c" stroke-width="2" marker-end="url(#g-arr)"/><rect x="584" y="42" width="174" height="102" rx="13" fill="#dff5e8" stroke="#087f8c" stroke-width="2"/><text x="671" y="80" text-anchor="middle" font-size="17" font-weight="700" fill="#174759">Validar</text><text x="671" y="105" text-anchor="middle" font-size="17" fill="#174759">la lógica</text><path d="M759 92 H773" stroke="#087f8c" stroke-width="2" marker-end="url(#g-arr)"/><rect x="776" y="42" width="174" height="102" rx="13" fill="#e9f5f7" stroke="#087f8c" stroke-width="2"/><text x="863" y="80" text-anchor="middle" font-size="17" font-weight="700" fill="#174759">Simular y</text><text x="863" y="105" text-anchor="middle" font-size="17" fill="#174759">exportar</text>
+</svg>
+<figcaption><strong>Figura 1.</strong> Secuencia didáctica propuesta. Es un modelo de trabajo, no una medición de aprendizaje. Cada fase puede convertirse en una actividad evaluable.</figcaption>
+</figure>
+<figure class="case-visual">
+<svg viewBox="0 0 900 430" role="img" aria-labelledby="graph-title graph-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="graph-title">Ejemplo de grafo de decisión de soporte técnico</title><desc id="graph-desc">Una pregunta inicial sobre si el equipo enciende lleva por Sí a revisar funcionamiento y por No a revisión externa segura. La segunda pregunta tiene dos resultados distintos.</desc>
+<defs><marker id="arrow2" markerWidth="10" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 Z" fill="#087f8c"/></marker></defs>
+<g stroke="#087f8c" stroke-width="3" fill="none" marker-end="url(#arrow2)"><path d="M450 103 V141 H225 V174"/><path d="M450 103 V141 H690 V294"/><path d="M225 250 V292 H135 V312"/><path d="M225 250 V292 H370 V312"/></g>
+<rect x="325" y="25" width="250" height="78" rx="13" fill="#ddf3f4" stroke="#087f8c" stroke-width="3"/><text x="450" y="72" text-anchor="middle" font-size="21" font-weight="700" fill="#153e4e">¿El equipo enciende?</text>
+<rect x="90" y="175" width="270" height="76" rx="13" fill="#ddf3f4" stroke="#087f8c" stroke-width="3"/><text x="225" y="208" text-anchor="middle" font-size="18" font-weight="700" fill="#153e4e">¿Funciona con normalidad?</text>
+<text x="290" y="133" font-size="18" font-weight="700" fill="#075d69">Sí</text><text x="630" y="133" font-size="18" font-weight="700" fill="#075d69">No</text>
+<rect x="14" y="314" width="245" height="86" rx="13" fill="#e3f6e9" stroke="#388365" stroke-width="2"/><text x="137" y="348" text-anchor="middle" font-size="18" font-weight="700" fill="#184b3b">Continuar uso</text><text x="137" y="372" text-anchor="middle" font-size="14" fill="#184b3b">con observación básica</text>
+<rect x="272" y="314" width="245" height="86" rx="13" fill="#fff1d6" stroke="#b58a33" stroke-width="2"/><text x="394" y="347" text-anchor="middle" font-size="18" font-weight="700" fill="#624915">Revisión guiada</text><text x="394" y="373" text-anchor="middle" font-size="14" fill="#624915">sin abrir el equipo</text>
+<rect x="572" y="294" width="294" height="106" rx="13" fill="#fff1d6" stroke="#b58a33" stroke-width="2"/><text x="719" y="335" text-anchor="middle" font-size="18" font-weight="700" fill="#624915">Solicitar soporte</text><text x="719" y="363" text-anchor="middle" font-size="14" fill="#624915">No manipular componentes</text>
+<text x="115" y="278" font-size="17" fill="#075d69">Sí</text><text x="333" y="278" font-size="17" fill="#075d69">No</text>
+</svg>
+<figcaption><strong>Figura 2.</strong> Ejemplo ilustrativo de un grafo dirigido de soporte técnico, basado en la lógica de preguntas, transiciones y resultados. No es una captura ni una recomendación profesional de reparación.</figcaption>
+</figure>
+<figure class="case-visual">
+<h3>Vista de la interfaz real del constructor</h3>
+<p>Esta ventana integra la portada pública real del aplicativo. Puedes recorrer sus dos modalidades y sus ejemplos; si tu navegador limita los marcos, ábrelo directamente en una pestaña.</p>
+<iframe class="case-live" title="Interfaz real del Constructor Visual de Chatbots, sitio público" loading="lazy" src="../../herramientas/constructor-chatbots/"></iframe>
+<figcaption><strong>Figura 3.</strong> Vista integrada del sistema publicado, no una maqueta ni una captura estática. <a href="../../herramientas/constructor-chatbots/">Abrir la interfaz completa</a>.</figcaption>
+</figure>
+</section>
+<section id="licencia" aria-labelledby="licencia-title">
+<p class="case-label">Ciencia abierta y reutilización</p>
+<h2 id="licencia-title">Software abierto con licencia Apache 2.0</h2>
+<p>El <strong>código propio distribuido</strong> del Constructor Visual de Chatbots se ofrece bajo <strong>Apache License, Version 2.0</strong>. Esto permite usarlo, estudiarlo, modificarlo y redistribuirlo, también en contextos comerciales, respetando las condiciones de atribución, licencia y avisos aplicables. El componente <strong>vis-network 9.1.9</strong> conserva su licencia MIT independiente.</p>
+<p>La licencia favorece la adaptación de la herramienta por docentes, investigadores y comunidades que necesiten actividades offline; <strong>no</strong> implica que los proyectos educativos ficticios sean protocolos institucionales, no concede derechos de marca y tampoco demuestra por sí sola una eficacia pedagógica.</p>
+<p><a href="../../herramientas/constructor-chatbots/LICENSE">Leer licencia Apache 2.0</a> · <a href="../../herramientas/constructor-chatbots/NOTICE">Consultar atribuciones (NOTICE)</a> · <a href="../../herramientas/constructor-chatbots/">Utilizar el constructor público</a></p>
+</section>
+<section id="evidencia" aria-labelledby="evidencia-title">
           <p class="case-label">Rigor y transparencia</p>
           <h2 id="evidencia-title">Lo que está implementado y lo que todavía debemos comprobar</h2>
           <table class="case-table">
-            <caption>Estado de la experiencia al 27 de octubre de 2026</caption>
+            <caption>Estado de la experiencia actualizado al 28 de octubre de 2026</caption>
             <thead><tr><th scope="col">Aspecto</th><th scope="col">Situación documentada</th></tr></thead>
             <tbody>
               <tr><td>Constructor visual</td><td>Implementado con editor, diagrama, simulación y exportación offline.</td></tr>
-              <tr><td>Pruebas técnicas</td><td>15 pruebas automáticas aprobadas en la evidencia técnica revisada; no certifican todos los dispositivos.</td></tr>
+              <tr><td>Pruebas técnicas</td><td>39 pruebas automatizadas aprobadas en la batería documentada del 28 de octubre (28 de árboles y 11 de FAQ); además, el CI del PR de licencia terminó correctamente. No equivalen a certificación multidispositivo.</td></tr>
               <tr><td>Metamodelo formal</td><td>En contrastación con el formato de proyecto existente.</td></tr>
               <tr><td>Evaluación pedagógica</td><td>Piloto de grado 11 propuesto; aún no existen resultados de aprendizaje medidos para divulgar.</td></tr>
-              <tr><td>Acceso público al software</td><td>No habilitado; sujeto a revisión de licencia, privacidad, pruebas y autorizaciones.</td></tr>
+              <tr><td>Acceso público al software</td><td>Habilitado como herramienta pública de Arias Data Lab; el repositorio de desarrollo permanece privado.</td></tr>
             </tbody>
           </table>
           <p>Las pruebas de software ayudan a comprobar comportamiento técnico. Para afirmar que una herramienta favorece el aprendizaje se necesita una evaluación educativa independiente, con instrumentos y evidencias apropiadas.</p>
@@ -254,7 +312,7 @@
     <div class="footer-logo"><img src="../../assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg" alt="Arias Data Lab" width="120" height="90" loading="lazy"><div><strong>Arias-Data-Lab</strong><p>Tecnología con criterio humano.</p></div></div>
     <nav aria-label="Enlaces del pie de página"><a href="../../">Portal principal</a><a href="../../ia-al-dia/">IA al Día</a><a href="../../banco-problemas-caribe/">Banco de Problemas</a></nav>
   </div>
-  <div class="container footer-bottom"><span>© 2026 Arias-Data-Lab · Santa Marta, Colombia</span><span>Experiencia académica · Edición inicial para revisión</span></div>
+  <div class="container footer-bottom"><span>© 2026 Arias-Data-Lab · Santa Marta, Colombia</span><span>Experiencia académica · Actualizada al 28 de octubre de 2026</span></div>
 </footer>
 </body>
 </html>
