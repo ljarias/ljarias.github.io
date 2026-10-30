@@ -92,3 +92,18 @@ IA al Día se consulta en `https://ljarias.github.io/ia-al-dia/`. El Banco de Pr
 La compilación Jekyll conserva publicaciones y sus contenidos; se actualizaron los enlaces de las infografías y se generaron redirecciones estáticas desde rutas históricas de IA al Día. La automatización semanal permanece habilitada.
 
 Ver `scripts/verificar_rutas_portal.py` y `.github/workflows/qa-portal-raiz.yml` para pruebas de compilación, navegación y compatibilidad.
+
+
+## Actualización de Acceso Escolar · piloto institucional desplegado (30/10/2026)
+
+La ficha pública de `Acceso Escolar` se actualizó para reflejar su estado real sin exponer la aplicación productiva ni el repositorio privado.
+
+Cambios:
+- Estado público: **Piloto institucional desplegado · En evolución**.
+- Se documentan como capacidades actuales el registro de acceso, asistencia por sesiones, matrices de seguimiento y perfiles autorizados.
+- La fase de alertas tempranas y expedientes de seguimiento se presenta como **evolución en curso**, no como funcionalidad ya desplegada.
+- Se mantiene explícito que las alertas no sustituyen decisiones pedagógicas, disciplinarias o administrativas.
+- No se publica la URL operativa del colegio ni se enlaza el repositorio privado.
+- No se incorporan datos, capturas o identificadores reales de estudiantes.
+
+**Criterio de privacidad:** la presentación pública describe capacidades y estado del producto, pero conserva fuera del portal las rutas operativas, credenciales, datos personales, evidencias reales y detalles técnicos sensibles.
