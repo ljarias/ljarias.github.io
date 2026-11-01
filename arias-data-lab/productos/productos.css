@@ -60,3 +60,13 @@
 @media(max-width:720px){.product-page-hero{padding:48px 0 55px}.product-page-hero p:not(.eyebrow){font-size:14px}.product-body{padding:54px 0}.public-product-grid{grid-template-columns:1fr}.public-product-card{min-height:0}.product-side{display:block}.narrow-note{margin-top:16px}.product-cta .container{display:block}.product-actions{margin-top:24px}}
 @media(max-width:520px){.capability-grid{grid-template-columns:1fr}.product-info-card{padding:20px}.public-product-card{padding:23px}.privacy-note{padding:18px}}
 @media print{.product-page-hero,.product-info-card{background:white;color:#102A43}.product-page-hero h1,.product-page-hero p:not(.eyebrow),.product-info-card dd{color:#102A43}.product-side{position:static}.product-cta{display:none}.capability,.public-product-card{break-inside:avoid;box-shadow:none}}
+
+.product-brand-lockup{display:flex;align-items:center;gap:20px;margin-top:22px}
+.product-brand-lockup img{width:92px;height:92px;border-radius:22px;background:#fff;padding:6px;box-shadow:0 14px 34px #001a2b33}
+.product-brand-lockup .eyebrow{margin-top:0;margin-bottom:8px}
+.product-brand-lockup h1{margin:0}
+.capability>span i{font-size:21px;line-height:1}
+.product-logo-symbol{background:#fff!important;padding:0!important;overflow:hidden}
+.product-logo-symbol img{width:100%;height:100%;object-fit:contain}
+.benefits-grid .capability{background:linear-gradient(180deg,#fff,#f7fbfc)}
+@media(max-width:520px){.product-brand-lockup{align-items:flex-start;gap:13px}.product-brand-lockup img{width:68px;height:68px;border-radius:16px}}
