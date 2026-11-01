@@ -255,5 +255,46 @@
       "https://www.tomshardware.com/tech-industry/artificial-intelligence/a-chinese-hacker-used-ai-agents-to-break-into-more-than-100-company-websites-deere-and-sharkninja-among-websites-hit-by-open-source-ai-powered-problem-solving-platform-demo?utm_source=openai"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-11-01",
+    "edition_type": "weekly",
+    "period_start": "2026-10-26",
+    "period_end": "2026-11-01",
+    "post": "_posts/2026-11-01-ia-al-dia.md",
+    "titles": [
+      "La inversión en IA impulsa los mercados, pero crecen las dudas sobre su sostenibilidad",
+      "La seguridad de los agentes de IA vuelve a quedar bajo presión",
+      "La IA se usa en campañas de espionaje y ataques contra dispositivos móviles",
+      "La IA puede descubrir vulnerabilidades más rápido de lo que se corrigen",
+      "China estudia nuevas restricciones para exportar modelos y conocimientos avanzados",
+      "El contrabando de chips muestra la dimensión geopolítica de la infraestructura de IA",
+      "Las grandes empresas tecnológicas enfrentan presión por el costo de la expansión de IA",
+      "La IA genera nuevas preguntas sobre investigación científica y matemáticas"
+    ],
+    "urls": [
+      "https://aiweekdaily.com/digest/2026-10-28",
+      "https://apnews.com/article/e11a2240fc3283c4507d44b9833f30a2",
+      "https://apnews.com/article/e11a2240fc3283c4507d44b9833f30a2?utm_source=openai",
+      "https://arxiv.org/abs/2610.17090",
+      "https://arxiv.org/abs/2610.17090?utm_source=openai",
+      "https://cdn.openai.com/papers/practices-for-governing-agentic-ai-systems.pdf",
+      "https://digibites.me/news/2026-10-30.html",
+      "https://digibites.me/news/2026-10-30.html?utm_source=openai",
+      "https://getyourbrief.com/ai/week/2026-10-26?utm_source=openai",
+      "https://vulncheck.com/",
+      "https://www.axios.com/newsletters/axios-future-of-cybersecurity-340330d0-cf00-11f1-a1fd-f1b7e30b8d45",
+      "https://www.axios.com/newsletters/axios-future-of-cybersecurity-340330d0-cf00-11f1-a1fd-f1b7e30b8d45?utm_source=openai",
+      "https://www.investing.com/news/economy-news/us-stock-futures-muted-as-oil-holds-near-april-highs-ahead-of-fed-decision-4974650",
+      "https://www.investing.com/news/economy-news/us-stock-futures-muted-as-oil-holds-near-april-highs-ahead-of-fed-decision-4974650?utm_source=openai",
+      "https://www.lemonde.fr/en/economy/article/2026/10/29/google-hit-by-the-ai-revolution-it-helped-spark_6766796_19.html",
+      "https://www.lemonde.fr/en/economy/article/2026/10/29/google-hit-by-the-ai-revolution-it-helped-spark_6766796_19.html?utm_source=openai",
+      "https://www.nature.com/subjects/artificial-intelligence",
+      "https://www.reuters.com/",
+      "https://www.reuters.com/technology/cybersecurity/ai-discovered-bugs-may-soon-trigger-fresh-disruptions-cyber-experts-say-2026-10-23/",
+      "https://www.tomshardware.com/tech-industry/policy/malaysia-seizes-usd12-million-worth-of-advanced-ai-chips-hidden-inside-30-servers-customs-says-suspected-smuggling-network-used-the-country-as-a-transit-hub",
+      "https://www.tomshardware.com/tech-industry/policy/malaysia-seizes-usd12-million-worth-of-advanced-ai-chips-hidden-inside-30-servers-customs-says-suspected-smuggling-network-used-the-country-as-a-transit-hub?utm_source=openai"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
