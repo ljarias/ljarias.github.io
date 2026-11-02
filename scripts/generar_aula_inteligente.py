@@ -55,7 +55,19 @@ def parse_chart(text: str) -> tuple[dict, str]:
         raise RuntimeError("Las etiquetas de la gráfica no son válidas.")
     numeric = []
     for value in values:
-        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+        if isinstance(value, bool):
+            raise RuntimeError("La gráfica contiene valores no numéricos o negativos.")
+        if isinstance(value, str):
+            raw = value.strip().replace("%", "").replace(" ", "")
+            if re.fullmatch(r"\d{1,3}(?:,\d{3})+(?:\.\d+)?", raw):
+                raw = raw.replace(",", "")
+            elif "," in raw and "." not in raw:
+                raw = raw.replace(",", ".")
+            try:
+                value = float(raw)
+            except ValueError as exc:
+                raise RuntimeError("La gráfica contiene valores no numéricos o negativos.") from exc
+        if not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
             raise RuntimeError("La gráfica contiene valores no numéricos o negativos.")
         numeric.append(float(value))
     chart["values"] = numeric
