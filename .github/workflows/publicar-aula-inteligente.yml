@@ -1,0 +1,52 @@
+name: Publicar Aula Inteligente — Edición diaria
+
+on:
+  schedule:
+    - cron: "15 8 * * *"
+      timezone: "America/Bogota"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "aula-inteligente"
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Sincronizar con main actual
+        run: |
+          git fetch origin main
+          git checkout main
+          git reset --hard origin/main
+
+      - name: Configurar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Generar edición diaria y gráfica
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5.6-luna
+        run: python scripts/generar_aula_inteligente.py
+
+      - name: Guardar publicación en GitHub
+        run: |
+          git config user.name "aula-inteligente-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts data/aula_inteligente_historial.json assets/infografias/aula-*.svg
+          git commit -m "Publicar edición diaria Aula Inteligente $(TZ=America/Bogota date +'%Y-%m-%d')"
+          git push

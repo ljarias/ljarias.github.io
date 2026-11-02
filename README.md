@@ -11,6 +11,7 @@ Este repositorio público reúne el portal profesional, recursos educativos, el 
 |---|---|
 | Portal corporativo principal | [ljarias.github.io](https://ljarias.github.io/) |
 | IA al Día — Observatorio de IA | [ljarias.github.io/ia-al-dia/](https://ljarias.github.io/ia-al-dia/) |
+| Aula Inteligente — IA y educación | [ljarias.github.io/aula-inteligente/](https://ljarias.github.io/aula-inteligente/) |
 | Archivo y noticias de IA | [ljarias.github.io/ia-al-dia/](https://ljarias.github.io/ia-al-dia/#ultimas) |
 | Transparencia y telemetría | [ljarias.github.io/ia-al-dia/telemetria/](https://ljarias.github.io/ia-al-dia/telemetria/) |
 | Acerca de IA al Día | [ljarias.github.io/ia-al-dia/acerca/](https://ljarias.github.io/ia-al-dia/acerca/) |
@@ -33,6 +34,8 @@ El generador `scripts/generar_infografia.py` guarda automáticamente `post_url` 
 ## Publicación y mantenimiento
 
 La automatización editorial semanal permanece en `.github/workflows/publicar.yml`; mantiene su calendario de domingos a las 8:00 a. m. (hora de Bogotá), historial, telemetría y construcción Jekyll de GitHub Pages.
+
+La publicación diaria de Aula Inteligente se ejecuta desde `.github/workflows/publicar-aula-inteligente.yml` a las 8:15 a. m. (hora de Bogotá). Investiga novedades de IA educativa, crea una edición en `_posts/` y genera una gráfica SVG accesible en `assets/infografias/`. El push de esa edición activa el workflow existente de GitHub Pages.
 
 - **QA de identidad:** `.github/workflows/qa-identidad-adl.yml`, valida los seis SVG maestros y las referencias del sitio.
 - **QA de rutas:** `.github/workflows/qa-portal-raiz.yml`, ejecuta `scripts/verificar_rutas_portal.py`, construye el sitio Jekyll sin publicar y prueba las rutas del archivo histórico.
