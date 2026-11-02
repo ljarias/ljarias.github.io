@@ -1,30 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
-<title id="title">Eventos confirmados sobre IA y educación el 2 de noviembre de 2026</title>
-<desc id="desc">Muestra tres encuentros institucionales confirmados para la fecha; no mide impacto educativo, calidad de la evidencia ni asistencia.</desc>
+<title id="title">Escala de los despliegues y gobernanza recientes</title>
+<desc id="desc">La comparación no es cuantitativa: ambos anuncios confirman alcance institucional, pero no publican cifras comparables de población o adopción.</desc>
 <rect width="100%" height="100%" fill="#F7F8FC"/>
-<text x="80" y="78" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#132238">Eventos confirmados sobre IA y educación el 2 de noviembre de 2026</text>
+<text x="80" y="78" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#132238">Escala de los despliegues y gobernanza recientes</text>
 <text x="80" y="118" font-family="Arial,sans-serif" font-size="21" fill="#667085">Aula Inteligente · 2026-11-02</text>
 <line x1="105" y1="650.0" x2="1110" y2="650.0" stroke="#D0D5DD" stroke-width="1"/>
-<text x="82" y="657.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">0eventos</text>
+<text x="82" y="657.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">0estudiantes o distritos</text>
 <line x1="105" y1="547.5" x2="1110" y2="547.5" stroke="#D0D5DD" stroke-width="1"/>
-<text x="82" y="554.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">0eventos</text>
+<text x="82" y="554.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">0estudiantes o distritos</text>
 <line x1="105" y1="445.0" x2="1110" y2="445.0" stroke="#D0D5DD" stroke-width="1"/>
-<text x="82" y="452.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">1eventos</text>
+<text x="82" y="452.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">1estudiantes o distritos</text>
 <line x1="105" y1="342.5" x2="1110" y2="342.5" stroke="#D0D5DD" stroke-width="1"/>
-<text x="82" y="349.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">1eventos</text>
+<text x="82" y="349.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">1estudiantes o distritos</text>
 <line x1="105" y1="240.0" x2="1110" y2="240.0" stroke="#D0D5DD" stroke-width="1"/>
-<text x="82" y="247.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">1eventos</text>
-<rect x="235.7" y="293.5" width="72.0" height="356.5" rx="12" fill="#2F6BFF"/>
-<text x="271.7" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#2F6BFF">1eventos</text>
-<text x="271.7" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">FAMU</text>
-<rect x="569.0" y="293.5" width="72.0" height="356.5" rx="12" fill="#16A6A0"/>
-<text x="605.0" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#16A6A0">1eventos</text>
-<text x="605.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">Purdue</text>
-<rect x="902.3" y="293.5" width="72.0" height="356.5" rx="12" fill="#F26B5E"/>
-<text x="938.3" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#F26B5E">1eventos</text>
-<text x="938.3" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">Global</text>
-<text x="938.3" y="711" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">MOOC/UNESCO</text>
-<text x="80" y="760" font-family="Arial,sans-serif" font-size="16" fill="#344054">Muestra tres encuentros institucionales confirmados para la fecha; no mide impacto</text>
-<text x="80" y="782" font-family="Arial,sans-serif" font-size="16" fill="#344054">educativo, calidad de la evidencia ni asistencia.</text>
-<text x="80" y="825" font-family="Arial,sans-serif" font-size="14" fill="#667085">Fuente: https://calendar.famu.edu/event/the-intersection-summit-ai-education-the-workforce · no aplica</text>
+<text x="82" y="247.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">1estudiantes o distritos</text>
+<rect x="319.0" y="293.5" width="72.0" height="356.5" rx="12" fill="#2F6BFF"/>
+<text x="355.0" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#2F6BFF">1estudiantes o distritos</text>
+<text x="355.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">Estudiantes</text>
+<text x="355.0" y="711" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">secundarios</text>
+<rect x="819.0" y="293.5" width="72.0" height="356.5" rx="12" fill="#16A6A0"/>
+<text x="855.0" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#16A6A0">1estudiantes o distritos</text>
+<text x="855.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">Distritos</text>
+<text x="855.0" y="711" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">elegibles para</text>
+<text x="80" y="760" font-family="Arial,sans-serif" font-size="16" fill="#344054">La comparación no es cuantitativa: ambos anuncios confirman alcance institucional, pero no</text>
+<text x="80" y="782" font-family="Arial,sans-serif" font-size="16" fill="#344054">publican cifras comparables de población o adopción.</text>
+<text x="80" y="825" font-family="Arial,sans-serif" font-size="14" fill="#667085">Fuente: https://norwoodpark.hwdsb.on.ca/news/hwdsbs-responsible-approach-ai · No publicado para HWDSB; no aplica para distritos elegibles</text>
 </svg>
