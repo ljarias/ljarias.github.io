@@ -8,7 +8,7 @@
   const empty = document.getElementById("portfolio-empty");
   const clear = document.getElementById("portfolio-clear");
   const buttons = Array.from(document.querySelectorAll("[data-filter]"));
-  const scopes = Array.from(document.querySelectorAll("[data-scope]"));
+  const scopes = Array.from(document.querySelectorAll(".adl-scope-buttons button[data-scope]"));
   const scopeClear = document.getElementById("portfolio-scope-clear");
   const sections = Array.from(document.querySelectorAll(".catalog-section[data-section]"));
   const cards = Array.from(document.querySelectorAll(".catalog-card[data-state]"));
