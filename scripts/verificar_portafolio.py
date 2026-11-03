@@ -58,7 +58,13 @@ def main():
     check('id="portfolio-controls" hidden' in html, "La búsqueda debe degradar sin JavaScript")
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
     check('id="gestión-privada"' in html, "Se perdió el ancla de la versión anterior")
-    check('portafolio.css?v=2.0' in html and 'portafolio.js?v=2.0' in html, "Versiones de recursos desfasadas")
+    check('portafolio.css?v=2.0' in html and 'portafolio.js?v=2.1' in html, "Versiones de recursos desfasadas")
+    check('architecture.css?v=1.0' in html, "No carga la navegación del ecosistema")
+    check(len(re.findall(r'data-scope="', html)) == 25, "Faltan ámbitos en filtros o tarjetas")
+    check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
+    check('selectedScope' in js and '.adl-scope-buttons button[data-scope]' in js, "Filtro por ámbito ausente o mal seleccionado")
+    check((ROOT / "arias-data-lab/architecture.css").exists(), "Faltan estilos de arquitectura")
+    check((ROOT / "arias-data-lab/ui-icons.svg").exists(), "Falta la colección de iconos")
     check("@media(max-width:700px)" in css and "@media(max-width:520px)" in css, "Faltan puntos de ruptura")
     check(".adl-portfolio [hidden]" in css, "Falta regla de ocultación de filtros")
     check('controls.hidden = false' in js, "No se activan controles con JS")
@@ -68,7 +74,7 @@ def main():
         if link.get("target") == "_blank":
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
-    print("OK: 22 proyectos (9/9/4), nueve enlaces, navegación, filtros y privacidad revisados.")
+    print("OK: 22 proyectos (9/9/4), nueve URLs visibles, ámbitos, navegación, iconos y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")
 
 if __name__ == "__main__":

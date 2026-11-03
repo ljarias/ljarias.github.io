@@ -1,0 +1,45 @@
+/* Arias Data Lab · diseño de arquitectura y accesos · noviembre 2026 */
+.adl-ui-icon{width:1.3em;height:1.3em;flex:none;vertical-align:-.2em;display:inline-block}
+.adl-site-nav{flex-wrap:nowrap;gap:2px}.adl-site-nav a{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:10px 8px;white-space:nowrap}.adl-site-nav .adl-ui-icon{color:#087f8c;width:16px;height:16px}
+.adl-menu{display:none;position:relative;flex:none}.adl-menu summary{cursor:pointer;list-style:none;min-height:44px;border-radius:9px;border:1px solid #c5dce5;padding:10px 13px;font-weight:800;color:#102a43;background:#f1f7f9}.adl-menu summary::-webkit-details-marker{display:none}
+.adl-menu summary:focus-visible,.adl-scope-buttons button:focus-visible{outline:3px solid #f4b942;outline-offset:3px}
+.adl-menu[open] nav{position:absolute;right:0;top:49px;width:min(340px,calc(100vw - 32px));max-height:80vh;overflow:auto;display:flex;flex-direction:column;gap:1px;padding:10px;border-radius:12px;border:1px solid #cbdde4;background:white;box-shadow:0 16px 32px #102a4333;z-index:100}
+.adl-menu nav a{font-size:13px;font-weight:750;padding:11px 12px;border-radius:7px;color:#25485d;display:flex;gap:10px;align-items:center}.adl-menu nav a:hover{background:#eaf4f5}
+.adl-ecosystem{background:#eaf4f5}.adl-ecosystem .section-head h2,.adl-tool-section .section-head h2{color:#102a43}
+.adl-core-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px}
+.adl-core-card{background:white;border:1px solid #d2e2e7;border-radius:19px;padding:29px;min-width:0;display:flex;align-items:flex-start;flex-direction:column;scroll-margin-top:100px}
+.adl-core-label{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:850;letter-spacing:.09em;color:#087780}
+.adl-core-label .adl-ui-icon{background:#e6f4f5;width:42px;height:42px;padding:9px;border-radius:12px}
+.adl-core-card h3{font-size:clamp(24px,2.5vw,32px);color:#102a43;margin:18px 0 5px}
+.adl-core-card p{font-size:14px;line-height:1.75;color:#4d6674}
+.adl-core-card .adl-core-technical{font-size:13px;font-weight:820;color:#087b85;margin-bottom:15px}
+.adl-core-card .adl-core-link{font-weight:850;font-size:14px;color:#066d79;text-decoration:underline;text-underline-offset:4px;margin-top:auto}
+.adl-core-card .adl-core-status{border-top:1px solid #dce9ed;margin:20px 0 0;padding-top:12px;font-size:12px;width:100%}
+.adl-tool-section{background:#f7fafb}.adl-tool-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.adl-tool-item{border:1px solid #d4e4e9;background:white;border-radius:16px;padding:21px;display:flex;flex-direction:column;align-items:flex-start;gap:11px;min-width:0}
+.adl-tool-item>.adl-ui-icon{color:#087780;background:#eaf5f5;width:40px;height:40px;padding:9px;border-radius:10px}
+.adl-tool-item h3{font-size:19px;color:#102a43;margin:0}.adl-tool-item p{font-size:13px;line-height:1.65;color:#526b79;margin:0 0 auto}
+.adl-tool-item a{font-size:13px;font-weight:850;color:#066e79;text-decoration:underline;text-underline-offset:4px}
+.adl-tool-url,.adl-public-url,.adl-product-url{display:block;width:100%;overflow-wrap:anywhere;word-break:break-word;font-size:11px;color:#4f6c7a;line-height:1.6}
+.adl-more-links{text-align:right;font-size:14px;color:#086c78;font-weight:850;margin:20px 0 0}
+.product-teaser .adl-product-url{margin-top:9px}.product-teaser .adl-extra-link{margin-top:10px;font-size:12px;font-weight:760}
+.adl-portfolio .adl-scope-picker{background:#fff;border:1px solid #d6e4e9;border-radius:17px;padding:21px;margin-bottom:24px}
+.adl-portfolio .adl-scope-picker h2{font-size:22px;color:#102a43;margin:0 0 8px}
+.adl-portfolio .adl-scope-picker>p{font-size:13px;color:#586f7c}
+.adl-portfolio .adl-scope-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.adl-portfolio .adl-scope-buttons button{display:flex;gap:10px;align-items:flex-start;text-align:left;border-radius:12px;border:1px solid #d2e2e7;background:#f4f9fa;padding:14px;color:#1b3e51;font:inherit;cursor:pointer}
+.adl-portfolio .adl-scope-buttons button[aria-pressed="true"]{border:2px solid #087780;background:#ddf1f1;padding:13px}
+.adl-portfolio .adl-scope-buttons button .adl-ui-icon{width:28px;height:28px;color:#087780}
+.adl-portfolio .adl-scope-buttons strong{display:block;font-size:14px;line-height:1.3}
+.adl-portfolio .adl-scope-buttons small{display:block;font-size:12px;color:#56717d;line-height:1.45;margin-top:5px}
+.adl-portfolio .adl-card-topic{font-weight:800;color:#087780;font-size:11px;display:flex;align-items:center;gap:6px;margin:8px 0}
+.adl-portfolio .adl-card-topic .adl-ui-icon{width:20px;height:20px}
+.adl-portfolio .card-foot{flex-wrap:wrap}.adl-portfolio .card-foot .adl-public-url{font-family:ui-monospace,Consolas,monospace;margin-top:6px}
+.adl-portfolio .adl-scope-clear{border:0;background:transparent;color:#086d78;font-size:12px;cursor:pointer;text-decoration:underline;font-weight:800}
+@media(max-width:1250px){.adl-site-nav{display:none!important}.adl-menu{display:block!important}.adl-portfolio .site-header .primary-nav{display:none!important}.adl-portfolio .site-header .mobile-navigation{display:block!important;position:relative}.adl-portfolio .mobile-navigation[open] nav{max-height:80vh;overflow:auto}}
+@media(max-width:950px){.adl-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.adl-portfolio .adl-scope-buttons{grid-template-columns:1fr}}
+@media(max-width:700px){.adl-core-grid,.adl-tool-grid{grid-template-columns:1fr}.adl-core-card{padding:23px}.adl-portfolio .site-header .header-row{flex-wrap:nowrap}}
+
+/* URLs legibles también sobre las tarjetas oscuras del observatorio. */
+.projects-section .project-card .adl-product-url{color:#c8e9ee;margin-top:10px;font-size:11px;overflow-wrap:anywhere;line-height:1.5}
+.adl-tool-item a:focus-visible,.adl-core-link:focus-visible{outline:3px solid #f4b942;outline-offset:4px}
