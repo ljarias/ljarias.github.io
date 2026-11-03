@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/infografias.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/adl-ia-al-dia.css' | relative_url }}">
+  {% if page.url contains '/observatorio-ia/' %}<link rel="stylesheet" href="{{ '/assets/css/adl-observatorio.css' | relative_url }}">{% endif %}
   <meta name="theme-color" content="#102A43">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/brand/logo/v4.0/ADL_isotipo-cuadrado_EDITABLE_v4.0.svg' | relative_url }}">
@@ -18,17 +19,19 @@
     <div class="container nav-wrap">
       {% assign is_aula = false %}
       {% if page.url contains '/aula-inteligente/' or page.categories contains 'aula-inteligente' %}{% assign is_aula = true %}{% endif %}
-      <a class="brand" href="{% if is_aula %}{{ '/aula-inteligente/' | relative_url }}{% else %}{{ '/ia-al-dia/' | relative_url }}{% endif %}">
+      {% assign is_hub = false %}{% if page.url contains '/observatorio-ia/' %}{% assign is_hub = true %}{% endif %}
+      <a class="brand" href="{{ '/observatorio-ia/' | relative_url }}">
         <span class="brand-mark adl-brand-mark"><img src="{{ '/assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg' | relative_url }}" alt="Arias-Data-Lab" width="108" height="80" decoding="async"></span>
-        <span class="adl-site-title"><strong>{% if is_aula %}Aula Inteligente{% else %}IA al Día{% endif %}</strong><small>{% if is_aula %}IA, educación y pensamiento crítico{% else %}Observatorio educativo · Arias-Data-Lab{% endif %}</small></span>
+        <span class="adl-site-title"><strong>{% if is_hub %}Observatorio de IA{% elsif is_aula %}Aula Inteligente{% else %}IA al Día{% endif %}</strong><small>{% if is_hub %}Actualidad global y educación{% elsif is_aula %}Inteligencia artificial en educación{% else %}Noticias y tendencias globales de IA{% endif %}</small></span>
       </a>
       <nav aria-label="Navegación del observatorio">
-        <a href="{% if is_aula %}{{ '/aula-inteligente/' | relative_url }}{% else %}{{ '/ia-al-dia/' | relative_url }}{% endif %}">Inicio</a>
-        {% if is_aula %}<a href="{{ '/ia-al-dia/' | relative_url }}">IA al Día</a>{% else %}<a href="{{ '/aula-inteligente/' | relative_url }}">Aula Inteligente</a>{% endif %}
+        <a href="{{ '/observatorio-ia/' | relative_url }}"{% if is_hub %} aria-current="page"{% endif %}>Observatorio</a>
+        <a href="{{ '/ia-al-dia/' | relative_url }}"{% unless is_aula or is_hub %} aria-current="page"{% endunless %}>IA al Día · Global</a>
+        <a href="{{ '/aula-inteligente/' | relative_url }}"{% if is_aula %} aria-current="page"{% endif %}>Aula Inteligente · Educación</a>
         <a href="{{ '/ia-al-dia/#infografias' | relative_url }}">Infografías</a>
-        {% unless is_aula %}<a href="{{ '/ia-al-dia/telemetria/' | relative_url }}">Telemetría</a>{% endunless %}
+        {% unless is_aula or is_hub %}<a href="{{ '/ia-al-dia/telemetria/' | relative_url }}">Telemetría</a>{% endunless %}
         <a href="{{ '/ia-al-dia/acerca/' | relative_url }}">Acerca de</a>
-        <a class="nav-lab" href="{{ '/' | relative_url }}">Arias-Data-Lab <span aria-hidden="true">↗</span></a>
+        <a class="nav-lab" href="{{ '/' | relative_url }}">Arias Data Lab <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -40,8 +43,8 @@
       <div class="footer-identity">
         <a class="footer-logo-card" href="{{ '/' | relative_url }}" aria-label="Conocer Arias-Data-Lab"><img src="{{ '/assets/brand/logo/v4.0/ADL_logo-maestro-color_EDITABLE_v4.0.svg' | relative_url }}" alt="Logo oficial Arias-Data-Lab" width="128" height="94" loading="lazy"></a>
         <div>
-          <strong>{% if is_aula %}Aula Inteligente{% else %}IA al Día{% endif %}</strong>
-          <p>{% if is_aula %}Noticias y evidencia sobre IA en la educación.{% else %}Observatorio educativo de inteligencia artificial.{% endif %}<br><span class="adl-motto">Tecnología con criterio humano.</span></p>
+          <strong>{% if is_hub %}Observatorio de IA{% elsif is_aula %}Aula Inteligente{% else %}IA al Día{% endif %}</strong>
+          <p>{% if is_hub %}Actualidad global y noticias de IA en el sector educativo.{% elsif is_aula %}Noticias sobre inteligencia artificial y educación.{% else %}Noticias de IA de interés global.{% endif %}<br><span class="adl-motto">Tecnología con criterio humano.</span></p>
           <small>Un proyecto de <a href="{{ '/' | relative_url }}">Arias-Data-Lab</a> · Profesor Leonardo Arias-Alemán</small>
         </div>
       </div>
