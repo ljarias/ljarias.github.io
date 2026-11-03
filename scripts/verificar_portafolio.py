@@ -69,12 +69,16 @@ def main():
     check(html.count('class="adl-stage-icon"') >= 4,
           "Faltan iconos en leyenda o tarjetas")
     check('portafolio.css?v=2.2' in html, "Versión de estilos de estados desactualizada")
-    icfes_card=re.search(r'<article[^>]*data-lifecycle="([^"]+)"[^>]*>.*?<h3>Tablero ICFES INEM</h3>', html, re.S)
-    check(icfes_card is not None and icfes_card.group(1) == "desarrollo",
-          "ICFES no puede presentarse como producción certificada")
-    red_card=re.search(r'<article[^>]*data-lifecycle="([^"]+)"[^>]*>.*?<h3>Red Piezométrica</h3>', html, re.S)
-    check(red_card is not None and red_card.group(1) == "desarrollo",
-          "La demo Piezométrica no puede presentarse como producción")
+    project_cards = [
+        m.group(0) for m in re.finditer(
+            r'<article class="catalog-card"[^>]*>.*?</article>', html, re.S
+        )
+    ]
+    for name in ("Tablero ICFES INEM", "Red Piezométrica"):
+        matching = [card for card in project_cards if f"<h3>{name}</h3>" in card]
+        check(len(matching) == 1, f"Tarjeta no única: {name}")
+        check('data-lifecycle="desarrollo"' in matching[0],
+              f"{name} no puede presentarse como producción certificada")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
     check(doc.tags["h1"] == 1 and doc.tags["main"] == 1, "Jerarquía básica inválida")
     check(doc.main_nav == 1, "Navegación principal duplicada o ausente")
