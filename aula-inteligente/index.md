@@ -7,12 +7,13 @@ description: "Noticias diarias, investigaciones y datos visuales sobre inteligen
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow">Aula Inteligente · Una iniciativa Arias-Data-Lab</div>
+      <div class="eyebrow">Aula Inteligente · IA educativa del Observatorio de IA</div>
       <h1>IA en la educación, con evidencia y criterio.</h1>
-      <p class="hero-copy">Noticias diarias sobre inteligencia artificial, aprendizaje, evaluación, docentes y políticas educativas. Cada edición distingue hechos, estudios, declaraciones y debates, y convierte los datos importantes en gráficas fáciles de leer.</p>
+      <p class="hero-copy">Noticias diarias sobre inteligencia artificial en el sector educativo: aprendizaje, evaluación, docencia, investigación pedagógica y políticas educativas. Cada edición distingue hechos, estudios, declaraciones y debates, y convierte los datos importantes en gráficas fáciles de leer.</p>
       <div class="hero-actions">
         <a class="button" href="#ultimas">Ver últimas ediciones</a>
-        <a class="button secondary" href="{{ '/ia-al-dia/' | relative_url }}">IA al Día ↗</a>
+        <a class="button secondary" href="{{ '/ia-al-dia/' | relative_url }}">IA al Día · Noticias globales ↗</a>
+        <a class="button secondary" href="{{ '/observatorio-ia/' | relative_url }}">Ver ambas líneas ↗</a>
       </div>
       <p class="adl-hero-message"><strong>Aprender primero.</strong> La IA debe apoyar el pensamiento, no sustituirlo.</p>
     </div>
