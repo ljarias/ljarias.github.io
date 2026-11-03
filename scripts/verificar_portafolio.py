@@ -19,6 +19,7 @@ class Inspector(HTMLParser):
         self.tags = Counter()
         self.cards = []
         self.scopes = []
+        self.lifecycles = []
         self.links = []
         self.images_missing_alt = []
         self.main_nav = 0
@@ -31,6 +32,7 @@ class Inspector(HTMLParser):
         if tag == "article" and "catalog-card" in data.get("class", "").split():
             self.cards.append(data.get("data-state"))
             self.scopes.append(data.get("data-scope"))
+            self.lifecycles.append(data.get("data-lifecycle"))
         if tag == "a":
             self.links.append(data)
         if tag == "img" and "alt" not in data:
@@ -50,11 +52,33 @@ def main():
     doc.feed(html)
     counts = Counter(doc.cards)
     scope_counts = Counter(doc.scopes)
+    progress_counts = Counter(doc.lifecycles)
 
     check(counts == {"publicados": 9, "desarrollo": 9, "pausados": 4}, f"Conteo incorrecto: {counts}")
     check(scope_counts == {"academico": 11, "empresarial": 4, "conocimiento": 7}, f"Clasificación incorrecta: {scope_counts}")
     for title in ("Académico e institucional · 11", "Comercial y consultoría · 4", "Laboratorio y divulgación · 7"):
         check(title in html, f"Falta selector de línea: {title}")
+    check(progress_counts == {"produccion": 8, "desarrollo": 9, "pausa": 2, "planificado": 3},
+          f"Estados de avance inconsistentes: {progress_counts}")
+    for symbol in ("stage-live", "stage-build", "stage-pause", "stage-plan"):
+        svg=(ROOT/'arias-data-lab/ui-icons.svg').read_text(encoding='utf-8')
+        check(f'id="{symbol}"' in svg, f"Falta icono de estado: {symbol}")
+        check(f'#' + symbol in html, f"Icono de etapa no referenciado: {symbol}")
+    check(len(re.findall(r'class="adl-stage-legend"', html)) == 1,
+          "Falta la leyenda visual de las cuatro etapas")
+    check(html.count('class="adl-stage-icon"') >= 4,
+          "Faltan iconos en leyenda o tarjetas")
+    check('portafolio.css?v=2.2' in html, "Versión de estilos de estados desactualizada")
+    project_cards = [
+        m.group(0) for m in re.finditer(
+            r'<article class="catalog-card"[^>]*>.*?</article>', html, re.S
+        )
+    ]
+    for name in ("Tablero ICFES INEM", "Red Piezométrica"):
+        matching = [card for card in project_cards if f"<h3>{name}</h3>" in card]
+        check(len(matching) == 1, f"Tarjeta no única: {name}")
+        check('data-lifecycle="desarrollo"' in matching[0],
+              f"{name} no puede presentarse como producción certificada")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
     check(doc.tags["h1"] == 1 and doc.tags["main"] == 1, "Jerarquía básica inválida")
     check(doc.main_nav == 1, "Navegación principal duplicada o ausente")
@@ -64,7 +88,7 @@ def main():
     check('id="portfolio-controls" hidden' in html, "La búsqueda debe degradar sin JavaScript")
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
     check('id="gestión-privada"' in html, "Se perdió el ancla de la versión anterior")
-    check('portafolio.css?v=2.0' in html and 'portafolio.js?v=2.1' in html, "Versiones de recursos desfasadas")
+    check('portafolio.css?v=2.2' in html and 'portafolio.js?v=2.1' in html, "Versiones de recursos desfasadas")
     check('architecture.css?v=1.2' in html, "No carga la navegación del ecosistema")
     check('href="../observatorio-ia/"' in html and 'adl-editorial-signpost' in html, "Falta el observatorio agrupado")
     check(html.index('<h3>IA al Día</h3>') < html.index('<h3>Aula Inteligente</h3>'), "Las líneas editoriales no están juntas y ordenadas")
@@ -74,6 +98,23 @@ def main():
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
     check('href="https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"' in html,
           "Enlace institucional del Tablero ICFES INEM ausente")
+    official = "https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    brochure = (ROOT / "proyectos/tablero-icfes-inem/index.html").read_text(encoding="utf-8")
+    demo = (ROOT / "proyectos/tablero-icfes-inem/demo.html").read_text(encoding="utf-8")
+    check(home.count('href="' + official + '"') >= 2,
+          "Las dos tarjetas de portada deben enlazar al acceso institucional")
+    check(brochure.count('href="' + official + '"') >= 2,
+          "Ambos CTA de la ficha técnica deben enlazar al acceso institucional")
+    check('href="' + official + '"' in demo,
+          "La demostración histórica debe informar el acceso institucional")
+    check('href="https://ljarias.github.io/tablero-icfes-inem/"' not in brochure,
+          "Hay un enlace histórico incorrecto en la ficha técnica")
+    check('href="proyectos/tablero-icfes-inem/demo.html"' not in home,
+          "La portada aún redirige a la demostración sintética")
+    check("Acceso institucional publicado" in home and
+          "Acceso institucional publicado" in brochure,
+          "Falta informar el estado institucional")
     check("URL de acceso: inemsimonbolivarsm.edu.co/icfes-inem/login.php" in html,
           "URL institucional ICFES no visible")
     check('selectedScope' in js and '.adl-scope-buttons button[data-scope]' in js, "Filtro por ámbito ausente o mal seleccionado")
@@ -89,7 +130,7 @@ def main():
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
     print("OK: 22 proyectos (9/9/4 por etapa; 11 académicos, 4 comerciales, 7 transversales).")
-    print("Nueve URLs visibles, filtros combinables, navegación, iconos y privacidad revisados.")
+    print("Nueve URLs visibles, cuatro etapas (8/9/2/3), iconos, filtros, navegación y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")
 
 if __name__ == "__main__":

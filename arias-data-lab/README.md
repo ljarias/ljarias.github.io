@@ -16,7 +16,7 @@ Sitio: https://ljarias.github.io/arias-data-lab/
 ## Contenido verificable
 
 - IA al Día y Banco de Problemas tienen páginas públicas dentro del mismo sitio.
-- Los proyectos abiertos remiten a recursos públicos de IA al Día, Banco de Problemas, Tablero ICFES y Red Piezométrica. Préstamos SaaS y Acceso Escolar INEM cuentan con **fichas públicas informativas** y conservan sus repositorios privados.
+- IA al Día y Banco de Problemas tienen recursos públicos; Red Piezométrica cuenta con una demostración. **Tablero ICFES INEM** tiene [acceso institucional publicado](https://inemsimonbolivarsm.edu.co/icfes-inem/login.php) con autenticación obligatoria, mientras que su conciliación de datos y QA permanecen pendientes. Préstamos SaaS y Acceso Escolar INEM se documentan por separado según sus estados de operación y acceso.
 - La sección de perfil enlaza a la presentación académica y profesional publicada en el Banco de Problemas.
 - Contacto: correo ya publicado previamente en la sección Acerca de de IA al Día.
 

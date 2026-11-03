@@ -116,3 +116,30 @@
 @media(prefers-reduced-motion:reduce){
   .adl-portfolio .catalog-card{transition:none}
 }
+
+/* Sistema de indicadores de avance: icono y texto independientes del ámbito. */
+.adl-portfolio .adl-legend-head{display:flex;align-items:flex-end;justify-content:space-between;gap:25px;margin:0 0 14px}
+.adl-portfolio .adl-legend-head h2{font-size:clamp(1.2rem,2vw,1.6rem);margin:2px 0 0;line-height:1.3;color:#19384b}
+.adl-portfolio .adl-legend-head>p{max-width:440px;margin:0;color:#586f7c;font-size:.78rem;line-height:1.6}
+.adl-portfolio .adl-legend-kicker{color:#0d6575;font-weight:850;font-size:.67rem;letter-spacing:.14em;margin:0 0 7px}
+.adl-portfolio .adl-stage-legend{margin:0 0 30px}
+.adl-portfolio .adl-legend-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.adl-portfolio .adl-legend-item{--stage-ink:#24465d;--stage-bg:#eaf1f5;--stage-line:#cbdde7;display:flex;align-items:flex-start;gap:10px;min-width:0;padding:14px;background:var(--stage-bg);border:1px solid var(--stage-line);border-radius:12px;color:var(--stage-ink)}
+.adl-portfolio .adl-legend-item strong{font-size:.77rem;line-height:1.4;display:block}
+.adl-portfolio .adl-legend-item strong span{font-variant-numeric:tabular-nums}
+.adl-portfolio .adl-legend-item small{display:block;color:#415c6d;line-height:1.45;font-size:.7rem;margin-top:5px}
+.adl-portfolio .adl-stage-icon{display:inline-block;flex:0 0 auto;width:18px;height:18px}
+.adl-portfolio .adl-legend-item .adl-stage-icon{width:24px;height:24px}
+.adl-portfolio .lifecycle-produccion{--stage-ink:#155f40;--stage-bg:#e2f3e9;--stage-line:#a9d8bb}
+.adl-portfolio .lifecycle-desarrollo{--stage-ink:#194f87;--stage-bg:#e7f1fb;--stage-line:#afcdec}
+.adl-portfolio .lifecycle-pausa{--stage-ink:#80510e;--stage-bg:#fff0d3;--stage-line:#eac680}
+.adl-portfolio .lifecycle-planificado{--stage-ink:#5b4789;--stage-bg:#f0eafb;--stage-line:#cbbce8}
+.adl-portfolio .status.lifecycle-produccion,
+.adl-portfolio .status.lifecycle-desarrollo,
+.adl-portfolio .status.lifecycle-pausa,
+.adl-portfolio .status.lifecycle-planificado{display:inline-flex;align-items:center;gap:6px;background:var(--stage-bg);color:var(--stage-ink);border-color:var(--stage-line);text-align:left}
+.adl-portfolio .status .adl-stage-icon{width:17px;height:17px}
+.adl-portfolio .status span{min-width:0}
+@media(max-width:1060px){.adl-portfolio .adl-legend-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.adl-portfolio .adl-legend-head{display:block}.adl-portfolio .adl-legend-head>p{margin-top:9px}}
+@media(max-width:470px){.adl-portfolio .adl-legend-grid{grid-template-columns:1fr}.adl-portfolio .adl-legend-item{padding:11px 13px}}
