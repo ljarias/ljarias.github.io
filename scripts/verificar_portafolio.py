@@ -68,7 +68,7 @@ def main():
     check('architecture.css?v=1.2' in html, "No carga la navegación del ecosistema")
     check('href="../observatorio-ia/"' in html and 'adl-editorial-signpost' in html, "Falta el observatorio agrupado")
     check(html.index('<h3>IA al Día</h3>') < html.index('<h3>Aula Inteligente</h3>'), "Las líneas editoriales no están juntas y ordenadas")
-    card_markup = re.findall(r'<article class="catalog-card"[^>]*>[\\s\\S]*?</article>', html)
+    card_markup = re.findall(r'<article class="catalog-card"[^>]*>.*?</article>', html, flags=re.S)
     check(any('data-scope="conocimiento"' in card and '<h3>Aula Inteligente</h3>' in card for card in card_markup), "Aula Inteligente no comparte la categoría de observatorio")
     check(len(re.findall(r'data-scope="', html)) == 25, "Faltan ámbitos en filtros o tarjetas")
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
