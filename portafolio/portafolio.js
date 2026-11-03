@@ -8,6 +8,8 @@
   const empty = document.getElementById("portfolio-empty");
   const clear = document.getElementById("portfolio-clear");
   const buttons = Array.from(document.querySelectorAll("[data-filter]"));
+  const scopes = Array.from(document.querySelectorAll("[data-scope]"));
+  const scopeClear = document.getElementById("portfolio-scope-clear");
   const sections = Array.from(document.querySelectorAll(".catalog-section[data-section]"));
   const cards = Array.from(document.querySelectorAll(".catalog-card[data-state]"));
   if (!controls || !input || !result || !empty || !clear || !buttons.length || !cards.length) return;
@@ -19,13 +21,15 @@
     .trim();
 
   let active = "todos";
+  let selectedScope = "todos";
   const update = () => {
     const query = normalize(input.value);
     let visible = 0;
     for (const card of cards) {
       const matchesStatus = active === "todos" || card.dataset.state === active;
       const matchesText = !query || normalize(card.textContent).includes(query);
-      const show = matchesStatus && matchesText;
+      const matchesScope = selectedScope === "todos" || card.dataset.scope === selectedScope;
+      const show = matchesStatus && matchesText && matchesScope;
       card.hidden = !show;
       if (show) visible += 1;
     }
@@ -35,9 +39,11 @@
     for (const button of buttons) {
       button.setAttribute("aria-pressed", String(button.dataset.filter === active));
     }
+    for (const button of scopes) button.setAttribute("aria-pressed", String(button.dataset.scope === selectedScope));
+    if (scopeClear) scopeClear.hidden = selectedScope === "todos";
     result.textContent = visible === 1 ? "1 proyecto encontrado" : visible + " proyectos encontrados";
     empty.hidden = visible > 0;
-    clear.hidden = !query && active === "todos";
+    clear.hidden = !query && active === "todos" && selectedScope === "todos";
   };
 
   for (const button of buttons) {
@@ -46,10 +52,17 @@
       update();
     });
   }
+  for (const button of scopes) button.addEventListener("click", () => {
+    selectedScope = selectedScope === button.dataset.scope ? "todos" : button.dataset.scope;
+    update();
+    controls.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  if (scopeClear) scopeClear.addEventListener("click", () => { selectedScope = "todos"; update(); });
   input.addEventListener("input", update);
   clear.addEventListener("click", () => {
     input.value = "";
     active = "todos";
+    selectedScope = "todos";
     update();
     input.focus();
   });
