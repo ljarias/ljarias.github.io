@@ -1,0 +1,27 @@
+name: Verificar portafolio ADL
+on:
+  pull_request:
+    paths:
+      - 'portafolio/**'
+      - 'scripts/verificar_portafolio.py'
+      - '.github/workflows/qa-portafolio.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'portafolio/**'
+      - 'scripts/verificar_portafolio.py'
+      - '.github/workflows/qa-portafolio.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verificar estructura, rutas y privacidad
+        run: python3 scripts/verificar_portafolio.py
+      - name: Verificar sintaxis de filtros
+        run: node --check portafolio/portafolio.js
