@@ -10,8 +10,9 @@ Este repositorio público reúne el portal profesional, recursos educativos, el 
 | Página | Dirección |
 |---|---|
 | Portal corporativo principal | [ljarias.github.io](https://ljarias.github.io/) |
-| IA al Día — Observatorio de IA | [ljarias.github.io/ia-al-dia/](https://ljarias.github.io/ia-al-dia/) |
-| Aula Inteligente — IA y educación | [ljarias.github.io/aula-inteligente/](https://ljarias.github.io/aula-inteligente/) |
+| Observatorio de IA — entrada común | [ljarias.github.io/observatorio-ia/](https://ljarias.github.io/observatorio-ia/) |
+| IA al Día — noticias globales de IA | [ljarias.github.io/ia-al-dia/](https://ljarias.github.io/ia-al-dia/) |
+| Aula Inteligente — noticias de IA del sector educativo | [ljarias.github.io/aula-inteligente/](https://ljarias.github.io/aula-inteligente/) |
 | Archivo y noticias de IA | [ljarias.github.io/ia-al-dia/](https://ljarias.github.io/ia-al-dia/#ultimas) |
 | Transparencia y telemetría | [ljarias.github.io/ia-al-dia/telemetria/](https://ljarias.github.io/ia-al-dia/telemetria/) |
 | Acerca de IA al Día | [ljarias.github.io/ia-al-dia/acerca/](https://ljarias.github.io/ia-al-dia/acerca/) |
@@ -19,6 +20,15 @@ Este repositorio público reúne el portal profesional, recursos educativos, el 
 | Productos y soluciones | [ljarias.github.io/arias-data-lab/productos/](https://ljarias.github.io/arias-data-lab/productos/) |
 
 El portal antiguo `/arias-data-lab/` sigue accesible como redirección hacia la portada raíz. El catálogo y las fichas de productos **no se han movido**.
+
+## Observatorio de IA: dos líneas editoriales
+
+El **Observatorio de IA** es el punto de entrada común, no una fusión de archivos ni de automatizaciones:
+
+- **IA al Día:** noticias de inteligencia artificial de interés global: investigación, modelos, industria, políticas, seguridad, sociedad y economía. Publicación semanal.
+- **Aula Inteligente:** noticias sobre inteligencia artificial en el **sector educativo**: docencia, aprendizaje, evaluación, escuelas, investigación pedagógica y políticas educativas. Publicación diaria.
+- Las noticias de Aula Inteligente se excluyen del archivo general de IA al Día. Las publicaciones, categorías y URL históricas de ambos espacios se conservan.
+- El portafolio los presenta juntos dentro del ámbito de divulgación, con URL individual para cada línea y una página unificada de entrada.
 
 ## Cambios en las direcciones de IA al Día
 
@@ -47,4 +57,4 @@ Los repositorios `ljarias/prestamos-saas` y `ljarias/acceso-escolar-inem` son pr
 
 ## Principio de operación
 
-Arias-Data-Lab es el punto de entrada y paraguas institucional; IA al Día y los demás productos mantienen sus identidades y su navegación independiente. Evitar cambios de rutas sin conservar compatibilidad o enlaces históricos.
+Arias-Data-Lab es el punto de entrada corporativo; el Observatorio de IA agrupa visualmente IA al Día (global) y Aula Inteligente (educación), con identidades, publicaciones y ritmos editoriales propios. Evitar cambios de rutas sin conservar compatibilidad o enlaces históricos.

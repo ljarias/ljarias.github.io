@@ -52,8 +52,8 @@ def main():
     scope_counts = Counter(doc.scopes)
 
     check(counts == {"publicados": 9, "desarrollo": 9, "pausados": 4}, f"Conteo incorrecto: {counts}")
-    check(scope_counts == {"academico": 12, "empresarial": 4, "conocimiento": 6}, f"Clasificación incorrecta: {scope_counts}")
-    for title in ("Académico e institucional · 12", "Comercial y consultoría · 4", "Laboratorio y divulgación · 6"):
+    check(scope_counts == {"academico": 11, "empresarial": 4, "conocimiento": 7}, f"Clasificación incorrecta: {scope_counts}")
+    for title in ("Académico e institucional · 11", "Comercial y consultoría · 4", "Laboratorio y divulgación · 7"):
         check(title in html, f"Falta selector de línea: {title}")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
     check(doc.tags["h1"] == 1 and doc.tags["main"] == 1, "Jerarquía básica inválida")
@@ -65,7 +65,11 @@ def main():
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
     check('id="gestión-privada"' in html, "Se perdió el ancla de la versión anterior")
     check('portafolio.css?v=2.0' in html and 'portafolio.js?v=2.1' in html, "Versiones de recursos desfasadas")
-    check('architecture.css?v=1.1' in html, "No carga la navegación del ecosistema")
+    check('architecture.css?v=1.2' in html, "No carga la navegación del ecosistema")
+    check('href="../observatorio-ia/"' in html and 'adl-editorial-signpost' in html, "Falta el observatorio agrupado")
+    check(html.index('<h3>IA al Día</h3>') < html.index('<h3>Aula Inteligente</h3>'), "Las líneas editoriales no están juntas y ordenadas")
+    card_markup = re.findall(r'<article class="catalog-card"[^>]*>.*?</article>', html, flags=re.S)
+    check(any('data-scope="conocimiento"' in card and '<h3>Aula Inteligente</h3>' in card for card in card_markup), "Aula Inteligente no comparte la categoría de observatorio")
     check(len(re.findall(r'data-scope="', html)) == 25, "Faltan ámbitos en filtros o tarjetas")
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
     check('href="https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"' in html,
@@ -84,7 +88,7 @@ def main():
         if link.get("target") == "_blank":
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
-    print("OK: 22 proyectos (9/9/4 por etapa; 12 académicos, 4 comerciales, 6 transversales).")
+    print("OK: 22 proyectos (9/9/4 por etapa; 11 académicos, 4 comerciales, 7 transversales).")
     print("Nueve URLs visibles, filtros combinables, navegación, iconos y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")
 
