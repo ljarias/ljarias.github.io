@@ -31,7 +31,7 @@
 .adl-portfolio .search-input{width:100%;min-width:0;border:1px solid #b7cfd9;border-radius:10px;padding:12px 13px;font:inherit;font-size:.9rem;background:#fdfefe;color:#17374b;min-height:44px}
 .adl-portfolio .search-input::placeholder{color:#607987}
 .adl-portfolio .search-input:focus-visible{outline:3px solid #f4b942;outline-offset:3px}
-.adl-portfolio .filter-groups{display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+.adl-portfolio .filter-label{display:block;font-size:.78rem;font-weight:850;color:#28495b;margin:0 0 7px}\n.adl-portfolio .filter-groups{display:flex;flex-wrap:wrap;align-items:center;gap:7px}
 .adl-portfolio .filter-button{appearance:none;background:#f3f7f9;color:#35566a;border:1px solid #d9e5ea;border-radius:9px;font:inherit;font-size:.78rem;font-weight:760;line-height:1.3;padding:10px 12px;min-height:42px;cursor:pointer}
 .adl-portfolio .filter-button:hover{background:#e4f0f3}
 .adl-portfolio .filter-button[aria-pressed="true"]{background:#102a43;color:white;border-color:#102a43}
@@ -64,7 +64,7 @@
 .adl-portfolio .no-results h3{color:#17374b;font-size:1.25rem;margin:0 0 8px}
 .adl-portfolio .no-results p{color:#586f7c;font-size:.9rem;margin:0}
 .adl-portfolio .private-access{background:linear-gradient(115deg,#102a43,#0e5969);border-radius:19px;color:white;padding:31px 35px;display:flex;align-items:center;justify-content:space-between;gap:35px;margin-top:12px}
-.adl-portfolio .private-access .access-copy{max-width:700px}
+.adl-portfolio .private-access .access-copy{max-width:700px}\n.adl-portfolio .legacy-anchor{position:absolute;inset:auto;pointer-events:none}
 .adl-portfolio .private-access h2{color:white;font-size:clamp(1.5rem,2.6vw,2.2rem);margin-bottom:9px}
 .adl-portfolio .private-access p{font-size:.86rem;color:#d0e9ec;line-height:1.7;margin:0}
 .adl-portfolio .private-access .access-label{color:#98e9e0;font-size:.69rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
