@@ -18,6 +18,7 @@ class Inspector(HTMLParser):
         self.ids = []
         self.tags = Counter()
         self.cards = []
+        self.scopes = []
         self.links = []
         self.images_missing_alt = []
         self.main_nav = 0
@@ -29,6 +30,7 @@ class Inspector(HTMLParser):
             self.ids.append(data["id"])
         if tag == "article" and "catalog-card" in data.get("class", "").split():
             self.cards.append(data.get("data-state"))
+            self.scopes.append(data.get("data-scope"))
         if tag == "a":
             self.links.append(data)
         if tag == "img" and "alt" not in data:
@@ -47,8 +49,12 @@ def main():
     doc = Inspector()
     doc.feed(html)
     counts = Counter(doc.cards)
+    scope_counts = Counter(doc.scopes)
 
     check(counts == {"publicados": 9, "desarrollo": 9, "pausados": 4}, f"Conteo incorrecto: {counts}")
+    check(scope_counts == {"academico": 12, "empresarial": 4, "conocimiento": 6}, f"Clasificación incorrecta: {scope_counts}")
+    for title in ("Académico e institucional · 12", "Comercial y consultoría · 4", "Laboratorio y divulgación · 6"):
+        check(title in html, f"Falta selector de línea: {title}")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
     check(doc.tags["h1"] == 1 and doc.tags["main"] == 1, "Jerarquía básica inválida")
     check(doc.main_nav == 1, "Navegación principal duplicada o ausente")
@@ -59,7 +65,7 @@ def main():
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
     check('id="gestión-privada"' in html, "Se perdió el ancla de la versión anterior")
     check('portafolio.css?v=2.0' in html and 'portafolio.js?v=2.1' in html, "Versiones de recursos desfasadas")
-    check('architecture.css?v=1.0' in html, "No carga la navegación del ecosistema")
+    check('architecture.css?v=1.1' in html, "No carga la navegación del ecosistema")
     check(len(re.findall(r'data-scope="', html)) == 25, "Faltan ámbitos en filtros o tarjetas")
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
     check('selectedScope' in js and '.adl-scope-buttons button[data-scope]' in js, "Filtro por ámbito ausente o mal seleccionado")
@@ -74,7 +80,8 @@ def main():
         if link.get("target") == "_blank":
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
-    print("OK: 22 proyectos (9/9/4), nueve URLs visibles, ámbitos, navegación, iconos y privacidad revisados.")
+    print("OK: 22 proyectos (9/9/4 por etapa; 12 académicos, 4 comerciales, 6 transversales).")
+    print("Nueve URLs visibles, filtros combinables, navegación, iconos y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")
 
 if __name__ == "__main__":
