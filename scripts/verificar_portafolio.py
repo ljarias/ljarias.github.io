@@ -74,6 +74,23 @@ def main():
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
     check('href="https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"' in html,
           "Enlace institucional del Tablero ICFES INEM ausente")
+    official = "https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
+    brochure = (ROOT / "proyectos/tablero-icfes-inem/index.html").read_text(encoding="utf-8")
+    demo = (ROOT / "proyectos/tablero-icfes-inem/demo.html").read_text(encoding="utf-8")
+    check(home.count('href="' + official + '"') >= 2,
+          "Las dos tarjetas de portada deben enlazar al acceso institucional")
+    check(brochure.count('href="' + official + '"') >= 2,
+          "Ambos CTA de la ficha técnica deben enlazar al acceso institucional")
+    check('href="' + official + '"' in demo,
+          "La demostración histórica debe informar el acceso institucional")
+    check('href="https://ljarias.github.io/tablero-icfes-inem/"' not in brochure,
+          "Hay un enlace histórico incorrecto en la ficha técnica")
+    check('href="proyectos/tablero-icfes-inem/demo.html"' not in home,
+          "La portada aún redirige a la demostración sintética")
+    check("Acceso institucional publicado" in home and
+          "Acceso institucional publicado" in brochure,
+          "Falta informar el estado institucional")
     check("URL de acceso: inemsimonbolivarsm.edu.co/icfes-inem/login.php" in html,
           "URL institucional ICFES no visible")
     check('selectedScope' in js and '.adl-scope-buttons button[data-scope]' in js, "Filtro por ámbito ausente o mal seleccionado")
