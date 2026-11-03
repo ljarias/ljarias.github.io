@@ -53,7 +53,7 @@ def main():
 
     check(counts == {"publicados": 9, "desarrollo": 9, "pausados": 4}, f"Conteo incorrecto: {counts}")
     check(scope_counts == {"academico": 11, "empresarial": 4, "conocimiento": 7}, f"Clasificación incorrecta: {scope_counts}")
-    for title in ("Académico e institucional · 12", "Comercial y consultoría · 4", "Laboratorio y divulgación · 6"):
+    for title in ("Académico e institucional · 11", "Comercial y consultoría · 4", "Laboratorio y divulgación · 7"):
         check(title in html, f"Falta selector de línea: {title}")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
     check(doc.tags["h1"] == 1 and doc.tags["main"] == 1, "Jerarquía básica inválida")
@@ -88,7 +88,7 @@ def main():
         if link.get("target") == "_blank":
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
-    print("OK: 22 proyectos (9/9/4 por etapa; 12 académicos, 4 comerciales, 6 transversales).")
+    print("OK: 22 proyectos (9/9/4 por etapa; 11 académicos, 4 comerciales, 7 transversales).")
     print("Nueve URLs visibles, filtros combinables, navegación, iconos y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")
 
