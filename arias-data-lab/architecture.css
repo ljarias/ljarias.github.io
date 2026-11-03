@@ -36,7 +36,7 @@
 .adl-portfolio .adl-card-topic .adl-ui-icon{width:20px;height:20px}
 .adl-portfolio .card-foot{flex-wrap:wrap}.adl-portfolio .card-foot .adl-public-url{font-family:ui-monospace,Consolas,monospace;margin-top:6px}
 .adl-portfolio .adl-scope-clear{border:0;background:transparent;color:#086d78;font-size:12px;cursor:pointer;text-decoration:underline;font-weight:800}
-@media(max-width:1250px){.adl-site-nav{display:none!important}.adl-menu{display:block!important}.adl-portfolio .site-header .primary-nav{display:none!important}.adl-portfolio .site-header .mobile-navigation{display:block!important;position:relative}.adl-portfolio .mobile-navigation[open] nav{max-height:80vh;overflow:auto}}
+@media(max-width:1510px){.adl-site-nav{display:none!important}.adl-menu{display:block!important}.adl-portfolio .site-header .primary-nav{display:none!important}.adl-portfolio .site-header .mobile-navigation{display:block!important;position:relative}.adl-portfolio .mobile-navigation[open] nav{max-height:80vh;overflow:auto}}
 @media(max-width:950px){.adl-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.adl-portfolio .adl-scope-buttons{grid-template-columns:1fr}}
 @media(max-width:700px){.adl-core-grid,.adl-tool-grid{grid-template-columns:1fr}.adl-core-card{padding:23px}.adl-portfolio .site-header .header-row{flex-wrap:nowrap}}
 
@@ -54,3 +54,25 @@
 .adl-portfolio .catalog-card[data-scope="academico"] .adl-card-topic{color:#086574}
 .adl-portfolio .catalog-card[data-scope="empresarial"] .adl-card-topic{color:#795018}
 .adl-portfolio .catalog-card[data-scope="conocimiento"] .adl-card-topic{color:#4a5b72}
+
+/* Observatorio editorial ADL: IA general y educación claramente diferenciadas. */
+.projects-grid .adl-observatory-feature{grid-column:span 2;min-height:0}
+.adl-observatory-feature h3{margin:20px 0 9px;font-size:27px}
+.adl-feature-streams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:4px 0 19px}
+.adl-feature-streams a{display:flex;flex-direction:column;align-items:flex-start;gap:7px;border:1px solid #76b5c361;background:#102f43;padding:18px;border-radius:13px;color:#fff;min-width:0}
+.adl-feature-streams a:hover{background:#24556a}
+.adl-feature-streams a:focus-visible{outline:3px solid #f4b942;outline-offset:3px}
+.adl-feature-stream-icon{font-size:27px;line-height:1.2}
+.adl-feature-streams strong{font-size:18px}
+.adl-feature-streams a>span:not(.adl-feature-stream-icon){font-size:13px;color:#d0e8ed;line-height:1.6}
+.adl-feature-streams small{font-size:11px;color:#bdebf1;line-height:1.5;overflow-wrap:anywhere}
+.adl-observatory-hub-link{margin-top:0!important}
+.adl-portfolio .adl-editorial-signpost{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 24px;margin:8px 0 20px;background:#eaf5f5;border:1px solid #b8dce1;border-radius:15px}
+.adl-portfolio .adl-editorial-kicker{display:block;color:#05707c;font-size:11px;font-weight:850;letter-spacing:.08em;margin-bottom:7px}
+.adl-portfolio .adl-editorial-signpost h3{font-size:20px;color:#102a43;margin:0 0 7px}
+.adl-portfolio .adl-editorial-signpost p{font-size:13px;color:#466876;line-height:1.65;margin:0}
+.adl-portfolio .adl-editorial-signpost a{display:inline-flex;align-items:flex-start;flex-direction:column;gap:7px;background:#102a43;color:white;font-size:13px;font-weight:800;padding:13px 17px;border-radius:10px;min-width:200px;text-decoration:none}
+.adl-portfolio .adl-editorial-signpost a small{font-size:10px;color:#cce9ee;line-height:1.4;overflow-wrap:anywhere}
+.adl-portfolio .adl-editorial-signpost a:focus-visible{outline:3px solid #f4b942;outline-offset:3px}
+@media(max-width:930px){.projects-grid .adl-observatory-feature{grid-column:span 2}}
+@media(max-width:700px){.projects-grid .adl-observatory-feature{grid-column:auto}.adl-feature-streams{grid-template-columns:1fr}.adl-portfolio .adl-editorial-signpost{flex-direction:column;align-items:stretch}.adl-portfolio .adl-editorial-signpost a{width:100%;min-width:0}}
