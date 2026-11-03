@@ -2,28 +2,29 @@
 layout: default
 title: IA al Día
 permalink: /ia-al-dia/
-description: "Observatorio educativo IA al Día: noticias semanales, contexto, riesgos, oportunidades e infografías."
+description: "IA al Día: noticias semanales de inteligencia artificial de interés global, investigación, industria, modelos, seguridad, regulación y sociedad."
 ---
 <section class="hero">
   <div class="container hero-grid">
     <div>
-      <div class="eyebrow">IA al Día · Una iniciativa Arias-Data-Lab</div>
+      <div class="eyebrow">IA al Día · Noticias globales del Observatorio de IA</div>
       <h1>Entender la IA exige más que leer titulares.</h1>
-      <p class="hero-copy">Cada semana seleccionamos y explicamos las noticias de inteligencia artificial más importantes y críticas para comprender qué está cambiando, qué preocupa a los expertos y qué vale la pena discutir en el aula.</p>
+      <p class="hero-copy">Cada semana seleccionamos y contextualizamos noticias sobre inteligencia artificial de interés global: investigación, modelos, empresas, seguridad, regulación, economía y sociedad. La cobertura no se limita al sector educativo.</p>
       <div class="hero-actions">
         <a class="button" href="#ultimas">Ver últimos consolidados</a>
         <a class="button secondary" href="#infografias">Ver infografías</a>
         <a class="button secondary" href="{{ '/ia-al-dia/acerca/' | relative_url }}">Cómo funciona</a>
-        <a class="button secondary" href="{{ '/banco-problemas-caribe/' | relative_url }}">Laboratorio educativo ↗</a>
+        <a class="button secondary" href="{{ '/aula-inteligente/' | relative_url }}">IA en educación · Aula Inteligente ↗</a>
+        <a class="button secondary" href="{{ '/observatorio-ia/' | relative_url }}">Dos líneas del observatorio ↗</a>
       </div>
       <p class="adl-hero-message"><strong>Tecnología con criterio humano.</strong> Noticias, contexto y preguntas para pensar por cuenta propia.</p>
     </div>
     <aside class="hero-card">
       <span class="status-dot"></span>
       <strong>Actualización semanal · domingos 8:00 a. m.</strong>
-      <p>Noticias clave de la semana, fuentes enlazadas, nivel de criticidad, riesgos, oportunidades, preguntas para estudiantes y una infografía visual de síntesis.</p>
+      <p>Noticias globales de la semana con fuentes enlazadas, riesgos, oportunidades, análisis contextual e infografía de síntesis.</p>
       <div class="mini-grid">
-        <span>Seguridad</span><span>Educación</span><span>Empleo</span><span>Regulación</span><span>Agentes</span><span>Sociedad</span>
+        <span>Investigación</span><span>Industria</span><span>Seguridad</span><span>Regulación</span><span>Economía</span><span>Sociedad</span>
       </div>
     </aside>
   </div>
@@ -32,27 +33,32 @@ description: "Observatorio educativo IA al Día: noticias semanales, contexto, r
 <section class="container section" id="ultimas">
   <div class="section-heading">
     <div>
-      <div class="eyebrow">Archivo</div>
+      <div class="eyebrow">Archivo de noticias globales</div>
       <h2>Últimas ediciones</h2>
     </div>
-    <p>Los consolidados distinguen hechos, estudios, declaraciones, proyecciones y controversias, y priorizan los asuntos con mayor impacto de la semana.</p>
+    <p>Noticias y análisis generales de IA de interés mundial. Las ediciones sobre IA específicamente educativa se consultan en Aula Inteligente.</p>
   </div>
 
   <div class="posts-grid">
+  {% assign general_post_count = 0 %}
   {% for post in site.posts %}
+  {% unless post.categories contains "aula-inteligente" %}
+  {% assign general_post_count = general_post_count | plus: 1 %}
     <article class="post-card">
       <div class="post-date">{{ post.date | date: "%d/%m/%Y" }}</div>
       <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
       <p>{{ post.summary | default: post.excerpt | strip_html | truncate: 190 }}</p>
       <a class="read-more" href="{{ post.url | relative_url }}">Leer edición →</a>
     </article>
-  {% else %}
+  {% endunless %}
+  {% endfor %}
+  {% if general_post_count == 0 %}
     <article class="post-card">
       <div class="post-date">Próximamente</div>
       <h3>El primer consolidado semanal se publicará desde GitHub Actions</h3>
       <p>El flujo automático genera cada domingo un nuevo resumen de las noticias más importantes de inteligencia artificial.</p>
     </article>
-  {% endfor %}
+  {% endif %}
   </div>
 </section>
 
