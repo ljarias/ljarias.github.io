@@ -68,6 +68,10 @@ def main():
     check('architecture.css?v=1.1' in html, "No carga la navegación del ecosistema")
     check(len(re.findall(r'data-scope="', html)) == 25, "Faltan ámbitos en filtros o tarjetas")
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
+    check('href="https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"' in html,
+          "Enlace institucional del Tablero ICFES INEM ausente")
+    check("URL de acceso: inemsimonbolivarsm.edu.co/icfes-inem/login.php" in html,
+          "URL institucional ICFES no visible")
     check('selectedScope' in js and '.adl-scope-buttons button[data-scope]' in js, "Filtro por ámbito ausente o mal seleccionado")
     check((ROOT / "arias-data-lab/architecture.css").exists(), "Faltan estilos de arquitectura")
     check((ROOT / "arias-data-lab/ui-icons.svg").exists(), "Falta la colección de iconos")
