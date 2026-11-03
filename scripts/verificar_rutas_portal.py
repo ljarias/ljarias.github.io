@@ -64,6 +64,7 @@ home = source("index.html")
 verify("<title>Arias-Data-Lab" in home and 'href="ia-al-dia/"' in home, "La portada no enlaza el observatorio")
 verify("arias-data-lab/productos/" in home, "La portada no enlaza el catálogo")
 verify('href="arias-data-lab/portal.css?' in home, "La portada no aplica el CSS corporativo")
+verify('href="observatorio-ia/"' in home and 'href="aula-inteligente/"' in home, "La portada debe mostrar ambas líneas editoriales")
 verify("meta http-equiv=\"refresh\"" not in home, "La portada principal no debe redirigir")
 verify("ADL_logo-maestro-color_EDITABLE_v4.0.svg" in home, "Logo vectorial oficial ausente de la portada")
 verify(not re.search(r'href=["\']https://github.com/ljarias/(?:prestamos-saas|acceso-escolar-inem)', home),
@@ -83,6 +84,9 @@ post = source("_layouts/post.html")
 for endpoint in ("/ia-al-dia/", "/ia-al-dia/acerca/", "/ia-al-dia/telemetria/"):
     verify(endpoint in layout, f"Falta navegación hacia {endpoint}")
 verify("'/ia-al-dia/'" in post, "No se actualizó el retorno desde una publicación")
+verify('permalink: /observatorio-ia/' in source("observatorio-ia/index.md"), "Falta entrada común al Observatorio")
+verify('permalink: /aula-inteligente/' in source("aula-inteligente/index.md"), "Falta Aula Inteligente")
+verify('unless post.categories contains "aula-inteligente"' in source("ia-al-dia/index.md"), "IA al Día incluye noticias de Aula Inteligente")
 
 data = json.loads(source("_data/infografias.json"))
 verify(len(data) > 0, "Sin registros de infografías")
@@ -115,8 +119,12 @@ if BUILT:
 
     root = generated("index.html")
     ia = generated("ia-al-dia/index.html")
+    aula = generated("aula-inteligente/index.html")
+    observatorio = generated("observatorio-ia/index.html")
     verify("Tecnología para" in root, "La portada compilada no es corporativa")
     verify("Entender la IA exige" in ia, "El observatorio compilado carece de su portada")
+    verify("IA en la educación, con evidencia" in aula, "Aula Inteligente no se compiló")
+    verify("Observatorio de inteligencia artificial." in observatorio, "Falta portada común del Observatorio")
     verify("portal.css" in root, "CSS ausente en portada raíz")
     generated("ia-al-dia/acerca/index.html")
     generated("ia-al-dia/telemetria/index.html")
@@ -131,7 +139,7 @@ if BUILT:
     generated("telemetria/index.html")
 
     for path in (
-        "index.html", "ia-al-dia/index.html", "ia-al-dia/acerca/index.html",
+        "index.html", "observatorio-ia/index.html", "aula-inteligente/index.html", "ia-al-dia/index.html", "ia-al-dia/acerca/index.html",
         "arias-data-lab/productos/index.html",
         "arias-data-lab/productos/prestamos-saas.html",
         "arias-data-lab/productos/acceso-escolar-inem.html",
