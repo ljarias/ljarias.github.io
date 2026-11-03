@@ -43,3 +43,14 @@
 /* URLs legibles también sobre las tarjetas oscuras del observatorio. */
 .projects-section .project-card .adl-product-url{color:#c8e9ee;margin-top:10px;font-size:11px;overflow-wrap:anywhere;line-height:1.5}
 .adl-tool-item a:focus-visible,.adl-core-link:focus-visible{outline:3px solid #f4b942;outline-offset:4px}
+
+/* Portafolio ADL: diferenciación visual por ámbito principal. */
+.adl-portfolio .adl-scope-buttons button[data-scope="academico"]{border-left:4px solid #168294}
+.adl-portfolio .adl-scope-buttons button[data-scope="empresarial"]{border-left:4px solid #bd842a}
+.adl-portfolio .adl-scope-buttons button[data-scope="conocimiento"]{border-left:4px solid #718098}
+.adl-portfolio .catalog-card[data-scope="academico"]{border-top:3px solid #168294}
+.adl-portfolio .catalog-card[data-scope="empresarial"]{border-top:3px solid #bd842a}
+.adl-portfolio .catalog-card[data-scope="conocimiento"]{border-top:3px solid #718098}
+.adl-portfolio .catalog-card[data-scope="academico"] .adl-card-topic{color:#086574}
+.adl-portfolio .catalog-card[data-scope="empresarial"] .adl-card-topic{color:#795018}
+.adl-portfolio .catalog-card[data-scope="conocimiento"] .adl-card-topic{color:#4a5b72}
