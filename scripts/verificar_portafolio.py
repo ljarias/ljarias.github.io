@@ -79,6 +79,7 @@ def main():
         check(len(matching) == 1, f"Tarjeta no única: {name}")
         check('data-lifecycle="desarrollo"' in matching[0],
               f"{name} no puede presentarse como producción certificada")
+    home = (ROOT / "index.html").read_text(encoding="utf-8")
     for internal in ("ADL Academic Core", "ADL Business Core", "Confort Térmico Oficina"):
         check(f"<h3>{internal}</h3>" not in html, f"Ficha interna o duplicada: {internal}")
     check(html.count("<h3>Confort Térmico Educativo</h3>") == 1, "El producto térmico debe aparecer una sola vez")
