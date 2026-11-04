@@ -54,11 +54,11 @@ def main():
     scope_counts = Counter(doc.scopes)
     progress_counts = Counter(doc.lifecycles)
 
-    check(counts == {"publicados": 9, "desarrollo": 9, "pausados": 4}, f"Conteo incorrecto: {counts}")
-    check(scope_counts == {"academico": 11, "empresarial": 4, "conocimiento": 7}, f"Clasificación incorrecta: {scope_counts}")
-    for title in ("Académico e institucional · 11", "Comercial y consultoría · 4", "Laboratorio y divulgación · 7"):
+    check(counts == {"publicados": 9, "desarrollo": 7, "pausados": 3}, f"Conteo incorrecto: {counts}")
+    check(scope_counts == {"academico": 10, "empresarial": 3, "conocimiento": 6}, f"Clasificación incorrecta: {scope_counts}")
+    for title in ("Académico e institucional · 10", "Comercial y consultoría · 3", "Laboratorio y divulgación · 6"):
         check(title in html, f"Falta selector de línea: {title}")
-    check(progress_counts == {"produccion": 8, "desarrollo": 9, "pausa": 2, "planificado": 3},
+    check(progress_counts == {"produccion": 8, "desarrollo": 8, "pausa": 2, "planificado": 1},
           f"Estados de avance inconsistentes: {progress_counts}")
     for symbol in ("stage-live", "stage-build", "stage-pause", "stage-plan"):
         svg=(ROOT/'arias-data-lab/ui-icons.svg').read_text(encoding='utf-8')
@@ -79,6 +79,13 @@ def main():
         check(len(matching) == 1, f"Tarjeta no única: {name}")
         check('data-lifecycle="desarrollo"' in matching[0],
               f"{name} no puede presentarse como producción certificada")
+    for internal_name in ("ADL Academic Core", "ADL Business Core", "Confort Térmico Oficina"):
+        check(f"<h3>{internal_name}</h3>" not in html,
+              f"Un proyecto interno o duplicado aparece públicamente: {internal_name}")
+    check(html.count("<h3>Confort Térmico Educativo</h3>") == 1, "La aplicación de Confort Térmico debe tener una sola ficha")
+    check("aulas, oficinas y hogar" in html, "Los tres contextos de Confort Térmico deben estar documentados")
+    check("ADL Academic Core" not in home and "ADL Business Core" not in home,
+          "La portada corporativa no debe publicitar la arquitectura interna")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
     check(doc.tags["h1"] == 1 and doc.tags["main"] == 1, "Jerarquía básica inválida")
     check(doc.main_nav == 1, "Navegación principal duplicada o ausente")
@@ -94,7 +101,7 @@ def main():
     check(html.index('<h3>IA al Día</h3>') < html.index('<h3>Aula Inteligente</h3>'), "Las líneas editoriales no están juntas y ordenadas")
     card_markup = re.findall(r'<article class="catalog-card"[^>]*>.*?</article>', html, flags=re.S)
     check(any('data-scope="conocimiento"' in card and '<h3>Aula Inteligente</h3>' in card for card in card_markup), "Aula Inteligente no comparte la categoría de observatorio")
-    check(len(re.findall(r'data-scope="', html)) == 25, "Faltan ámbitos en filtros o tarjetas")
+    check(len(re.findall(r'data-scope="', html)) == 22, "Faltan ámbitos en filtros o tarjetas")
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
     check('href="https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"' in html,
           "Enlace institucional del Tablero ICFES INEM ausente")
@@ -129,8 +136,8 @@ def main():
         if link.get("target") == "_blank":
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
-    print("OK: 22 proyectos (9/9/4 por etapa; 11 académicos, 4 comerciales, 7 transversales).")
-    print("Nueve URLs visibles, cuatro etapas (8/9/2/3), iconos, filtros, navegación y privacidad revisados.")
+    print("OK: 19 proyectos (9/7/3 por etapa; 10 académicos, 3 comerciales, 6 transversales).")
+    print("Nueve URLs visibles, cuatro etapas (8/8/2/1), iconos, filtros, navegación y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")
 
 if __name__ == "__main__":
