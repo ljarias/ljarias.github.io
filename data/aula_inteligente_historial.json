@@ -16,5 +16,11 @@
     "title": "Aula Inteligente — Percepción del uso académico de IA",
     "source": "https://phys.org/news/2026-11-students-ai-differently.html",
     "chart": "assets/infografias/aula-2026-11-04.svg"
+  },
+  {
+    "date": "2026-11-05",
+    "title": "Aula Inteligente — Configuraciones verificadas en el modelo sobre trabajo asistido por IA",
+    "source": "https://arxiv.org/abs/2611.06346",
+    "chart": "assets/infografias/aula-2026-11-05.svg"
   }
 ]

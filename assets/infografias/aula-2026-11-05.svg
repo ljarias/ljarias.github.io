@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
+<title id="title">Configuraciones verificadas en el modelo sobre trabajo asistido por IA</title>
+<desc id="desc">Compara el número de configuraciones paramétricas en las que el preprint verificó determinados resultados; no mide aprendizaje real ni efectos causales en aulas.</desc>
+<rect width="100%" height="100%" fill="#F7F8FC"/>
+<text x="80" y="78" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#132238">Configuraciones verificadas en el modelo sobre trabajo asistido por IA</text>
+<text x="80" y="118" font-family="Arial,sans-serif" font-size="21" fill="#667085">Aula Inteligente · 2026-11-05</text>
+<line x1="105" y1="650.0" x2="1110" y2="650.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="657.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">0configuraciones</text>
+<line x1="105" y1="547.5" x2="1110" y2="547.5" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="554.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">1903520configuraciones</text>
+<line x1="105" y1="445.0" x2="1110" y2="445.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="452.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">3807040configuraciones</text>
+<line x1="105" y1="342.5" x2="1110" y2="342.5" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="349.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">5710561configuraciones</text>
+<line x1="105" y1="240.0" x2="1110" y2="240.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="247.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">7614081configuraciones</text>
+<rect x="319.0" y="603.2" width="72.0" height="46.8" rx="12" fill="#2F6BFF"/>
+<text x="355.0" y="589.2" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#2F6BFF">868320configuraciones</text>
+<text x="355.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">Resultados</text>
+<text x="355.0" y="711" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">estructurales</text>
+<rect x="819.0" y="293.5" width="72.0" height="356.5" rx="12" fill="#16A6A0"/>
+<text x="855.0" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#16A6A0">6.62094e+06configuraciones</text>
+<text x="855.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">Políticas de</text>
+<text x="855.0" y="711" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">incentivo</text>
+<text x="80" y="760" font-family="Arial,sans-serif" font-size="16" fill="#344054">Compara el número de configuraciones paramétricas en las que el preprint verificó</text>
+<text x="80" y="782" font-family="Arial,sans-serif" font-size="16" fill="#344054">determinados resultados; no mide aprendizaje real ni efectos causales en aulas.</text>
+<text x="80" y="825" font-family="Arial,sans-serif" font-size="14" fill="#667085">Fuente: https://arxiv.org/abs/2611.06346 · simulaciones del modelo; no son estudiantes observados</text>
+</svg>
