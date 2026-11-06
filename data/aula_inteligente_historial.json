@@ -22,5 +22,11 @@
     "title": "Aula Inteligente — Configuraciones verificadas en el modelo sobre trabajo asistido por IA",
     "source": "https://arxiv.org/abs/2611.06346",
     "chart": "assets/infografias/aula-2026-11-05.svg"
+  },
+  {
+    "date": "2026-11-06",
+    "title": "Aula Inteligente — Rendimiento de modelos para detectar estudiantes en riesgo",
+    "source": "https://link.springer.com/article/10.1007/s44163-026-02724-9",
+    "chart": "assets/infografias/aula-2026-11-06.svg"
   }
 ]
