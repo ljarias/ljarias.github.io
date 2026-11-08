@@ -10,6 +10,8 @@
   const buttons = Array.from(document.querySelectorAll("[data-filter]"));
   const scopes = Array.from(document.querySelectorAll(".adl-scope-buttons button[data-scope]"));
   const scopeClear = document.getElementById("portfolio-scope-clear");
+  const nature = document.getElementById("nature-filter");
+  const access = document.getElementById("access-filter");
   const sections = Array.from(document.querySelectorAll(".catalog-section[data-section]"));
   const cards = Array.from(document.querySelectorAll(".catalog-card[data-state]"));
   if (!controls || !input || !result || !empty || !clear || !buttons.length || !cards.length) return;
@@ -29,7 +31,9 @@
       const matchesStatus = active === "todos" || card.dataset.state === active;
       const matchesText = !query || normalize(card.textContent).includes(query);
       const matchesScope = selectedScope === "todos" || card.dataset.scope === selectedScope;
-      const show = matchesStatus && matchesText && matchesScope;
+      const matchesNature = !nature || nature.value === "todos" || card.dataset.naturaleza === nature.value;
+      const matchesAccess = !access || access.value === "todos" || card.dataset.acceso === access.value;
+      const show = matchesStatus && matchesText && matchesScope && matchesNature && matchesAccess;
       card.hidden = !show;
       if (show) visible += 1;
     }
@@ -43,7 +47,7 @@
     if (scopeClear) scopeClear.hidden = selectedScope === "todos";
     result.textContent = visible === 1 ? "1 proyecto encontrado" : visible + " proyectos encontrados";
     empty.hidden = visible > 0;
-    clear.hidden = !query && active === "todos" && selectedScope === "todos";
+    clear.hidden = !query && active === "todos" && selectedScope === "todos" && (!nature || nature.value === "todos") && (!access || access.value === "todos");
   };
 
   for (const button of buttons) {
@@ -59,10 +63,14 @@
   });
   if (scopeClear) scopeClear.addEventListener("click", () => { selectedScope = "todos"; update(); });
   input.addEventListener("input", update);
+  if (nature) nature.addEventListener("change", update);
+  if (access) access.addEventListener("change", update);
   clear.addEventListener("click", () => {
     input.value = "";
     active = "todos";
     selectedScope = "todos";
+    if (nature) nature.value = "todos";
+    if (access) access.value = "todos";
     update();
     input.focus();
   });
