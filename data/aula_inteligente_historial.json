@@ -34,5 +34,11 @@
     "title": "Aula Inteligente — Resultados resumidos de estudios recientes sobre IA y aprendizaje",
     "source": "https://edtechdev.github.io/aied/news/2026-11-07/",
     "chart": "assets/infografias/aula-2026-11-07.svg"
+  },
+  {
+    "date": "2026-11-08",
+    "title": "Aula Inteligente — Efectos del panel narrado por IA en la reflexión docente",
+    "source": "https://doi.org/10.1111/bjet.70098",
+    "chart": "assets/infografias/aula-2026-11-08.svg"
   }
 ]
