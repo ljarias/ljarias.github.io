@@ -151,3 +151,8 @@
 .adl-portfolio .taxonomy-controls select{max-width:100%;min-height:44px;border:1px solid #8aa6b6;border-radius:8px;background:white;color:#17394b;padding:9px 12px;font:inherit}
 .adl-portfolio .taxonomy-controls select:focus-visible{outline:3px solid #b77c00;outline-offset:2px}
 @media(max-width:600px){.adl-portfolio .taxonomy-controls{display:grid;grid-template-columns:1fr}.adl-portfolio .taxonomy-controls select{width:100%}}
+
+/* Metadatos visibles para evitar confundir finalidad, disponibilidad y avance. */
+.adl-portfolio .adl-card-meta{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+.adl-portfolio .adl-card-meta span{display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border:1px solid #bdd3dd;border-radius:7px;background:#f0f6f9;color:#23475c;font-size:.72rem;font-weight:700;line-height:1.35}
+.adl-portfolio .adl-card-meta span:last-child{background:#fff;border-color:#9ab6c3;color:#25475a}
