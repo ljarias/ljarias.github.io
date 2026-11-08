@@ -61,7 +61,7 @@ verify('url: "https://ljarias.github.io"' in config, "URL canónica del sitio no
 verify(not (ROOT / "index.md").exists(), "index.md heredado entra en conflicto con index.html")
 
 home = source("index.html")
-verify("<title>Arias-Data-Lab" in home and 'href="ia-al-dia/"' in home, "La portada no enlaza el observatorio")
+verify("<title>Leonardo Arias Alemán" in home and 'href="ia-al-dia/"' in home and 'href="observatorio-ia/"' in home, "La portada no identifica al profesional o no enlaza el observatorio")
 verify("arias-data-lab/productos/" in home, "La portada no enlaza el catálogo")
 verify('href="arias-data-lab/portal.css?' in home, "La portada no aplica el CSS corporativo")
 verify('href="observatorio-ia/"' in home and 'href="aula-inteligente/"' in home, "La portada debe mostrar ambas líneas editoriales")
