@@ -296,5 +296,44 @@
       "https://www.tomshardware.com/tech-industry/policy/malaysia-seizes-usd12-million-worth-of-advanced-ai-chips-hidden-inside-30-servers-customs-says-suspected-smuggling-network-used-the-country-as-a-transit-hub?utm_source=openai"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-11-08",
+    "edition_type": "weekly",
+    "period_start": "2026-11-02",
+    "period_end": "2026-11-08",
+    "post": "_posts/2026-11-08-ia-al-dia.md",
+    "titles": [
+      "La supervisión pública de la IA en Estados Unidos queda bajo presión",
+      "Anthropic muestra ingresos extraordinarios, pero también pérdidas y compromisos de infraestructura",
+      "Google condiciona el acceso escolar a su buscador a la adopción de IA",
+      "Tres personas son acusadas de usar IA para robar 129 millones de dólares",
+      "Japón anuncia un paquete urgente de ciberseguridad tras una ola de ataques",
+      "Reino Unido advierte que los ataques contra infraestructuras críticas se intensificarán",
+      "OpenAI publica GPT-6 Cyber, un modelo especializado en seguridad informática",
+      "Argentina intenta atraer inversiones con una política de IA de baja regulación"
+    ],
+    "urls": [
+      "https://apnews.com/article/0cbd1a649a4cce904be59af8f6b30179",
+      "https://apnews.com/article/0cbd1a649a4cce904be59af8f6b30179?utm_source=openai",
+      "https://apnews.com/article/4e61bf9b55c7d1d15cfd075859d2ba08",
+      "https://apnews.com/article/4e61bf9b55c7d1d15cfd075859d2ba08?utm_source=openai",
+      "https://apnews.com/article/7ba4219e505db1c11d672f6eefe7155a",
+      "https://apnews.com/article/7ba4219e505db1c11d672f6eefe7155a?utm_source=openai",
+      "https://apnews.com/article/8ba038fde849e7ea9c49126ecd770972",
+      "https://apnews.com/article/8ba038fde849e7ea9c49126ecd770972?utm_source=openai",
+      "https://apnews.com/article/a8fab1ac14d1ea9c7992f8797099fb32",
+      "https://apnews.com/article/a8fab1ac14d1ea9c7992f8797099fb32?utm_source=openai",
+      "https://apnews.com/article/c348a0c96e941214e56f8d923d03fc4b",
+      "https://apnews.com/article/c348a0c96e941214e56f8d923d03fc4b?utm_source=openai",
+      "https://apnews.com/article/d3318eb2cf011df53e9ddb3e03d25f13",
+      "https://apnews.com/article/d3318eb2cf011df53e9ddb3e03d25f13?utm_source=openai",
+      "https://apnews.com/article/df331b55daffc6d202d8e2f6d0afa264",
+      "https://deploymentsafety.openai.com/gpt-6-cyber",
+      "https://deploymentsafety.openai.com/gpt-6-cyber/gpt-6-cyber.pdf",
+      "https://deploymentsafety.openai.com/gpt-6-cyber?utm_source=openai",
+      "https://www.lemonde.fr/en/economy/article/2026/11/06/on-wall-street-democrats-midterm-victory-bursts-the-ai-bubble_6773164_19.html"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
