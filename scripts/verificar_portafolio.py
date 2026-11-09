@@ -96,6 +96,12 @@ def main():
     check(len(re.findall(r'class="card-foot"><a href="https://', html)) == 9, "Enlaces de proyectos incorrectos")
     check(len(re.findall(r'data-filter="', html)) == 4, "Faltan filtros de estado")
     check('id="portfolio-controls" hidden' in html, "La búsqueda debe degradar sin JavaScript")
+    check('class="adl-scope-picker" hidden' in html and 'class="taxonomy-controls" hidden' in html,
+          "Los filtros interactivos deben estar ocultos sin JavaScript")
+    check("scopePicker.hidden = false" in js and "taxonomy.hidden = false" in js,
+          "Los filtros interactivos deben mostrarse al inicializarse JavaScript")
+    check('prefers-reduced-motion: reduce' in js and 'behavior: reducedMotion ? "auto" : "smooth"' in js,
+          "El desplazamiento programático debe respetar movimiento reducido")
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
     check("adl-control-center.vercel.app" not in html, "El portafolio público expone el centro de gestión privado")
     check('portafolio.css?v=2.4' in html and 'portafolio.js?v=2.2' in html, "Versiones de recursos desfasadas")
