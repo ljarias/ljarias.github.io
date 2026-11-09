@@ -10,6 +10,8 @@
   const buttons = Array.from(document.querySelectorAll("[data-filter]"));
   const scopes = Array.from(document.querySelectorAll(".adl-scope-buttons button[data-scope]"));
   const scopeClear = document.getElementById("portfolio-scope-clear");
+  const scopePicker = document.querySelector(".adl-scope-picker");
+  const taxonomy = document.querySelector(".taxonomy-controls");
   const nature = document.getElementById("nature-filter");
   const access = document.getElementById("access-filter");
   const sections = Array.from(document.querySelectorAll(".catalog-section[data-section]"));
@@ -59,7 +61,8 @@
   for (const button of scopes) button.addEventListener("click", () => {
     selectedScope = selectedScope === button.dataset.scope ? "todos" : button.dataset.scope;
     update();
-    controls.scrollIntoView({ behavior: "smooth", block: "start" });
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    controls.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
   });
   if (scopeClear) scopeClear.addEventListener("click", () => { selectedScope = "todos"; update(); });
   input.addEventListener("input", update);
@@ -74,6 +77,8 @@
     update();
     input.focus();
   });
+  if (scopePicker) scopePicker.hidden = false;
+  if (taxonomy) taxonomy.hidden = false;
   controls.hidden = false;
   update();
 })();
