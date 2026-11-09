@@ -1,0 +1,92 @@
+name: QA visual del portal ADL (sin publicación)
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "portafolio/**"
+      - "arias-data-lab/**"
+      - ".github/workflows/qa-browser-portal.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Descargar rama del PR
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Construir versión estática sin publicar
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: .
+          destination: ./_site
+
+      - name: Comprobar renderizado con Chrome (desktop y móvil)
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v chromium || true)"
+          if [[ -z "$CHROME" ]]; then
+            echo "::error::Chrome no está disponible en el runner"
+            exit 1
+          fi
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory ./_site >/tmp/portal-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            if curl --silent --fail http://127.0.0.1:8765/portafolio/ >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8765/ >/dev/null
+          curl --fail --silent http://127.0.0.1:8765/portafolio/ >/dev/null
+          mkdir -p qa-capturas
+          while IFS='|' read -r name dimensions url; do
+            [[ -z "$name" ]] && continue
+            timeout 60s "$CHROME" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage \
+              --no-first-run --hide-scrollbars --virtual-time-budget=2500 \
+              --user-data-dir="/tmp/chrome-qa-$name" --window-size="$dimensions" \
+              --screenshot="qa-capturas/$name.png" "http://127.0.0.1:8765$url" >/dev/null 2>&1
+          done <<'VISTAS'
+          portada-desktop|1440,900|/
+          portada-movil|390,844|/
+          portafolio-movil|390,844|/portafolio/
+          VISTAS
+          timeout 60s "$CHROME" --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage \
+            --no-first-run --virtual-time-budget=2500 --user-data-dir=/tmp/chrome-qa-dom \
+            --dump-dom http://127.0.0.1:8765/portafolio/ > /tmp/portafolio-renderizado.html 2>/dev/null
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          markup = Path("/tmp/portafolio-renderizado.html").read_text(encoding="utf-8")
+          for selector in ("adl-scope-picker", "taxonomy-controls"):
+              m = re.search(r"<(?:section|div)\b[^>]*\bclass=[\"']" + selector + r"[\"'][^>]*>", markup)
+              assert m and not re.search(r"\bhidden(?:\s|=|>)", m.group(0)), (
+                  f"El filtro {selector} no se habilitó con JavaScript"
+              )
+          m = re.search(r"<div\b[^>]*\bid=[\"']portfolio-controls[\"'][^>]*>", markup)
+          assert m and not re.search(r"\bhidden(?:\s|=|>)", m.group(0)), (
+              "La búsqueda de proyectos no se habilitó en el navegador"
+          )
+          assert "20 proyectos encontrados" in markup, "La aplicación de filtros no inicializó"
+          for filename in ("portada-desktop.png", "portada-movil.png", "portafolio-movil.png"):
+              image = Path("qa-capturas") / filename
+              assert image.is_file() and image.stat().st_size > 5000, (
+                  f"No se generó la captura de navegador: {filename}"
+              )
+          print("OK: DOM interactivo y tres capturas Chrome desktop/móvil.")
+          PY
+
+      - name: Guardar capturas para inspección visual
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-portal-adl-visual
+          path: qa-capturas/*.png
+          retention-days: 7

@@ -54,11 +54,11 @@ def main():
     scope_counts = Counter(doc.scopes)
     progress_counts = Counter(doc.lifecycles)
 
-    check(counts == {"publicados": 9, "desarrollo": 7, "pausados": 3}, f"Conteo incorrecto: {counts}")
-    check(scope_counts == {"academico": 10, "empresarial": 3, "conocimiento": 6}, f"Clasificación incorrecta: {scope_counts}")
-    for title in ("Académico e institucional · 10", "Comercial y consultoría · 3", "Laboratorio y divulgación · 6"):
+    check(counts == {"publicados": 9, "desarrollo": 8, "pausados": 3}, f"Conteo incorrecto: {counts}")
+    check(scope_counts == {"academico": 11, "empresarial": 3, "conocimiento": 6}, f"Clasificación incorrecta: {scope_counts}")
+    for title in ("Académico e institucional · 11", "Comercial y consultoría · 3", "Laboratorio y divulgación · 6"):
         check(title in html, f"Falta selector de línea: {title}")
-    check(progress_counts == {"produccion": 8, "desarrollo": 8, "pausa": 2, "planificado": 1},
+    check(progress_counts == {"produccion": 8, "desarrollo": 9, "pausa": 2, "planificado": 1},
           f"Estados de avance inconsistentes: {progress_counts}")
     for symbol in ("stage-live", "stage-build", "stage-pause", "stage-plan"):
         svg=(ROOT/'arias-data-lab/ui-icons.svg').read_text(encoding='utf-8')
@@ -68,12 +68,15 @@ def main():
           "Falta la leyenda visual de las cuatro etapas")
     check(html.count('class="adl-stage-icon"') >= 4,
           "Faltan iconos en leyenda o tarjetas")
-    check('portafolio.css?v=2.2' in html, "Versión de estilos de estados desactualizada")
+    check('portafolio.css?v=2.4' in html, "Versión de estilos de estados desactualizada")
     project_cards = [
         m.group(0) for m in re.finditer(
             r'<article class="catalog-card"[^>]*>.*?</article>', html, re.S
         )
     ]
+    check(len(project_cards) == 20, "Faltan fichas en el catálogo")
+    check(all('data-naturaleza="' in card and 'data-acceso="' in card and 'class="adl-card-meta"' in card for card in project_cards), "Faltan metadatos de naturaleza/acceso visibles")
+    check(html.count("<h3>INEM Analítica Académica</h3>") == 1, "Falta el piloto INEM Analítica Académica o está duplicado")
     for name in ("Tablero ICFES INEM", "Red Piezométrica"):
         matching = [card for card in project_cards if f"<h3>{name}</h3>" in card]
         check(len(matching) == 1, f"Tarjeta no única: {name}")
@@ -84,6 +87,10 @@ def main():
         check(f"<h3>{internal}</h3>" not in html, f"Ficha interna o duplicada: {internal}")
     check(html.count("<h3>Confort Térmico Educativo</h3>") == 1, "El producto térmico debe aparecer una sola vez")
     check("aulas, oficinas y hogar" in html, "Faltan los ámbitos de confort térmico")
+    check("<strong>Arias Data Lab</strong>" in home and "<strong>Arias Data Lab</strong>" in html,
+          "La identidad visible debe usar Arias Data Lab")
+    check("Arias-Data-Lab" not in home and "Arias-Data-Lab" not in html,
+          "Persisten variantes de marca anteriores")
     check("ADL Academic Core" not in home and "ADL Business Core" not in home,
           "La portada no debe publicitar los núcleos arquitectónicos internos")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
@@ -93,15 +100,21 @@ def main():
     check(len(re.findall(r'class="card-foot"><a href="https://', html)) == 9, "Enlaces de proyectos incorrectos")
     check(len(re.findall(r'data-filter="', html)) == 4, "Faltan filtros de estado")
     check('id="portfolio-controls" hidden' in html, "La búsqueda debe degradar sin JavaScript")
+    check('class="adl-scope-picker" hidden' in html and 'class="taxonomy-controls" hidden' in html,
+          "Los filtros interactivos deben estar ocultos sin JavaScript")
+    check("scopePicker.hidden = false" in js and "taxonomy.hidden = false" in js,
+          "Los filtros interactivos deben mostrarse al inicializarse JavaScript")
+    check('prefers-reduced-motion: reduce' in js and 'behavior: reducedMotion ? "auto" : "smooth"' in js,
+          "El desplazamiento programático debe respetar movimiento reducido")
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
-    check('id="gestión-privada"' in html, "Se perdió el ancla de la versión anterior")
-    check('portafolio.css?v=2.2' in html and 'portafolio.js?v=2.1' in html, "Versiones de recursos desfasadas")
-    check('architecture.css?v=1.2' in html, "No carga la navegación del ecosistema")
+    check("adl-control-center.vercel.app" not in html, "El portafolio público expone el centro de gestión privado")
+    check('portafolio.css?v=2.4' in html and 'portafolio.js?v=2.2' in html, "Versiones de recursos desfasadas")
+    check('architecture.css?v=1.3' in html, "No carga la navegación del ecosistema")
     check('href="../observatorio-ia/"' in html and 'adl-editorial-signpost' in html, "Falta el observatorio agrupado")
     check(html.index('<h3>IA al Día</h3>') < html.index('<h3>Aula Inteligente</h3>'), "Las líneas editoriales no están juntas y ordenadas")
     card_markup = re.findall(r'<article class="catalog-card"[^>]*>.*?</article>', html, flags=re.S)
     check(any('data-scope="conocimiento"' in card and '<h3>Aula Inteligente</h3>' in card for card in card_markup), "Aula Inteligente no comparte la categoría de observatorio")
-    check(len(re.findall(r'data-scope="', html)) == 22, "Faltan ámbitos en filtros o tarjetas")
+    check(len(re.findall(r'data-scope="', html)) == 23, "Faltan ámbitos en filtros o tarjetas")
     check(len(re.findall(r'class="adl-public-url"', html)) == 9, "No se muestran las nueve URLs documentadas")
     check('href="https://inemsimonbolivarsm.edu.co/icfes-inem/login.php"' in html,
           "Enlace institucional del Tablero ICFES INEM ausente")
@@ -136,8 +149,8 @@ def main():
         if link.get("target") == "_blank":
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
-    print("OK: 19 proyectos (9/7/3 por etapa; 10 académicos, 3 comerciales, 6 transversales).")
-    print("Nueve URLs visibles, cuatro etapas (8/8/2/1), iconos, filtros, navegación y privacidad revisados.")
+    print("OK: 20 proyectos (9/8/3 por etapa; 11 académicos, 3 comerciales, 6 transversales).")
+    print("Nueve URLs visibles, cuatro etapas (8/9/2/1), iconos, filtros, navegación y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")
 
 if __name__ == "__main__":

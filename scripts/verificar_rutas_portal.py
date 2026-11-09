@@ -61,7 +61,7 @@ verify('url: "https://ljarias.github.io"' in config, "URL canónica del sitio no
 verify(not (ROOT / "index.md").exists(), "index.md heredado entra en conflicto con index.html")
 
 home = source("index.html")
-verify("<title>Arias-Data-Lab" in home and 'href="ia-al-dia/"' in home, "La portada no enlaza el observatorio")
+verify("<title>Leonardo Arias Alemán" in home and 'href="ia-al-dia/"' in home and 'href="observatorio-ia/"' in home, "La portada no identifica al profesional o no enlaza el observatorio")
 verify("arias-data-lab/productos/" in home, "La portada no enlaza el catálogo")
 verify('href="arias-data-lab/portal.css?' in home, "La portada no aplica el CSS corporativo")
 verify('href="observatorio-ia/"' in home and 'href="aula-inteligente/"' in home, "La portada debe mostrar ambas líneas editoriales")
@@ -121,7 +121,7 @@ if BUILT:
     ia = generated("ia-al-dia/index.html")
     aula = generated("aula-inteligente/index.html")
     observatorio = generated("observatorio-ia/index.html")
-    verify("Tecnología para" in root, "La portada compilada no es corporativa")
+    verify('<h1 id="hero-title">Leonardo Arias Alemán:' in root and "innovación educativa." in root, "La portada compilada no corresponde a la identidad profesional aprobada")
     verify("Entender la IA exige" in ia, "El observatorio compilado carece de su portada")
     verify("IA en la educación, con evidencia" in aula, "Aula Inteligente no se compiló")
     verify("Observatorio de inteligencia artificial." in observatorio, "Falta portada común del Observatorio")

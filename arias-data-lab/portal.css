@@ -151,3 +151,10 @@ h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.045em;line-height:1.14}h1{font
 .products-showcase-tail{border-top:1px solid #d3e3e8;padding-top:20px;margin-top:22px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:13px;color:#566f79}
 .products-showcase-tail a{color:#056a75;font-weight:800}
 @media(max-width:720px){.products-showcase-grid{grid-template-columns:1fr}.product-teaser{min-height:0}}
+
+
+/* Portada profesional: lectura del título y acciones accesibles en escritorio. */
+@media (min-width:751px) {
+  .hero-layout{min-height:640px;padding-top:64px;padding-bottom:76px}
+  .hero h1{font-size:clamp(2.8rem,4vw,3.9rem);line-height:1.09}
+}
