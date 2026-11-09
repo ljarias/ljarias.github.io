@@ -109,7 +109,7 @@ def main():
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
     check("adl-control-center.vercel.app" not in html, "El portafolio público expone el centro de gestión privado")
     check('portafolio.css?v=2.4' in html and 'portafolio.js?v=2.2' in html, "Versiones de recursos desfasadas")
-    check('architecture.css?v=1.2' in html, "No carga la navegación del ecosistema")
+    check('architecture.css?v=1.3' in html, "No carga la navegación del ecosistema")
     check('href="../observatorio-ia/"' in html and 'adl-editorial-signpost' in html, "Falta el observatorio agrupado")
     check(html.index('<h3>IA al Día</h3>') < html.index('<h3>Aula Inteligente</h3>'), "Las líneas editoriales no están juntas y ordenadas")
     card_markup = re.findall(r'<article class="catalog-card"[^>]*>.*?</article>', html, flags=re.S)
