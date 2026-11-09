@@ -87,6 +87,10 @@ def main():
         check(f"<h3>{internal}</h3>" not in html, f"Ficha interna o duplicada: {internal}")
     check(html.count("<h3>Confort Térmico Educativo</h3>") == 1, "El producto térmico debe aparecer una sola vez")
     check("aulas, oficinas y hogar" in html, "Faltan los ámbitos de confort térmico")
+    check("<strong>Arias Data Lab</strong>" in home and "<strong>Arias Data Lab</strong>" in html,
+          "La identidad visible debe usar Arias Data Lab")
+    check("Arias-Data-Lab" not in home and "Arias-Data-Lab" not in html,
+          "Persisten variantes de marca anteriores")
     check("ADL Academic Core" not in home and "ADL Business Core" not in home,
           "La portada no debe publicitar los núcleos arquitectónicos internos")
     check(len(doc.ids) == len(set(doc.ids)), "IDs HTML duplicados")
