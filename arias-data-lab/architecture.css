@@ -36,7 +36,7 @@
 .adl-portfolio .adl-card-topic .adl-ui-icon{width:20px;height:20px}
 .adl-portfolio .card-foot{flex-wrap:wrap}.adl-portfolio .card-foot .adl-public-url{font-family:ui-monospace,Consolas,monospace;margin-top:6px}
 .adl-portfolio .adl-scope-clear{border:0;background:transparent;color:#086d78;font-size:12px;cursor:pointer;text-decoration:underline;font-weight:800}
-@media(max-width:1080px){.adl-site-nav{display:none!important}.adl-menu{display:block!important}.adl-portfolio .site-header .primary-nav{display:none!important}.adl-portfolio .site-header .mobile-navigation{display:block!important;position:relative}.adl-portfolio .mobile-navigation[open] nav{max-height:80vh;overflow:auto}}
+@media(max-width:1510px){.adl-site-nav{display:none!important}.adl-menu{display:block!important}.adl-portfolio .site-header .primary-nav{display:none!important}.adl-portfolio .site-header .mobile-navigation{display:block!important;position:relative}.adl-portfolio .mobile-navigation[open] nav{max-height:80vh;overflow:auto}}
 @media(max-width:950px){.adl-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.adl-portfolio .adl-scope-buttons{grid-template-columns:1fr}}
 @media(max-width:700px){.adl-core-grid,.adl-tool-grid{grid-template-columns:1fr}.adl-core-card{padding:23px}.adl-portfolio .site-header .header-row{flex-wrap:nowrap}}
 
@@ -76,3 +76,14 @@
 .adl-portfolio .adl-editorial-signpost a:focus-visible{outline:3px solid #f4b942;outline-offset:3px}
 @media(max-width:930px){.projects-grid .adl-observatory-feature{grid-column:span 2}}
 @media(max-width:700px){.projects-grid .adl-observatory-feature{grid-column:auto}.adl-feature-streams{grid-template-columns:1fr}.adl-portfolio .adl-editorial-signpost{flex-direction:column;align-items:stretch}.adl-portfolio .adl-editorial-signpost a{width:100%;min-width:0}}
+
+
+/* La navegación completa sólo se muestra antes de 1510px en las dos
+   páginas nuevas, cuyo menú abreviado dispone del espacio suficiente.
+   El resto del sitio conserva el punto de ruptura anterior. */
+@media (min-width:1081px) and (max-width:1510px) {
+  .adl-nav-compact .adl-site-nav{display:flex!important}
+  .adl-nav-compact .adl-menu{display:none!important}
+  .adl-portfolio.adl-nav-compact .site-header .primary-nav{display:flex!important}
+  .adl-portfolio.adl-nav-compact .site-header .mobile-navigation{display:none!important}
+}
