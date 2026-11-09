@@ -121,7 +121,7 @@ if BUILT:
     ia = generated("ia-al-dia/index.html")
     aula = generated("aula-inteligente/index.html")
     observatorio = generated("observatorio-ia/index.html")
-    verify("Tecnología para" in root, "La portada compilada no es corporativa")
+    verify('<h1 id="hero-title">Leonardo Arias Alemán:' in root and "innovación educativa." in root, "La portada compilada no corresponde a la identidad profesional aprobada")
     verify("Entender la IA exige" in ia, "El observatorio compilado carece de su portada")
     verify("IA en la educación, con evidencia" in aula, "Aula Inteligente no se compiló")
     verify("Observatorio de inteligencia artificial." in observatorio, "Falta portada común del Observatorio")
