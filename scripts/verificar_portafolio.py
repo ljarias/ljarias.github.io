@@ -87,6 +87,8 @@ def main():
         check(f"<h3>{internal}</h3>" not in html, f"Ficha interna o duplicada: {internal}")
     check(html.count("<h3>Confort Térmico Educativo</h3>") == 1, "El producto térmico debe aparecer una sola vez")
     check("aulas, oficinas y hogar" in html, "Faltan los ámbitos de confort térmico")
+    check('<body class="adl-nav-compact">' in home and '<body class="adl-portfolio adl-nav-compact">' in html,
+          "La navegación abreviada debe limitarse a las dos páginas nuevas")
     check("<strong>Arias Data Lab</strong>" in home and "<strong>Arias Data Lab</strong>" in html,
           "La identidad visible debe usar Arias Data Lab")
     check("Arias-Data-Lab" not in home and "Arias-Data-Lab" not in html,
@@ -109,7 +111,7 @@ def main():
     check('aria-labelledby="status-filter-label"' in html, "Filtros sin etiqueta de grupo")
     check("adl-control-center.vercel.app" not in html, "El portafolio público expone el centro de gestión privado")
     check('portafolio.css?v=2.4' in html and 'portafolio.js?v=2.2' in html, "Versiones de recursos desfasadas")
-    check('architecture.css?v=1.3' in html, "No carga la navegación del ecosistema")
+    check('architecture.css?v=1.4' in html, "No carga la navegación del ecosistema")
     check('href="../observatorio-ia/"' in html and 'adl-editorial-signpost' in html, "Falta el observatorio agrupado")
     check(html.index('<h3>IA al Día</h3>') < html.index('<h3>Aula Inteligente</h3>'), "Las líneas editoriales no están juntas y ordenadas")
     card_markup = re.findall(r'<article class="catalog-card"[^>]*>.*?</article>', html, flags=re.S)
