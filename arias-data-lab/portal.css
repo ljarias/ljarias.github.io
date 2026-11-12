@@ -158,3 +158,52 @@ h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.045em;line-height:1.14}h1{font
   .hero-layout{min-height:640px;padding-top:64px;padding-bottom:76px}
   .hero h1{font-size:clamp(2.8rem,4vw,3.9rem);line-height:1.09}
 }
+
+
+/* ADL UI 2026-11-12 | refinamiento responsive y estados accesibles.
+   Conserva SVG oficiales v4.0, contenido profesional y estructura editorial. */
+:root{
+ --ui-ink:#19394c;--ui-border:#cbdfe6;
+ --ui-shadow:0 12px 30px rgba(16,42,67,.085);
+ color-scheme:light;
+}
+body{min-width:320px}
+.hero-copy{min-width:0}
+.hero-intro{max-width:66ch}
+.hero-actions{gap:12px}
+.hero-actions .button,.contact-actions .button{
+ min-height:48px;
+ display:inline-flex;align-items:center;justify-content:center;
+ text-align:center;line-height:1.25;
+}
+:where(.project-card,.career-card,.product-teaser,.focus-card){
+ border-color:var(--ui-border);
+ box-shadow:var(--ui-shadow);
+}
+:where(.project-card,.career-card,.product-teaser,.focus-card):focus-within{
+ outline:3px solid #087f8c;outline-offset:3px;
+}
+:where(.site-header,.adl-menu,.footer-main) a:focus-visible,
+:where(.hero-actions,.contact-actions,.projects-grid,.products-showcase) a:focus-visible{
+ outline:3px solid #a36a00;outline-offset:3px;
+}
+.product-teaser a,.career-links a{text-underline-offset:4px}
+.product-teaser a:focus-visible{text-decoration:underline}
+@media(hover:hover) and (pointer:fine){
+ .career-card,.product-teaser{transition:transform .18s ease,box-shadow .18s ease}
+ .career-card:hover,.product-teaser:hover{transform:translateY(-3px);box-shadow:0 17px 33px rgba(16,42,67,.12)}
+}
+@media(max-width:480px){
+ .hero-actions .button{width:100%}
+ .career-card,.product-teaser{padding:22px 19px}
+ .container{width:min(1180px,calc(100% - 28px))}
+ .hero-intro{overflow-wrap:anywhere}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+ .career-card:hover,.product-teaser:hover{transform:none}
+}
+@media(forced-colors:active){
+ .project-card,.career-card,.product-teaser,.focus-card{border:1px solid CanvasText}
+ .button{border:1px solid ButtonText}
+}
