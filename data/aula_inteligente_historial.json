@@ -58,5 +58,11 @@
     "title": "Aula Inteligente — Estudios causales identificados en las revisiones de Stanford",
     "source": "https://scale.stanford.edu/sites/default/files/The%20Evidence%20Base%20on%20AI%20in%20K-12%20November%202026%20Review.pdf",
     "chart": "assets/infografias/aula-2026-11-11.svg"
+  },
+  {
+    "date": "2026-11-12",
+    "title": "Aula Inteligente — Percepción del uso académico de IA",
+    "source": "https://tech.yahoo.com/ai/chatgpt/articles/move-beyond-climate-suspicion-study-020500058.html",
+    "chart": "assets/infografias/aula-2026-11-12.svg"
   }
 ]
