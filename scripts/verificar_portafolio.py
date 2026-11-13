@@ -151,6 +151,31 @@ def main():
         if link.get("target") == "_blank":
             rel = set(link.get("rel", "").split())
             check({"noopener", "noreferrer"} <= rel, f"Enlace sin protección: {link.get('href')}")
+    # Nueva línea editorial: no modifica el número de proyectos comerciales del catálogo.
+    tga_path = ROOT / "experiencias/tecnologia-gestion-academica/index.html"
+    check(tga_path.is_file(), "Falta la ficha de experiencias TGA")
+    tga = tga_path.read_text(encoding="utf-8")
+    parsed_tga = Inspector()
+    parsed_tga.feed(tga)
+    check(parsed_tga.tags["h1"] == 1 and parsed_tga.tags["main"] == 1,
+          "La página TGA carece de jerarquía semántica")
+    check(not parsed_tga.images_missing_alt, "La página TGA tiene imágenes sin texto alternativo")
+    check('name="robots" content="noindex,nofollow"' in tga,
+          "El borrador editorial no debe indexarse automáticamente")
+    check(len(re.findall(r'class="tga-card"', tga)) == 5,
+          "Deben mostrarse cinco casos iniciales TGA sin datos privados")
+    check('href="../experiencias/tecnologia-gestion-academica/"' in html,
+          "El portafolio no enlaza a la experiencia TGA")
+    check("ADL Academic Core" not in tga and "ADL Business Core" not in tga,
+          "No exponer arquitecturas internas como productos")
+    check("github.com/ljarias/inem-" not in tga,
+          "No incluir referencias a repositorios escolares privados en la página pública")
+    check("evaluación de impacto requiere evidencia adicional" in tga,
+          "La ficha debe diferenciar producto de impacto medido")
+    check("Autogestión institucional" in tga and "recuperación de cuentas" in tga,
+          "Falta cobertura de servicios administrativos")
+    check('class="mobile-navigation adl-menu"' in tga,
+          "Falta navegación accesible en pantallas móviles")
     print("OK: 20 proyectos (9/8/3 por etapa; 11 académicos, 3 comerciales, 6 transversales).")
     print("Nueve URLs visibles, cuatro etapas (8/9/2/1), iconos, filtros, navegación y privacidad revisados.")
     print("Nota: QA estática; no es una prueba visual, HTTP ni auditoría WCAG completa.")

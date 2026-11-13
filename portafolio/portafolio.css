@@ -156,3 +156,11 @@
 .adl-portfolio .adl-card-meta{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
 .adl-portfolio .adl-card-meta span{display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border:1px solid #bdd3dd;border-radius:7px;background:#f0f6f9;color:#23475c;font-size:.72rem;font-weight:700;line-height:1.35}
 .adl-portfolio .adl-card-meta span:last-child{background:#fff;border-color:#9ab6c3;color:#25475a}
+
+/* Enlace editorial a experiencias de gestión académica, independiente del catálogo comercial. */
+.tga-invitation{display:flex;justify-content:space-between;align-items:center;gap:20px;border:1px solid #c8e2e3;border-radius:15px;background:#eaf6f6;padding:22px 24px;margin:16px 0 22px}
+.tga-invitation strong{display:block;color:#12465a;font-size:1.02rem}
+.tga-invitation p{color:#3b5b67;font-size:.88rem;line-height:1.6;margin:7px 0 0;max-width:720px}
+.tga-invitation a{flex-shrink:0;background:#126f77;color:white;padding:11px 14px;border-radius:10px;text-decoration:none;font-size:.84rem;font-weight:800}
+.tga-invitation a:hover,.tga-invitation a:focus-visible{background:#095c64;text-decoration:underline}
+@media(max-width:700px){.tga-invitation{flex-direction:column;align-items:stretch;padding:17px}.tga-invitation a{align-self:flex-start}}
