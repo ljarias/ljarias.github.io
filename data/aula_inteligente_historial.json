@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-02",
-    "title": "Aula Inteligente — Escala de los despliegues y gobernanza recientes",
-    "source": "https://norwoodpark.hwdsb.on.ca/news/hwdsbs-responsible-approach-ai",
-    "chart": "assets/infografias/aula-2026-11-02.svg"
-  },
-  {
     "date": "2026-11-03",
     "title": "Aula Inteligente — Estudios incluidos en la revisión sobre IA generativa y aprendizaje basado en indagación",
     "source": "https://doi.org/10.12688/f1000research.192825.1",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Percepción del uso académico de IA",
     "source": "https://tech.yahoo.com/ai/chatgpt/articles/move-beyond-climate-suspicion-study-020500058.html",
     "chart": "assets/infografias/aula-2026-11-12.svg"
+  },
+  {
+    "date": "2026-11-13",
+    "title": "Aula Inteligente — Tamaño de los efectos reportados en el estudio escolar",
+    "source": "https://www.jer.or.id/index.php/jer/article/download/4287/1715",
+    "chart": "assets/infografias/aula-2026-11-13.svg"
   }
 ]
