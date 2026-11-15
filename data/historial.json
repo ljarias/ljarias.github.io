@@ -335,5 +335,48 @@
       "https://www.lemonde.fr/en/economy/article/2026/11/06/on-wall-street-democrats-midterm-victory-bursts-the-ai-bubble_6773164_19.html"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-11-15",
+    "edition_type": "weekly",
+    "period_start": "2026-11-09",
+    "period_end": "2026-11-15",
+    "post": "_posts/2026-11-15-ia-al-dia.md",
+    "titles": [
+      "Microsoft demuestra cómo una puerta trasera puede esconderse dentro de un modelo",
+      "Microsoft alerta sobre ataques de cadena de suministro contra agentes de programación",
+      "Australia anuncia un regulador específico para la seguridad de la IA",
+      "Anthropic lanza nuevos modelos mientras se intensifica la carrera comercial",
+      "OpenAI anuncia financiación para investigar seguridad infantil",
+      "Líderes europeos incorporan la IA a su agenda estratégica",
+      "OpenAI y otros laboratorios enfrentan una nueva demanda por riesgos catastróficos"
+    ],
+    "urls": [
+      "https://apnews.com/article/03ece37b96979fe834f60976648504ba",
+      "https://apnews.com/article/03ece37b96979fe834f60976648504ba?utm_source=openai",
+      "https://apnews.com/article/a5dfe5379c0f7458e44b72a9073833c6",
+      "https://irish-presidency.consilium.europa.eu/media/1l4fftpj/media-information-on-epc-summit.pdf",
+      "https://openai.com/index/children-first-declaration/",
+      "https://openai.com/index/children-first-declaration/?trk=article-ssr-frontend-pulse_little-text-block&utm_source=openai",
+      "https://openai.com/index/community-safety-report-and-new-protections-for-teens/",
+      "https://www.consilium.europa.eu/en/meetings/european-council/2026/11/13/",
+      "https://www.consilium.europa.eu/en/meetings/european-council/2026/11/13/?utm_source=openai",
+      "https://www.consilium.europa.eu/en/meetings/international-summit/2026/11/12/?utm_source=openai",
+      "https://www.investing.com/news/stock-market-news/anthropic-unveils-new-fable-mythos-models-amid-competition-heats-up-ahead-of-ipo-5013116",
+      "https://www.investing.com/news/stock-market-news/anthropic-unveils-new-fable-mythos-models-amid-competition-heats-up-ahead-of-ipo-5013116?utm_source=openai",
+      "https://www.lemonde.fr/en/international/article/2026/11/14/ai-europeans-face-challenge-of-reaching-consensus-to-stay-competitive-and-improve-regulation_6780458_4.html",
+      "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/",
+      "https://www.microsoft.com/en-us/research/blog/lazare-veni-foras-reprogramming-dormant-neurons-to-backdoor-ai-agents/?utm_source=openai",
+      "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/",
+      "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/?utm_source=openai",
+      "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/",
+      "https://www.microsoft.com/en-us/security/blog/2026/11/12/trained-to-betray-how-post-training-supply-chain-attacks-hijack-coding-agents/?utm_source=openai",
+      "https://www.minister.defence.gov.au/media-releases/2026-11-10/new-australian-ai-safety-security-protections",
+      "https://www.minister.defence.gov.au/media-releases/2026-11-10/new-australian-ai-safety-security-protections?utm_source=openai",
+      "https://www.pmc.gov.au/domestic-policy/rapid-review-australian-government-arrangements-ai-driven-cyber-incident",
+      "https://www.pmc.gov.au/domestic-policy/rapid-review-australian-government-arrangements-ai-driven-cyber-incident?utm_source=openai",
+      "https://www.tomsguide.com/ai/anthropic-just-launched-its-most-powerful-claude-ahead-of-its-ipo-heres-why-its-telling-users-to-stick-with-opus"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
