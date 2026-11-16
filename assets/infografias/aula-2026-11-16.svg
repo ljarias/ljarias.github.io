@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
+<title id="title">Educadores con al menos una sesión de formación en IA</title>
+<desc id="desc">Comparación de la proporción autodeclarada de educadores que recibieron al menos una sesión de desarrollo profesional sobre IA; no mide duración, calidad ni impacto de la formación.</desc>
+<rect width="100%" height="100%" fill="#F7F8FC"/>
+<text x="80" y="78" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#132238">Educadores con al menos una sesión de formación en IA</text>
+<text x="80" y="118" font-family="Arial,sans-serif" font-size="21" fill="#667085">Aula Inteligente · 2026-11-16</text>
+<line x1="105" y1="650.0" x2="1110" y2="650.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="657.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">0%</text>
+<line x1="105" y1="547.5" x2="1110" y2="547.5" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="554.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">19%</text>
+<line x1="105" y1="445.0" x2="1110" y2="445.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="452.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">39%</text>
+<line x1="105" y1="342.5" x2="1110" y2="342.5" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="349.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">58%</text>
+<line x1="105" y1="240.0" x2="1110" y2="240.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="247.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">77%</text>
+<rect x="319.0" y="352.0" width="72.0" height="298.0" rx="12" fill="#2F6BFF"/>
+<text x="355.0" y="338.0" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#2F6BFF">56%</text>
+<text x="355.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">2025</text>
+<rect x="819.0" y="293.5" width="72.0" height="356.5" rx="12" fill="#16A6A0"/>
+<text x="855.0" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#16A6A0">67%</text>
+<text x="855.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">2026</text>
+<text x="80" y="760" font-family="Arial,sans-serif" font-size="16" fill="#344054">Comparación de la proporción autodeclarada de educadores que recibieron al menos una sesión</text>
+<text x="80" y="782" font-family="Arial,sans-serif" font-size="16" fill="#344054">de desarrollo profesional sobre IA; no mide duración, calidad ni impacto de la formación.</text>
+<text x="80" y="825" font-family="Arial,sans-serif" font-size="14" fill="#667085">Fuente: https://www.edweek.org/technology/teachers-pinpoint-whats-missing-in-professional-development-about-ai/2026/11 · n=852 educadores en 2026; muestra de 2025 no especificada en el artículo</text>
+</svg>

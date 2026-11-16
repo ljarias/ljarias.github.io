@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-05",
-    "title": "Aula Inteligente — Configuraciones verificadas en el modelo sobre trabajo asistido por IA",
-    "source": "https://arxiv.org/abs/2611.06346",
-    "chart": "assets/infografias/aula-2026-11-05.svg"
-  },
-  {
     "date": "2026-11-06",
     "title": "Aula Inteligente — Rendimiento de modelos para detectar estudiantes en riesgo",
     "source": "https://link.springer.com/article/10.1007/s44163-026-02724-9",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Estudios causales incluidos en las revisiones de Stanford",
     "source": "https://scale.stanford.edu/ai/evidence-base-review/evidence-base-ai-k12-november-review",
     "chart": "assets/infografias/aula-2026-11-15.svg"
+  },
+  {
+    "date": "2026-11-16",
+    "title": "Aula Inteligente — Educadores con al menos una sesión de formación en IA",
+    "source": "https://www.edweek.org/technology/teachers-pinpoint-whats-missing-in-professional-development-about-ai/2026/11",
+    "chart": "assets/infografias/aula-2026-11-16.svg"
   }
 ]
