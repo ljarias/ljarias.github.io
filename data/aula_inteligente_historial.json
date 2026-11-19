@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-08",
-    "title": "Aula Inteligente — Efectos del panel narrado por IA en la reflexión docente",
-    "source": "https://doi.org/10.1111/bjet.70098",
-    "chart": "assets/infografias/aula-2026-11-08.svg"
-  },
-  {
     "date": "2026-11-09",
     "title": "Aula Inteligente — Uso de IA generativa entre estudiantes secundarios alemanes",
     "source": "https://osf.io/m93n6",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Puntuación media de diseño instruccional durante ocho semanas",
     "source": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1869502/full",
     "chart": "assets/infografias/aula-2026-11-18.svg"
+  },
+  {
+    "date": "2026-11-19",
+    "title": "Aula Inteligente — Participantes del experimento de educación ética sobre IA",
+    "source": "https://visualize.jove.com/43047686-information-ethics-education-and-artificial-intelligence-ethical-judgment-among-university-students",
+    "chart": "assets/infografias/aula-2026-11-19.svg"
   }
 ]
