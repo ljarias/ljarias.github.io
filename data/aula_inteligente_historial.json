@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-09",
-    "title": "Aula Inteligente — Uso de IA generativa entre estudiantes secundarios alemanes",
-    "source": "https://osf.io/m93n6",
-    "chart": "assets/infografias/aula-2026-11-09.svg"
-  },
-  {
     "date": "2026-11-10",
     "title": "Aula Inteligente — Trabajos reunidos en la revisión de evidencia sobre IA en K-12",
     "source": "https://scale.stanford.edu/sites/default/files/The%20Evidence%20Base%20on%20AI%20in%20K-12%20November%202026%20Review.pdf",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Participantes del experimento de educación ética sobre IA",
     "source": "https://visualize.jove.com/43047686-information-ethics-education-and-artificial-intelligence-ethical-judgment-among-university-students",
     "chart": "assets/infografias/aula-2026-11-19.svg"
+  },
+  {
+    "date": "2026-11-20",
+    "title": "Aula Inteligente — Alcance anunciado de iniciativas recientes de formación en IA",
+    "source": "https://www.unesco.org/en/articles/unesco-flags-training-18000-teachers-digital-pedagogy-and-artificial-intelligence",
+    "chart": "assets/infografias/aula-2026-11-20.svg"
   }
 ]
