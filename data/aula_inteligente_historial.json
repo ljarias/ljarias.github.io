@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-10",
-    "title": "Aula Inteligente — Trabajos reunidos en la revisión de evidencia sobre IA en K-12",
-    "source": "https://scale.stanford.edu/sites/default/files/The%20Evidence%20Base%20on%20AI%20in%20K-12%20November%202026%20Review.pdf",
-    "chart": "assets/infografias/aula-2026-11-10.svg"
-  },
-  {
     "date": "2026-11-11",
     "title": "Aula Inteligente — Estudios causales identificados en las revisiones de Stanford",
     "source": "https://scale.stanford.edu/sites/default/files/The%20Evidence%20Base%20on%20AI%20in%20K-12%20November%202026%20Review.pdf",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Alcance anunciado de iniciativas recientes de formación en IA",
     "source": "https://www.unesco.org/en/articles/unesco-flags-training-18000-teachers-digital-pedagogy-and-artificial-intelligence",
     "chart": "assets/infografias/aula-2026-11-20.svg"
+  },
+  {
+    "date": "2026-11-21",
+    "title": "Aula Inteligente — Participación de estudiantes y docentes con políticas específicas de IA",
+    "source": "https://sais.org/resource/research-resources-november-19-2026/",
+    "chart": "assets/infografias/aula-2026-11-21.svg"
   }
 ]
