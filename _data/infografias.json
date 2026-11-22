@@ -102,5 +102,16 @@
     "post_url": "/ia-al-dia/2026/11/15/ia-al-dia/",
     "alt": "Infografía con el consolidado semanal de noticias de inteligencia artificial, semana 9–15 de noviembre de 2026",
     "model": "SVG automático IA al Día"
+  },
+  {
+    "date": "2026-11-22",
+    "edition_type": "weekly",
+    "period_start": "2026-11-16",
+    "period_end": "2026-11-22",
+    "title": "Infografía IA al Día — Semana 16–22 de noviembre de 2026",
+    "image": "/assets/infografias/2026-11-22.svg",
+    "post_url": "/ia-al-dia/2026/11/22/ia-al-dia/",
+    "alt": "Infografía con el consolidado semanal de noticias de inteligencia artificial, semana 16–22 de noviembre de 2026",
+    "model": "SVG automático IA al Día"
   }
 ]

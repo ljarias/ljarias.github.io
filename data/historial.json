@@ -378,5 +378,45 @@
       "https://www.tomsguide.com/ai/anthropic-just-launched-its-most-powerful-claude-ahead-of-its-ipo-heres-why-its-telling-users-to-stick-with-opus"
     ],
     "model": "gpt-5.6-luna"
+  },
+  {
+    "date": "2026-11-22",
+    "edition_type": "weekly",
+    "period_start": "2026-11-16",
+    "period_end": "2026-11-22",
+    "post": "_posts/2026-11-22-ia-al-dia.md",
+    "titles": [
+      "California demanda a OpenAI por incidentes con agentes autónomos",
+      "OpenAI abre sus sistemas a evaluadores externos de seguridad",
+      "Un ciberataque contra una institución europea utilizó IA",
+      "Anthropic protagoniza una salida a bolsa histórica, pero crecen las dudas sobre la economía de la IA",
+      "China impulsa la alfabetización en IA dentro del sistema escolar",
+      "OpenAI amplía el acceso gratuito a sus modelos para investigadores",
+      "La IA vuelve a ser presentada como motor de crecimiento, pero la Reserva Federal pide cautela"
+    ],
+    "urls": [
+      "https://aidr.today/date/2026-11-16?lang=en",
+      "https://apnews.com/article/6f9dc54229bbdd80beb4ee3431a01641",
+      "https://apnews.com/article/6f9dc54229bbdd80beb4ee3431a01641?utm_source=openai",
+      "https://apnews.com/article/79705095e8141cd650196dbff1cf3c70",
+      "https://apnews.com/article/79705095e8141cd650196dbff1cf3c70?utm_source=openai",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://docs.publicnow.com/viewDoc?filename=8234%5CEXT%5CBF758B178A5499375E6F6D184F63E3CF1324A527_FDA80DBA0526E12D4FBCD22FE5638884F3462FDD.PDF",
+      "https://docs.publicnow.com/viewDoc?filename=8234%5CEXT%5CBF758B178A5499375E6F6D184F63E3CF1324A527_FDA80DBA0526E12D4FBCD22FE5638884F3462FDD.PDF&utm_source=openai",
+      "https://newsroom.courts.ca.gov/news/california-suit-against-openai-could-be-roadmap-other-states",
+      "https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over",
+      "https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over?trk=public_post_comment-text&utm_source=openai",
+      "https://oag.ca.gov/system/files/attachments/press-docs/complaint-oai-cyber.pdf",
+      "https://openai.com/index/expanding-chatgpt-for-academic-researchers/",
+      "https://openai.com/index/expanding-chatgpt-for-academic-researchers/?utm_source=openai",
+      "https://openai.com/index/our-first-phase-of-embedded-assessments/",
+      "https://openai.com/index/our-first-phase-of-embedded-assessments/?utm_source=openai",
+      "https://openai.com/safety-alignment/",
+      "https://www.lemonde.fr/en/economy/article/2026/11/19/anthropic-prices-shares-at-83-valuing-the-ai-firm-at-1-5-trillion-on-the-eve-of-its-ipo_6783988_19.html",
+      "https://www.lemonde.fr/en/economy/article/2026/11/19/anthropic-prices-shares-at-83-valuing-the-ai-firm-at-1-5-trillion-on-the-eve-of-its-ipo_6783988_19.html?utm_source=openai",
+      "https://www.reuters.com/",
+      "https://www.siliconreport.com/wire/archive/2026-11?before=eyJ2ZXJzaW9uIjoxLCJzaXRlSWQiOiI2NzhmMzg2NS0wOTM0LTUxZmYtOTdmMy1jZmVmMWU1YzViOWIiLCJwdWJsaXNoZWRBdCI6IjIwMjYtMTEtMTdUMDI6MTA6NDIuNzQ4WiIsInB1YmxpY2F0aW9uSWQiOiJhODYzMzIyNC1mNmZhLTU3MTEtOTU4My01YzllYzQxZmVjODQifQ&utm_source=openai"
+    ],
+    "model": "gpt-5.6-luna"
   }
 ]
