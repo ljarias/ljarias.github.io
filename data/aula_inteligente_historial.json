@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-13",
-    "title": "Aula Inteligente — Tamaño de los efectos reportados en el estudio escolar",
-    "source": "https://www.jer.or.id/index.php/jer/article/download/4287/1715",
-    "chart": "assets/infografias/aula-2026-11-13.svg"
-  },
-  {
     "date": "2026-11-14",
     "title": "Aula Inteligente — Participantes por condición de aprendizaje",
     "source": "https://link.springer.com/article/10.1007/s10956-026-10374-w",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Adolescentes que usaron IA para hacer tareas, por ingresos familiares",
     "source": "https://www.edweek.org/technology/do-parents-encourage-kids-to-use-ai-for-schoolwork-depends-on-their-income/2026/11",
     "chart": "assets/infografias/aula-2026-11-23.svg"
+  },
+  {
+    "date": "2026-11-24",
+    "title": "Aula Inteligente — Usos declarados de IA para apoyo de salud mental entre estudiantes de Bath",
+    "source": "https://mental.jmir.org/2026/1/e96196",
+    "chart": "assets/infografias/aula-2026-11-24.svg"
   }
 ]
