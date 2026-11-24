@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-12",
-    "title": "Aula Inteligente — Percepción del uso académico de IA",
-    "source": "https://tech.yahoo.com/ai/chatgpt/articles/move-beyond-climate-suspicion-study-020500058.html",
-    "chart": "assets/infografias/aula-2026-11-12.svg"
-  },
-  {
     "date": "2026-11-13",
     "title": "Aula Inteligente — Tamaño de los efectos reportados en el estudio escolar",
     "source": "https://www.jer.or.id/index.php/jer/article/download/4287/1715",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Casos de irregularidad reportados en el examen nacional surcoreano",
     "source": "https://en.yna.co.kr/view/AEN20261120004451315?section=national%2Fnational",
     "chart": "assets/infografias/aula-2026-11-22.svg"
+  },
+  {
+    "date": "2026-11-23",
+    "title": "Aula Inteligente — Adolescentes que usaron IA para hacer tareas, por ingresos familiares",
+    "source": "https://www.edweek.org/technology/do-parents-encourage-kids-to-use-ai-for-schoolwork-depends-on-their-income/2026/11",
+    "chart": "assets/infografias/aula-2026-11-23.svg"
   }
 ]
