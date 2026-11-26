@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "cutoff": "2026-11-26",
+  "note": "Hitos divulgativos. Resultados reportados; no constituyen aceptación institucional.",
+  "milestones": [
+    {
+      "date": "2026-11-08",
+      "title": "Las palabras no bastaban",
+      "text": "La conversión de materiales de bases de datos reveló pérdidas de estructura y significado. El optimizador Markdown empezó a evolucionar.",
+      "kind": "origen"
+    },
+    {
+      "date": "2026-11-12",
+      "title": "Un sistema que podía viajar",
+      "text": "Paquete offline reportado: 109 archivos y 9,92 GB. El Core administrativo registró 40/40 pruebas.",
+      "kind": "ingeniería"
+    },
+    {
+      "date": "2026-11-16",
+      "title": "Una tabla no es una lista de palabras",
+      "text": "La revisión de matrices normativas puso en evidencia la necesidad de preservar relaciones, responsables y plazos.",
+      "kind": "hallazgo"
+    },
+    {
+      "date": "2026-11-23",
+      "title": "PHCE-C2",
+      "text": "47 páginas focales y 82/82 pruebas de repositorio reportadas. La aceptación integral seguía pendiente.",
+      "kind": "ingeniería"
+    },
+    {
+      "date": "2026-11-24",
+      "title": "Retroceder para avanzar",
+      "text": "GW-010: 51,5/100. GW-011: 80. GW-012: 84,5. La referencia convencional fue 61,5.",
+      "kind": "resultado"
+    },
+    {
+      "date": "2026-11-24",
+      "title": "El valor del conocimiento preparado",
+      "text": "GW-013: 17/30, 24/30 y 30/30 casos con evidencia suficiente en tres escenarios. No son respuestas generadas.",
+      "kind": "resultado"
+    },
+    {
+      "date": "2026-11-25",
+      "title": "175 celdas vuelven a tener estructura",
+      "text": "Una línea vacía impedía reconocer filas tabulares. El ensayo focal reportó 0 → 35 filas.",
+      "kind": "hallazgo"
+    },
+    {
+      "date": "2026-11-25",
+      "title": "Tres componentes propios",
+      "text": "Portal estudiantil y PHCE funcionales según el equipo; administración reportada funcional posteriormente, con ajustes y validación conjunta pendientes.",
+      "kind": "ingeniería"
+    },
+    {
+      "date": "2026-11-26",
+      "title": "Aprender a ignorar el ruido",
+      "text": "B2B-R02: 52 → 3 candidatas visuales en un documento literario; 49 alertas pasan a informativas. PASS focal reportado.",
+      "kind": "hallazgo"
+    },
+    {
+      "date": "2026-11-26",
+      "title": "OCR con incertidumbre explícita",
+      "text": "Reconocimiento de título y autor en una portada, confianza reportada 65,41/100; requiere cotejo humano.",
+      "kind": "ingeniería"
+    }
+  ]
+}
