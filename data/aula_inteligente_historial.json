@@ -1,11 +1,5 @@
 [
   {
-    "date": "2026-11-15",
-    "title": "Aula Inteligente — Estudios causales incluidos en las revisiones de Stanford",
-    "source": "https://scale.stanford.edu/ai/evidence-base-review/evidence-base-ai-k12-november-review",
-    "chart": "assets/infografias/aula-2026-11-15.svg"
-  },
-  {
     "date": "2026-11-16",
     "title": "Aula Inteligente — Educadores con al menos una sesión de formación en IA",
     "source": "https://www.edweek.org/technology/teachers-pinpoint-whats-missing-in-professional-development-about-ai/2026/11",
@@ -64,5 +58,11 @@
     "title": "Aula Inteligente — Metas porcentuales anunciadas por Ball State",
     "source": "https://www.bsu.edu/news/press-center/archives/2026/11/lilly-endowment-awards-12-million-grant-to-advance-ai-education-at-ball-state-university",
     "chart": "assets/infografias/aula-2026-11-25.svg"
+  },
+  {
+    "date": "2026-11-26",
+    "title": "Aula Inteligente — Docentes de Hanói que declararon usar IA",
+    "source": "https://www.ep-journals.org/articles/the-current-state-of-ai-tool-adoption-in-teaching-at-af2dea33/pdf",
+    "chart": "assets/infografias/aula-2026-11-26.svg"
   }
 ]
