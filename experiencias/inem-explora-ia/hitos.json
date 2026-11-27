@@ -1,67 +1,67 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "cutoff": "2026-11-26",
-  "note": "Hitos divulgativos. Resultados reportados; no constituyen aceptación institucional.",
+  "note": "Hitos de divulgación; no representan certificación integral ni autorización institucional.",
   "milestones": [
     {
       "date": "2026-11-08",
+      "kind": "Origen",
       "title": "Las palabras no bastaban",
-      "text": "La conversión de materiales de bases de datos reveló pérdidas de estructura y significado. El optimizador Markdown empezó a evolucionar.",
-      "kind": "origen"
+      "text": "Los primeros libros preparados para la IA mostraron que algunas tablas y relaciones perdían su forma."
     },
     {
       "date": "2026-11-12",
+      "kind": "Construcción",
       "title": "Un sistema que podía viajar",
-      "text": "Paquete offline reportado: 109 archivos y 9,92 GB. El Core administrativo registró 40/40 pruebas.",
-      "kind": "ingeniería"
+      "text": "Se preparó un paquete para trasladar la plataforma a un equipo sin depender de internet."
     },
     {
       "date": "2026-11-16",
+      "kind": "Descubrimiento",
       "title": "Una tabla no es una lista de palabras",
-      "text": "La revisión de matrices normativas puso en evidencia la necesidad de preservar relaciones, responsables y plazos.",
-      "kind": "hallazgo"
+      "text": "El manual escolar reveló lo importante que es conservar la relación entre una acción, su responsable y su plazo."
     },
     {
       "date": "2026-11-23",
-      "title": "PHCE-C2",
-      "text": "47 páginas focales y 82/82 pruebas de repositorio reportadas. La aceptación integral seguía pendiente.",
-      "kind": "ingeniería"
+      "kind": "Experimentación",
+      "title": "El taller de documentos madura",
+      "text": "Se reportaron pruebas de preparación documental y revisión focal de páginas; quedaba pendiente la aceptación integral."
     },
     {
       "date": "2026-11-24",
+      "kind": "Descubrimiento",
       "title": "Retroceder para avanzar",
-      "text": "GW-010: 51,5/100. GW-011: 80. GW-012: 84,5. La referencia convencional fue 61,5.",
-      "kind": "resultado"
+      "text": "Una primera mejora produjo un resultado peor; nuevas pruebas recuperaron terreno hasta llegar a 84,5 sobre 100."
     },
     {
       "date": "2026-11-24",
-      "title": "El valor del conocimiento preparado",
-      "text": "GW-013: 17/30, 24/30 y 30/30 casos con evidencia suficiente en tres escenarios. No son respuestas generadas.",
-      "kind": "resultado"
+      "kind": "Resultado",
+      "title": "Una biblioteca mejor preparada",
+      "text": "En una evaluación de treinta preguntas, los materiales revisados ofrecían información suficiente para las treinta. No se evaluó la respuesta de la IA."
     },
     {
       "date": "2026-11-25",
-      "title": "175 celdas vuelven a tener estructura",
-      "text": "Una línea vacía impedía reconocer filas tabulares. El ensayo focal reportó 0 → 35 filas.",
-      "kind": "hallazgo"
+      "kind": "Descubrimiento",
+      "title": "Una línea vacía escondía 175 celdas",
+      "text": "Al corregir la organización de las tablas, el programa volvió a reconocer 35 filas y 175 celdas."
     },
     {
       "date": "2026-11-25",
-      "title": "Tres componentes propios",
-      "text": "Portal estudiantil y PHCE funcionales según el equipo; administración reportada funcional posteriormente, con ajustes y validación conjunta pendientes.",
-      "kind": "ingeniería"
+      "kind": "Construcción",
+      "title": "Un proyecto con varias piezas",
+      "text": "El equipo informó funcionamiento del portal estudiantil y el preparador de documentos; la administración y las pruebas conjuntas seguían en ajuste."
     },
     {
       "date": "2026-11-26",
-      "title": "Aprender a ignorar el ruido",
-      "text": "B2B-R02: 52 → 3 candidatas visuales en un documento literario; 49 alertas pasan a informativas. PASS focal reportado.",
-      "kind": "hallazgo"
+      "kind": "Descubrimiento",
+      "title": "Kafka nos enseñó qué ignorar",
+      "text": "Una prueba redujo de 52 a 3 las candidatas a revisión visual en un libro. Todavía falta comprobar otros tipos de documentos."
     },
     {
       "date": "2026-11-26",
-      "title": "OCR con incertidumbre explícita",
-      "text": "Reconocimiento de título y autor en una portada, confianza reportada 65,41/100; requiere cotejo humano.",
-      "kind": "ingeniería"
+      "kind": "Divulgación",
+      "title": "Contar la ciencia en lenguaje cotidiano",
+      "text": "La segunda edición de la crónica propone analogías y una encuesta voluntaria para evaluar comprensión e interés."
     }
   ]
 }
