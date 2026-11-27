@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="860" viewBox="0 0 1200 860" role="img" aria-labelledby="title desc">
+<title id="title">Docentes que usan IA en el aula</title>
+<desc id="desc">Uso docente autodeclarado de IA en el aula; la comparación muestra una fuerte expansión hasta 2025 y una estabilización posterior, pero no mide frecuencia, herramienta ni efecto sobre el aprendizaje.</desc>
+<rect width="100%" height="100%" fill="#F7F8FC"/>
+<text x="80" y="78" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#132238">Docentes que usan IA en el aula</text>
+<text x="80" y="118" font-family="Arial,sans-serif" font-size="21" fill="#667085">Aula Inteligente · 2026-11-27</text>
+<line x1="105" y1="650.0" x2="1110" y2="650.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="657.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">0%</text>
+<line x1="105" y1="547.5" x2="1110" y2="547.5" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="554.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">18%</text>
+<line x1="105" y1="445.0" x2="1110" y2="445.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="452.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">36%</text>
+<line x1="105" y1="342.5" x2="1110" y2="342.5" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="349.5" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">53%</text>
+<line x1="105" y1="240.0" x2="1110" y2="240.0" stroke="#D0D5DD" stroke-width="1"/>
+<text x="82" y="247.0" text-anchor="end" font-family="Arial,sans-serif" font-size="17" fill="#667085">71%</text>
+<rect x="235.7" y="454.5" width="72.0" height="195.5" rx="12" fill="#2F6BFF"/>
+<text x="271.7" y="440.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#2F6BFF">34%</text>
+<text x="271.7" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">2023</text>
+<rect x="569.0" y="299.2" width="72.0" height="350.8" rx="12" fill="#16A6A0"/>
+<text x="605.0" y="285.2" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#16A6A0">61%</text>
+<text x="605.0" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">2025</text>
+<rect x="902.3" y="293.5" width="72.0" height="356.5" rx="12" fill="#F26B5E"/>
+<text x="938.3" y="279.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#F26B5E">62%</text>
+<text x="938.3" y="688" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#1D2939">2026</text>
+<text x="80" y="760" font-family="Arial,sans-serif" font-size="16" fill="#344054">Uso docente autodeclarado de IA en el aula; la comparación muestra una fuerte expansión</text>
+<text x="80" y="782" font-family="Arial,sans-serif" font-size="16" fill="#344054">hasta 2025 y una estabilización posterior, pero no mide frecuencia, herramienta ni efecto</text>
+<text x="80" y="825" font-family="Arial,sans-serif" font-size="14" fill="#667085">Fuente: https://www.edweek.org/technology/why-teacher-ai-use-has-plateaued-and-what-could-come-next/2026/11 · n=590 docentes en 2026; muestras comparables no especificadas en el resumen para 2023 y 2025</text>
+</svg>
